@@ -50,20 +50,18 @@
         .cta-button:hover {
             background: #FF4C4C;
         }
-        .container {
+        .key-system-section {
             padding: 40px 20px;
             max-width: 1200px;
             margin: auto;
-        }
-        .interactive-section {
-            margin-top: 40px;
             background: white;
             border-radius: 10px;
-            padding: 20px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
             opacity: 0; /* Start hidden for transition */
             transform: translateY(20px); /* Slide effect */
             transition: opacity 0.6s ease, transform 0.6s ease; /* Transition for section */
+            margin-top: 40px;
+            text-align: center;
         }
         footer {
             text-align: center;
@@ -86,31 +84,14 @@
 <header id="header">
     <h1>Welcome to My Website!</h1>
     <p>Discover Your Potential</p>
-    <button class="cta-button" onclick="location.href='#interactive'">Explore Now</button>
+    <button class="cta-button" onclick="location.href='#key-system'">Explore Now</button>
 </header>
 
-<div class="container">
-    <section class="interactive-section" id="interactive">
-        <h2>Interactive Features</h2>
-        <div>
-            <h3>Calculator</h3>
-            <input type="number" id="inputValue" placeholder="Enter a value" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
-            <button class="cta-button" onclick="calculate()">Calculate</button>
-            <p id="calcResult"></p>
-        </div>
-        <div style="margin-top: 20px;">
-            <h3>Quiz</h3>
-            <p>What is your favorite color?</p>
-            <select id="colorQuiz" style="padding: 10px; border-radius: 5px; border: 1px solid #ccc;">
-                <option value="">Select</option>
-                <option value="red">Red</option>
-                <option value="blue">Blue</option>
-                <option value="green">Green</option>
-            </select>
-            <button class="cta-button" onclick="submitQuiz()">Submit</button>
-            <p id="quizResult"></p>
-        </div>
-    </section>
+<div class="key-system-section" id="key-system">
+    <h2>Key System / Link Bypasser</h2>
+    <p>Our Key System provides a seamless way to bypass links and gain access to restricted content. Experience uninterrupted access and streamline your online navigation.</p>
+    <p>Click the button below to get redirected to the Bypasser:</p>
+    <button class="cta-button" onclick="location.href='your-bypasser-url.com'">Go to Bypasser</button>
 </div>
 
 <footer>
@@ -122,27 +103,16 @@
     document.addEventListener('DOMContentLoaded', () => {
         // Fade in header and section
         const header = document.getElementById('header');
-        const section = document.getElementById('interactive');
+        const keySystemSection = document.querySelector('.key-system-section');
         
         header.style.opacity = '1';
         header.style.transform = 'translateY(0)';
         
         setTimeout(() => {
-            section.style.opacity = '1';
-            section.style.transform = 'translateY(0)';
+            keySystemSection.style.opacity = '1';
+            keySystemSection.style.transform = 'translateY(0)';
         }, 600); // Delay for section
     });
-
-    function calculate() {
-        const value = document.getElementById('inputValue').value;
-        const result = value * 2; // Simple calculation
-        document.getElementById('calcResult').innerText = `Result: ${result}`;
-    }
-
-    function submitQuiz() {
-        const selectedColor = document.getElementById('colorQuiz').value;
-        document.getElementById('quizResult').innerText = `You selected: ${selectedColor}`;
-    }
 </script>
 
 </body>

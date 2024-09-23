@@ -12,7 +12,7 @@
             padding: 0;
             background: linear-gradient(to right, #e0eafc, #cfdef3); /* Stylish gradient background */
             color: #333;
-            overflow: hidden; /* Prevent scroll during transition */
+            scroll-behavior: smooth; /* Smooth scroll */
         }
         header {
             background: url('hero-image.jpg') no-repeat center center/cover;
@@ -28,6 +28,9 @@
             opacity: 0; /* Start hidden for transition */
             transform: translateY(20px); /* Slide effect */
             transition: opacity 0.6s ease, transform 0.6s ease; /* Transition for header */
+        }
+        h1, p {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5);
         }
         h1 {
             font-size: 3.5rem;
@@ -45,10 +48,12 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 1.2rem;
-            transition: background 0.3s;
+            transition: background 0.3s, box-shadow 0.3s;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5);
         }
         .cta-button:hover {
             background: #FF4C4C;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.5);
         }
         .key-system-section {
             padding: 40px 20px;
@@ -84,7 +89,7 @@
 <header id="header">
     <h1>Welcome to My Website!</h1>
     <p>Discover Your Potential</p>
-    <button class="cta-button" onclick="location.href='#key-system'">Explore Now</button>
+    <button class="cta-button" onclick="scrollToKeySystem()">Explore Now</button>
 </header>
 
 <div class="key-system-section" id="key-system">
@@ -113,6 +118,10 @@
             keySystemSection.style.transform = 'translateY(0)';
         }, 600); // Delay for section
     });
+
+    function scrollToKeySystem() {
+        document.getElementById('key-system').scrollIntoView({ behavior: 'smooth' });
+    }
 </script>
 
 </body>

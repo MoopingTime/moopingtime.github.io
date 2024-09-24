@@ -81,57 +81,66 @@
     async function bypassLink() {
         const link = document.getElementById('linkInput').value;
         const resultBox = document.getElementById('result');
+
+        // Mapping of supported links to their corresponding API and messages
         const linkMapping = {
-            "linkvertise": {
-                "patterns": ["linkvertise.com", "direct-link.net", "link-target.net", "link-center.net", "link-hub.net", "link-to.net"],
-                "api": `https://moopy-api.vercel.app/api/bypass?link=${link}`,
-                "successMsg": "Linkvertise Bypass Successful"
+            linkvertise: {
+                patterns: ["linkvertise.com", "direct-link.net", "link-target.net", "link-center.net", "link-hub.net", "link-to.net"],
+                api: `https://moopy-api.vercel.app/api/bypass?link=${encodeURIComponent(link)}`,
+                successMsg: "Linkvertise Bypass Successful"
             },
-            "platoboost": {
-                "patterns": ["gateway.platoboost.com"],
-                "api": `https://moopy-api.vercel.app/api/bypass?link=${link}`,
-                "successMsg": "Platoboost Bypass Successful"
+            platoboost: {
+                patterns: ["gateway.platoboost.com"],
+                api: `https://moopy-api.vercel.app/api/bypass?link=${encodeURIComponent(link)}`,
+                successMsg: "Platoboost Bypass Successful"
             },
-            "fluxus": {
-                "patterns": ["flux.li"],
-                "api": `https://moopy-api.vercel.app/api/bypass?link=${link}`,
-                "successMsg": "Fluxus Bypass Successful"
+            fluxus: {
+                patterns: ["flux.li"],
+                api: `https://moopy-api.vercel.app/api/bypass?link=${encodeURIComponent(link)}`,
+                successMsg: "Fluxus Bypass Successful"
             },
-            "codex": {
-                "patterns": ["mobile.codex.lol"],
-                "api": `https://moopy-api.vercel.app/api/bypass?link=${link}`,
-                "successMsg": "Codex Bypass Successful"
+            codex: {
+                patterns: ["mobile.codex.lol"],
+                api: `https://moopy-api.vercel.app/api/bypass?link=${encodeURIComponent(link)}`,
+                successMsg: "Codex Bypass Successful"
             },
         };
 
-        // Find the handler based on link
+        // Find the appropriate handler based on the link
         const handler = Object.values(linkMapping).find(v => v.patterns.some(p => link.includes(p)));
 
         if (!handler) {
-            resultBox.style.display = "block";
-            resultBox.innerText = "⚠️ Link Not Supported";
+            displayResult("⚠️ Link Not Supported", "#ff4c4c"); // Error color
             return;
         }
 
-        // Fetch bypassed link from API
+        // Fetch the bypassed link from the API
         try {
             const response = await fetch(handler.api);
             const data = await response.json();
-            const bypassedLink = data.bypassed || data.key || data.redirect_link;
 
-            if (bypassedLink) {
-                resultBox.style.display = "block";
-                resultBox.innerText = `✅ ${handler.successMsg}:\n ${bypassedLink}`;
-                resultBox.style.color = "#00ff00"; // Success color
+            console.log(data); // Debugging line to check the API response
+
+            // Extract the bypassed link from the response
+            const bypassedLink = data.data.key;
+
+            // Check if the bypass was successful
+            if (data.data.success && bypassedLink) {
+                displayResult(`✅ ${handler.successMsg}:\n ${bypassedLink}`, "#00ff00"); // Success color
             } else {
-                resultBox.style.display = "block";
-                resultBox.innerText = `❌ ${handler.successMsg.replace('Successful', 'Failed')}`;
-                resultBox.style.color = "#ff4c4c"; // Error color
+                displayResult(`❌ ${handler.successMsg.replace('Successful', 'Failed')}`, "#ff4c4c"); // Error color
             }
         } catch (error) {
-            resultBox.style.display = "block";
-            resultBox.innerText = "❌ An error occurred while processing the request.";
+            displayResult("❌ An error occurred while processing the request.", "#ff4c4c"); // Error color
         }
+    }
+
+    // Helper function to display results in the result box
+    function displayResult(message, color) {
+        const resultBox = document.getElementById('result');
+        resultBox.style.display = "block";
+        resultBox.innerText = message;
+        resultBox.style.color = color;
     }
 </script>
 

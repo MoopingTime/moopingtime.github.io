@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to My Website</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <title>Moop's Lounge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #121212; /* Dark background */
-            color: #e0e0e0; /* Light text color */
-            scroll-behavior: smooth; /* Smooth scroll */
+            background: linear-gradient(135deg, #121212, #1f1f1f); /* Gradient background */
+            color: #e0e0e0; 
+            scroll-behavior: smooth;
+            overflow-x: hidden; /* Prevent horizontal scroll */
         }
         header {
             background: url('hero-image.jpg') no-repeat center center/cover;
@@ -24,60 +25,79 @@
             text-align: center;
             position: relative;
             filter: brightness(0.5);
-            opacity: 0; /* Start hidden for transition */
-            transform: translateY(20px); /* Slide effect */
-            transition: opacity 0.6s ease, transform 0.6s ease; /* Transition for header */
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
         }
         h1, p {
-            color: #ffffff; /* Set header text color to white */
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5);
+            font-family: 'Montserrat', sans-serif; /* New font for headings */
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.5);
         }
         h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             margin: 0;
+            letter-spacing: 1px;
         }
         p {
             font-size: 1.5rem;
-            margin: 10px 0;
+            margin: 15px 0;
+            color: #f0f0f0;
         }
         .cta-button {
-            background: #FF6B6B; /* Button background */
-            color: white; /* Button text color */
-            padding: 12px 25px;
+            background: linear-gradient(135deg, #FF6B6B, #FF4C4C);
+            color: white;
+            padding: 15px 30px;
             border: none;
-            border-radius: 5px;
+            border-radius: 30px;
             cursor: pointer;
             font-size: 1.2rem;
-            transition: background 0.3s, box-shadow 0.3s;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 0.5);
+            text-transform: uppercase;
+            transition: background 0.4s, transform 0.3s;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.5);
         }
         .cta-button:hover {
-            background: #FF4C4C; /* Button hover background */
-            box-shadow: 0 0 10px rgba(255, 255, 255, 1), 0 0 20px rgba(255, 255, 255, 0.5);
+            background: linear-gradient(135deg, #FF4C4C, #FF6B6B);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
         }
         .key-system-section {
-            padding: 40px 20px;
+            padding: 50px 20px;
             max-width: 1200px;
             margin: auto;
-            background: #1e1e1e; /* Dark section background */
-            border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
-            opacity: 0; /* Start hidden for transition */
-            transform: translateY(20px); /* Slide effect */
-            transition: opacity 0.6s ease, transform 0.6s ease; /* Transition for section */
-            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.05); /* Glassmorphism */
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            margin-top: -50px;
             text-align: center;
+        }
+        .key-system-section h2 {
+            color: #FF6B6B;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .key-system-section p {
+            font-size: 1.2rem;
+            color: #e0e0e0;
         }
         footer {
             text-align: center;
-            padding: 20px;
-            background: #333; /* Dark footer background */
-            color: white; /* Footer text color */
-            margin-top: 40px; /* Add space between the footer and the key system section */
+            padding: 25px;
+            background: #333;
+            color: white;
+            margin-top: 40px;
+        }
+        footer p {
+            font-size: 1rem;
         }
         footer a {
-            color: #FF6B6B; /* Link color */
+            color: #FF6B6B;
             text-decoration: none;
+            font-weight: bold;
         }
         footer a:hover {
             text-decoration: underline;
@@ -87,26 +107,25 @@
 <body>
 
 <header id="header">
-    <h1>Welcome to My Website!</h1>
+    <h1>Welcome to Moop's Lounge</h1>
     <p>Discover Your Potential</p>
     <button class="cta-button" onclick="scrollToKeySystem()">Explore Now</button>
 </header>
 
 <div class="key-system-section" id="key-system">
-    <h2>Key System / Link Bypasser</h2>
-    <p>Our Key System provides a seamless way to bypass links and gain access to restricted content. Experience uninterrupted access and streamline your online navigation.</p>
+    <h2>Key System/Link Bypasser</h2>
+    <p>Our Bypasser provides a seamless way to bypass links and gain access to restricted content. Experience uninterrupted access and streamline your online navigation.</p>
     <p>Click the button below to get redirected to the Bypasser:</p>
     <button class="cta-button" onclick="location.href='your-bypasser-url.com'">Go to Bypasser</button>
 </div>
 
 <footer>
-    <p>© 2024 Your Website. All rights reserved.</p>
+    <p>© 2024 Moop's Lounge. All rights reserved.</p>
     <a href="#contact">Contact</a>
 </footer>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-        // Fade in header and section
         const header = document.getElementById('header');
         const keySystemSection = document.querySelector('.key-system-section');
         
@@ -116,7 +135,7 @@
         setTimeout(() => {
             keySystemSection.style.opacity = '1';
             keySystemSection.style.transform = 'translateY(0)';
-        }, 600); // Delay for section
+        }, 600);
     });
 
     function scrollToKeySystem() {

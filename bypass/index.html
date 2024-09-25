@@ -3,131 +3,121 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moop's Bypasser</title>
+    <title>Link Bypasser</title>
     <style>
-        /* Overall page styling */
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #1f1f1f;
-            color: #f1f1f1;
             margin: 0;
             padding: 0;
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #1d1f21, #2c3e50); /* Dark background gradient */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
+            color: #ffffff;
+            overflow: hidden; /* Prevent scrollbars */
         }
-
-        /* Main container */
         .container {
+            position: relative;
             display: flex;
-            flex-direction: row;
             justify-content: center;
-            align-items: flex-start;
-            margin-top: 50px;
-            background-color: #333;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+            align-items: center;
+            width: 100%;
+            max-width: 1200px;
         }
-
-        /* Bypass and Supported boxes */
-        .bypass-box, .supported-box {
-            border: 1px solid #444;
-            padding: 20px;
-            width: 300px;
-            margin: 10px;
-            background-color: #2e2e2e;
-            border-radius: 8px;
-        }
-
         .bypass-box {
-            background-color: #252525;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 100%;
+            max-width: 400px;
+            transition: transform 0.5s ease; /* Smooth transition */
+            transform: translateY(0); /* Initial position */
         }
-
-        .supported-box {
-            background-color: #3b3b3b;
-            display: none;
+        .bypass-box.hidden {
+            transform: translateY(-30px); /* Move up on hide */
         }
-
-        .supported-box.show {
-            display: block;
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: #ff6b6b; /* Eye-catching heading color */
         }
-
-        /* Input styling */
         input[type="text"] {
             width: 100%;
-            padding: 10px;
-            margin-top: 10px;
+            padding: 15px;
             border: none;
-            border-radius: 5px;
-            background-color: #1f1f1f;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.2);
             color: #ffffff;
+            font-size: 1.2rem;
+            transition: background 0.3s;
+        }
+        input[type="text"]:focus {
+            background: rgba(255, 255, 255, 0.3);
             outline: none;
         }
-
-        /* Button styling */
-        button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 15px;
+        .bypass-button, .supported-button {
+            background: linear-gradient(135deg, #ff6b6b, #ff4c4c);
+            color: white;
+            padding: 12px 20px;
             border: none;
-            border-radius: 5px;
+            border-radius: 10px;
             cursor: pointer;
-            font-size: 16px;
-            background-color: #5a5a5a;
-            color: #fff;
-            transition: background-color 0.3s ease;
+            font-size: 1.2rem;
+            transition: background 0.4s, transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            margin-top: 10px; /* Spacing between buttons */
         }
-
-        button:hover {
-            background-color: #777;
+        .bypass-button:hover, .supported-button:hover {
+            background: linear-gradient(135deg, #ff4c4c, #ff6b6b);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.5);
         }
-
-        /* Result box */
-        #result {
+        .result-box {
             margin-top: 20px;
-            display: none;
-            padding: 15px;
-            border-radius: 5px;
-            background-color: #444;
-            color: #ffffff;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            font-size: 1.1rem;
+            color: #ff4c4c;
+            transition: opacity 0.5s;
         }
-
-        /* Supported Bypasses Box Aesthetic */
-        .supported-box h3 {
-            font-size: 18px;
+        /* Supported Bypasses Styling */
+        .supported-bypasses {
+            position: absolute;
+            left: -500px; /* Start offscreen */
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 10px;
+            padding: 20px;
+            width: 300px;
+            transition: transform 0.5s ease, left 0.5s ease;
+        }
+        .supported-bypasses.show {
+            left: 10px; /* Slide into view */
+        }
+        .supported-bypasses h3 {
+            color: #ff6b6b;
             margin-bottom: 10px;
-            color: #f1f1f1;
         }
-
-        .supported-box ul {
-            list-style-type: none;
+        .supported-bypasses ul {
+            list-style: none;
             padding-left: 0;
         }
-
-        .supported-box ul li {
-            background-color: #555;
-            margin-bottom: 8px;
+        .supported-bypasses ul li {
+            background: rgba(255, 255, 255, 0.2);
             padding: 10px;
             border-radius: 5px;
-            color: #fff;
+            margin-bottom: 10px;
+            color: #ffffff;
         }
-
-        .supported-box ul li:hover {
-            background-color: #777;
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .container {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .bypass-box, .supported-box {
-                width: 100%;
-            }
+        .supported-bypasses ul li:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
     </style>
 </head>
@@ -135,7 +125,7 @@
 
     <div class="container">
         <!-- Supported Bypasses Box -->
-        <div id="supportedBypasses" class="supported-box">
+        <div id="supportedBypasses" class="supported-bypasses">
             <h3>Supported Bypasses:</h3>
             <ul>
                 <li>Linkvertise</li>
@@ -148,12 +138,11 @@
 
         <!-- Link Bypasser Box -->
         <div class="bypass-box">
-            <h3>Moop's Bypasser</h3>
+            <h1>Link Bypasser</h1>
             <input type="text" id="linkInput" placeholder="Enter link to bypass" />
-            <button onclick="bypassLink()">Bypass</button>
-            <button onclick="toggleSupportedBypasses()">Supported Bypasses</button>
-
-            <div id="result"></div>
+            <button class="bypass-button" onclick="bypassLink()">Bypass</button>
+            <button class="supported-button" onclick="toggleSupportedBypasses()">Supported Bypasses</button>
+            <div id="result" class="result-box"></div>
         </div>
     </div>
 
@@ -218,14 +207,11 @@
 
         function toggleSupportedBypasses() {
             const supportedBox = document.getElementById('supportedBypasses');
-            const bypassBox = document.querySelector('.bypass-box');
 
             if (supportedBox.classList.contains('show')) {
                 supportedBox.classList.remove('show');
-                bypassBox.classList.remove('hidden');
             } else {
                 supportedBox.classList.add('show');
-                bypassBox.classList.add('hidden');
             }
         }
     </script>

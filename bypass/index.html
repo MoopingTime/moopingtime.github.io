@@ -20,31 +20,31 @@
         .container {
             position: relative;
             display: flex;
+            gap: 20px;
             justify-content: center;
-            align-items: center;
-            width: 100%;
-            max-width: 1200px;
+            align-items: flex-start; /* Align to the top */
+            max-width: 1000px;
+            padding: 20px;
         }
-        .bypass-box {
+        .bypass-box, .supported-bypasses {
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(15px);
             padding: 40px;
             border-radius: 20px;
             box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
             text-align: center;
+            transition: transform 0.5s ease, opacity 0.5s;
+            transform: translateY(0);
             width: 100%;
             max-width: 400px;
-            transition: transform 0.5s ease; /* Smooth transition */
-            transform: translateY(0); /* Initial position */
         }
-        .bypass-box.hidden {
+        .bypass-box.hidden, .supported-bypasses.hidden {
             transform: translateY(-30px); /* Move up on hide */
         }
-        h1 {
+        h1, h3 {
             font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
             color: #ff6b6b; /* Eye-catching heading color */
+            margin-bottom: 20px;
         }
         input[type="text"] {
             width: 100%;
@@ -87,23 +87,15 @@
             color: #ff4c4c;
             transition: opacity 0.5s;
         }
-        /* Supported Bypasses Styling */
         .supported-bypasses {
-            position: absolute;
-            left: -500px; /* Start offscreen */
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            border-radius: 10px;
-            padding: 20px;
-            width: 300px;
-            transition: transform 0.5s ease, left 0.5s ease;
+            opacity: 0;
+            max-width: 300px; /* Adjust width slightly smaller */
+            transform: translateX(-30px);
+            transition: transform 0.5s ease, opacity 0.5s;
         }
         .supported-bypasses.show {
-            left: 10px; /* Slide into view */
-        }
-        .supported-bypasses h3 {
-            color: #ff6b6b;
-            margin-bottom: 10px;
+            opacity: 1;
+            transform: translateX(0); /* Slide in from left */
         }
         .supported-bypasses ul {
             list-style: none;

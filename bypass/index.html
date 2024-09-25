@@ -3,45 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moop's Bypasser</title>
     <style>
+        /* Overall page styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1f1f1f;
+            color: #f1f1f1;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Main container */
         .container {
             display: flex;
+            flex-direction: row;
             justify-content: center;
             align-items: flex-start;
             margin-top: 50px;
+            background-color: #333;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
         }
 
+        /* Bypass and Supported boxes */
         .bypass-box, .supported-box {
-            border: 1px solid #ccc;
+            border: 1px solid #444;
             padding: 20px;
             width: 300px;
             margin: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #2e2e2e;
+            border-radius: 8px;
         }
 
         .bypass-box {
-            background-color: #f9f9f9;
+            background-color: #252525;
         }
 
         .supported-box {
-            background-color: #f1f1f1;
-            display: none; /* Hidden by default */
-        }
-
-        .supported-box.show {
-            display: block; /* Show when toggled */
-        }
-
-        .hidden {
+            background-color: #3b3b3b;
             display: none;
         }
 
-        #result {
-            margin-top: 20px;
-            display: none; /* Initially hidden */
+        .supported-box.show {
+            display: block;
         }
 
-        /* Responsive adjustments */
+        /* Input styling */
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #1f1f1f;
+            color: #ffffff;
+            outline: none;
+        }
+
+        /* Button styling */
+        button {
+            width: 100%;
+            padding: 10px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            background-color: #5a5a5a;
+            color: #fff;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #777;
+        }
+
+        /* Result box */
+        #result {
+            margin-top: 20px;
+            display: none;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #444;
+            color: #ffffff;
+        }
+
+        /* Supported Bypasses Box Aesthetic */
+        .supported-box h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #f1f1f1;
+        }
+
+        .supported-box ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .supported-box ul li {
+            background-color: #555;
+            margin-bottom: 8px;
+            padding: 10px;
+            border-radius: 5px;
+            color: #fff;
+        }
+
+        .supported-box ul li:hover {
+            background-color: #777;
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
             .container {
                 flex-direction: column;
@@ -49,8 +126,7 @@
             }
 
             .bypass-box, .supported-box {
-                width: 100%; /* Full width on small screens */
-                margin: 10px 0;
+                width: 100%;
             }
         }
     </style>
@@ -58,6 +134,7 @@
 <body>
 
     <div class="container">
+        <!-- Supported Bypasses Box -->
         <div id="supportedBypasses" class="supported-box">
             <h3>Supported Bypasses:</h3>
             <ul>
@@ -65,11 +142,13 @@
                 <li>Platoboost</li>
                 <li>Fluxus</li>
                 <li>Codex</li>
+                <!-- Add more supported bypassers if needed -->
             </ul>
         </div>
 
+        <!-- Link Bypasser Box -->
         <div class="bypass-box">
-            <h3>Link Bypasser</h3>
+            <h3>Moop's Bypasser</h3>
             <input type="text" id="linkInput" placeholder="Enter link to bypass" />
             <button onclick="bypassLink()">Bypass</button>
             <button onclick="toggleSupportedBypasses()">Supported Bypasses</button>
@@ -116,8 +195,6 @@
             try {
                 const response = await fetch(handler.api);
                 const data = await response.json();
-
-                console.log(data);
 
                 const bypassedLink = data.data.key;
 

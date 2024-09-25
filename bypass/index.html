@@ -1,212 +1,68 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Link Bypasser</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #1d1f21, #2c3e50); /* Dark background gradient */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            color: #ffffff;
-            overflow: hidden; /* Prevent scrollbars */
-        }
-        .container {
-            position: relative;
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            align-items: flex-start; /* Align to the top */
-            max-width: 1000px;
-            padding: 20px;
-        }
-        .bypass-box, .supported-bypasses {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px);
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
-            text-align: center;
-            transition: transform 0.5s ease, opacity 0.5s;
-            transform: translateY(0);
-            width: 100%;
-            max-width: 400px;
-        }
-        .bypass-box.hidden, .supported-bypasses.hidden {
-            transform: translateY(-30px); /* Move up on hide */
-        }
-        h1, h3 {
-            font-family: 'Montserrat', sans-serif;
-            color: #ff6b6b; /* Eye-catching heading color */
-            margin-bottom: 20px;
-        }
-        input[type="text"] {
-            width: 100%;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            margin-bottom: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-            font-size: 1.2rem;
-            transition: background 0.3s;
-        }
-        input[type="text"]:focus {
-            background: rgba(255, 255, 255, 0.3);
-            outline: none;
-        }
-        .bypass-button, .supported-button {
-            background: linear-gradient(135deg, #ff6b6b, #ff4c4c);
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: background 0.4s, transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            margin-top: 10px; /* Spacing between buttons */
-        }
-        .bypass-button:hover, .supported-button:hover {
-            background: linear-gradient(135deg, #ff4c4c, #ff6b6b);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.5);
-        }
-        .result-box {
-            margin-top: 20px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 10px;
-            font-size: 1.1rem;
-            color: #ff4c4c;
-            transition: opacity 0.5s;
-        }
-        .supported-bypasses {
-            opacity: 0;
-            max-width: 300px; /* Adjust width slightly smaller */
-            transform: translateX(-30px);
-            transition: transform 0.5s ease, opacity 0.5s;
-        }
-        .supported-bypasses.show {
-            opacity: 1;
-            transform: translateX(0); /* Slide in from left */
-        }
-        .supported-bypasses ul {
-            list-style: none;
-            padding-left: 0;
-        }
-        .supported-bypasses ul li {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 10px;
-            border-radius: 5px;
-            margin-bottom: 10px;
-            color: #ffffff;
-        }
-        .supported-bypasses ul li:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-    </style>
-</head>
-<body>
+<button class="bypass-button" onclick="bypassLink()">Bypass</button>
+    <div id="result" class="result-box"></div>
+  </div>
+</div>
 
-    <div class="container">
-        <!-- Supported Bypasses Box -->
-        <div id="supportedBypasses" class="supported-bypasses">
-            <h3>Supported Bypasses:</h3>
-            <ul>
-                <li>Linkvertise</li>
-                <li>Platoboost</li>
-                <li>Fluxus</li>
-                <li>Codex</li>
-                <!-- Add more supported bypassers if needed -->
-            </ul>
-        </div>
+<script>
+  async function bypassLink() {
+    const link = document.getElementById('linkInput').value;
+    const resultBox = document.getElementById('result');
 
-        <!-- Link Bypasser Box -->
-        <div class="bypass-box">
-            <h1>Link Bypasser</h1>
-            <input type="text" id="linkInput" placeholder="Enter link to bypass" />
-            <button class="bypass-button" onclick="bypassLink()">Bypass</button>
-            <button class="supported-button" onclick="toggleSupportedBypasses()">Supported Bypasses</button>
-            <div id="result" class="result-box"></div>
-        </div>
-    </div>
+    const linkMapping = {
+      linkvertise: {
+        patterns: ["linkvertise.com", "direct-link.net", "link-target.net", "link-center.net", "link-hub.net", "link-to.net"],
+        api: `https://moopy-api.vercel.app/api/bypass?link=${encodeURIComponent(link)}`,
+        successMsg: "Linkvertise Bypass Successful"
+      },
+      platoboost: {
+        patterns: ["gateway.platoboost.com"],
+        api: `https://moopy-api.vercel.app/api/bypass?link=${encodeURIComponent(link)}`,
+        successMsg: "Platoboost Bypass Successful"
+      },
+      fluxus: {
+        patterns: ["flux.li"],
+        api: `https://moopy-api.vercel.app/api/bypass?link=${encodeURIComponent(link)}`,
+        successMsg: "Fluxus Bypass Successful"
+      },
+      codex: {
+        patterns: ["mobile.codex.lol"],
+        api: `https://moopy-api.vercel.app/api/bypass?link=${encodeURIComponent(link)}`,
+        successMsg: "Codex Bypass Successful"
+      },
+      // Add more supported bypassers here
+    };
 
-    <script>
-        async function bypassLink() {
-            const link = document.getElementById('linkInput').value;
-            const resultBox = document.getElementById('result');
+    const handler = Object.values(linkMapping).find(v => v.patterns.some(p => link.includes(p)));
 
-            const linkMapping = {
-                linkvertise: {
-                    patterns: ["linkvertise.com", "direct-link.net", "link-target.net", "link-center.net", "link-hub.net", "link-to.net"],
-                    api: `https://moopy-api.vercel.app/api/bypass?link=${encodeURIComponent(link)}`,
-                    successMsg: "Linkvertise Bypass Successful"
-                },
-                platoboost: {
-                    patterns: ["gateway.platoboost.com"],
-                    api: `https://moopy-api.vercel.app/api/bypass?link=${encodeURIComponent(link)}`,
-                    successMsg: "Platoboost Bypass Successful"
-                },
-                fluxus: {
-                    patterns: ["flux.li"],
-                    api: `https://moopy-api.vercel.app/api/bypass?link=${encodeURIComponent(link)}`,
-                    successMsg: "Fluxus Bypass Successful"
-                },
-                codex: {
-                    patterns: ["mobile.codex.lol"],
-                    api: `https://moopy-api.vercel.app/api/bypass?link=${encodeURIComponent(link)}`,
-                    successMsg: "Codex Bypass Successful"
-                },
-            };
+    if (!handler) {
+      displayResult("⚠️ Link Not Supported", "#FFCA3A");
+      return;
+    }
 
-            const handler = Object.values(linkMapping).find(v => v.patterns.some(p => link.includes(p)));
+    try {
+      const response = await fetch(handler.api);
+      const data = await response.json();
 
-            if (!handler) {
-                displayResult("⚠️ Link Not Supported", "#ff4c4c");
-                return;
-            }
+      const bypassedLink = data.data.key;
 
-            try {
-                const response = await fetch(handler.api);
-                const data = await response.json();
+      if (data.data.success && bypassedLink) {
+        displayResult(`✅ ${handler.successMsg}:\n ${bypassedLink}`, "#00ff00");
+      } else {
+        displayResult(`❌ ${handler.successMsg.replace('Successful', 'Failed')}`, "#FFCA3A");
+      }
+    } catch (error) {
+      displayResult("❌ An error occurred while processing the request.", "#FFCA3A");
+    }
+  }
 
-                const bypassedLink = data.data.key;
-
-                if (data.data.success && bypassedLink) {
-                    displayResult(`✅ ${handler.successMsg}:\n ${bypassedLink}`, "#00ff00");
-                } else {
-                    displayResult(`❌ ${handler.successMsg.replace('Successful', 'Failed')}`, "#ff4c4c");
-                }
-            } catch (error) {
-                displayResult("❌ An error occurred while processing the request.", "#ff4c4c");
-            }
-        }
-
-        function displayResult(message, color) {
-            const resultBox = document.getElementById('result');
-            resultBox.style.display = "block";
-            resultBox.innerText = message;
-            resultBox.style.color = color;
-            resultBox.style.opacity = "1";
-        }
-
-        function toggleSupportedBypasses() {
-            const supportedBox = document.getElementById('supportedBypasses');
-
-            if (supportedBox.classList.contains('show')) {
-                supportedBox.classList.remove('show');
-            } else {
-                supportedBox.classList.add('show');
-            }
-        }
-    </script>
+  function displayResult(message, color) {
+    const resultBox = document.getElementById('result');
+    resultBox.style.display = "block";
+    resultBox.innerText = message;
+    resultBox.style.color = color;
+    resultBox.style.opacity = "1";
+  }
+</script>
 
 </body>
 </html>

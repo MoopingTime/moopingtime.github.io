@@ -1,40 +1,35 @@
-const createLootLabsLink = async () => {
-  // Collect form data
-  const requestData = {
-    title: document.querySelector('#title').value,
-    url: document.querySelector('#url').value,
-    tier_id: document.querySelector('#tier_id').value,
-    number_of_tasks: document.querySelector('#number_of_tasks').value,
-    theme: document.querySelector('#theme').value,
-    thumbnail: document.querySelector('#thumbnail').value || null, // Optional
-  };
+document.getElementById('createLinkButton').addEventListener('click', async () => {
+    const title = document.getElementById('title').value;
+    const url = document.getElementById('url').value;
+    const tierId = document.getElementById('tier_id').value;
+    const numberOfTasks = document.getElementById('number_of_tasks').value;
+    const theme = document.getElementById('theme').value;
+    const thumbnail = document.getElementById('thumbnail').value;
 
-  try {
-    // Send a POST request to your backend API
-    const response = await fetch('/api/lootlabs/content-locker', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(requestData),
+    // Send POST request to your Vercel backend API
+    const response = await fetch('https://moopy-api.vercel.app/api/lootlabs/content-locker', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            title,
+            url,
+            tier_id: tierId,
+            number_of_tasks: numberOfTasks,
+            theme,
+            thumbnail: thumbnail || null, // Optional
+        }),
     });
 
-    // Parse the response
-    const result = await response.json();
+    // Process response from your backend API
+    const data = await response.json();
 
-    // Display the result
-    if (response.ok) {
-      console.log('LootLabs Link Created:', result);
-      document.querySelector('#result').textContent = JSON.stringify(result, null, 2);
+    const resultDiv = document.getElementById('result');
+    
+    if (data.error) {
+        resultDiv.innerHTML = `<p id="error">Error: ${data.error}</p>`;
     } else {
-      console.error('Error:', result);
-      document.querySelector('#result').textContent = `Error: ${result.error}`;
+        resultDiv.innerHTML = `<p id="success">Link successfully created! <a href="${data.link}" target="_blank">Click here</a> to visit.</p>`;
     }
-  } catch (error) {
-    console.error('Error:', error);
-    document.querySelector('#result').textContent = `Error: ${error.message}`;
-  }
-};
-
-// Attach the function to the "Create Link" button
-document.querySelector('#create-link-button').addEventListener('click', createLootLabsLink);
+});

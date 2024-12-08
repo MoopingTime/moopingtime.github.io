@@ -1,26 +1,30 @@
-// Replace with your actual API endpoint
-const url = '86bce6d4ce97c7c345a28274621e20a97a82a084f845560f6ead0009afa2b189'; // Placeholder
+document.getElementById('lootlabsForm').addEventListener('submit', async (e) => {
+  e.preventDefault();
 
-// Replace with your actual API token (not recommended to store directly in code)
-const headers = {
-    Authorization: 'Bearer YOUR_API_TOKEN' // Placeholder
-};
+  const title = document.getElementById('title').value;
+  const url = document.getElementById('url').value;
+  const tierId = document.getElementById('tierId').value;
+  const numberOfTasks = document.getElementById('tasks').value;
+  const theme = document.getElementById('theme').value;
+  const thumbnail = document.getElementById('thumbnail').value;
 
-const form = document.getElementById('lootlink-form');
-const resultDiv = document.getElementById('result');
+  const data = { title, url, tier_id: tierId, number_of_tasks: numberOfTasks, theme, thumbnail };
 
-form.addEventListener('submit', async (event) => {
-  event.preventDefault();
-
-  const formData = new FormData(form);
-  const data = Object.fromEntries(formData.entries());
+  const headers = {
+    Authorization: '86bce6d4ce97c7c345a28274621e20a97a82a084f845560f6ead0009afa2b189',
+    'Content-Type': 'application/json'
+  };
 
   try {
-    const response = await axios.post(url, data, { headers: headers });
-    const lootlink = response.data.lootlink; // Adjust based on your API response structure
-    resultDiv.textContent = `Your Lootlink: ${lootlink}`;
+    const response = await fetch('https://be.lootlabs.gg/api/lootlabs/content_locker', {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+    document.getElementById('response').innerText = JSON.stringify(result, null, 2);
   } catch (error) {
-    console.error(error);
-    resultDiv.textContent = 'Error generating Lootlink. Check the console for details.';
+    document.getElementById('response').innerText = `Error: ${error.message}`;
   }
 });

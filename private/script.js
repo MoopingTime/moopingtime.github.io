@@ -1,34 +1,40 @@
-document.getElementById('lootlabsForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-
-  const title = document.getElementById('title').value;
-  const url = document.getElementById('url').value;
-  const tierId = document.getElementById('tierId').value;
-  const numberOfTasks = document.getElementById('tasks').value;
-  const theme = document.getElementById('theme').value;
-  const thumbnail = document.getElementById('thumbnail').value;
-
-  const data = {
-    title,
-    url,
-    tier_id: tierId,
-    number_of_tasks: numberOfTasks,
-    theme,
-    thumbnail: thumbnail || null, // Optional field
+const createLootLabsLink = async () => {
+  // Collect form data
+  const requestData = {
+    title: document.querySelector('#title').value,
+    url: document.querySelector('#url').value,
+    tier_id: document.querySelector('#tier_id').value,
+    number_of_tasks: document.querySelector('#number_of_tasks').value,
+    theme: document.querySelector('#theme').value,
+    thumbnail: document.querySelector('#thumbnail').value || null, // Optional
   };
 
   try {
-    const response = await fetch('https://moopy-api.vercel.app/api/lootlabs/content-locker', {
+    // Send a POST request to your backend API
+    const response = await fetch('/api/lootlabs/content-locker', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(requestData),
     });
 
+    // Parse the response
     const result = await response.json();
-    document.getElementById('response').innerText = JSON.stringify(result, null, 2);
+
+    // Display the result
+    if (response.ok) {
+      console.log('LootLabs Link Created:', result);
+      document.querySelector('#result').textContent = JSON.stringify(result, null, 2);
+    } else {
+      console.error('Error:', result);
+      document.querySelector('#result').textContent = `Error: ${result.error}`;
+    }
   } catch (error) {
-    document.getElementById('response').innerText = `Error: ${error.message}`;
+    console.error('Error:', error);
+    document.querySelector('#result').textContent = `Error: ${error.message}`;
   }
-});
+};
+
+// Attach the function to the "Create Link" button
+document.querySelector('#create-link-button').addEventListener('click', createLootLabsLink);

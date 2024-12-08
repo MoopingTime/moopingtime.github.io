@@ -8,18 +8,22 @@ document.getElementById('lootlabsForm').addEventListener('submit', async (e) => 
   const theme = document.getElementById('theme').value;
   const thumbnail = document.getElementById('thumbnail').value;
 
-  const data = { title, url, tier_id: tierId, number_of_tasks: numberOfTasks, theme, thumbnail };
-
-  const headers = {
-    Authorization: '86bce6d4ce97c7c345a28274621e20a97a82a084f845560f6ead0009afa2b189',
-    'Content-Type': 'application/json'
+  const data = {
+    title,
+    url,
+    tier_id: tierId,
+    number_of_tasks: numberOfTasks,
+    theme,
+    thumbnail: thumbnail || null, // Optional field
   };
 
   try {
-    const response = await fetch('https://be.lootlabs.gg/api/lootlabs/content_locker', {
+    const response = await fetch('https://moopy-api.vercel.app/api/lootlabs/content-locker', {
       method: 'POST',
-      headers: headers,
-      body: JSON.stringify(data)
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
     });
 
     const result = await response.json();

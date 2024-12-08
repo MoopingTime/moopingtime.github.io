@@ -1,42 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Lootlink Generator</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LootLabs Link Creator</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Lootlink Generator</h1>
-    <form id="lootlink-form">
+  <div class="container">
+    <h1>LootLabs Link Creator</h1>
+    <form id="lootlabsForm">
+      <div class="form-group">
         <label for="title">Title:</label>
-        <input type="text" id="title" name="title" placeholder="Enter your content title"><br>
-        <button type="submit">Generate Lootlink</button>
+        <input type="text" id="title" name="title" required>
+      </div>
+      <div class="form-group">
+        <label for="url">URL:</label>
+        <input type="url" id="url" name="url" required>
+      </div>
+      <div class="form-group">
+        <label for="tierId">Tier ID:</label>
+        <input type="number" id="tierId" name="tier_id" min="1" required>
+      </div>
+      <div class="form-group">
+        <label for="tasks">Number of Tasks:</label>
+        <input type="number" id="tasks" name="number_of_tasks" min="1" required>
+      </div>
+      <div class="form-group">
+        <label for="theme">Theme:</label>
+        <input type="number" id="theme" name="theme" min="1" required>
+      </div>
+      <div class="form-group">
+        <label for="thumbnail">Thumbnail URL:</label>
+        <input type="url" id="thumbnail" name="thumbnail" required>
+      </div>
+      <button type="submit">Create Link</button>
     </form>
-    <div id="result"></div>
-
-    <script>
-        const url = 'https://your_api_endpoint'; // Replace with your actual API endpoint
-        const headers = {
-            Authorization: 'Bearer your_api_token' // Replace with your actual API token
-        };
-
-        const form = document.getElementById('lootlink-form');
-        const resultDiv = document.getElementById('result');
-
-        form.addEventListener('submit', async (event) => {
-            event.preventDefault();
-
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-
-            try {
-                const response = await axios.post(url, data, { headers: headers });
-                const lootlink = response.data.lootlink; // Adjust based on your API response structure
-                resultDiv.textContent = `Your Lootlink: ${lootlink}`;
-            } catch (error) {
-                console.error(error);
-                resultDiv.textContent = 'Error generating Lootlink. Check the console for details.';
-            }
-        });
-    </script>
+    <div id="response"></div>
+  </div>
+  <script src="script.js"></script>
 </body>
 </html>

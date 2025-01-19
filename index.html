@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mooping's Basement</title>
+    <title>Moop's Lounge</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -49,7 +49,7 @@
             margin-top: 20px;
             padding: 15px 30px;
             border: none;
-            border-radius: 30px;
+            border-radius: 10px;
             background: #ff6f91;
             color: white;
             font-size: 1.1rem;
@@ -62,25 +62,25 @@
             transform: scale(1.05);
             background: #ff85a2;
         }
-        .key-system-section {
+        .key-system-section, .neko-hub-section {
             margin: 50px auto;
             padding: 40px;
             max-width: 900px;
             background: rgba(255, 255, 255, 0.2);
-            border-radius: 15px;
+            border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(10px);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .key-system-section:hover {
+        .key-system-section:hover, .neko-hub-section:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
         }
-        .key-system-section h2 {
+        .key-system-section h2, .neko-hub-section h2 {
             color: #ff467e;
             font-size: 2.5rem;
         }
-        .key-system-section p {
+        .key-system-section p, .neko-hub-section p {
             font-size: 1.2rem;
             color: #fff8fd;
         }
@@ -104,7 +104,7 @@
 <body>
 
 <header id="header">
-    <h1>Welcome to my basement!</h1>
+    <h1>Welcome to Mooping</h1>
     <p>Discover Your Potential</p>
     <button class="cta-button" onclick="scrollToKeySystem()">Explore Now</button>
 </header>
@@ -116,8 +116,20 @@
     <button class="cta-button" onclick="location.href='bypass'">Go to Bypasser</button>
 </div>
 
+<div class="neko-hub-section" id="neko-hub">
+    <div class="header">
+        <h2>NekoHub Executors</h2>
+        <p>Download the best executors for iOS devices.</p>
+    </div>
+    <p>Unlock the power of smooth execution with NekoHub. The most reliable tools tailored for iOS.</p>
+    <div class="buttons">
+        <button class="cta-button" onclick="location.href='download'">Download (Linkvertise)</button>
+        <button class="cta-button" onclick="location.href='download-loot'">Download (LootLabs)</button>
+    </div>
+</div>
+
 <footer>
-    <p>&copy; 2024 Moop's Lounge. All rights reserved.</p>
+    <p>&copy; 2025 Mooping. All rights reserved.</p>
     <a href="#contact">Contact</a>
 </footer>
 
@@ -125,12 +137,15 @@
     document.addEventListener('DOMContentLoaded', () => {
         const header = document.getElementById('header');
         const keySystemSection = document.querySelector('.key-system-section');
+        const nekoHubSection = document.querySelector('.neko-hub-section');
 
         setTimeout(() => {
             header.style.opacity = '1';
             header.style.transform = 'translateY(0)';
             keySystemSection.style.opacity = '1';
             keySystemSection.style.transform = 'translateY(0)';
+            nekoHubSection.style.opacity = '1';
+            nekoHubSection.style.transform = 'translateY(0)';
         }, 300);
     });
 

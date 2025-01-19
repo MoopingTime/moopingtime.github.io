@@ -3,99 +3,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moop's Lounge</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <title>Mooping's Basement</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Poppins', sans-serif;
+            background: url('https://wallpapers.com/images/hd/aesthetic-pink-anime-2048-x-1098-background-o1ltgj7tvqqhh3by.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
             margin: 0;
             padding: 0;
-            background: linear-gradient(135deg, #121212, #1f1f1f); /* Gradient background */
-            color: #e0e0e0; 
-            scroll-behavior: smooth;
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            min-height: 100vh;
+            overflow-y: auto;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
         }
         header {
-            background: url('hero-image.jpg') no-repeat center center/cover;
-            height: 70vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
             text-align: center;
-            position: relative;
-            filter: brightness(0.5);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            padding: 60px 20px;
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease;
+        }
+        header:hover {
+            transform: translateY(-5px);
         }
         h1, p {
-            font-family: 'Montserrat', sans-serif; /* New font for headings */
-            color: #ffffff;
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 30px rgba(255, 255, 255, 0.5);
+            margin: 0;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
         }
         h1 {
-            font-size: 4rem;
-            margin: 0;
-            letter-spacing: 1px;
+            font-size: 3rem;
+            color: #ff467e;
+            font-weight: 600;
         }
         p {
-            font-size: 1.5rem;
-            margin: 15px 0;
-            color: #f0f0f0;
+            font-size: 1.2rem;
+            color: #ffe0f0;
+            margin-top: 10px;
         }
         .cta-button {
-            background: linear-gradient(135deg, #FF6B6B, #FF4C4C);
-            color: white;
+            display: inline-block;
+            margin-top: 20px;
             padding: 15px 30px;
             border: none;
             border-radius: 30px;
+            background: #ff6f91;
+            color: white;
+            font-size: 1.1rem;
+            font-weight: bold;
             cursor: pointer;
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            transition: background 0.4s, transform 0.3s;
-            text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 25px rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease, background 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
         }
         .cta-button:hover {
-            background: linear-gradient(135deg, #FF4C4C, #FF6B6B);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
+            transform: scale(1.05);
+            background: #ff85a2;
         }
         .key-system-section {
-            padding: 50px 20px;
-            max-width: 1200px;
-            margin: auto;
-            background: rgba(255, 255, 255, 0.05); /* Glassmorphism */
-            backdrop-filter: blur(10px);
+            margin: 50px auto;
+            padding: 40px;
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 15px;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-            margin-top: -50px;
-            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .key-system-section:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
         }
         .key-system-section h2 {
-            color: #FF6B6B;
+            color: #ff467e;
             font-size: 2.5rem;
-            margin-bottom: 20px;
         }
         .key-system-section p {
             font-size: 1.2rem;
-            color: #e0e0e0;
+            color: #fff8fd;
         }
         footer {
             text-align: center;
-            padding: 25px;
-            background: #333;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
             color: white;
-            margin-top: 40px;
-        }
-        footer p {
-            font-size: 1rem;
+            border-top: 2px solid #ff6f91;
         }
         footer a {
-            color: #FF6B6B;
+            color: #ff92b7;
             text-decoration: none;
             font-weight: bold;
         }
@@ -107,7 +104,7 @@
 <body>
 
 <header id="header">
-    <h1>Welcome to Moop's Lounge</h1>
+    <h1>Welcome to my basement!</h1>
     <p>Discover Your Potential</p>
     <button class="cta-button" onclick="scrollToKeySystem()">Explore Now</button>
 </header>
@@ -120,7 +117,7 @@
 </div>
 
 <footer>
-    <p>© 2024 Moop's Lounge. All rights reserved.</p>
+    <p>&copy; 2024 Moop's Lounge. All rights reserved.</p>
     <a href="#contact">Contact</a>
 </footer>
 
@@ -128,14 +125,13 @@
     document.addEventListener('DOMContentLoaded', () => {
         const header = document.getElementById('header');
         const keySystemSection = document.querySelector('.key-system-section');
-        
-        header.style.opacity = '1';
-        header.style.transform = 'translateY(0)';
-        
+
         setTimeout(() => {
+            header.style.opacity = '1';
+            header.style.transform = 'translateY(0)';
             keySystemSection.style.opacity = '1';
             keySystemSection.style.transform = 'translateY(0)';
-        }, 600);
+        }, 300);
     });
 
     function scrollToKeySystem() {

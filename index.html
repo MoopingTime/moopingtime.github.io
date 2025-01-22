@@ -62,7 +62,7 @@
             transform: scale(1.05);
             background: #ff85a2;
         }
-        .key-system-section, .neko-hub-section {
+        .key-system-section, .neko-hub-section, .meezing-section {
             margin: 50px auto;
             padding: 40px;
             max-width: 900px;
@@ -72,17 +72,25 @@
             backdrop-filter: blur(10px);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-        .key-system-section:hover, .neko-hub-section:hover {
+        .key-system-section:hover, .neko-hub-section:hover, .meezing-section:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
         }
-        .key-system-section h2, .neko-hub-section h2 {
+        .key-system-section h2, .neko-hub-section h2, .meezing-section h2 {
             color: #ff467e;
             font-size: 2.5rem;
         }
-        .key-system-section p, .neko-hub-section p {
+        .key-system-section p, .neko-hub-section p, .meezing-section p {
             font-size: 1.2rem;
             color: #fff8fd;
+        }
+        .meezing-section ul {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+        .meezing-section li {
+            font-size: 1.1rem;
+            color: #ffe0f0;
         }
         footer {
             text-align: center;
@@ -128,6 +136,17 @@
     </div>
 </div>
 
+<div class="meezing-section" id="meezing">
+    <h2>Meezing</h2>
+    <p>Meezing là một công cụ cách mạng giúp bạn tối ưu hóa thời gian tại quán internet bằng cách bỏ qua bộ đếm thời gian trên máy chạy CyberStation. Bắt đầu chơi ngay lập tức mà không cần chờ đợi.</p>
+    <ul>
+        <li>Truy cập tức thì vào máy tính mà không cần chờ.</li>
+        <li>Tối ưu hóa trải nghiệm duyệt web và chơi game.</li>
+        <li>Giao diện thân thiện và dễ sử dụng.</li>
+    </ul>
+    <button class="cta-button" onclick="location.href='https://lootdest.org/s?htWLoB8O'">Tải Meezing ngay</button>
+</div>
+
 <footer>
     <p>&copy; 2025 Mooping. All rights reserved.</p>
     <a href="#contact">Contact</a>
@@ -138,6 +157,7 @@
         const header = document.getElementById('header');
         const keySystemSection = document.querySelector('.key-system-section');
         const nekoHubSection = document.querySelector('.neko-hub-section');
+        const meezingSection = document.querySelector('.meezing-section');
 
         setTimeout(() => {
             header.style.opacity = '1';
@@ -146,6 +166,8 @@
             keySystemSection.style.transform = 'translateY(0)';
             nekoHubSection.style.opacity = '1';
             nekoHubSection.style.transform = 'translateY(0)';
+            meezingSection.style.opacity = '1';
+            meezingSection.style.transform = 'translateY(0)';
         }, 300);
     });
 

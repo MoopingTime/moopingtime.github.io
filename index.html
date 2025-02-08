@@ -8,7 +8,7 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background: url('https://wallpapers.com/images/hd/aesthetic-pink-anime-2048-x-1098-background-o1ltgj7tvqqhh3by.jpg') no-repeat center center fixed;
+            background: url('https://cdn.discordapp.com/attachments/1266348261661347961/1337793869974339746/background.jpg?ex=67a8bd21&is=67a76ba1&hm=bbe5b746ea5f0ff646c2a81de21ba1b1bcc0667e8bde70994fcacf52c6bdd4e2&') no-repeat center center fixed;
             background-size: cover;
             color: #fff;
             margin: 0;
@@ -22,13 +22,19 @@
             text-align: center;
             padding: 60px 20px;
             backdrop-filter: blur(12px);
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.5);
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
             transition: transform 0.3s ease;
+            opacity: 0; /* Start hidden */
+            transform: translateY(20px); /* Start from below */
+            animation: popUp 0.5s ease forwards; /* Animation for pop-up effect */
         }
-        header:hover {
-            transform: translateY(-5px);
+        @keyframes popUp {
+            to {
+                opacity: 1; /* Fade in */
+                transform: translateY(0); /* Move to original position */
+            }
         }
         h1, p {
             margin: 0;
@@ -36,12 +42,12 @@
         }
         h1 {
             font-size: 3rem;
-            color: #ff467e;
+            color: #00bcd4; /* Cyan color */
             font-weight: 600;
         }
         p {
             font-size: 1.2rem;
-            color: #ffe0f0;
+            color: #e0f7fa; /* Light cyan */
             margin-top: 10px;
         }
         .cta-button {
@@ -50,7 +56,7 @@
             padding: 15px 30px;
             border: none;
             border-radius: 10px;
-            background: #ff6f91;
+            background: #00bcd4; /* Cyan color */
             color: white;
             font-size: 1.1rem;
             font-weight: bold;
@@ -60,7 +66,7 @@
         }
         .cta-button:hover {
             transform: scale(1.05);
-            background: #ff85a2;
+            background: #00acc1; /* Darker cyan */
         }
         .key-system-section, .neko-hub-section, .meezing-section {
             margin: 50px auto;
@@ -71,22 +77,32 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(10px);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            opacity: 0; /* Start hidden */
+            transform: translateY(20px); /* Start from below */
+            display: flex; /* Use flexbox */
+            flex-direction: column; /* Stack items vertically */
+            align-items: center; /* Center items horizontally */
+            justify-content: center; /* Center items vertically */
         }
         .key-system-section:hover, .neko-hub-section:hover, .meezing-section:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
         }
         .key-system-section h2, .neko-hub-section h2, .meezing-section h2 {
-            color: #ff467e;
+            color: #00bcd4; /* Cyan color */
             font-size: 2.5rem;
+            text-align: center; /* Center text */
         }
         .key-system-section p, .neko-hub-section p, .meezing-section p {
             font-size: 1.2rem;
             color: #fff8fd;
+            margin: 10px 0; /* Add margin for spacing */
+            text-align: center; /* Center text */
         }
         .meezing-section ul {
             margin-top: 10px;
             padding-left: 20px;
+            text-align: left; /* Align list items to the left */
         }
         .meezing-section li {
             font-size: 1.1rem;
@@ -97,10 +113,10 @@
             padding: 20px;
             background: rgba(0, 0, 0, 0.7);
             color: white;
-            border-top: 2px solid #ff6f91;
+            border-top: 2px solid #00bcd4; /* Cyan color */
         }
         footer a {
-            color: #ff92b7;
+            color: #00acc1; /* Darker cyan */
             text-decoration: none;
             font-weight: bold;
         }
@@ -125,13 +141,10 @@
 </div>
 
 <div class="neko-hub-section" id="neko-hub">
-    <div class="header">
-        <h2>NekoHub Executors</h2>
-        <p>Download the best executors for iOS devices.</p>
-    </div>
+    <h2>NekoHub Executors</h2>
+    <p>Download the best executors for iOS devices.</p>
     <p>Unlock the power of smooth execution with NekoHub. The most reliable tools tailored for iOS.</p>
     <div class="buttons">
-        <button class="cta-button" onclick="location.href='download'">Download (Linkvertise)</button>
         <button class="cta-button" onclick="location.href='download-loot'">Download (LootLabs)</button>
     </div>
 </div>
@@ -142,9 +155,9 @@
     <ul>
         <li>Truy cập tức thì vào máy tính mà không cần chờ.</li>
         <li>Tối ưu hóa trải nghiệm duyệt web và chơi game.</li>
-        <li>Giao diện thân thiện và dễ sử dụng.</li>
+        <li>Giao diện thân thiện và dễ sử dụng.</ li>
     </ul>
-    <button class="cta-button" onclick="location.href='https://github.com/MoopingTime/MeezingApp/releases/download/Meezingv1.2beta/Meezing.zip'">Tải Meezing ngay</button>
+    <button class="cta-button" onclick="location.href='https://github.com/MoopingTime/MeezingApp/releases/download/Meezingv1.2beta/Meezing .zip'">Tải Meezing ngay</button>
 </div>
 
 <footer>

@@ -23,7 +23,7 @@
             margin: 40px auto;
             padding: 25px;
             border-radius: 15px;
-            background: rgba(255, 255, 255, 0.9); /* Opaque background for the container */
+            background: rgba(255, 255, 255, 0.9);
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             animation: popUp 1.2s ease forwards;
@@ -40,12 +40,31 @@
             text-align: center;
             padding-bottom: 20px;
         }
+        .language-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .language-buttons button {
+            margin: 0 10px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background: #90caf9; /* Soft blue */
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        .language-buttons button:hover {
+            background: #64b5f6; /* Darker soft blue on hover */
+        }
         .executor {
             margin-bottom: 40px;
             border: 1px solid rgba(0, 0, 0, 0.1);
             border-radius: 10px;
             padding: 15px;
-            background: rgba(255, 255, 255, 1); /* Solid background for the executor boxes */
+            background: rgba(255, 255, 255, 1);
             transition: background 0.3s ease, transform 0.3s ease;
         }
         .executor:hover {
@@ -69,7 +88,7 @@
             font-size: 1.1em;
             color: #555; /* Darker gray for better readability */
             margin: 5px 0;
-            background: rgba(255, 255, 255, 0.7); /* Semi-transparent background for better visibility */
+            background: rgba(255, 255, 255, 0.7);
             padding: 10px;
             border-radius: 5px;
         }
@@ -92,7 +111,7 @@
             margin: 8px 5px;
             padding: 12px 20px;
             border-radius: 5px;
-            background: linear-gradient(135deg, #90caf9, #64b5f6); /* Soft blue gradient */
+            background: linear-gradient(135deg, #90caf9, #64b5f6);
             color: #fff;
             font-weight: bold;
             text-decoration: none;
@@ -102,7 +121,7 @@
         .buttons a:hover {
             transform: scale(1.05);
             opacity: 0.9;
-            background: linear-gradient(135deg, #64b5f6, #42a5f5); /* Darker soft blue on hover */
+            background: linear-gradient(135deg, #64b5f6, #42a5f5);
         }
         .buttons a:active {
             transform: scale(0.95);
@@ -113,13 +132,17 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>NekoHub Executors</h1>
-            <p>Download the best executors for iOS devices.</p>
+            <h1 id="title">NekoHub Executors</h1>
+            <p id="description">Download the best executors for iOS devices.</p>
+            <div class="language-buttons">
+                <button onclick="setLanguage('en')">🇺🇸 English</button>
+                <button onclick="setLanguage('vi')">🇻🇳 Vietnamese</button>
+            </div>
         </div>
 
         <div class="executor">
-            <h2>✨ Delta iOS 2.657</h2>
-            <p>A powerful tool for executing scripts on iOS devices, designed for ease of use and efficiency.</p>
+            <h2 id="executor1-title">✨ Delta iOS 2.657</h2>
+            <p id="executor1-description">A powerful tool for executing scripts on iOS devices, designed for ease of use and efficiency.</p>
             <ul class="features">
                 <li>• User-friendly interface</li>
                 <li>• Regular updates</li>
@@ -132,8 +155,8 @@
         </div>
 
         <div class="executor">
-            <h2>✨ Arceus X iOS 2.657</h2>
-            <p>Unlock the full potential of your iOS device with this versatile executor, perfect for advanced users.</p>
+            <h2 id="executor2-title">✨ Arceus X iOS 2.657</h2>
+            <p id="executor2-description">Unlock the full potential of your iOS device with this versatile executor, perfect for advanced users.</p>
             <ul class="features">
                 <li>• User-friendly interface</li>
                 <li>• Regular updates</li>
@@ -146,8 +169,8 @@
         </div>
 
         <div class="executor">
-            <h2>✨ Codex iOS 2.657</h2>
-            <p>Experience seamless script execution with Codex, tailored for both beginners and experts alike.</p>
+            <h2 id="executor3-title">✨ Codex iOS 2.657</h2>
+            <p id="executor3-description">Experience seamless script execution with Codex, tailored for both beginners and experts alike.</p>
             <ul class="features">
                 <li>• User-friendly interface</li>
                 <li>• Regular updates</li>
@@ -160,5 +183,53 @@
         </div>
 
     </div>
+
+    <script>
+        const translations = {
+            en: {
+                title: "NekoHub Executors",
+                description: "Download the best executors for iOS devices.",
+                executor1: {
+                    title: "✨ Delta iOS 2.657",
+                    description: "A powerful tool for executing scripts on iOS devices, designed for ease of use and efficiency."
+                },
+                executor2: {
+                    title: "✨ Arceus X iOS 2.657",
+                    description: "Unlock the full potential of your iOS device with this versatile executor, perfect for advanced users."
+                },
+                executor3: {
+                    title: "✨ Codex iOS 2.657",
+                    description: "Experience seamless script execution with Codex, tailored for both beginners and experts alike."
+                }
+            },
+            vi: {
+                title: "NekoHub Executors",
+                description: "Tải xuống các trình thực thi tốt nhất cho thiết bị iOS.",
+                executor1: {
+                    title: "✨ Delta iOS 2.657",
+                    description: "Một công cụ mạnh mẽ để thực thi các kịch bản trên thiết bị iOS, được thiết kế để dễ sử dụng và hiệu quả."
+                },
+                executor2: {
+                    title: "✨ Arceus X iOS 2.657",
+                    description: "Mở khóa toàn bộ tiềm năng của thiết bị iOS của bạn với trình thực thi đa năng này, hoàn hảo cho người dùng nâng cao."
+                },
+                executor3: {
+                    title: "✨ Codex iOS 2.657",
+                    description: "Trải nghiệm thực thi kịch bản liền mạch với Codex, được thiết kế cho cả người mới bắt đầu và chuyên gia."
+                }
+            }
+        };
+
+        function setLanguage(lang) {
+            document.getElementById("title").innerText = translations[lang].title;
+            document.getElementById("description").innerText = translations[lang].description;
+            document.getElementById("executor1-title").innerText = translations[lang].executor1.title;
+            document.getElementById("executor1-description").innerText = translations[lang].executor1.description;
+            document.getElementById("executor2-title").innerText = translations[lang].executor2.title;
+            document.getElementById("executor2-description").innerText = translations[lang].executor2.description;
+            document.getElementById("executor3-title").innerText = translations[lang].executor3.title;
+            document.getElementById("executor3-description").innerText = translations[lang].executor3.description;
+        }
+    </script>
 </body>
 </html>

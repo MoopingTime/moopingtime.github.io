@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Script Library</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background-color: #0f0f0f;
+      color: #fff;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background-color: #1e1e1e;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: scale(1.03);
+    }
+    .card img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 15px;
+    }
+    .card-title {
+      font-size: 18px;
+      font-weight: 600;
+      margin: 0 0 10px 0;
+    }
+    .card-meta {
+      font-size: 14px;
+      color: #aaa;
+    }
+    .card a {
+      display: inline-block;
+      margin-top: 10px;
+      color: #4fc3f7;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Script Library</h1>
+  <div class="grid" id="scriptGrid"></div>
+
+  <script>
+    async function loadScripts() {
+      const res = await fetch('scripts.json');
+      const scripts = await res.json();
+      const grid = document.getElementById('scriptGrid');
+
+      scripts.forEach(script => {
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <img src="${script.image}" alt="${script.name}">
+          <div class="card-content">
+            <div class="card-title">${script.name}</div>
+            <div class="card-meta">${script.views} views • ${script.uploaded}</div>
+            <a href="${script.link}" target="_blank">View Script</a>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    loadScripts();
+  </script>
+</body>
+</html>

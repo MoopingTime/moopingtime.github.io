@@ -1,0 +1,23 @@
+[
+  {
+    "name": "MongaHub | AutoFarm",
+    "image": "https://via.placeholder.com/300x140.png?text=MongaHub",
+    "views": "10",
+    "uploaded": "57 minutes ago",
+    "link": "https://example.com/mongahub"
+  },
+  {
+    "name": "Adopt Me Auto Farm",
+    "image": "https://via.placeholder.com/300x140.png?text=Adopt+Me",
+    "views": "136",
+    "uploaded": "1 day ago",
+    "link": "https://example.com/adoptme"
+  },
+  {
+    "name": "Ro-Hub Fruit Sniper",
+    "image": "https://via.placeholder.com/300x140.png?text=Ro-Hub",
+    "views": "734",
+    "uploaded": "2 days ago",
+    "link": "https://example.com/rohub"
+  }
+]

@@ -5,14 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Mooping's Hall – Install GBox with a working DNS. Fully functional and ready to use." />
   <meta name="author" content="Mooping" />
-
-  <!-- Open Graph for link previews -->
   <meta property="og:title" content="Mooping's Hall – Working GBox with DNS" />
   <meta property="og:description" content="Easily install GBox with a working DNS setup. Fast, reliable, and fully functional." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mpbox.xyz" />
-
-  <!-- Google Font (Comic Neue instead of Comic Relief) -->
+  
+  <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
@@ -22,84 +20,107 @@
     body {
       margin: 0;
       font-family: 'Comic Neue', cursive;
-      background: #111;
-      color: white;
+      background: #0d0d0d;
+      color: #f0f0f0;
       text-align: center;
     }
     header {
-      padding: 30px 20px;
-    }
-    header h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
-    header p {
-      font-size: 1.2em;
-      color: #ccc;
+      padding: 50px 20px 30px;
     }
     header img {
       border-radius: 50%;
-      width: 100px;
-      height: 100px;
-    }    
+      width: 120px;
+      height: 120px;
+      border: 3px solid #333;
+      margin-bottom: 15px;
+    }
+    header h1 {
+      font-size: 2.6em;
+      margin: 10px 0 5px;
+    }
+    header p {
+      font-size: 1.2em;
+      color: #aaa;
+      max-width: 500px;
+      margin: 0 auto;
+    }
     .buttons {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      margin-top: 40px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
+      padding: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
     }
     .card {
-      background: #222;
-      border-radius: 12px;
-      padding: 20px;
-      width: 280px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.4);
-      min-height: 180px;
+      background: #1a1a1a;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 0 16px rgba(0,0,0,0.4);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
     }
     .card h3 {
-      margin-top: 0;
+      margin: 0 0 10px;
+      font-size: 1.5em;
     }
     .btn {
-      display: inline-block;
       background: #007bff;
       color: white;
       text-decoration: none;
-      padding: 10px 20px;
-      border-radius: 6px;
+      padding: 12px 20px;
+      border-radius: 8px;
       margin-top: 15px;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.2s;
     }
     .btn:hover {
       background: #0056b3;
+      transform: scale(1.05);
+    }
+    .exploit-item {
+      background: #111;
+      padding: 12px 16px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      font-size: 0.95em;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .exploit-item a {
+      color: #0af;
+      font-size: 1.4em;
+      text-decoration: none;
     }
     .socials {
-      margin-top: 30px;
+      margin-top: 40px;
     }
     .socials a {
-      margin: 0 10px;
+      margin: 0 12px;
       color: white;
       text-decoration: none;
-      font-size: 24px;
     }
     .socials svg {
-      width: 32px;
-      height: 32px;
-      vertical-align: middle;
+      width: 36px;
+      height: 36px;
       fill: white;
     }
     footer {
       margin-top: 40px;
       font-size: 0.9em;
-      color: #777;
+      color: #666;
+      padding-bottom: 20px;
     }
     .video-wrapper {
       display: flex;
       justify-content: center;
       align-items: center;
+      margin-top: 10px;
     }
     .video-container {
       position: relative;
@@ -108,6 +129,7 @@
       padding-bottom: 56.25%;
       height: 0;
       overflow: hidden;
+      border-radius: 12px;
     }
     .video-container iframe {
       position: absolute;
@@ -115,12 +137,13 @@
       left: 0;
       width: 100%;
       height: 100%;
+      border: none;
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="profile.png" alt="Logo" />
+    <img src="https://cdn.discordapp.com/avatars/995573842992959500/ae5cc2b1a2b4d99b91bf1a540ee5711a.png" alt="Logo" />
     <h1>Mooping's Hall</h1>
     <p>GBox Installation with Working DNS – Reliable and Ready to Use.</p>
   </header>

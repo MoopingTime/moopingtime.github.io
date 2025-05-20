@@ -9,7 +9,7 @@
   <meta property="og:description" content="Easily install GBox with a working DNS setup. Fast, reliable, and fully functional." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://mpbox.xyz" />
-  
+
   <!-- Google Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,108 +19,127 @@
   <style>
     body {
       margin: 0;
-      font-family: 'Comic Neue', cursive;
-      background: #0d0d0d;
-      color: #f0f0f0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(160deg, #0d0d0d 0%, #121212 100%);
+      color: #f5f5f5;
       text-align: center;
+      line-height: 1.6;
     }
     header {
-      padding: 50px 20px 30px;
+      padding: 60px 20px 40px;
     }
     header img {
       border-radius: 50%;
       width: 120px;
       height: 120px;
-      border: 3px solid #333;
-      margin-bottom: 15px;
+      border: 4px solid #444;
+      box-shadow: 0 0 10px rgba(255,255,255,0.05);
     }
     header h1 {
-      font-size: 2.6em;
-      margin: 10px 0 5px;
+      font-family: 'Comic Neue', cursive;
+      font-size: 2.8em;
+      margin: 16px 0 10px;
+      color: #ffffff;
     }
     header p {
       font-size: 1.2em;
-      color: #aaa;
-      max-width: 500px;
+      color: #ccc;
+      max-width: 520px;
       margin: 0 auto;
     }
+
     .buttons {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
-      padding: 20px;
-      max-width: 1000px;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      padding: 40px 20px;
+      max-width: 1200px;
       margin: 0 auto;
     }
+
     .card {
-      background: #1a1a1a;
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 0 16px rgba(0,0,0,0.4);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      transition: transform 0.2s;
+      background: #1c1c1c;
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      text-align: left;
     }
     .card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.6);
     }
     .card h3 {
-      margin: 0 0 10px;
-      font-size: 1.5em;
+      margin: 0 0 12px;
+      font-size: 1.7em;
+      color: #ffffff;
     }
+
     .btn {
-      background: #007bff;
+      display: inline-block;
+      background: linear-gradient(135deg, #007bff, #0056b3);
       color: white;
       text-decoration: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      margin-top: 15px;
+      padding: 14px 22px;
+      border-radius: 10px;
+      margin-top: 16px;
+      font-weight: 600;
       transition: background 0.3s, transform 0.2s;
     }
     .btn:hover {
-      background: #0056b3;
+      background: linear-gradient(135deg, #006ae6, #003f7d);
       transform: scale(1.05);
     }
+
     .exploit-item {
-      background: #111;
-      padding: 12px 16px;
-      border-radius: 10px;
-      margin-bottom: 12px;
-      font-size: 0.95em;
+      background: #141414;
+      padding: 16px;
+      border-radius: 12px;
+      margin-bottom: 14px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      transition: background 0.2s;
+    }
+    .exploit-item:hover {
+      background: #1f1f1f;
     }
     .exploit-item a {
-      color: #0af;
-      font-size: 1.4em;
+      color: #00bfff;
+      font-size: 1.6em;
       text-decoration: none;
     }
+
     .socials {
-      margin-top: 40px;
+      margin-top: 60px;
     }
     .socials a {
-      margin: 0 12px;
-      color: white;
+      margin: 0 16px;
+      color: #ffffff;
       text-decoration: none;
     }
     .socials svg {
-      width: 36px;
-      height: 36px;
+      width: 40px;
+      height: 40px;
       fill: white;
+      transition: transform 0.2s;
     }
+    .socials svg:hover {
+      transform: scale(1.2);
+    }
+
     footer {
-      margin-top: 40px;
-      font-size: 0.9em;
-      color: #666;
+      margin-top: 50px;
+      font-size: 0.95em;
+      color: #777;
       padding-bottom: 20px;
     }
+
     .video-wrapper {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin-top: 10px;
+      margin-top: 16px;
     }
     .video-container {
       position: relative;
@@ -129,7 +148,8 @@
       padding-bottom: 56.25%;
       height: 0;
       overflow: hidden;
-      border-radius: 12px;
+      border-radius: 14px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
     }
     .video-container iframe {
       position: absolute;
@@ -138,6 +158,16 @@
       width: 100%;
       height: 100%;
       border: none;
+    }
+
+    /* Fix nested card layout bug */
+    .card > div {
+      margin-bottom: 0;
+    }
+
+    /* Extra: smooth transitions */
+    * {
+      transition: all 0.2s ease-in-out;
     }
   </style>
 </head>

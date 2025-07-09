@@ -170,6 +170,64 @@
     * {
       transition: all 0.2s ease-in-out;
     }
+      .tab-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 15px;
+  }
+
+  .tab-button {
+    padding: 10px 20px;
+    background-color: #1a1a1a;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.25s ease;
+  }
+
+  .tab-button:hover {
+    background-color: #0af;
+    color: black;
+    border-color: #0af;
+  }
+
+  .tab-button.active {
+    background-color: #0af;
+    color: black;
+    border-color: #0af;
+  }
+    .signer-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+
+  .signer-tab-button {
+    padding: 10px 20px;
+    background-color: #1a1a1a;
+    color: white;
+    border: 1px solid #333;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.25s ease;
+  }
+
+  .signer-tab-button:hover {
+    background-color: #0af;
+    color: black;
+    border-color: #0af;
+  }
+
+  .signer-tab-button.active {
+    background-color: #0af;
+    color: black;
+    border-color: #0af;
+  }
   </style>
 </head>
 <body>
@@ -188,67 +246,119 @@
       <a class="btn" href="https://mpbox.xyz/private/WSF-CP505.mobileconfig">WSF DNS (iOS 17 - 18)</a>
     </div>
     
-    <div class="card">
-      <h3>Roblox iOS Exploits (Direct Install)</h3>
-      <div style="text-align: left;">
-        <div style="display: flex; align-items: center; justify-content: space-between; background: #1a1a1a; padding: 12px; border-radius: 10px; margin-bottom: 10px;">
-          <div>
-            <strong>Roblox Delta ✅</strong><br>
-            <small>A powerful exploit tool for Roblox, compatible with every script and updated regularly for stability and performance.</small>
-          </div>
-          <a href="https://link-target.net/910147/C6FEnTFEBcwL" style="color: #0af; font-size: 20px;">⬇️</a>
-        </div>
-      </div>
-    </div>
+<div class="card">
+  <h3>Roblox Exploits</h3>
 
-    <div class="card">
-      <h3>Roblox iOS Exploits</h3>
-      <div style="text-align: left;">
-        <div style="display: flex; align-items: center; justify-content: space-between; background: #1a1a1a; padding: 12px; border-radius: 10px; margin-bottom: 10px;">
-          <div>
-            <strong>Roblox Delta ✅</strong><br>
-            <small>A powerful exploit tool for Roblox, compatible with every script and updated regularly for stability and performance.</small>
-          </div>
-          <a href="https://direct-link.net/910147/roblox-delta-ios-ipa" style="color: #0af; font-size: 20px;">⬇️</a>
-        </div>
+  <!-- Tab switcher -->
+<div class="tab-buttons">
+  <button class="tab-button active" id="iosBtn" onclick="showTab('ios')">iOS</button>
+  <button class="tab-button" id="androidBtn" onclick="showTab('android')">Android</button>
+</div>
 
-        <div style="display: flex; align-items: center; justify-content: space-between; background: #1a1a1a; padding: 12px; border-radius: 10px; margin-bottom: 10px;">
-          <div>
-            <strong>Roblox Arceus X ✅</strong><br>
-            <small>Transform your experience with superior performance, now in the palm of your hand.</small>
-          </div>
-          <a href="https://direct-link.net/910147/arceus-x-ios-ipa" style="color: #0af; font-size: 20px;">⬇️</a>
+  <!-- iOS Content -->
+  <div id="iosContent" style="display: block;">
+    <div style="text-align: left;">
+      <div style="display: flex; align-items: center; justify-content: space-between; background: #1a1a1a; padding: 12px; border-radius: 10px; margin-bottom: 10px;">
+        <div>
+          <strong>Roblox Delta ✅</strong><br>
+          <small>A powerful exploit tool for Roblox, compatible with every script and updated regularly for stability and performance.</small>
         </div>
-        <div style="display: flex; align-items: center; justify-content: space-between; background: #1a1a1a; padding: 12px; border-radius: 10px; margin-bottom: 10px;">
-          <div>
-            <strong>Roblox Codex ✅</strong><br>
-            <small>Codex allows you to execute any script with ease. It's fast, stable, and powerful.</small>
-          </div>
-          <a href="https://link-center.net/910147/roblox-codex-ios-ipa" style="color: #0af; font-size: 20px;">⬇️</a>
-        </div>
-
-        <div style="display: flex; align-items: center; justify-content: space-between; background: #1a1a1a; padding: 12px; border-radius: 10px; margin-bottom: 10px;">
-          <div>
-            <strong>Roblox KRNL ✅</strong><br>
-            <small>KRNL brings power and reliability to your script execution with a clean interface and fast injection.</small>
-          </div>
-          <a href="https://link-center.net/910147/roblox-krnl-ios-ipa" style="color: #0af; font-size: 20px;">⬇️</a>
-        </div>
+        <a href="https://direct-link.net/910147/roblox-delta-ios-ipa" style="color: #0af; font-size: 20px;">⬇️</a>
       </div>
 
+      <div style="display: flex; align-items: center; justify-content: space-between; background: #1a1a1a; padding: 12px; border-radius: 10px; margin-bottom: 10px;">
+        <div>
+          <strong>Roblox Arceus X ✅</strong><br>
+          <small>Transform your experience with superior performance, now in the palm of your hand.</small>
+        </div>
+        <a href="https://direct-link.net/910147/arceus-x-ios-ipa" style="color: #0af; font-size: 20px;">⬇️</a>
+      </div>
+
+      <div style="display: flex; align-items: center; justify-content: space-between; background: #1a1a1a; padding: 12px; border-radius: 10px; margin-bottom: 10px;">
+        <div>
+          <strong>Roblox Codex ✅</strong><br>
+          <small>Codex allows you to execute any script with ease. It's fast, stable, and powerful.</small>
+        </div>
+        <a href="https://link-center.net/910147/roblox-codex-ios-ipa" style="color: #0af; font-size: 20px;">⬇️</a>
+      </div>
+
+      <div style="display: flex; align-items: center; justify-content: space-between; background: #1a1a1a; padding: 12px; border-radius: 10px; margin-bottom: 10px;">
+        <div>
+          <strong>Roblox KRNL ✅</strong><br>
+          <small>KRNL brings power and reliability to your script execution with a clean interface and fast injection.</small>
+        </div>
+        <a href="https://link-center.net/910147/roblox-krnl-ios-ipa" style="color: #0af; font-size: 20px;">⬇️</a>
+      </div>
     </div>
+  </div>
+
+  <!-- Android Content -->
+  <div id="androidContent" style="display: none;">
+    <div style="text-align: left;">
+      <div style="display: flex; align-items: center; justify-content: space-between; background: #1a1a1a; padding: 12px; border-radius: 10px; margin-bottom: 10px;">
+        <div>
+          <strong>Codex (Android) ✅</strong><br>
+          <small>Popular Android executor for Roblox with wide compatibility and strong performance.</small>
+        </div>
+        <a href="https://www.mediafire.com/file/64o0d41dowb7cef/Codex_2.679.apk/file" style="color: #0af; font-size: 20px;">⬇️</a>
+      </div>
+      <div style="display: flex; align-items: center; justify-content: space-between; background: #1a1a1a; padding: 12px; border-radius: 10px; margin-bottom: 10px;">
+        <div>
+          <strong>Delta (Android) ✅</strong><br>
+          <small>Popular Android executor for Roblox with wide compatibility and strong performance.</small>
+        </div>
+        <a href="https://delta.webfiles.pro/file/Delta-2.679.762.apk" style="color: #0af; font-size: 20px;">⬇️</a>
+      </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; background: #1a1a1a; padding: 12px; border-radius: 10px; margin-bottom: 10px;">
+        <div>
+          <strong>Arceus X (Android) ✅</strong><br>
+          <small>Popular Android executor for Roblox with wide compatibility and strong performance.</small>
+        </div>
+        <a href="https://android.spdmteam.com" style="color: #0af; font-size: 20px;">⬇️</a>
+      </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; background: #1a1a1a; padding: 12px; border-radius: 10px; margin-bottom: 10px;">
+        <div>
+          <strong>KRNL (Android) ✅</strong><br>
+          <small>Popular Android executor for Roblox with wide compatibility and strong performance.</small>
+        </div>
+        <a href="https://wrdcdn.net/r/54921/1751485815384/krnl_release_2.679.762_2025.7.2_36.apk" style="color: #0af; font-size: 20px;">⬇️</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- JavaScript to handle tab switching -->
+<script>
+  function showTab(tab) {
+    const iosContent = document.getElementById("iosContent");
+    const androidContent = document.getElementById("androidContent");
+    const iosBtn = document.getElementById("iosBtn");
+    const androidBtn = document.getElementById("androidBtn");
+
+    if (tab === "ios") {
+      iosContent.style.display = "block";
+      androidContent.style.display = "none";
+      iosBtn.classList.add("active");
+      androidBtn.classList.remove("active");
+    } else {
+      iosContent.style.display = "none";
+      androidContent.style.display = "block";
+      iosBtn.classList.remove("active");
+      androidBtn.classList.add("active");
+    }
+  }
+</script>
+
     
 <div class="card">
-  <h3>Bypass Revokes App</h3>
-
+  <h3>Sideloading App</h3>
   <!-- Signer choice dropdown -->
-  <div style="margin-bottom: 15px; background: #1a1a1a; padding: 12px; border-radius: 10px; color: white;">
-    <label for="signer-choice" style="display: block; margin-bottom: 6px;"><strong>Choose a signing app:</strong></label>
-    <select id="signer-choice" onchange="filterSigners()" style="width: 100%; padding: 10px; border-radius: 8px; background: #121212; color: white; border: 1px solid #333;">
-      <option value="ksign">KSign</option>
-      <option value="gbox">GBox</option>
-      <option value="esign">ESign</option>
-    </select>
+   <div style="margin-bottom: 10px; background: #1a1a1a; padding: 12px; border-radius: 10px; color: white;">
+<div class="signer-tabs">
+  <button class="signer-tab-button active" onclick="filterSigners('ksign')" id="ksignBtn">KSign</button>
+  <button class="signer-tab-button" onclick="filterSigners('gbox')" id="gboxBtn">GBox</button>
+  <button class="signer-tab-button" onclick="filterSigners('esign')" id="esignBtn">ESign</button>
+</div>
   </div>
 
   <!-- KSign section -->
@@ -579,14 +689,22 @@
 </div>
 
 <script>
-function filterSigners() {
-  const selected = document.getElementById("signer-choice").value;
-  const signers = document.querySelectorAll(".signer");
-  signers.forEach(div => {
-    div.style.display = div.classList.contains(selected) ? "block" : "none";
-  });
-}
+  function filterSigners(type) {
+    const sections = document.querySelectorAll('.signer');
+    sections.forEach(s => s.style.display = 'none');
+    document.querySelector(`.signer.${type}`).style.display = 'block';
+
+    // Tab button styling
+    document.querySelectorAll('.signer-tab-button').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(type + 'Btn').classList.add('active');
+  }
+
+  // Optional: Initialize to KSign on load
+  window.onload = function () {
+    filterSigners('ksign');
+  };
 </script>
+
 
 <footer>
   <p>Developed by Mooping | Trusted in the Sideloading Community.</p>

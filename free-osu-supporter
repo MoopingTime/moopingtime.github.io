@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Free osu!supporter Generator 2025</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
+      background: #0e0e0e;
+      color: white;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: start;
+      padding-top: 50px;
+      height: 100%;
+    }
+
+    h1 {
+      color: #f39c12;
+    }
+
+    .card {
+      background: #1e1e1e;
+      padding: 30px;
+      border-radius: 15px;
+      width: 350px;
+      text-align: center;
+      box-shadow: 0 0 20px #f39c12aa;
+    }
+
+    input, select, button {
+      margin: 10px 0;
+      padding: 10px;
+      width: 90%;
+      border-radius: 8px;
+      border: none;
+    }
+
+    button {
+      background: #f39c12;
+      color: black;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #status {
+      margin-top: 20px;
+      font-family: monospace;
+      white-space: pre-wrap;
+      text-align: left;
+    }
+
+    .fullscreen-center {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: #0e0e0e;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      flex-direction: column;
+      animation: glow-bg 2s infinite alternate;
+    }
+
+    .fullscreen-center img {
+      width: 400px;
+      max-width: 90vw;
+      border-radius: 10px;
+      box-shadow: 0 0 40px 10px #f39c12;
+      animation: glow 2s infinite ease-in-out;
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 40px 10px #f39c12; }
+      50% { box-shadow: 0 0 60px 20px #f1c40f; }
+      100% { box-shadow: 0 0 40px 10px #f39c12; }
+    }
+
+    @keyframes glow-bg {
+      0% { background: #0e0e0e; }
+      100% { background: #1a1a1a; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="mainContent">
+    <h1>Free osu!supporter Generator 2025</h1>
+    <div class="card">
+      <input type="text" id="username" placeholder="Enter your osu! username">
+      <select id="duration">
+        <option value="1 Month">1 Month</option>
+        <option value="3 Months">3 Months</option>
+        <option value="6 Months">6 Months</option>
+        <option value="12 Months">12 Months</option>
+      </select>
+      <button onclick="startTroll()">Generate Supporter</button>
+      <div id="status"></div>
+    </div>
+  </div>
+
+  <div class="fullscreen-center" id="finalImage">
+    <img src="https://legaltemplates.net/wp-content/uploads/job-application-template-240x310.png" alt="Touch grass">
+  </div>
+
+  <script>
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    async function startTroll() {
+      const username = document.getElementById("username").value.trim();
+      const duration = document.getElementById("duration").value;
+      const statusBox = document.getElementById("status");
+
+      const mainContent = document.getElementById("mainContent");
+      const finalImage = document.getElementById("finalImage");
+
+      if (!username) {
+        alert("Please enter your osu! username.");
+        return;
+      }
+
+      statusBox.innerText = "Connecting to osu! servers...";
+      await sleep(1000);
+      statusBox.innerText += "\nAuthenticating API tokens...";
+      await sleep(1200);
+      statusBox.innerText += `\nFetching user data for: ${username}...`;
+      await sleep(1000);
+      statusBox.innerText += `\nApplying supporter (${duration})...`;
+      await sleep(1500);
+      statusBox.innerText += `\n\nERROR: osu!server rejected request.`;
+      await sleep(1200);
+      statusBox.innerText += `\nReason: haha you got scammed!!!!`;
+      await sleep(1000);
+
+      // Switch to fullscreen image troll
+      mainContent.style.display = "none";
+      finalImage.style.display = "flex";
+    }
+  </script>
+</body>
+</html>

@@ -239,13 +239,16 @@
     <p>Install sideloaded apps effortlessly with a reliable, working DNS configuration.</p>
   </header>
 
-  <div class="buttons">
-    <div class="card">
-      <h3>Install DNS Profile</h3>
-       <p>Start by downloading the DNS profile and configuring it on your device.</p>
+<div class="buttons">
+  <!-- DNS Profile Card -->
+  <div class="card">
+    <h3>Install DNS Profile</h3>
+    <p>Start by downloading the DNS profile and configuring it on your device.</p>
     <p>This profile supports iOS versions 15 through 18.6.2.</p>
-      <a class="btn" href="https://tinyurl.com/5py6ts5a">Khoindvn DNS (iOS 15 - 18.6.2)</a>
-    </div>
+    <a id="dns-btn" class="btn" href="#">
+      Khoindvn DNS (iOS 15 - 18.6.2)
+    </a>
+  </div>
     
 <div class="card">
   <h3>Roblox Exploits</h3>
@@ -732,15 +735,18 @@
     </div>
   </div>
 </div>
-<div class="card">
-  <h3>Download Certificate</h3>
-  <p>
-    To sign and install apps properly on your device, you’ll need this certificate.
-    Tap the button below to download it, then unzip the file and import it into your signer app.
-  </p>
-  <a class="btn" href="https://moopingtime.github.io/private/MPBox%20Certificates.zip" target="_blank" rel="noopener noreferrer">
-    Download Now
-  </a>
+<div class="buttons">
+  <!-- Certificate Download Card -->
+  <div class="card">
+    <h3>Download Certificate</h3>
+    <p>
+      To sign and install apps properly on your device, you’ll need this certificate.
+      Tap the button below to download it, then unzip the file and import it into your signer app.
+    </p>
+    <a id="cert-btn" class="btn" href="#" target="_blank" rel="noopener noreferrer">
+      Download Now
+    </a>
+  </div>
 </div>
 
 <!-- Social Links -->
@@ -762,6 +768,45 @@
     </svg>
   </a>
 </div>
+
+<script>
+  // 🧠 Helper function to decode Base64 safely
+  function decodeBase64(str) {
+    try {
+      return decodeURIComponent(
+        atob(str)
+          .split('')
+          .map(function (c) {
+            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+          })
+          .join('')
+      );
+    } catch (e) {
+      return '';
+    }
+  }
+
+  // 🧭 Base64-encoded URLs (replace if needed)
+  const encodedDNS = "aHR0cHM6Ly90aW55dXJsLmNvbS81cHk2dHM1YQ==";  
+  // (Decoded: https://tinyurl.com/5py6ts5a)
+
+  const encodedCert = "aHR0cHM6Ly9tb29waW5ndGltZS5naXRodWIuaW8vcHJpdmF0ZS9NUEJveCUyMENlcnRpZmljYXRlcy56aXA=";  
+  // (Decoded: https://moopingtime.github.io/private/MPBox%20Certificates.zip)
+
+  // 📌 DNS Button Click
+  document.getElementById("dns-btn").addEventListener("click", function (e) {
+    e.preventDefault();
+    const url = decodeBase64(encodedDNS);
+    if (url) window.location.href = url;
+  });
+
+  // 📌 Certificate Button Click
+  document.getElementById("cert-btn").addEventListener("click", function (e) {
+    e.preventDefault();
+    const url = decodeBase64(encodedCert);
+    if (url) window.open(url, "_blank", "noopener,noreferrer");
+  });
+</script>
 
 <!-- Script -->
 <script>

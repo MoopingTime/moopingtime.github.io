@@ -1076,21 +1076,24 @@ function showToast(message, icon = '✓') {
     setTimeout(() => toast.remove(), 300);
   }, 3000);
 }
-    
-const isMobile = /Mobi|Android/i.test(navigator.userAgent);
 
-function handleDownload(url) {
+const encodedDNS = "aHR0cHM6Ly90aW55dXJsLmNvbS81cHk2dHM1YQ==";
+const encodedCert = "aHR0cHM6Ly9tb29waW5ndGltZS5naXRodWIuaW8vcHJpdmF0ZS9NUEJveCUyMENlcnRpZmljYXRlcy56aXA=";
+
+// Universal download handler
+function downloadURL(url, message = 'Download started!', newTab = true) {
   showLoading();
   setTimeout(() => {
     hideLoading();
-
     if (!url) {
       showToast('Unable to download. Please try again later.', '⚠️');
       return;
     }
 
-    if (isMobile) {
-      window.location.href = url; 
+    // Mobile friendly
+    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+    if (isMobile || !newTab) {
+      window.location.href = url;
     } else {
       const win = window.open(url, '_blank', 'noopener,noreferrer');
       if (!win) {
@@ -1098,76 +1101,37 @@ function handleDownload(url) {
         return;
       }
     }
-
-    showToast('Download started!', '⬇️');
+    showToast(message, '⬇️');
   }, 1500);
-
-document.querySelectorAll('.download-icon').forEach(icon => {
-  icon.addEventListener('click', function(e) {
-    e.preventDefault();
-    const url = this.getAttribute('href');
-    const originalContent = this.innerHTML;
-
-    this.innerHTML = '⏳';
-    this.style.pointerEvents = 'none';
-
-    handleDownload(url);
-
-    setTimeout(() => {
-      this.innerHTML = originalContent;
-      this.style.pointerEvents = 'auto';
-    }, 1500);
-  });
-});
-
-const encodedCert = "aHR0cHM6Ly9tb29waW5ndGltZS5naXRodWIuaW8vcHJpdmF0ZS9NUEJveCUyMENlcnRpZmljYXRlcy56aXA=";
-const encodedDNS = "aHR0cHM6Ly90aW55dXJsLmNvbS81cHk2dHM1YQ==";
-
-const certBtn = document.getElementById("cert-btn");
-if (certBtn) {
-  certBtn.addEventListener("click", function(e) {
-    e.preventDefault();
-    const url = decodeBase64(encodedCert);
-
-    this.innerHTML = '⏳';
-    this.style.pointerEvents = 'none';
-
-    handleDownload(url);
-
-    setTimeout(() => {
-      this.innerHTML = 'Download Certificate Package';
-      this.style.pointerEvents = 'auto';
-    }, 1500);
-  });
 }
 
+// DNS button
 const dnsBtn = document.getElementById("dns-btn");
 if (dnsBtn) {
   dnsBtn.addEventListener("click", function(e) {
     e.preventDefault();
-    const url = decodeBase64(encodedDNS);
-
-    this.innerHTML = '⏳';
-    this.style.pointerEvents = 'none';
-
-    handleDownload(url);
-
-    setTimeout(() => {
-      this.innerHTML = 'Install DNS Profile';
-      this.style.pointerEvents = 'auto';
-    }, 1500);
+    downloadURL(decodeBase64(encodedDNS), 'Redirecting to DNS profile...', false);
   });
 }
 
+// Certificate button
+const certBtn = document.getElementById("cert-btn");
+if (certBtn) {
+  certBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    downloadURL(decodeBase64(encodedCert), 'Certificate download started!');
+  });
+}
 
 function showPlatform(platform) {
   const iosExploits = document.getElementById('ios-exploits');
   const androidExploits = document.getElementById('android-exploits');
   const platformTabs = document.querySelectorAll('#platform-tabs .tab-btn');
+  
   if (!iosExploits || !androidExploits || platformTabs.length === 0) return;
-
+  
   platformTabs.forEach(tab => tab.classList.remove('active'));
-
+  
   if (platform === 'ios') {
     androidExploits.classList.add('content-hidden');
     setTimeout(() => {
@@ -1185,17 +1149,16 @@ function showPlatform(platform) {
   }
 }
 
-
 function showSigner(signer) {
   const ksignList = document.getElementById('ksign-list');
   const esignList = document.getElementById('esign-list');
   const signerTabs = document.querySelectorAll('#signer-tabs .tab-btn');
   const searchBox = document.getElementById('signer-search');
-
+  
   if (!ksignList || !esignList || signerTabs.length === 0) return;
-
+  
   signerTabs.forEach(tab => tab.classList.remove('active'));
-
+  
   if (signer === 'ksign') {
     esignList.classList.add('content-hidden');
     setTimeout(() => {
@@ -1211,7 +1174,7 @@ function showSigner(signer) {
     }, 50);
     signerTabs[1].classList.add('active');
   }
-
+  
   if (searchBox) searchBox.value = '';
   filterSigners();
 }
@@ -1258,6 +1221,7 @@ function filterSigners() {
   }
 }
 
+// Smooth scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function(e) {
     const href = this.getAttribute('href');
@@ -1269,22 +1233,36 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
+// Download icons
+document.querySelectorAll('.download-icon').forEach(icon => {
+  icon.addEventListener('click', function(e) {
+    e.preventDefault();
+    const url = this.getAttribute('href');
+    const originalContent = this.innerHTML;
+    this.innerHTML = '⏳';
+    this.style.pointerEvents = 'none';
+    downloadURL(url, 'Download link opened!');
+    setTimeout(() => {
+      this.innerHTML = originalContent;
+      this.style.pointerEvents = 'auto';
+    }, 1500);
+  });
+});
 
+// Scroll to top
 const scrollToTopBtn = document.getElementById('scrollToTop');
 window.addEventListener('scroll', () => {
   if (window.pageYOffset > 300) scrollToTopBtn.classList.add('visible');
   else scrollToTopBtn.classList.remove('visible');
 });
-scrollToTopBtn.addEventListener('click', () => {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
+// Stats animation
 function animateCounter(element) {
   const target = parseInt(element.getAttribute('data-target'));
   const duration = 2000;
   const increment = target / (duration / 16);
   let current = 0;
-
   const timer = setInterval(() => {
     current += increment;
     if (current >= target) {
@@ -1295,12 +1273,10 @@ function animateCounter(element) {
     }
   }, 16);
 }
-
 const statsObserver = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      const statNumbers = entry.target.querySelectorAll('.stat-number');
-      statNumbers.forEach(stat => animateCounter(stat));
+      entry.target.querySelectorAll('.stat-number').forEach(stat => animateCounter(stat));
       statsObserver.unobserve(entry.target);
     }
   });
@@ -1308,9 +1284,7 @@ const statsObserver = new IntersectionObserver(entries => {
 const statsContainer = document.querySelector('.stats-container');
 if (statsContainer) statsObserver.observe(statsContainer);
 
-/* =========================
-   Particle Background
-========================= */
+// Particles
 function createParticles() {
   const particlesContainer = document.getElementById('particles');
   if (!particlesContainer) return;
@@ -1342,15 +1316,12 @@ function createParticles() {
   }, 8000);
 }
 
-
+// On page load
 window.addEventListener('DOMContentLoaded', () => {
   showPlatform('ios');
   showSigner('ksign');
   createParticles();
-
-  setTimeout(() => {
-    showToast('Welcome to Mooping\'s Hall! 👋', '🎉');
-  }, 500);
+  setTimeout(() => showToast('Welcome to Mooping\'s Hall! 👋', '🎉'), 500);
 });
   </script>
 </body>

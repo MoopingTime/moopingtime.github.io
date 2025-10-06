@@ -1064,85 +1064,36 @@ function hideLoading() {
 function showToast(message, icon = '✓') {
   const existingToast = document.querySelector('.toast');
   if (existingToast) existingToast.remove();
-
   const toast = document.createElement('div');
   toast.className = 'toast';
   toast.innerHTML = `<span class="toast-icon">${icon}</span>${message}`;
   document.body.appendChild(toast);
-
   setTimeout(() => toast.classList.add('show'), 100);
-  setTimeout(() => {
-    toast.classList.remove('show');
-    setTimeout(() => toast.remove(), 300);
-  }, 3000);
+  setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 300); }, 3000);
 }
 
 function isMobileDevice() {
   try {
-    if (navigator.userAgentData && typeof navigator.userAgentData.mobile === 'boolean') {
-      if (navigator.userAgentData.mobile) return true;
-    }
-    if (navigator.maxTouchPoints && navigator.maxTouchPoints > 0) return true;
-    if ('ontouchstart' in window) return true;
-    if (window.matchMedia && window.matchMedia('(pointer: coarse) and (hover: none)').matches) {
-      return true;
-    }
-    if (Math.max(window.screen.width, window.screen.height) <= 900) {
-      if (navigator.maxTouchPoints > 0 || 'ontouchstart' in window) return true;
-      if (Math.max(window.screen.width, window.screen.height) <= 700) return true;
-    }
+    if (navigator.userAgentData && typeof navigator.userAgentData.mobile === 'boolean') return navigator.userAgentData.mobile;
+    if (navigator.maxTouchPoints > 0 || 'ontouchstart' in window) return true;
+    if (window.matchMedia && window.matchMedia('(pointer: coarse) and (hover: none)').matches) return true;
+    return Math.max(window.screen.width, window.screen.height) <= 900;
   } catch (e) {
-    console.warn('isMobileDevice detection error', e);
+    return false;
   }
-  return false;
 }
 
-function downloadURL(url, opts = {}) {
-  const message = opts.message || 'Download started!';
-  const preferNewTab = typeof opts.preferNewTab === 'boolean' ? opts.preferNewTab : true;
-
-  if (!url) {
-    showToast('Invalid download URL', '⚠️');
-    return;
-  }
-
-  const mobile = isMobileDevice();
-  let newWin = null;
-  if (!mobile && preferNewTab) {
-    try {
-      newWin = window.open('about:blank', '_blank', 'noopener,noreferrer');
-    } catch (e) {
-      newWin = null;
-    }
-  }
-
+function downloadURL(url, message = 'Download started!', newTab = true) {
   showLoading();
-
   setTimeout(() => {
     hideLoading();
-
-    if (mobile || !newWin) {
-      try {
-        window.location.href = url;
-        showToast(message, '⬇️');
-      } catch (e) {
-        console.error('Navigation failed:', e);
-        showToast('Failed to start download', '⚠️');
-      }
-      return;
+    if (!url) { showToast('Unable to download. Please try again later.', '⚠️'); return; }
+    if (isMobileDevice() || !newTab) window.location.href = url;
+    else {
+      const win = window.open(url, '_blank', 'noopener,noreferrer');
+      if (!win) showToast('Popup blocked! Please allow popups.', '⚠️');
     }
-
-    try {
-      newWin.location = url;
-      showToast(message, '⬇️');
-    } catch (e) {
-      try {
-        window.open(url, '_blank', 'noopener,noreferrer');
-        showToast(message, '⬇️');
-      } catch (err) {
-        showToast('Popup blocked! Please allow popups.', '⚠️');
-      }
-    }
+    showToast(message, '⬇️');
   }, 1500);
 }
 
@@ -1150,46 +1101,24 @@ const encodedDNS = "aHR0cHM6Ly90aW55dXJsLmNvbS81cHk2dHM1YQ==";
 const encodedCert = "aHR0cHM6Ly9tb29waW5ndGltZS5naXRodWIuaW8vcHJpdmF0ZS9NUEJveCUyMENlcnRpZmljYXRlcy56aXA=";
 
 const dnsBtn = document.getElementById("dns-btn");
-if (dnsBtn) {
-  dnsBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    downloadURL(decodeBase64(encodedDNS), { message: 'Redirecting to DNS profile...', preferNewTab: false });
-  });
-}
+if (dnsBtn) dnsBtn.addEventListener("click", e => { e.preventDefault(); downloadURL(decodeBase64(encodedDNS), 'Redirecting to DNS profile...', false); });
 
 const certBtn = document.getElementById("cert-btn");
-if (certBtn) {
-  certBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    downloadURL(decodeBase64(encodedCert), { message: 'Certificate download started!', preferNewTab: true });
-  });
-}
+if (certBtn) certBtn.addEventListener("click", e => { e.preventDefault(); downloadURL(decodeBase64(encodedCert), 'Certificate download started!'); });
 
 function showPlatform(platform) {
   const iosExploits = document.getElementById('ios-exploits');
   const androidExploits = document.getElementById('android-exploits');
   const platformTabs = document.querySelectorAll('#platform-tabs .tab-btn');
-
-  if (!iosExploits || !androidExploits || platformTabs.length === 0) {
-    console.error('Platform tab elements not found');
-    return;
-  }
-
+  if (!iosExploits || !androidExploits || platformTabs.length === 0) return;
   platformTabs.forEach(tab => tab.classList.remove('active'));
-
   if (platform === 'ios') {
     androidExploits.classList.add('content-hidden');
-    setTimeout(() => {
-      iosExploits.classList.remove('content-hidden');
-      resetAnimations(iosExploits);
-    }, 50);
+    setTimeout(() => { iosExploits.classList.remove('content-hidden'); resetAnimations(iosExploits); }, 50);
     platformTabs[0].classList.add('active');
   } else {
     iosExploits.classList.add('content-hidden');
-    setTimeout(() => {
-      androidExploits.classList.remove('content-hidden');
-      resetAnimations(androidExploits);
-    }, 50);
+    setTimeout(() => { androidExploits.classList.remove('content-hidden'); resetAnimations(androidExploits); }, 50);
     platformTabs[1].classList.add('active');
   }
 }
@@ -1199,45 +1128,24 @@ function showSigner(signer) {
   const esignList = document.getElementById('esign-list');
   const signerTabs = document.querySelectorAll('#signer-tabs .tab-btn');
   const searchBox = document.getElementById('signer-search');
-
-  if (!ksignList || !esignList || signerTabs.length === 0) {
-    console.error('Signer tab elements not found');
-    return;
-  }
-
+  if (!ksignList || !esignList || signerTabs.length === 0) return;
   signerTabs.forEach(tab => tab.classList.remove('active'));
-
   if (signer === 'ksign') {
     esignList.classList.add('content-hidden');
-    setTimeout(() => {
-      ksignList.classList.remove('content-hidden');
-      resetAnimations(ksignList);
-    }, 50);
+    setTimeout(() => { ksignList.classList.remove('content-hidden'); resetAnimations(ksignList); }, 50);
     signerTabs[0].classList.add('active');
   } else {
     ksignList.classList.add('content-hidden');
-    setTimeout(() => {
-      esignList.classList.remove('content-hidden');
-      resetAnimations(esignList);
-    }, 50);
+    setTimeout(() => { esignList.classList.remove('content-hidden'); resetAnimations(esignList); }, 50);
     signerTabs[1].classList.add('active');
   }
-
-  if (searchBox) {
-    searchBox.value = '';
-  }
+  if (searchBox) searchBox.value = '';
   filterSigners();
 }
 
 function resetAnimations(container) {
   if (!container) return;
-  const items = container.querySelectorAll('.download-item');
-  items.forEach((item) => {
-    item.style.animation = 'none';
-    setTimeout(() => {
-      item.style.animation = '';
-    }, 10);
-  });
+  container.querySelectorAll('.download-item').forEach(item => { item.style.animation = 'none'; setTimeout(() => item.style.animation = '', 10); });
 }
 
 function filterSigners() {
@@ -1245,26 +1153,16 @@ function filterSigners() {
   const searchTerm = searchBox ? searchBox.value.toLowerCase() : '';
   const ksignList = document.getElementById('ksign-list');
   const esignList = document.getElementById('esign-list');
-
   const activeList = ksignList.classList.contains('content-hidden') ? esignList : ksignList;
-  const items = activeList.querySelectorAll('.download-item');
-
   let visibleCount = 0;
-  items.forEach(item => {
+  activeList.querySelectorAll('.download-item').forEach(item => {
     const name = item.getAttribute('data-name') || '';
     const text = item.textContent.toLowerCase();
-
-    if (searchTerm === '' || name.includes(searchTerm) || text.includes(searchTerm)) {
-      item.style.display = 'flex';
-      visibleCount++;
-    } else {
-      item.style.display = 'none';
-    }
+    if (searchTerm === '' || name.includes(searchTerm) || text.includes(searchTerm)) { item.style.display = 'flex'; visibleCount++; }
+    else item.style.display = 'none';
   });
-
   const existingMsg = activeList.querySelector('.no-results-msg');
   if (existingMsg) existingMsg.remove();
-
   if (visibleCount === 0 && searchTerm !== '') {
     const noResultsMsg = document.createElement('div');
     noResultsMsg.className = 'no-results-msg';
@@ -1275,40 +1173,25 @@ function filterSigners() {
 }
 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
+  anchor.addEventListener('click', function(e) {
     const href = this.getAttribute('href');
-    if (href !== '#') {
-      e.preventDefault();
-      const target = document.querySelector(href);
-      if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+    if (href !== '#') { e.preventDefault(); const target = document.querySelector(href); if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
   });
 });
 
 document.querySelectorAll('.download-icon').forEach(icon => {
-  icon.addEventListener('click', function (e) {
+  icon.addEventListener('click', function(e) {
     e.preventDefault();
     const url = this.getAttribute('href');
     const originalContent = this.innerHTML;
-
-    this.innerHTML = '⏳';
-    this.style.pointerEvents = 'none';
-
-    downloadURL(url, { message: 'Download link opened!', preferNewTab: true });
-
-    setTimeout(() => {
-      this.innerHTML = originalContent;
-      this.style.pointerEvents = 'auto';
-    }, 1500);
+    this.innerHTML = '⏳'; this.style.pointerEvents = 'none';
+    downloadURL(url, 'Download link opened!');
+    setTimeout(() => { this.innerHTML = originalContent; this.style.pointerEvents = 'auto'; }, 1500);
   });
 });
 
 const scrollToTopBtn = document.getElementById('scrollToTop');
-window.addEventListener('scroll', () => {
-  if (!scrollToTopBtn) return;
-  if (window.pageYOffset > 300) scrollToTopBtn.classList.add('visible');
-  else scrollToTopBtn.classList.remove('visible');
-});
+window.addEventListener('scroll', () => { if (!scrollToTopBtn) return; window.pageYOffset > 300 ? scrollToTopBtn.classList.add('visible') : scrollToTopBtn.classList.remove('visible'); });
 if (scrollToTopBtn) scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
 function animateCounter(element) {
@@ -1316,70 +1199,33 @@ function animateCounter(element) {
   const duration = 2000;
   const increment = target / (duration / 16);
   let current = 0;
-
   const timer = setInterval(() => {
     current += increment;
-    if (current >= target) {
-      element.textContent = target + (element.parentElement.querySelector('.stat-label').textContent.includes('Rate') ? '%' : '+');
-      clearInterval(timer);
-    } else {
-      element.textContent = Math.floor(current) + (element.parentElement.querySelector('.stat-label').textContent.includes('Rate') ? '%' : '+');
-    }
+    if (current >= target) { element.textContent = target + (element.parentElement.querySelector('.stat-label').textContent.includes('Rate') ? '%' : '+'); clearInterval(timer); }
+    else element.textContent = Math.floor(current) + (element.parentElement.querySelector('.stat-label').textContent.includes('Rate') ? '%' : '+');
   }, 16);
 }
 
-const statsObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      const statNumbers = entry.target.querySelectorAll('.stat-number');
-      statNumbers.forEach(stat => animateCounter(stat));
-      statsObserver.unobserve(entry.target);
-    }
-  });
+const statsObserver = new IntersectionObserver(entries => {
+  entries.forEach(entry => { if (entry.isIntersecting) { entry.target.querySelectorAll('.stat-number').forEach(stat => animateCounter(stat)); statsObserver.unobserve(entry.target); } });
 });
-
 const statsContainer = document.querySelector('.stats-container');
 if (statsContainer) statsObserver.observe(statsContainer);
 
 function createParticles() {
   const particlesContainer = document.getElementById('particles');
   if (!particlesContainer) return;
-
   const mobile = isMobileDevice();
   const count = mobile ? 8 : 15;
-
-  for (let i = 0; i < count; i++) {
-    setTimeout(() => {
-      const particle = document.createElement('div');
-      particle.className = 'particle';
-      particle.style.left = Math.random() * 100 + '%';
-      particle.style.animationDelay = Math.random() * 6 + 's';
-      particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
-      particlesContainer.appendChild(particle);
-      setTimeout(() => particle.remove(), 10000);
-    }, i * 400);
-  }
-
-  setInterval(() => {
-    for (let i = 0; i < Math.min(3, mobile ? 1 : 3); i++) {
-      setTimeout(() => {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = '0s';
-        particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
-        particlesContainer.appendChild(particle);
-        setTimeout(() => particle.remove(), 10000);
-      }, i * 2000);
-    }
-  }, 8000);
+  for (let i = 0; i < count; i++) { setTimeout(() => { const particle = document.createElement('div'); particle.className = 'particle'; particle.style.left = Math.random() * 100 + '%'; particle.style.animationDelay = Math.random() * 6 + 's'; particle.style.animationDuration = (Math.random() * 3 + 4) + 's'; particlesContainer.appendChild(particle); setTimeout(() => particle.remove(), 10000); }, i * 400); }
+  setInterval(() => { for (let i = 0; i < Math.min(3, mobile ? 1 : 3); i++) { setTimeout(() => { const particle = document.createElement('div'); particle.className = 'particle'; particle.style.left = Math.random() * 100 + '%'; particle.style.animationDelay = '0s'; particle.style.animationDuration = (Math.random() * 3 + 4) + 's'; particlesContainer.appendChild(particle); setTimeout(() => particle.remove(), 10000); }, i * 2000); } }, 8000);
 }
 
 window.addEventListener('DOMContentLoaded', () => {
   showPlatform('ios');
   showSigner('ksign');
   createParticles();
-  setTimeout(() => showToast('Welcome to Mooping\\'s Hall! 👋', '🎉'), 500);
+  setTimeout(() => showToast('Welcome to Mooping\'s Hall! 👋', '🎉'), 500);
 });
   </script>
 </body>

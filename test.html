@@ -170,9 +170,10 @@ header p {
   box-shadow: 0 8px 32px rgba(0,0,0,0.4);
   transition: all 0.3s ease;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   will-change: transform;
   transform: translateZ(0);
+  z-index: 1;
 }
 
 .card::before {
@@ -321,8 +322,15 @@ header p {
 }
 
 .download-item:active {
-  transform: scale(0.98);
+  transform: scale(0.95);
   background: rgba(40, 40, 40, 0.8);
+  border-color: var(--desert-titanium);
+}
+
+.download-item:hover {
+  border-color: rgba(191,164,143,0.5);
+  box-shadow: 0 4px 16px rgba(191,164,143,0.2);
+  transform: translateX(4px);
 }
 
 .download-item:hover {
@@ -761,6 +769,7 @@ footer p {
   animation: pulse-glow 2s ease-in-out infinite;
 }
 
+/* Smooth shadow transition on buttons */
 .btn {
   display: inline-block;
   background: var(--desert-titanium);
@@ -840,15 +849,20 @@ footer p {
 .ripple {
   position: absolute;
   border-radius: 50%;
-  background: rgba(191,164,143,0.4);
+  background: rgba(191,164,143,0.6);
   transform: scale(0);
-  animation: ripple-effect 0.6s ease-out;
+  animation: ripple-effect 0.8s ease-out;
   pointer-events: none;
+  z-index: 1000;
 }
 
 @keyframes ripple-effect {
-  to {
-    transform: scale(4);
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(6);
     opacity: 0;
   }
 }
@@ -859,30 +873,30 @@ footer p {
 
 @keyframes shake {
   0%, 100% { transform: translateX(0); }
-  25% { transform: translateX(-5px); }
-  75% { transform: translateX(5px); }
+  25% { transform: translateX(-10px); }
+  75% { transform: translateX(10px); }
 }
 
 .shake {
-  animation: shake 0.3s ease-in-out;
+  animation: shake 0.4s ease-in-out;
 }
 
 @keyframes bounce-in {
   0% {
-    transform: scale(0.8);
+    transform: scale(0.3) translateY(-50px);
     opacity: 0;
   }
   50% {
-    transform: scale(1.05);
+    transform: scale(1.1);
   }
   100% {
-    transform: scale(1);
+    transform: scale(1) translateY(0);
     opacity: 1;
   }
 }
 
 .section-title {
-  animation: bounce-in 0.6s ease-out;
+  animation: bounce-in 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .download-item::before {
@@ -891,19 +905,30 @@ footer p {
   left: 0;
   top: 0;
   height: 100%;
-  width: 3px;
-  background: linear-gradient(to bottom, transparent, var(--desert-titanium), transparent);
+  width: 4px;
+  background: linear-gradient(to bottom, 
+    transparent 0%, 
+    var(--desert-titanium) 30%, 
+    var(--desert-titanium) 70%, 
+    transparent 100%);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.4s ease;
+  border-radius: 12px 0 0 12px;
+  z-index: 1;
 }
 
-.download-item:hover::before {
+.download-item:hover::before,
+.download-item.active-border::before {
   opacity: 1;
+  animation: pulse-border 1.5s ease-in-out infinite;
 }
 
-@media (max-width: 768px) {
-  .download-item:active::before {
-    opacity: 1;
+@keyframes pulse-border {
+  0%, 100% {
+    box-shadow: 0 0 5px var(--desert-titanium);
+  }
+  50% {
+    box-shadow: 0 0 20px var(--desert-titanium);
   }
 }
     </style>
@@ -1375,6 +1400,7 @@ footer p {
       }
     }
 
+    // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
         const href = this.getAttribute('href');
@@ -1388,6 +1414,7 @@ footer p {
       });
     });
 
+    // Add loading state to download buttons
     document.querySelectorAll('.download-icon').forEach(icon => {
       icon.addEventListener('click', function(e) {
         e.preventDefault();
@@ -1453,7 +1480,7 @@ footer p {
 
     scrollToTopBtn.addEventListener('click', () => {
       scrollToTopBtn.classList.add('shake');
-      setTimeout(() => scrollToTopBtn.classList.remove('shake'), 300);
+      setTimeout(() => scrollToTopBtn.classList.remove('shake'), 400);
       
       window.scrollTo({
         top: 0,
@@ -1461,6 +1488,7 @@ footer p {
       });
     });
 
+    // Animated Counter for Stats
     function animateCounter(element) {
       const target = parseInt(element.getAttribute('data-target'));
       const duration = 2000;
@@ -1478,6 +1506,7 @@ footer p {
       }, 16);
     }
 
+    // Intersection Observer for Stats Animation
     const statsObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
@@ -1493,6 +1522,7 @@ footer p {
       statsObserver.observe(statsContainer);
     }
 
+    // Create Particles
     function createParticles() {
       const particlesContainer = document.getElementById('particles');
       if (!particlesContainer) return;
@@ -1510,6 +1540,7 @@ footer p {
         }, i * 400);
       }
 
+      // Recreate particles periodically
       setInterval(() => {
         for (let i = 0; i < 3; i++) {
           setTimeout(() => {
@@ -1526,11 +1557,13 @@ footer p {
       }, 8000);
     }
 
+    // Initialize
     window.addEventListener('DOMContentLoaded', () => {
       showPlatform('ios');
       showSigner('ksign');
       createParticles();
       
+      // Welcome toast
       setTimeout(() => {
         showToast('Welcome to Mooping\'s Hall! 👋', '🎉');
       }, 500);

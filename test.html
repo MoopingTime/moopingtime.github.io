@@ -1077,49 +1077,91 @@ function showToast(message, icon = '✓') {
   }, 3000);
 }
 
-const encodedDNS = "aHR0cHM6Ly90aW55dXJsLmNvbS81cHk2dHM1YQ==";
-const encodedCert = "aHR0cHM6Ly9tb29waW5ndGltZS5naXRodWIuaW8vcHJpdmF0ZS9NUEJveCUyMENlcnRpZmljYXRlcy56aXA=";
+function isMobileDevice() {
+  try {
+    if (navigator.userAgentData && typeof navigator.userAgentData.mobile === 'boolean') {
+      if (navigator.userAgentData.mobile) return true;
+    }
+    if (navigator.maxTouchPoints && navigator.maxTouchPoints > 0) return true;
+    if ('ontouchstart' in window) return true;
+    if (window.matchMedia && window.matchMedia('(pointer: coarse) and (hover: none)').matches) {
+      return true;
+    }
+    if (Math.max(window.screen.width, window.screen.height) <= 900) {
+      if (navigator.maxTouchPoints > 0 || 'ontouchstart' in window) return true;
+      if (Math.max(window.screen.width, window.screen.height) <= 700) return true;
+    }
+  } catch (e) {
+    console.warn('isMobileDevice detection error', e);
+  }
+  return false;
+}
 
-// Universal download handler
-function downloadURL(url, message = 'Download started!', newTab = true) {
+function downloadURL(url, opts = {}) {
+  const message = opts.message || 'Download started!';
+  const preferNewTab = typeof opts.preferNewTab === 'boolean' ? opts.preferNewTab : true;
+
+  if (!url) {
+    showToast('Invalid download URL', '⚠️');
+    return;
+  }
+
+  const mobile = isMobileDevice();
+  let newWin = null;
+  if (!mobile && preferNewTab) {
+    try {
+      newWin = window.open('about:blank', '_blank', 'noopener,noreferrer');
+    } catch (e) {
+      newWin = null;
+    }
+  }
+
   showLoading();
+
   setTimeout(() => {
     hideLoading();
-    if (!url) {
-      showToast('Unable to download. Please try again later.', '⚠️');
+
+    if (mobile || !newWin) {
+      try {
+        window.location.href = url;
+        showToast(message, '⬇️');
+      } catch (e) {
+        console.error('Navigation failed:', e);
+        showToast('Failed to start download', '⚠️');
+      }
       return;
     }
 
-    // Mobile friendly
-    const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-    if (isMobile || !newTab) {
-      window.location.href = url;
-    } else {
-      const win = window.open(url, '_blank', 'noopener,noreferrer');
-      if (!win) {
+    try {
+      newWin.location = url;
+      showToast(message, '⬇️');
+    } catch (e) {
+      try {
+        window.open(url, '_blank', 'noopener,noreferrer');
+        showToast(message, '⬇️');
+      } catch (err) {
         showToast('Popup blocked! Please allow popups.', '⚠️');
-        return;
       }
     }
-    showToast(message, '⬇️');
   }, 1500);
 }
 
-// DNS button
+const encodedDNS = "aHR0cHM6Ly90aW55dXJsLmNvbS81cHk2dHM1YQ==";
+const encodedCert = "aHR0cHM6Ly9tb29waW5ndGltZS5naXRodWIuaW8vcHJpdmF0ZS9NUEJveCUyMENlcnRpZmljYXRlcy56aXA=";
+
 const dnsBtn = document.getElementById("dns-btn");
 if (dnsBtn) {
-  dnsBtn.addEventListener("click", function(e) {
+  dnsBtn.addEventListener("click", function (e) {
     e.preventDefault();
-    downloadURL(decodeBase64(encodedDNS), 'Redirecting to DNS profile...', false);
+    downloadURL(decodeBase64(encodedDNS), { message: 'Redirecting to DNS profile...', preferNewTab: false });
   });
 }
 
-// Certificate button
 const certBtn = document.getElementById("cert-btn");
 if (certBtn) {
-  certBtn.addEventListener("click", function(e) {
+  certBtn.addEventListener("click", function (e) {
     e.preventDefault();
-    downloadURL(decodeBase64(encodedCert), 'Certificate download started!');
+    downloadURL(decodeBase64(encodedCert), { message: 'Certificate download started!', preferNewTab: true });
   });
 }
 
@@ -1127,11 +1169,14 @@ function showPlatform(platform) {
   const iosExploits = document.getElementById('ios-exploits');
   const androidExploits = document.getElementById('android-exploits');
   const platformTabs = document.querySelectorAll('#platform-tabs .tab-btn');
-  
-  if (!iosExploits || !androidExploits || platformTabs.length === 0) return;
-  
+
+  if (!iosExploits || !androidExploits || platformTabs.length === 0) {
+    console.error('Platform tab elements not found');
+    return;
+  }
+
   platformTabs.forEach(tab => tab.classList.remove('active'));
-  
+
   if (platform === 'ios') {
     androidExploits.classList.add('content-hidden');
     setTimeout(() => {
@@ -1154,11 +1199,14 @@ function showSigner(signer) {
   const esignList = document.getElementById('esign-list');
   const signerTabs = document.querySelectorAll('#signer-tabs .tab-btn');
   const searchBox = document.getElementById('signer-search');
-  
-  if (!ksignList || !esignList || signerTabs.length === 0) return;
-  
+
+  if (!ksignList || !esignList || signerTabs.length === 0) {
+    console.error('Signer tab elements not found');
+    return;
+  }
+
   signerTabs.forEach(tab => tab.classList.remove('active'));
-  
+
   if (signer === 'ksign') {
     esignList.classList.add('content-hidden');
     setTimeout(() => {
@@ -1174,17 +1222,21 @@ function showSigner(signer) {
     }, 50);
     signerTabs[1].classList.add('active');
   }
-  
-  if (searchBox) searchBox.value = '';
+
+  if (searchBox) {
+    searchBox.value = '';
+  }
   filterSigners();
 }
 
 function resetAnimations(container) {
   if (!container) return;
   const items = container.querySelectorAll('.download-item');
-  items.forEach(item => {
+  items.forEach((item) => {
     item.style.animation = 'none';
-    setTimeout(() => item.style.animation = '', 10);
+    setTimeout(() => {
+      item.style.animation = '';
+    }, 10);
   });
 }
 
@@ -1193,14 +1245,15 @@ function filterSigners() {
   const searchTerm = searchBox ? searchBox.value.toLowerCase() : '';
   const ksignList = document.getElementById('ksign-list');
   const esignList = document.getElementById('esign-list');
+
   const activeList = ksignList.classList.contains('content-hidden') ? esignList : ksignList;
-
   const items = activeList.querySelectorAll('.download-item');
-  let visibleCount = 0;
 
+  let visibleCount = 0;
   items.forEach(item => {
     const name = item.getAttribute('data-name') || '';
     const text = item.textContent.toLowerCase();
+
     if (searchTerm === '' || name.includes(searchTerm) || text.includes(searchTerm)) {
       item.style.display = 'flex';
       visibleCount++;
@@ -1221,9 +1274,8 @@ function filterSigners() {
   }
 }
 
-// Smooth scrolling
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
+  anchor.addEventListener('click', function (e) {
     const href = this.getAttribute('href');
     if (href !== '#') {
       e.preventDefault();
@@ -1233,15 +1285,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// Download icons
 document.querySelectorAll('.download-icon').forEach(icon => {
-  icon.addEventListener('click', function(e) {
+  icon.addEventListener('click', function (e) {
     e.preventDefault();
     const url = this.getAttribute('href');
     const originalContent = this.innerHTML;
+
     this.innerHTML = '⏳';
     this.style.pointerEvents = 'none';
-    downloadURL(url, 'Download link opened!');
+
+    downloadURL(url, { message: 'Download link opened!', preferNewTab: true });
+
     setTimeout(() => {
       this.innerHTML = originalContent;
       this.style.pointerEvents = 'auto';
@@ -1249,20 +1303,20 @@ document.querySelectorAll('.download-icon').forEach(icon => {
   });
 });
 
-// Scroll to top
 const scrollToTopBtn = document.getElementById('scrollToTop');
 window.addEventListener('scroll', () => {
+  if (!scrollToTopBtn) return;
   if (window.pageYOffset > 300) scrollToTopBtn.classList.add('visible');
   else scrollToTopBtn.classList.remove('visible');
 });
-scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+if (scrollToTopBtn) scrollToTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 
-// Stats animation
 function animateCounter(element) {
   const target = parseInt(element.getAttribute('data-target'));
   const duration = 2000;
   const increment = target / (duration / 16);
   let current = 0;
+
   const timer = setInterval(() => {
     current += increment;
     if (current >= target) {
@@ -1273,23 +1327,28 @@ function animateCounter(element) {
     }
   }, 16);
 }
-const statsObserver = new IntersectionObserver(entries => {
+
+const statsObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.querySelectorAll('.stat-number').forEach(stat => animateCounter(stat));
+      const statNumbers = entry.target.querySelectorAll('.stat-number');
+      statNumbers.forEach(stat => animateCounter(stat));
       statsObserver.unobserve(entry.target);
     }
   });
 });
+
 const statsContainer = document.querySelector('.stats-container');
 if (statsContainer) statsObserver.observe(statsContainer);
 
-// Particles
 function createParticles() {
   const particlesContainer = document.getElementById('particles');
   if (!particlesContainer) return;
 
-  for (let i = 0; i < 15; i++) {
+  const mobile = isMobileDevice();
+  const count = mobile ? 8 : 15;
+
+  for (let i = 0; i < count; i++) {
     setTimeout(() => {
       const particle = document.createElement('div');
       particle.className = 'particle';
@@ -1302,7 +1361,7 @@ function createParticles() {
   }
 
   setInterval(() => {
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < Math.min(3, mobile ? 1 : 3); i++) {
       setTimeout(() => {
         const particle = document.createElement('div');
         particle.className = 'particle';
@@ -1316,12 +1375,11 @@ function createParticles() {
   }, 8000);
 }
 
-// On page load
 window.addEventListener('DOMContentLoaded', () => {
   showPlatform('ios');
   showSigner('ksign');
   createParticles();
-  setTimeout(() => showToast('Welcome to Mooping\'s Hall! 👋', '🎉'), 500);
+  setTimeout(() => showToast('Welcome to Mooping\\'s Hall! 👋', '🎉'), 500);
 });
   </script>
 </body>

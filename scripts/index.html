@@ -296,11 +296,18 @@ header p {
     grid-template-columns: repeat(2, minmax(320px, 1fr));
     gap: 20px 24px;
     align-items: start;
+    /* make rows equal height */
+    grid-auto-rows: 1fr;
   }
   .download-item {
     max-width: 640px;
     margin: 0 auto;
     text-align: center;
+    /* ensure each card fills the grid row */
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
   .yt-thumb {
     max-width: 520px;
@@ -336,6 +343,9 @@ header p {
   flex-direction: column;
   align-items: center;
   gap: 8px;
+  /* allow download-info to grow so the download button sits at the bottom */
+  flex-grow: 1;
+  justify-content: flex-start;
 }
 
 .download-info strong {
@@ -379,6 +389,48 @@ header p {
   object-fit: cover;
   border-radius: 8px;
   margin-bottom: 12px;
+  display: block;
+}
+
+/* Reserve space on anchors that will receive thumbnails to prevent layout jumps */
+.yt-link,
+a[href*="youtube.com"],
+a[href*="youtu.be"] {
+  display: inline-block;
+  width: 100%;
+  max-width: 560px;
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.03));
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* loading state while we probe thumbnails */
+.yt-link.yt-loading::after,
+a[href*="youtube.com"].yt-loading::after,
+a[href*="youtu.be"].yt-loading::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.06);
+  border-top-color: var(--desert-titanium);
+  animation: spin 1s linear infinite;
+  z-index: 2;
+}
+
+/* ensure images inside anchors fill the reserved box */
+.yt-link img.yt-thumb,
+a[href*="youtube.com"] img.yt-thumb,
+a[href*="youtu.be"] img.yt-thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
   display: block;
 }
 
@@ -861,58 +913,118 @@ footer p {
     </div>
 
     <div id="roblox-exploits" class="download-list">
+      <div class="download-item" data-name="blox fruits">
+        <div class="download-info">
+          <a href="https://www.youtube.com/watch?v=cSqwLXAZheA" target="_blank" rel="noopener noreferrer" aria-label="Watch 99 Nights video">
+          </a>
+          <strong>Blox Fruits Script | Blue X Hub <span class="status-badge">✓</span></strong>
+          <small>🔥 NEW Blox Fruits Script 2025 | Blue X Hub ⚡ Auto Farm + More (NO KEY, WORKING)</small>
+        </div>
+        <a href="https://loot-link.com/s?SgeKYtel" class="download-icon" aria-label="Download">⬇️</a>
+      </div>
+
       <div class="download-item" data-name="99 nights in the forest">
         <div class="download-info">
           <a href="https://youtu.be/-9NcvXhQUIs" target="_blank" rel="noopener noreferrer" aria-label="Watch 99 Nights video">
-            <img class="yt-thumb" src="https://img.youtube.com/vi/-9NcvXhQUIs/maxresdefault.jpg" alt="99 Nights thumbnail" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/-9NcvXhQUIs/hqdefault.jpg';" />
           </a>
-          <strong>99 Nights in the Forest Script <span class="status-badge">✓</span></strong>
+          <strong>99 Nights in the Forest Script | Foxname Hub <span class="status-badge">✓</span></strong>
           <small>An atmospheric script for 99 Nights in the Forest — community-tested and lightweight.</small>
         </div>
-        <a href="https://loot-link.com/s?PmzCAZNg" class="download-icon" aria-label="Download">⬇️</a>
+        <a href="https://lootdest.org/s?qfEN0qXy" class="download-icon" aria-label="Download">⬇️</a>
       </div>
 
-      <div class="download-item" data-name="steal a brainrot">
+   
+      <div class="download-item" data-name="blox fruits">
         <div class="download-info">
-          <a href="https://youtu.be/l4PASHjpRoU" target="_blank" rel="noopener noreferrer" aria-label="Watch Steal A Brainrot video">
-            <img class="yt-thumb" src="https://img.youtube.com/vi/l4PASHjpRoU/maxresdefault.jpg" alt="Steal A Brainrot thumbnail" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/l4PASHjpRoU/hqdefault.jpg';" />
+          <a href="https://youtu.be/xmZyzh-duHI?si=NGVfsWXiCZ6xTvfs" target="_blank" rel="noopener noreferrer" aria-label="Watch 99 Nights video">
           </a>
-          <strong>Steal A Brainrot Script <span class="status-badge">✓</span></strong>
-          <small>A high-performance script focused on stealthy interactions and reliable results.</small>
+          <strong>Blox Fruits Script | HNC Hub <span class="status-badge">✓</span></strong>
+          <small>🔥 NEW Blox Fruits Script 2025 | Blue X Hub ⚡ Auto Farm + More (NO KEY, WORKING)</small>
         </div>
-        <a href="https://lootdest.org/s?Y5yQX4wW" class="download-icon" target="_blank" aria-label="Download">⬇️</a>
+        <a href="https://lootdest.org/s?IdYMiWig" class="download-icon" aria-label="Download">⬇️</a>
       </div>
 
-      <div class="download-item" data-name="plants vs brainrots">
+      <div class="download-item" data-name="Plants vs Brainrots Script">
         <div class="download-info">
-          <a href="https://youtu.be/YYvMc-LEE70" target="_blank" rel="noopener noreferrer" aria-label="Watch Plants VS Brainrots video">
-            <img class="yt-thumb" src="https://img.youtube.com/vi/YYvMc-LEE70/maxresdefault.jpg" alt="Plants VS Brainrots thumbnail" onerror="this.onerror=null;this.src='https://img.youtube.com/vi/YYvMc-LEE70/hqdefault.jpg';" />
+          <a href="https://www.youtube.com/watch?v=l4PASHjpRoU" target="_blank" rel="noopener noreferrer" aria-label="Watch Steal A Brainrot video">
           </a>
-          <strong>Plants VS Brainrots Script <span class="status-badge">✓</span></strong>
-          <small>Optimized scripts for Plants VS Brainrots gameplay with presets and macros.</small>
+          <strong>Plants vs Brainrots Script <span class="status-badge">✓</span></strong>
+          <small>🌱 NEW Keyless Plants vs Brainrots Script (2025) – NO KEY, FULL AUTO, INSANELY OP! ⚡</small>
         </div>
-        <a href="https://workink.net/25cH/bgj1eux9" class="download-icon" target="_blank" aria-label="Download">⬇️</a>
+        <a href="https://lootdest.org/s?BMVZG983" class="download-icon" target="_blank" aria-label="Download">⬇️</a>
       </div>
 
-      <div class="download-item">
+      <div class="download-item" data-name="blox fruits">
         <div class="download-info">
-          <strong>Delta (Android) <span class="status-badge">✓</span></strong>
-          <small>Popular Android executor for Roblox with wide compatibility and strong performance.</small>
+          <a href="https://youtu.be/R71KlNs4RjY" target="_blank" rel="noopener noreferrer" aria-label="Watch Plants VS Brainrots video">
+          </a>
+          <strong>Blox Fruits Script | Redz Hub <span class="status-badge">✓</span></strong>
+          <small>🔥 [KEYLESS] Redz Hub Blox Fruits Script 🌊 Auto Farm + Boss Kill (Roblox 2025)</small>
         </div>
-        <a href="https://workink.net/25cH/2l1n2naz" class="download-icon" target="_blank" aria-label="Download">⬇️</a>
+        <a href="https://lootdest.org/s?Krtkt8jz" class="download-icon" target="_blank" aria-label="Download">⬇️</a>
       </div>
 
-      <div class="download-item">
+    <div class="download-item" data-name="plants vs brainrots">
         <div class="download-info">
-          <strong>Arceus X (Android) <span class="status-badge">✓</span></strong>
-          <small>Popular Android executor for Roblox with wide compatibility and strong performance.</small>
+          <a href="https://www.youtube.com/watch?v=3IYarfHwvW4" target="_blank" rel="noopener noreferrer" aria-label="Watch Plants VS Brainrots video">
+          </a>
+          <strong>Plants VS Brainrots | BHX Hub <span class="status-badge">✓</span></strong>
+          <small>🔥 [KEYLESS] Plants VS Brainrots Script 🚀 Auto Farm + OP Features (Roblox 2025) 🌟</small>
         </div>
-        <a href="https://workink.net/25cH/dfymo6qc" class="download-icon" target="_blank" aria-label="Download">⬇️</a>
+        <a href="https://lootdest.org/s?Krtkt8jz" class="download-icon" target="_blank" aria-label="Download">⬇️</a>
       </div>
-    </div>
 
-    <!-- Signer Apps and certificate download removed per request -->
+    <div class="download-item" data-name="steal a brainrot">
+        <div class="download-info">
+          <a href="https://www.youtube.com/watch?v=YYvMc-LEE70" target="_blank" rel="noopener noreferrer" aria-label="Watch Plants VS Brainrots video">
+          </a>
+          <strong>Steal A Brainrot | Zenikaze Hub <span class="status-badge">✓</span></strong>
+          <small>Steal a Brainrot Script 🚀 OP Features + Private Server (Roblox 2025)</small>
+        </div>
+        <a href="https://lootdest.org/s?PsmMe3VT" class="download-icon" target="_blank" aria-label="Download">⬇️</a>
+      </div>
+
+    <div class="download-item" data-name="99 nights in the forest">
+        <div class="download-info">
+          <a href="https://youtu.be/2fpn9CzJmGU" target="_blank" rel="noopener noreferrer" aria-label="Watch Plants VS Brainrots video">
+          </a>
+          <strong>99 Nights in the Forest Script | Nezuro.xyz <span class="status-badge">✓</span></strong>
+          <small>🔥 99 Nights in the Forest Script (2025) | KEYLESS Auto Farm 🌲 + ESP (Roblox)</small>
+        </div>
+        <a href="https://lootdest.org/s?kU50HICS" class="download-icon" target="_blank" aria-label="Download">⬇️</a>
+      </div>
+
+    <div class="download-item" data-name="99 nights in the forest">
+        <div class="download-info">
+          <a href="https://youtu.be/afVKcMV4Yx4" target="_blank" rel="noopener noreferrer" aria-label="Watch Plants VS Brainrots video">
+          </a>
+          <strong>99 Nights in the Forest Script | H4xScript <span class="status-badge">✓</span></strong>
+          <small>🔥 99 Nights in the Forest Script 🌲 Auto Farm, ESP, Teleport + More (Key System | Roblox 2025)</small>
+        </div>
+        <a href="https://lootdest.org/s?kU50HICS" class="download-icon" target="_blank" aria-label="Download">⬇️</a>
+      </div>
+
+    <div class="download-item" data-name="blox fruits">
+        <div class="download-info">
+          <a href="https://www.youtube.com/watch?v=ReQG-eh_DM0&pp=0gcJCfwJAYcqIYzv" target="_blank" rel="noopener noreferrer" aria-label="Watch Plants VS Brainrots video">
+          </a>
+          <strong>Blox Fruits Script | Xeter Hub <span class="status-badge">✓</span></strong>
+          <small>🔥 NEW Blox Fruits Script 2025 ⚡ Auto Farm + More! (NO KEY, Roblox)</small>
+        </div>
+        <a href="https://loot-link.com/s?Ycd1Uuyb" class="download-icon" target="_blank" aria-label="Download">⬇️</a>
+      </div>
+
+    <div class="download-item" data-name="blox fruits">
+        <div class="download-info">
+          <a href="https://www.youtube.com/watch?v=ReQG-eh_DM0" target="_blank" rel="noopener noreferrer" aria-label="Watch Plants VS Brainrots video">
+          </a>
+          <strong>Plants VS Brainrots Script | Speed Hub X <span class="status-badge">✓</span></strong>
+          <small>Plants Vs Brainrots Script NO KEY 🌱 Auto Attack, Auto Farm, Collect & Sell (Roblox 2025)</small>
+        </div>
+        <a href="https://lootdest.org/s?0MoZLDfz" class="download-icon" target="_blank" aria-label="Download">⬇️</a>
+      </div>
     
+    </div>
     </div>
 
   <div class="socials">
@@ -1111,22 +1223,31 @@ function getYouTubeID(url) {
   return null;
 }
 
-function tryYouTubeThumbsForImg(imgEl, videoId) {
+function tryYouTubeThumbsForImg(imgEl, videoId, onFound) {
   if (!imgEl || !videoId) return;
   const sizes = ['maxresdefault','sddefault','hqdefault','mqdefault','default'];
   let i = 0;
+  let found = false;
   function tryNext() {
-    if (i >= sizes.length) {
-      // nothing found — leave alt or a blank image
+    if (found || i >= sizes.length) {
+      // nothing found or already found — stop
+      if (!found) {
+        try { if (typeof onFound === 'function') onFound(null); } catch (e) { console.error(e); }
+      }
       return;
     }
     const candidate = `https://img.youtube.com/vi/${videoId}/${sizes[i]}.jpg`;
     const tester = new Image();
     tester.onload = function() {
-      // only set if we haven't already set a working src
+      if (found) return;
+      found = true;
+      // set the working thumbnail
       imgEl.src = candidate;
+      // optional callback to notify caller
+      try { if (typeof onFound === 'function') onFound(candidate); } catch (e) { console.error(e); }
     };
     tester.onerror = function() {
+      if (found) return;
       i++; tryNext();
     };
     tester.src = candidate;
@@ -1140,15 +1261,24 @@ function setYouTubeThumbnails(root) {
     const href = a.getAttribute('href');
     const id = getYouTubeID(href);
     if (!id) return;
+    // mark as loading to reserve space and show spinner
+    a.classList.add('yt-link');
+    a.classList.add('yt-loading');
     let img = a.querySelector('img.yt-thumb');
     if (!img) {
       img = document.createElement('img');
       img.className = 'yt-thumb';
       img.alt = 'Video thumbnail';
+      // ensure the img fills the anchor box
+      img.style.width = '100%';
+      img.style.height = '100%';
       a.insertBefore(img, a.firstChild);
     }
     // kick off the progressive attempt to find the best thumbnail
-    tryYouTubeThumbsForImg(img, id);
+    tryYouTubeThumbsForImg(img, id, function onFound() {
+      // remove loading state when a working thumbnail is set
+      a.classList.remove('yt-loading');
+    });
     // ensure the anchor opens in a new tab safely
     a.setAttribute('target', '_blank');
     a.setAttribute('rel', 'noopener noreferrer');

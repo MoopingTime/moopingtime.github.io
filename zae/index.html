@@ -166,24 +166,35 @@
 
       .galleries {
         display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
         gap: 22px;
         margin-top: 24px;
+        align-items: start;
+        /* prevents forced equal height */
       }
 
       .thumb {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #fff;
+        /* white background, no leftover color */
         border-radius: var(--radius);
         overflow: hidden;
-        background: var(--accent-light);
         border: 1px solid #eee;
         box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
         transition: transform 0.25s ease, box-shadow 0.3s ease, filter 0.3s ease;
+        padding: 0;
+        /* remove inner padding to fit image snugly */
       }
 
       .thumb img {
         width: 100%;
         height: auto;
+        display: block;
         object-fit: contain;
+        /* show full image, no crop */
+        background: #fff;
         border-radius: var(--radius);
       }
 

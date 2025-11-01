@@ -1,0 +1,513 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>🌸 Zae // ZaeDae</title>
+    <meta name="description" content="Zae (ZaeDae) — portfolio & commissions for Osu!Mania banners." />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg1: #fdf6ff;
+        --bg2: #f2e9ff;
+        --accent: #c39bff;
+        --accent-light: #e3d2ff;
+        --text: #2c1f33;
+        --muted: #6e5a7a;
+        --radius: 14px;
+        --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+        --max-width: 1150px;
+      }
+
+      /* 🌈 Animated background */
+      body {
+        font-family: "Poppins", "Nunito", system-ui, sans-serif;
+        color: var(--text);
+        background: linear-gradient(120deg, var(--bg1), var(--bg2), #f8f2ff, #f5e3ff);
+        background-size: 400% 400%;
+        animation: bgflow 16s ease infinite;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        padding: 50px 20px;
+        line-height: 1.6;
+      }
+
+      @keyframes bgflow {
+        0% {
+          background-position: 0% 50%;
+        }
+
+        50% {
+          background-position: 100% 50%;
+        }
+
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* Container */
+      .wrap {
+        width: 100%;
+        max-width: var(--max-width);
+        animation: fadeIn 1s ease forwards;
+      }
+
+      /* 🌸 Header */
+      header.site-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+
+      .title {
+        display: inline-block;
+        background: #fff;
+        padding: 12px 28px;
+        border-radius: 999px;
+        font-weight: 700;
+        font-size: 1.25rem;
+        color: var(--accent);
+        box-shadow: var(--shadow);
+        border: 1px solid var(--accent-light);
+        transition: transform 0.3s ease;
+      }
+
+      .title:hover {
+        transform: scale(1.05);
+      }
+
+      /* 🩵 Card */
+      .card {
+        background: #fff;
+        border-radius: var(--radius);
+        padding: 32px;
+        box-shadow: var(--shadow);
+        animation: fadeUp 0.8s ease forwards;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      }
+
+      /* Layout Grid */
+      .main-grid {
+        display: grid;
+        grid-template-columns: 340px 1fr;
+        gap: 32px;
+      }
+
+      /* 👤 Profile */
+      .profile {
+        text-align: center;
+      }
+
+      .avatar {
+        width: 100%;
+        border-radius: var(--radius);
+        overflow: hidden;
+        margin-bottom: 18px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      }
+
+      .avatar:hover {
+        transform: scale(1.03);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+      }
+
+      .avatar img {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: contain;
+      }
+
+      .profile h1 {
+        font-size: 1.4rem;
+        margin-bottom: 8px;
+        color: var(--accent);
+      }
+
+      .profile p {
+        color: var(--muted);
+        font-size: 0.95rem;
+        margin-bottom: 16px;
+      }
+
+      .divider {
+        height: 1px;
+        background: #eee;
+        margin: 24px 0;
+      }
+
+      /* 🖼️ Gallery Section */
+      .content h2.section {
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+        font-weight: 700;
+        color: var(--text);
+      }
+
+      .note {
+        color: var(--muted);
+        font-size: 0.95rem;
+        margin-bottom: 18px;
+      }
+
+      .galleries {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 22px;
+        margin-top: 24px;
+      }
+
+      .thumb {
+        border-radius: var(--radius);
+        overflow: hidden;
+        background: var(--accent-light);
+        border: 1px solid #eee;
+        box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+        transition: transform 0.25s ease, box-shadow 0.3s ease, filter 0.3s ease;
+      }
+
+      .thumb img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        border-radius: var(--radius);
+      }
+
+      .thumb:hover {
+        transform: translateY(-6px) scale(1.03);
+        filter: brightness(1.05);
+        box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+      }
+
+      /* ❓ FAQ */
+      .faq {
+        margin-top: 40px;
+      }
+
+      .faq .q {
+        font-weight: 700;
+        color: var(--accent);
+        margin-bottom: 6px;
+      }
+
+      .faq .a {
+        color: var(--muted);
+        font-size: 0.95rem;
+        margin-bottom: 16px;
+      }
+
+      /* 💐 Credits */
+      #credits {
+        text-align: center;
+        margin-top: 40px;
+        font-size: 0.85rem;
+        color: var(--muted);
+      }
+
+      #credits a {
+        color: var(--accent);
+        text-decoration: none;
+      }
+
+      #credits a:hover {
+        text-decoration: underline;
+      }
+
+      /* ✨ Contact Buttons */
+      .contact-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        margin-top: 16px;
+        flex-wrap: wrap;
+      }
+
+      .discord-btn,
+      .twitter-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        width: 160px;
+        height: 44px;
+        background: var(--accent);
+        color: white;
+        font-weight: 600;
+        border-radius: 999px;
+        text-decoration: none;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.1);
+        transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+      }
+
+      .discord-btn:hover,
+      .twitter-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Discord */
+      .discord-btn {
+        background: var(--accent);
+      }
+
+      .discord-btn:hover {
+        background: #a877ff;
+      }
+
+      /* Twitter */
+      .twitter-btn {
+        background: #1da1f2;
+      }
+
+      .twitter-btn:hover {
+        background: #1a91da;
+      }
+
+      .contact-icon {
+        width: 20px;
+        height: 20px;
+      }
+
+      /* 🪶 Animations */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(15px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      /* 📱 Responsive */
+      @media (max-width: 1000px) {
+        .main-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .profile {
+          order: -1;
+        }
+      }
+
+      @media (max-width: 500px) {
+        .card {
+          padding: 24px;
+        }
+
+        .title {
+          font-size: 1.1rem;
+          padding: 10px 20px;
+        }
+
+        .discord-btn,
+        .twitter-btn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <header class="site-header">
+        <div class="title">🌸 Zae // ZaeDae</div>
+      </header>
+      <main class="card main-grid">
+        <!-- LEFT: Profile -->
+        <aside class="profile">
+          <div class="avatar">
+            <img src="https://zaedae.carrd.co/assets/images/image07.jpg?v=fda087a1" alt="Zae avatar">
+          </div>
+          <h1>Zaeem // ZaeDae</h1>
+          <p>Hello! I am a graphic designer that makes banners for top players in Osu!Mania — if you are interested in commissioning me, please scroll down and check out my designs!</p>
+          <p>Wanna contact me? Add my Discord or follow me on Twitter :)</p>
+          <div class="contact-buttons">
+            <a href="https://discord.com/users/123456789012345678" target="_blank" class="discord-btn">
+              <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" class="contact-icon" alt="Discord"> ZaeDaeCC </a>
+            <a href="https://twitter.com/ZaeDaeCC" target="_blank" class="twitter-btn">
+              <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" class="contact-icon" alt="Twitter"> @ZaeDaeCC </a>
+          </div>
+        </aside>
+        <!-- RIGHT: Content -->
+        <section class="content">
+          <h2 class="section">About Me</h2>
+          <p class="note"> I'm born in 2007. I never thought I would be making banners, but here I am! Generally, people would think I’m a girl LOL, but sorry to break it to you — I’m a guy. If you still wanna believe I’m a girl, go ahead, I’m used to it LMAO. </p>
+          <h2 class="section">Portfolio</h2>
+          <p class="note">
+            <strong>EVERYTHING HERE IS NOT AVAILABLE TO BE COPIED</strong>
+          </p>
+          <p class="note">
+            <strong>Click on the image to see their profiles!</strong>
+          </p>
+          <div class="galleries" id="galleries">
+            <!-- Each gallery item below is taken from the original body (kept as-is) -->
+            <a class="thumb" href="https://osu.ppy.sh/users/12040572/mania" target="_blank" rel="noopener noreferrer" aria-label="_Ennill">
+              <img src="https://zaedae.carrd.co/assets/images/gallery01/2975365a.jpg?v=fda087a1" alt="_Ennill" title="_Ennill" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/758406/mania" target="_blank" rel="noopener noreferrer" aria-label="Dressurf">
+              <img src="https://zaedae.carrd.co/assets/images/gallery02/93c92bdf.jpg?v=fda087a1" alt="Dressurf" title="Dressurf" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/10790649/mania" target="_blank" rel="noopener noreferrer" aria-label="Kalkai">
+              <!-- deferred src preserved as data-src in original; we'll load it here progressively -->
+              <img data-src="https://zaedae.carrd.co/assets/images/gallery03/6cc019bd.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjOWM4NTcwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Kalkai" title="Kalkai" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/10083439/mania" target="_blank" rel="noopener noreferrer" aria-label="Boji">
+              <img src="https://zaedae.carrd.co/assets/images/gallery04/5ba7ebf2.jpg?v=fda087a1" alt="Boji" title="Boji" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/24675802/mania" target="_blank" rel="noopener noreferrer" aria-label="Logan">
+              <img data-src="https://zaedae.carrd.co/assets/images/gallery05/aa9ccdeb.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjMjkzYTk5IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Logan" title="Logan" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="ZaeDae">
+              <img data-src="https://zaedae.carrd.co/assets/images/gallery06/6eaef9e7.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjMWIyZTcyIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="ZaeDae" title="ZaeDae" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="ZaeDae alt">
+              <img data-src="https://zaedae.carrd.co/assets/images/gallery07/439c7c1c.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjMWIxNjE5IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="ZaeDae" title="ZaeDae" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/33599" target="_blank" rel="noopener noreferrer" aria-label="Andrea">
+              <img data-src="https://zaedae.carrd.co/assets/images/gallery08/922d0e96.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjM2U3N2Q1IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Andrea" title="Andrea" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/1273955" target="_blank" rel="noopener noreferrer" aria-label="Marco">
+              <img data-src="https://zaedae.carrd.co/assets/images/gallery09/09e397a7.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjMzE2NTUxIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Marco" title="Marco" />
+            </a>
+            <!-- continue with the rest exactly as provided -->
+            <a class="thumb" href="https://osu.ppy.sh/users/28686998/mania" target="_blank" rel="noopener noreferrer">
+              <img data-src="https://zaedae.carrd.co/assets/images/gallery10/9b6b6e34.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjNzI4MGE5IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Nxllification" title="Nxllification" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer">
+              <img data-src="https://zaedae.carrd.co/assets/images/gallery11/85628d1d.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjOWE2ZjVkIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Zaeem" title="Zaeem" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer">
+              <img src="https://zaedae.carrd.co/assets/images/gallery12/a381b1fa.jpg?v=fda087a1" alt="Zaeem" title="Zaeem" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer">
+              <img src="https://zaedae.carrd.co/assets/images/gallery13/18a6c2fe.jpg?v=fda087a1" alt="Zaeem" title="Zaeem" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/15274666" target="_blank" rel="noopener noreferrer">
+              <img data-src="https://zaedae.carrd.co/assets/images/gallery14/c64139bb.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjN2U1ZDUzIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="yeeeter" title="yeeeter" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/36450912" target="_blank" rel="noopener noreferrer">
+              <img src="https://zaedae.carrd.co/assets/images/gallery15/d0c53408.jpg?v=fda087a1" alt="Mazii" title="Mazii" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/15841840/osu" target="_blank" rel="noopener noreferrer">
+              <img data-src="https://zaedae.carrd.co/assets/images/gallery16/7353659c.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAyIDQ1MCIgd2lkdGg9IjE4MDIiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjOWE2ZTUwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Superfreak" title="Superfreak" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/35176642" target="_blank" rel="noopener noreferrer">
+              <img src="https://zaedae.carrd.co/assets/images/gallery17/22bd4528.jpg?v=fda087a1" alt="Mooping" title="Mooping" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer">
+              <img data-src="https://zaedae.carrd.co/assets/images/gallery18/9eb0cb66.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjYmY4ZDMyIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Zaeem" title="Zaeem" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/14947043" target="_blank" rel="noopener noreferrer">
+              <img data-src="https://zaedae.carrd.co/assets/images/gallery19/1b800d7a.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjOGI3Y2FhIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="hz404" title="hz404" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/19249802" target="_blank" rel="noopener noreferrer">
+              <img data-src="https://zaedae.carrd.co/assets/images/gallery20/09d324f0.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjN2Q1NDU0IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Juno" title="Juno" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/26473894" target="_blank" rel="noopener noreferrer">
+              <img data-src="https://zaedae.carrd.co/assets/images/gallery21/e962b256.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjNWU1ZjY5IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Imyeeyee" title="Imyeeyee" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/32785738" target="_blank" rel="noopener noreferrer">
+              <img data-src="https://zaedae.carrd.co/assets/images/gallery22/2d836ced.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjODI5Yjc5IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Lucy" title="Lucy" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/1383951" target="_blank" rel="noopener noreferrer">
+              <img data-src="https://zaedae.carrd.co/assets/images/gallery23/02525a3a.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjMzQyNzFmIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="IcyWorld" title="IcyWorld" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer">
+              <img data-src="https://zaedae.carrd.co/assets/images/gallery24/1c730fda.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjOGI3MzQ5IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Zaeem" title="Zaeem" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/12017594" target="_blank" rel="noopener noreferrer">
+              <img src="https://zaedae.carrd.co/assets/images/gallery25/70fdd779.jpg?v=fda087a1" alt="Leototo" title="Leototo" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer">
+              <img src="https://zaedae.carrd.co/assets/images/gallery26/66d289a2.jpg?v=fda087a1" alt="Zaeem" title="Zaeem" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer">
+              <img src="https://zaedae.carrd.co/assets/images/gallery27/0d21b745.jpg?v=fda087a1" alt="Frawog" title="Frawog" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/32180438" target="_blank" rel="noopener noreferrer">
+              <img src="https://zaedae.carrd.co/assets/images/gallery28/f2d31b67.jpg?v=fda087a1" alt="Cansole" title="Cansole" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/4477497" target="_blank" rel="noopener noreferrer">
+              <img data-src="https://zaedae.carrd.co/assets/images/gallery29/16d489c2.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjNDgxYjRlIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Cheewee10" title="Cheewee10" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer">
+              <img data-src="https://zaedae.carrd.co/assets/images/gallery30/bce23294.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjMjIxNzE0IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Zaeem" title="Zaeem" />
+            </a>
+            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer">
+              <img src="https://zaedae.carrd.co/assets/images/gallery31/cb9ffab3.jpg?v=fda087a1" alt="zaeem" title="zaeem" />
+            </a>
+          </div>
+          <div class="faq">
+            <div>
+              <div class="q">Why are some of the images blurry?</div>
+              <div class="a">Some of them are blurry due to the image being low resolution. Alot of my clients prefers image that looks cool over quality which explains that part.</div>
+            </div>
+            <div>
+              <div class="q">Do you use any AI?</div>
+              <div class="a">The only AI I use is for enhancing image quality. Before using any kind of AI, I always ask the commissioner for permission — and specify exactly which image it’ll be applied to. Most of my clients prefer not to use AI, but some choose to include it to preserve that extra “cool” high-quality finish — and that’s the only purpose it serves.</div>
+            </div>
+            <div>
+              <div class="q">Prices?</div>
+              <div class="a">Due to some complications with PayPal and the fact that I haven’t been able to find a bank that supports commissions involving slight AI usage (like VGen), I currently have to accept Discord Nitro as my form of payment. So yeah — the $10/month Nitro works, or if you’d prefer, you can get me the $12 Supporter plan (image provided). Either way, commissioning me through either option will result in the same end product. :)</div>
+            </div>
+          </div>
+          <div id="credits">
+            <a href="https://osu.ppy.sh/u/MoopingXD" target="_blank">Developed by Mooping ❤️</a>
+          </div>
+        </section>
+      </main>
+    </div>
+    <script>
+      // Lazy-load deferred images
+      (function() {
+        const imgs = document.querySelectorAll('img[data-src]');
+        if ('IntersectionObserver' in window) {
+          const io = new IntersectionObserver((entries, obs) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                const img = entry.target;
+                img.src = img.dataset.src;
+                img.removeAttribute('data-src');
+                obs.unobserve(img);
+              }
+            });
+          }, {
+            rootMargin: '200px'
+          });
+          imgs.forEach(i => io.observe(i));
+        } else {
+          imgs.forEach(i => {
+            i.src = i.dataset.src;
+            i.removeAttribute('data-src');
+          });
+        }
+      })();
+    </script>
+  </body>
+</html>

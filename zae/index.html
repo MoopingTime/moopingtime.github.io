@@ -207,21 +207,90 @@
         border-color: var(--accent);
       }
 
-      /* 💬 FAQ */
       .faq {
-        margin-top: 48px;
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 25px;
+        border-radius: 24px;
+        background-color: #faf6ff;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+        font-family: 'Poppins', sans-serif;
       }
 
-      .faq .q {
-        font-weight: 700;
-        color: var(--accent);
-        margin-bottom: 8px;
+      .faq h2 {
+        text-align: center;
+        color: #b380ff;
+        margin-bottom: 25px;
+        font-size: 1.8rem;
+        letter-spacing: 1px;
       }
 
-      .faq .a {
-        color: var(--muted);
-        font-size: 0.96rem;
-        margin-bottom: 18px;
+      .faq-item {
+        border-bottom: 1px solid #e7d8ff;
+        margin-bottom: 10px;
+        border-radius: 16px;
+        overflow: hidden;
+      }
+
+      .faq-question {
+        background: none;
+        border: none;
+        width: 100%;
+        text-align: left;
+        font-size: 1rem;
+        font-weight: 600;
+        color: #a76fff;
+        padding: 15px 18px;
+        border-radius: 16px;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        transition: all 0.3s ease;
+      }
+
+      .faq-question:hover {
+        background: #f3e9ff;
+        transform: scale(1.02);
+      }
+
+      .faq-answer {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: all 0.5s cubic-bezier(0.25, 1.3, 0.5, 1);
+        color: #5e5e5e;
+        padding: 0 18px;
+      }
+
+      .faq-item.active .faq-answer {
+        max-height: 250px;
+        opacity: 1;
+        padding: 10px 18px 20px;
+        animation: faqBounce 0.4s ease;
+      }
+
+      .faq-item.active .faq-question {
+        background: #f3e9ff;
+        color: #8449ff;
+        transform: scale(1.02);
+      }
+
+      /* ✨ soft bounce animation ✨ */
+      @keyframes faqBounce {
+        0% {
+          transform: translateY(-6px);
+          opacity: 0;
+        }
+
+        60% {
+          transform: translateY(4px);
+          opacity: 1;
+        }
+
+        100% {
+          transform: translateY(0);
+        }
       }
 
       /* 🌈 Contact Buttons */
@@ -472,20 +541,27 @@
               <img src="https://zaedae.carrd.co/assets/images/gallery31/cb9ffab3.jpg?v=fda087a1" alt="zaeem" title="zaeem" />
             </a>
           </div>
-          <div class="faq">
-            <div>
-              <div class="q">Why are some of the images blurry?</div>
-              <div class="a">Some of them are blurry due to the image being low resolution. Alot of my clients prefers image that looks cool over quality which explains that part.</div>
+          <section class="faq">
+            <h2>FAQ</h2>
+            <div class="faq-item">
+              <button class="faq-question">Why are some of the images blurry?</button>
+              <div class="faq-answer">
+                <p>Some of them are blurry due to the image being low resolution. A lot of my clients prefer images that look cool over quality — which explains that part.</p>
+              </div>
             </div>
-            <div>
-              <div class="q">Do you use any AI?</div>
-              <div class="a">The only AI I use is for enhancing image quality. Before using any kind of AI, I always ask the commissioner for permission — and specify exactly which image it’ll be applied to. Most of my clients prefer not to use AI, but some choose to include it to preserve that extra “cool” high-quality finish — and that’s the only purpose it serves.</div>
+            <div class="faq-item">
+              <button class="faq-question">Do you use any AI?</button>
+              <div class="faq-answer">
+                <p>The only AI I use is for enhancing image quality. Before using any kind of AI, I always ask the commissioner for permission and specify exactly which image it’ll be applied to. Most of my clients prefer not to use AI, but some choose to include it to preserve that extra “cool” high-quality finish — and that’s the only purpose it serves.</p>
+              </div>
             </div>
-            <div>
-              <div class="q">Prices?</div>
-              <div class="a">Due to some complications with PayPal and the fact that I haven’t been able to find a bank that supports commissions involving slight AI usage (like VGen), I currently have to accept Discord Nitro as my form of payment. So yeah — the $10/month Nitro works, or if you’d prefer, you can get me the $12 Supporter plan (image provided). Either way, commissioning me through either option will result in the same end product. :)</div>
+            <div class="faq-item">
+              <button class="faq-question">Prices?</button>
+              <div class="faq-answer">
+                <p>Due to some complications with PayPal and the fact that I haven’t been able to find a bank that supports commissions involving slight AI usage (like VGen), I currently have to accept Discord Nitro as my form of payment. So yeah — the $10/month Nitro works, or if you’d prefer, you can get me the $12 Supporter plan (image provided). Either way, commissioning me through either option will result in the same end product. :)</p>
+              </div>
             </div>
-          </div>
+          </section>
           <div id="credits">
             <a href="https://osu.ppy.sh/u/MoopingXD" target="_blank">Developed by Mooping ❤️</a>
           </div>
@@ -517,6 +593,14 @@
           });
         }
       })();
+    </script>
+    <script>
+      document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+          const faqItem = button.parentElement;
+          faqItem.classList.toggle('active');
+        });
+      });
     </script>
   </body>
 </html>

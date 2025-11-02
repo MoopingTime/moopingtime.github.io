@@ -435,6 +435,41 @@
         color: #5d4679;
         margin-top: 10px;
       }
+
+      .welcome-popup {
+        position: fixed;
+        top: 20px;
+        right: -400px;
+        background-color: #fdf4ff;
+        color: #5b4a65;
+        font-family: 'Poppins', sans-serif;
+        padding: 18px 26px;
+        border-radius: 20px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+        max-width: 320px;
+        opacity: 0;
+        transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+
+      .welcome-popup.show {
+        right: 20px;
+        opacity: 1;
+      }
+
+      .welcome-popup .title {
+        font-weight: 700;
+        margin: 0;
+        font-size: 1.1rem;
+        color: #a060c3;
+      }
+
+      .welcome-popup .desc {
+        margin: 6px 0 0;
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: #705a80;
+      }
     </style>
   </head>
   <body>
@@ -594,6 +629,10 @@
         </section>
       </main>
     </div>
+    <div class="welcome-popup" id="welcomePopup">
+      <p class="title">🌸 Welcome to my Portfolio!</p>
+      <p class="desc">I’m Zae — I create custom Osu!Mania banners with a clean pastel vibe. Feel free to explore my works and check the FAQ for commission info 💌</p>
+    </div>
     <script>
       (function() {
         const imgs = document.querySelectorAll('img[data-src]');
@@ -625,6 +664,16 @@
           const faqItem = button.parentElement;
           faqItem.classList.toggle('active');
         });
+      });
+    </script>
+    <script>
+      window.addEventListener('load', () => {
+        const popup = document.getElementById('welcomePopup');
+        popup.classList.add('show');
+        // Auto-hide after 5 seconds
+        setTimeout(() => {
+          popup.classList.remove('show');
+        }, 7000);
       });
     </script>
   </body>

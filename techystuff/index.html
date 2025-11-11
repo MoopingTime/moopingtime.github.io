@@ -1,0 +1,1593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mooping's Tech - PC & Gaming Optimization Guides</title>
+    <meta name="description" content="Expert PC and gaming optimization guides, performance tweaks, and hardware recommendations to maximize your gaming experience.">
+    <meta name="keywords" content="PC optimization, gaming performance, FPS boost, hardware guides, game settings, system tweaks">
+    <meta name="author" content="Mooping">
+    <!-- Open Graph / Social Media -->
+    <meta property="og:title" content="Mooping's Tech - PC & Gaming Optimization" />
+    <meta property="og:description" content="Expert PC and gaming optimization guides to maximize your gaming performance." />
+    <meta property="og:image" content="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" />
+    <meta property="og:url" content="https://mpbox.xyz" />
+    <meta property="og:type" content="website" />
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mooping's Tech - PC & Gaming Optimization" />
+    <meta name="twitter:description" content="Expert PC and gaming optimization guides to maximize your gaming performance." />
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" />
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" href="https://mpbox.xyz/favicon.ico" type="image/x-icon">
+    <script data-cfasync="false" src="//dl4d3y1ajyv3q.cloudfront.net/?aydld=1219466" defer></script>
+    <style>
+    :root {
+        --primary: #8B5CF6;
+        --primary-light: #A78BFA;
+        --primary-dark: #7C3AED;
+        --secondary: #06B6D4;
+        --accent: #10B981;
+        --dark-bg: #0F0F15;
+        --dark-card: #1A1A23;
+        --dark-card-hover: #23232E;
+        --text-primary: #F8FAFC;
+        --text-secondary: #CBD5E1;
+        --text-muted: #94A3B8;
+        --border: rgba(255, 255, 255, 0.08);
+        --border-light: rgba(255, 255, 255, 0.12);
+        --success: #10B981;
+        --warning: #F59E0B;
+        --error: #EF4444;
+        --radius-sm: 6px;
+        --radius: 12px;
+        --radius-lg: 16px;
+        --radius-xl: 20px;
+        --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* SMOOTH ANIMATIONS */
+    body {
+        opacity: 0;
+        animation: fadeIn 0.8s ease-out forwards;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        color: var(--text-primary);
+        font-family: 'Inter', sans-serif;
+        background: var(--dark-bg);
+        overflow-x: hidden;
+        line-height: 1.6;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes pulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.05);
+        }
+    }
+
+    /* FIXED CONTAINER ALIGNMENT */
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 40px 20px;
+        width: 100%;
+    }
+
+    /* IMPROVED SECTION TITLES */
+    .section-title {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin: 50px 0 35px;
+        color: var(--text-primary);
+        text-align: center;
+        position: relative;
+        padding-bottom: 20px;
+        width: 100%;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        border-radius: 2px;
+    }
+
+    /* Staggered card animations */
+    .card {
+        opacity: 0;
+        animation: slideUp 0.6s ease-out forwards;
+    }
+
+    .card:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .card:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .card:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    body::before {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:
+            radial-gradient(circle at 15% 50%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+            radial-gradient(circle at 85% 30%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+            radial-gradient(circle at 50% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    /* IMPROVED Header Styles */
+    header {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 120px 20px 90px;
+        text-align: center;
+        background: linear-gradient(180deg, rgba(15, 15, 21, 0.95) 0%, rgba(15, 15, 21, 0.8) 100%);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border-bottom: 1px solid var(--border);
+        overflow: hidden;
+    }
+
+    .header-content {
+        position: relative;
+        z-index: 1;
+        max-width: 900px;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .logo-container {
+        position: relative;
+        display: inline-block;
+        margin-bottom: 28px;
+        opacity: 0;
+        animation: fadeIn 0.8s ease-out 0.2s forwards;
+    }
+
+    .logo-container::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: 50%;
+        z-index: -1;
+        opacity: 0.4;
+        filter: blur(15px);
+        animation: pulse 3s ease-in-out infinite;
+    }
+
+    header img {
+        border-radius: 50%;
+        width: 130px;
+        height: 130px;
+        border: 3px solid rgba(255, 255, 255, 0.15);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+        transition: var(--transition);
+    }
+
+    header img:hover {
+        transform: scale(1.08);
+        border-color: rgba(255, 255, 255, 0.25);
+    }
+
+    header h1 {
+        font-size: clamp(2.6rem, 5vw, 4.2rem);
+        font-weight: 700;
+        margin: 0 0 20px;
+        background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary-light) 50%, var(--secondary) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.1;
+        opacity: 0;
+        animation: fadeIn 0.8s ease-out 0.3s forwards;
+    }
+
+    header p {
+        font-size: clamp(1.2rem, 2vw, 1.4rem);
+        max-width: 650px;
+        color: var(--text-secondary);
+        margin: 0 auto 45px;
+        font-weight: 400;
+        opacity: 0;
+        animation: fadeIn 0.8s ease-out 0.4s forwards;
+    }
+
+    /* IMPROVED CARDS GRID */
+    .cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+        gap: 35px;
+        margin: 45px 0;
+        width: 100%;
+    }
+
+    /* IMPROVED CARD CONTENT ALIGNMENT - CENTERED */
+    .card {
+        background: var(--dark-card);
+        backdrop-filter: blur(15px);
+        border-radius: var(--radius-xl);
+        padding: 35px 30px;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow-lg);
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--primary), var(--secondary));
+        transform: scaleX(0);
+        transition: transform 0.4s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-8px);
+        border-color: var(--primary);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+    }
+
+    .card:hover::before {
+        transform: scaleX(1);
+    }
+
+    .card h3 {
+        color: var(--text-primary);
+        font-size: 1.6rem;
+        font-weight: 600;
+        margin-bottom: 18px;
+        text-align: center;
+        width: 100%;
+    }
+
+    .card p {
+        color: var(--text-secondary);
+        font-size: 1.05rem;
+        line-height: 1.7;
+        margin-bottom: 25px;
+        text-align: center;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+        width: 100%;
+    }
+
+    /* IMPROVED BUTTON ALIGNMENT - CENTERED */
+    .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+        color: white;
+        border: none;
+        padding: 16px 36px;
+        border-radius: var(--radius);
+        font-weight: 600;
+        font-size: 1.05rem;
+        text-decoration: none;
+        cursor: pointer;
+        margin-top: 20px;
+        box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+        transition: var(--transition);
+        position: relative;
+        overflow: hidden;
+        width: auto;
+        min-width: 220px;
+        /* Center the button */
+        align-self: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .btn::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.6s;
+    }
+
+    .btn:hover::before {
+        left: 100%;
+    }
+
+    .btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 25px rgba(139, 92, 246, 0.6);
+    }
+
+    .btn:active {
+        transform: translateY(-1px);
+    }
+
+    .btn:focus {
+        outline: 2px solid var(--primary);
+        outline-offset: 3px;
+    }
+
+    /* IMPROVED TAB CONTAINERS */
+    .tab-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin: 35px 0;
+        width: 100%;
+    }
+
+    .tab-btn {
+        padding: 14px 28px;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: var(--dark-card);
+        color: var(--text-primary);
+        font-weight: 500;
+        font-size: 1.05rem;
+        cursor: pointer;
+        transition: var(--transition);
+    }
+
+    .tab-btn:hover {
+        background: rgba(139, 92, 246, 0.15);
+        border-color: var(--primary);
+        transform: translateY(-2px);
+    }
+
+    .tab-btn.active {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: white;
+        font-weight: 600;
+        box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4);
+        transform: translateY(-2px);
+    }
+
+    .tab-btn:focus {
+        outline: 2px solid var(--primary);
+        outline-offset: 3px;
+    }
+
+    /* IMPROVED STATS CONTAINER - CENTERED */
+    .stats-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+        margin: 45px auto 0;
+        max-width: 850px;
+        width: 100%;
+        justify-content: center;
+    }
+
+    .stat-item {
+        background: rgba(255, 255, 255, 0.04);
+        backdrop-filter: blur(12px);
+        padding: 28px 24px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        transition: var(--transition);
+        text-align: center;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: slideUp 0.6s ease-out 0.6s forwards;
+    }
+
+    .stat-item:nth-child(1) {
+        animation-delay: 0.7s;
+    }
+
+    .stat-item:nth-child(2) {
+        animation-delay: 0.8s;
+    }
+
+    .stat-item:nth-child(3) {
+        animation-delay: 0.9s;
+    }
+
+    .stat-item:hover {
+        transform: translateY(-6px);
+        border-color: var(--primary);
+        box-shadow: 0 12px 35px rgba(139, 92, 246, 0.2);
+    }
+
+    .stat-number {
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: var(--primary);
+        font-family: 'JetBrains Mono', monospace;
+        margin-bottom: 6px;
+        transition: var(--transition);
+    }
+
+    .stat-label {
+        font-size: 1rem;
+        color: var(--text-muted);
+        font-weight: 500;
+    }
+
+    /* IMPROVED GUIDE ITEMS */
+    .guide-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        background: var(--dark-card);
+        padding: 28px;
+        border-radius: var(--radius-lg);
+        border: 1px solid var(--border);
+        transition: var(--transition);
+        margin-bottom: 18px;
+        width: 100%;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeInUp 0.6s ease-out forwards;
+    }
+
+    .guide-item:hover {
+        background: var(--dark-card-hover);
+        border-color: var(--primary);
+        transform: translateY(-5px);
+        box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+    }
+
+    .guide-item:nth-child(1) {
+        animation-delay: 0.1s;
+    }
+
+    .guide-item:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .guide-item:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    .guide-item:nth-child(4) {
+        animation-delay: 0.4s;
+    }
+
+    .guide-item:nth-child(5) {
+        animation-delay: 0.5s;
+    }
+
+    .guide-item:nth-child(n+6) {
+        animation-delay: 0.6s;
+    }
+
+    /* Smooth tab content transitions */
+    .guide-list {
+        animation: fadeIn 0.4s ease-out;
+        width: 100%;
+        max-width: 850px;
+        margin: 0 auto;
+    }
+
+    /* IMPROVED GUIDE INFO TEXT ALIGNMENT */
+    .guide-info {
+        flex: 1;
+        text-align: left;
+        min-width: 0;
+    }
+
+    .guide-info strong {
+        display: flex;
+        align-items: center;
+        color: var(--text-primary);
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-bottom: 10px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .guide-info small {
+        color: var(--text-secondary);
+        font-size: 1rem;
+        line-height: 1.6;
+        display: block;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        hyphens: auto;
+    }
+
+    /* IMPROVED STATUS BADGES */
+    .status-badge {
+        display: inline-flex;
+        align-items: center;
+        padding: 6px 14px;
+        border-radius: 20px;
+        background: rgba(16, 185, 129, 0.2);
+        color: var(--success);
+        font-size: 0.85rem;
+        font-weight: 600;
+        border: 1px solid rgba(16, 185, 129, 0.4);
+        white-space: nowrap;
+    }
+
+    .download-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 48px;
+        height: 48px;
+        border-radius: var(--radius);
+        background: rgba(6, 182, 212, 0.15);
+        color: var(--secondary);
+        text-decoration: none;
+        transition: var(--transition);
+        flex-shrink: 0;
+        font-size: 1.2rem;
+    }
+
+    .download-icon:hover {
+        transform: scale(1.15);
+        background: rgba(6, 182, 212, 0.25);
+        box-shadow: 0 6px 18px rgba(6, 182, 212, 0.4);
+    }
+
+    .download-icon:focus {
+        outline: 2px solid var(--primary);
+        outline-offset: 3px;
+    }
+
+    .download-icon:active {
+        transform: scale(0.95);
+        transition: transform 0.1s ease;
+    }
+
+    /* IMPROVED SEARCH CONTAINER */
+    .search-container {
+        max-width: 650px;
+        margin: 0 auto 45px;
+        position: relative;
+        width: 100%;
+    }
+
+    .search-box {
+        width: 100%;
+        padding: 18px 24px 18px 52px;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: var(--dark-card);
+        color: var(--text-primary);
+        font-size: 1.05rem;
+        font-family: 'Inter', sans-serif;
+        transition: var(--transition);
+    }
+
+    .search-box:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+    }
+
+    .search-box::placeholder {
+        color: var(--text-muted);
+    }
+
+    .search-icon {
+        position: absolute;
+        left: 20px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--text-muted);
+        pointer-events: none;
+        font-size: 1.1rem;
+    }
+
+    /* IMPROVED Socials */
+    .socials {
+        display: flex;
+        justify-content: center;
+        gap: 24px;
+        margin: 90px 0 45px;
+    }
+
+    .socials a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 60px;
+        height: 60px;
+        border-radius: var(--radius);
+        background: var(--dark-card);
+        border: 1px solid var(--border);
+        color: var(--text-primary);
+        transition: var(--transition);
+    }
+
+    .socials a:hover {
+        transform: translateY(-5px);
+        border-color: var(--primary);
+        box-shadow: 0 10px 28px rgba(139, 92, 246, 0.35);
+        color: var(--primary);
+    }
+
+    .socials svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    /* IMPROVED Footer */
+    footer {
+        background: rgba(15, 15, 21, 0.95);
+        backdrop-filter: blur(15px);
+        color: var(--text-muted);
+        padding: 36px 20px;
+        text-align: center;
+        font-size: 1rem;
+        margin-top: auto;
+        border-top: 1px solid var(--border);
+    }
+
+    footer p {
+        max-width: 650px;
+        margin: 0 auto;
+        line-height: 1.6;
+    }
+
+    /* Utility Classes */
+    .content-hidden {
+        display: none;
+    }
+
+    .fade-in {
+        animation: fadeInUp 0.5s ease-out forwards;
+    }
+
+    /* IMPROVED Loading Overlay */
+    .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(15, 15, 21, 0.98);
+        backdrop-filter: blur(15px);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.4s ease;
+    }
+
+    .loading-overlay.active {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .loading-content {
+        text-align: center;
+        transform: scale(0.85);
+        transition: transform 0.4s ease;
+    }
+
+    .loading-overlay.active .loading-content {
+        transform: scale(1);
+    }
+
+    .loading-spinner {
+        width: 70px;
+        height: 70px;
+        border: 4px solid rgba(139, 92, 246, 0.2);
+        border-top-color: var(--primary);
+        border-radius: 50%;
+        animation: spin 1.2s linear infinite;
+        margin: 0 auto 24px;
+    }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .loading-text {
+        font-size: 1.3rem;
+        color: var(--text-primary);
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .loading-subtext {
+        font-size: 1rem;
+        color: var(--text-muted);
+    }
+
+    /* IMPROVED Scroll to Top */
+    .scroll-to-top {
+        position: fixed;
+        bottom: 35px;
+        right: 35px;
+        width: 55px;
+        height: 55px;
+        background: var(--primary);
+        color: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 22px;
+        cursor: pointer;
+        box-shadow: 0 6px 20px rgba(139, 92, 246, 0.5);
+        opacity: 0;
+        pointer-events: none;
+        transition: var(--transition);
+        z-index: 1000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .scroll-to-top.visible {
+        opacity: 1;
+        pointer-events: all;
+    }
+
+    .scroll-to-top:hover {
+        transform: translateY(-6px) scale(1.12);
+        box-shadow: 0 10px 28px rgba(139, 92, 246, 0.7);
+    }
+
+    /* IMPROVED Toast */
+    .toast {
+        position: fixed;
+        top: 25px;
+        right: 25px;
+        background: var(--dark-card);
+        backdrop-filter: blur(15px);
+        border: 1px solid var(--primary);
+        border-radius: var(--radius);
+        padding: 18px 24px;
+        color: var(--text-primary);
+        box-shadow: var(--shadow-xl);
+        transform: translateX(400px);
+        transition: transform 0.4s ease;
+        z-index: 10000;
+        max-width: 320px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .toast.show {
+        transform: translateX(0);
+    }
+
+    .toast-icon {
+        font-size: 22px;
+        flex-shrink: 0;
+    }
+
+    /* IMPROVED Particles */
+    .particles {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: -1;
+    }
+
+    .particle {
+        position: absolute;
+        width: 5px;
+        height: 5px;
+        background: var(--primary);
+        border-radius: 50%;
+        opacity: 0;
+        animation: float 8s infinite;
+    }
+
+    @keyframes float {
+        0% {
+            opacity: 0;
+            transform: translateY(0) translateX(0);
+        }
+        10% {
+            opacity: 0.6;
+        }
+        90% {
+            opacity: 0.6;
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(-120vh) translateX(60px);
+        }
+    }
+
+    /* ENHANCED RESPONSIVE DESIGN */
+    @media (max-width: 768px) {
+        .container {
+            padding: 25px 18px;
+        }
+
+        .section-title {
+            font-size: 1.7rem;
+            margin: 35px 0 25px;
+        }
+
+        .guide-item {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 18px;
+            padding: 24px;
+        }
+
+        .guide-info {
+            text-align: left;
+            width: 100%;
+        }
+
+        .download-icon {
+            align-self: flex-end;
+        }
+
+        .cards {
+            grid-template-columns: 1fr;
+            gap: 25px;
+        }
+
+        .card {
+            padding: 28px 24px;
+        }
+
+        .tab-container {
+            gap: 10px;
+        }
+
+        .tab-btn {
+            padding: 12px 22px;
+            font-size: 1rem;
+        }
+
+        .stats-container {
+            grid-template-columns: 1fr;
+            max-width: 320px;
+            gap: 20px;
+        }
+
+        .btn {
+            width: 100%;
+            max-width: 300px;
+        }
+
+        header {
+            padding: 90px 20px 70px;
+        }
+
+        .socials {
+            margin: 70px 0 35px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .container {
+            padding: 20px 15px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+        }
+
+        .guide-item {
+            padding: 20px;
+        }
+
+        .guide-info strong {
+            font-size: 1.15rem;
+        }
+
+        .card {
+            padding: 24px 20px;
+        }
+
+        .tab-container {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .tab-btn {
+            width: 220px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            min-width: 200px;
+        }
+    }
+</style>
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="https://mpbox.xyz/private/profile.jpg" alt="Mooping's Tech Logo" />
+            </div>
+            <h1>Mooping's Tech</h1>
+            <p>PC & Gaming Optimization Guides to Maximize Your Performance</p>
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-number" data-target="50">0</div>
+                    <div class="stat-label">Optimization Guides</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="99">0</div>
+                    <div class="stat-label">Success Rate</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" data-target="5000">0</div>
+                    <div class="stat-label">Gamers Helped</div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <div class="cards">
+            <div class="card">
+                <h3>Windows Optimization</h3>
+                <p>Maximize your Windows performance with our comprehensive optimization guides. From registry tweaks to service optimization.</p>
+                <a class="btn" href="#windows-guides">
+                    <span>View Windows Guides</span>
+                </a>
+            </div>
+            <div class="card">
+                <h3>Game Optimization</h3>
+                <p>Get the most FPS out of your favorite games with our detailed optimization settings and performance tweaks.</p>
+                <a class="btn" href="#game-guides">
+                    <span>View Game Guides</span>
+                </a>
+            </div>
+            <div class="card">
+                <h3>Hardware Guides</h3>
+                <p>Learn how to optimize your hardware settings, from GPU overclocking to RAM timings for maximum performance.</p>
+                <a class="btn" href="#hardware-guides">
+                    <span>View Hardware Guides</span>
+                </a>
+            </div>
+        </div>
+        
+        <h2 class="section-title" id="windows-guides">Windows Optimization Guides</h2>
+        <div class="tab-container" id="platform-tabs">
+            <button class="tab-btn active" onclick="showCategory('performance')">Performance</button>
+            <button class="tab-btn" onclick="showCategory('debloat')">Debloating</button>
+            <button class="tab-btn" onclick="showCategory('network')">Network</button>
+        </div>
+<div id="performance-guides" class="guide-list">
+  <div class="guide-item">
+    <div class="guide-info">
+      <strong>Windows 10/11 Ultimate Performance Guide <span class="status-badge">Updated</span></strong>
+      <small>Complete step-by-step guide to maximize Windows performance, including registry tweaks, service optimization, and power settings.</small>
+    </div>
+    <a href="https://www.cisco.com/c/dam/en_us/services/downloads/ebook-network-optimization-handbook.pdf" class="download-icon" aria-label="Open Guide" target="_blank" rel="noopener noreferrer">▶️</a>
+  </div>
+
+  <div class="guide-item">
+    <div class="guide-info">
+      <strong>Disable Telemetry & Background Apps <span class="status-badge">Essential</span></strong>
+      <small>Reduce system resource usage by disabling unnecessary background processes and Microsoft telemetry.</small>
+    </div>
+    <a href="https://github.com/Sycnex/Windows10Debloater" class="download-icon" aria-label="Open Guide" target="_blank" rel="noopener noreferrer">▶️</a>
+  </div>
+
+  <div class="guide-item">
+    <div class="guide-info">
+      <strong>Ultimate Power Plan Optimization <span class="status-badge">Performance</span></strong>
+      <small>Create and customize power plans for maximum performance in gaming and productivity tasks.</small>
+    </div>
+    <a href="https://www.tenforums.com/tutorials/111324-add-ultimate-performance-power-plan-windows-10-a.html" class="download-icon" aria-label="Open Guide" target="_blank" rel="noopener noreferrer">▶️</a>
+  </div>
+</div>
+
+<div id="debloat-guides" class="guide-list content-hidden">
+  <div class="guide-item">
+    <div class="guide-info">
+      <strong>Windows Debloating Script <span class="status-badge">Automated</span></strong>
+      <small>Use our custom script to automatically remove bloatware and unnecessary Windows components.</small>
+    </div>
+    <a href="https://freetimetech.com/W10D/Windows10DebloaterV2611.zip" class="download-icon" aria-label="Download Script" target="_blank" rel="noopener noreferrer">▶️</a>
+  </div>
+
+  <div class="guide-item">
+    <div class="guide-info">
+      <strong>Manual Bloatware Removal <span class="status-badge">Advanced</span></strong>
+      <small>Step-by-step guide to manually identify and remove Windows bloatware for a cleaner system.</small>
+    </div>
+    <a href="https://pureinfotech.com/remove-bloatware-windows-11/" class="download-icon" aria-label="Open Guide" target="_blank" rel="noopener noreferrer">▶️</a>
+  </div>
+</div>
+
+<div id="network-guides" class="guide-list content-hidden">
+  <div class="guide-item">
+    <div class="guide-info">
+      <strong>Reduce Ping & Network Latency <span class="status-badge">Gaming</span></strong>
+      <small>Optimize your network settings for lower ping and reduced packet loss in online games.</small>
+    </div>
+    <a href="https://www.speedguide.net/articles/gaming-tweaks-5819" class="download-icon" aria-label="Open Guide" target="_blank" rel="noopener noreferrer">▶️</a>
+  </div>
+
+  <div class="guide-item">
+    <div class="guide-info">
+      <strong>DNS Optimization Guide <span class="status-badge">Essential</span></strong>
+      <small>Choose the best DNS servers and configure them properly for faster browsing and gaming.</small>
+    </div>
+    <a href="https://www.cloudflare.com/learning/dns/what-is-1.1.1.1/" class="download-icon" aria-label="Open Guide" target="_blank" rel="noopener noreferrer">▶️</a>
+  </div>
+</div>
+
+<h2 class="section-title" id="game-guides">Game Optimization Guides</h2>
+
+<div class="tab-container" id="game-tabs">
+  <button class="tab-btn active" onclick="showGameCategory('fps')">FPS Boost</button>
+  <button class="tab-btn" onclick="showGameCategory('settings')">Optimal Settings</button>
+  <button class="tab-btn" onclick="showGameCategory('competitive')">Competitive</button>
+</div>
+
+<div class="search-container">
+  <div class="search-icon">🔍</div>
+  <input type="text" id="game-search" class="search-box" placeholder="Search game guides..." onkeyup="filterGames()">
+</div>
+
+<div id="fps-guides" class="guide-list">
+  <div class="guide-item" data-name="Valorant FPS Boost Guide">
+    <div class="guide-info">
+      <strong>Valorant FPS Boost Guide <span class="status-badge">+40% FPS</span></strong>
+      <small>Maximize FPS in Valorant with our comprehensive guide covering in-game settings, NVIDIA control panel, and Windows optimizations.</small>
+    </div>
+    <a href="https://support-valorant.riotgames.com/hc/en-us/articles/360045777453-Lowering-your-VALORANT-Latency" class="download-icon" aria-label="Open Guide" target="_blank" rel="noopener noreferrer">▶️</a>
+  </div>
+
+  <div class="guide-item" data-name="Fortnite Performance Optimization">
+    <div class="guide-info">
+      <strong>Fortnite Performance Optimization <span class="status-badge">+50 FPS</span></strong>
+      <small>Get the most out of Fortnite with performance-optimized settings and configuration tweaks.</small>
+    </div>
+    <a href="https://www.epicgames.com/help/en-US/fortnite-c75" class="download-icon" aria-label="Open Guide" target="_blank" rel="noopener noreferrer">▶️</a>
+  </div>
+
+  <div class="guide-item" data-name="Warzone 2.0 FPS Guide">
+    <div class="guide-info">
+      <strong>Warzone 2.0 FPS Guide <span class="status-badge">+30 FPS</span></strong>
+      <small>Optimize Call of Duty: Warzone 2.0 for maximum performance and stability.</small>
+    </div>
+    <a href="https://www.callofduty.com/blog/2023/03/warzone-2-performance-tips" class="download-icon" aria-label="Open Guide" target="_blank" rel="noopener noreferrer">▶️</a>
+  </div>
+</div>
+
+<div id="settings-guides" class="guide-list content-hidden">
+  <div class="guide-item" data-name="Cyberpunk 2077 Optimal Settings">
+    <div class="guide-info">
+      <strong>Cyberpunk 2077 Optimal Settings <span class="status-badge">Visual/Performance</span></strong>
+      <small>Balance visual quality and performance in Cyberpunk 2077 with our optimized settings guide.</small>
+    </div>
+    <a href="https://www.nvidia.com/en-us/geforce/news/cyberpunk-2077-ray-tracing-dlss-performance-guide/" class="download-icon" aria-label="Open Guide" target="_blank" rel="noopener noreferrer">▶️</a>
+  </div>
+
+  <div class="guide-item" data-name="Elden Ring Performance Fix">
+    <div class="guide-info">
+      <strong>Elden Ring Performance Fix <span class="status-badge">Stuttering Fix</span></strong>
+      <small>Fix stuttering and improve performance in Elden Ring with our comprehensive guide.</small>
+    </div>
+    <a href="https://www.techpowerup.com/forums/threads/elden-ring-performance-guide.293258/" class="download-icon" aria-label="Open Guide" target="_blank" rel="noopener noreferrer">▶️</a>
+  </div>
+</div>
+
+<div id="competitive-guides" class="guide-list content-hidden">
+  <div class="guide-item" data-name="CS2 Competitive Optimization">
+    <div class="guide-info">
+      <strong>CS2 Competitive Optimization <span class="status-badge">Pro Settings</span></strong>
+      <small>Professional settings and optimizations for competitive Counter-Strike 2 gameplay.</small>
+    </div>
+    <a href="https://prosettings.net/cs2-pro-settings-gear-list/" class="download-icon" aria-label="Open Guide" target="_blank" rel="noopener noreferrer">▶️</a>
+  </div>
+
+  <div class="guide-item" data-name="Apex Legends Competitive Guide">
+    <div class="guide-info">
+      <strong>Apex Legends Competitive Guide <span class="status-badge">Low Latency</span></strong>
+      <small>Reduce input lag and maximize responsiveness in Apex Legends for competitive play.</small>
+    </div>
+    <a href="https://www.ea.com/games/apex-legends/news/performance-guide" class="download-icon" aria-label="Open Guide" target="_blank" rel="noopener noreferrer">▶️</a>
+  </div>
+</div>
+
+<h2 class="section-title" id="hardware-guides">Hardware Optimization</h2>
+<div class="cards">
+  <div class="card">
+    <h3>GPU Optimization</h3>
+    <p>Learn how to overclock your GPU safely, optimize driver settings, and maximize graphics performance.</p>
+    <a class="btn" href="https://www.msi.com/blog/how-to-overclock-your-gpu-safely" target="_blank" rel="noopener noreferrer">
+      <span>View GPU Guides</span>
+    </a>
+  </div>
+
+  <div class="card">
+    <h3>CPU & RAM Tuning</h3>
+    <p>Optimize your processor and memory for better gaming performance and system responsiveness.</p>
+    <a class="btn" href="https://www.intel.com/content/www/us/en/gaming/resources/overclocking-intel-processors.html" target="_blank" rel="noopener noreferrer">
+      <span>View CPU/RAM Guides</span>
+    </a>
+  </div>
+
+  <div class="card">
+    <h3>Storage Optimization</h3>
+    <p>Speed up your storage devices and reduce game loading times with our optimization techniques.</p>
+    <a class="btn" href="https://www.crucial.com/articles/about-ssd/how-to-optimize-your-ssd" target="_blank" rel="noopener noreferrer">
+      <span>View Storage Guides</span>
+    </a>
+  </div>
+</div>
+
+        
+        <div class="cards" style="margin-top: 60px;">
+            <div class="card">
+                <h3>Join Our Community</h3>
+                <p>Get help with your optimization questions, share your results, and stay updated with the latest performance tweaks.</p>
+                <a class="btn" href="https://discord.gg/JahZbrg9Kh" target="_blank">
+                    <span>Join Discord Community</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="socials">
+        <a href="https://www.youtube.com/@MoopingTech" target="_blank" aria-label="YouTube Channel">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/>
+            </svg>
+        </a>
+        <a href="https://discord.gg/JahZbrg9Kh" target="_blank" aria-label="Join Discord">
+            <svg viewBox="0 0 127.14 96.36" xmlns="http://www.w3.org/2000/svg">
+                <path fill="currentColor" d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.66,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1A105.25,105.25,0,0,0,126.6,80.22h0C129.24,52.84,122.09,29.11,107.7,8.07ZM42.45,65.69C36.18,65.69,31,60,31,53s5-12.74,11.43-12.74S54,46,53.89,53,48.84,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5-12.74,11.44-12.74S96.23,46,96.12,53,91.08,65.69,84.69,65.69Z" />
+            </svg>
+        </a>
+        <a href="https://twitter.com/mintiipuff" target="_blank" aria-label="Follow on Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/>
+            </svg>
+        </a>
+    </div>
+    <footer>
+        <p>Mooping's Tech - PC & Gaming Optimization Guides | Helping Gamers Maximize Performance Since 2023</p>
+    </footer>
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Loading Content...</div>
+            <div class="loading-subtext">Please wait a moment</div>
+        </div>
+    </div>
+    <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">↑</button>
+    <div class="particles" id="particles"></div>
+    <script>
+        // SMOOTH TAB TRANSITIONS
+        function showCategory(category) {
+            const performanceGuides = document.getElementById('performance-guides');
+            const debloatGuides = document.getElementById('debloat-guides');
+            const networkGuides = document.getElementById('network-guides');
+            const categoryTabs = document.querySelectorAll('#platform-tabs .tab-btn');
+            
+            if (!performanceGuides || !debloatGuides || !networkGuides || categoryTabs.length === 0) return;
+            
+            // Fade out current content
+            const currentContent = document.querySelector('.guide-list:not(.content-hidden)');
+            if (currentContent) {
+                currentContent.style.opacity = '0';
+                currentContent.style.transform = 'translateX(-20px)';
+            }
+            
+            setTimeout(() => {
+                categoryTabs.forEach(tab => tab.classList.remove('active'));
+                
+                // Hide all guides
+                performanceGuides.classList.add('content-hidden');
+                debloatGuides.classList.add('content-hidden');
+                networkGuides.classList.add('content-hidden');
+                
+                // Show selected category
+                if (category === 'performance') {
+                    performanceGuides.classList.remove('content-hidden');
+                    categoryTabs[0].classList.add('active');
+                } else if (category === 'debloat') {
+                    debloatGuides.classList.remove('content-hidden');
+                    categoryTabs[1].classList.add('active');
+                } else if (category === 'network') {
+                    networkGuides.classList.remove('content-hidden');
+                    categoryTabs[2].classList.add('active');
+                }
+                
+                // Fade in new content
+                const newContent = document.getElementById(`${category}-guides`);
+                setTimeout(() => {
+                    newContent.style.opacity = '1';
+                    newContent.style.transform = 'translateX(0)';
+                    resetAnimations(newContent);
+                }, 50);
+            }, 300);
+        }
+
+        function showGameCategory(category) {
+            const fpsGuides = document.getElementById('fps-guides');
+            const settingsGuides = document.getElementById('settings-guides');
+            const competitiveGuides = document.getElementById('competitive-guides');
+            const gameTabs = document.querySelectorAll('#game-tabs .tab-btn');
+            
+            if (!fpsGuides || !settingsGuides || !competitiveGuides || gameTabs.length === 0) return;
+            
+            // Fade out current content
+            const currentContent = document.querySelector('#game-tabs ~ .guide-list:not(.content-hidden)');
+            if (currentContent) {
+                currentContent.style.opacity = '0';
+                currentContent.style.transform = 'translateX(-20px)';
+            }
+            
+            setTimeout(() => {
+                gameTabs.forEach(tab => tab.classList.remove('active'));
+                
+                // Hide all guides
+                fpsGuides.classList.add('content-hidden');
+                settingsGuides.classList.add('content-hidden');
+                competitiveGuides.classList.add('content-hidden');
+                
+                // Show selected category
+                if (category === 'fps') {
+                    fpsGuides.classList.remove('content-hidden');
+                    gameTabs[0].classList.add('active');
+                } else if (category === 'settings') {
+                    settingsGuides.classList.remove('content-hidden');
+                    gameTabs[1].classList.add('active');
+                } else if (category === 'competitive') {
+                    competitiveGuides.classList.remove('content-hidden');
+                    gameTabs[2].classList.add('active');
+                }
+                
+                // Fade in new content
+                const newContent = document.getElementById(`${category}-guides`);
+                setTimeout(() => {
+                    newContent.style.opacity = '1';
+                    newContent.style.transform = 'translateX(0)';
+                    resetAnimations(newContent);
+                }, 50);
+                
+                // Clear search
+                const searchBox = document.getElementById('game-search');
+                if (searchBox) searchBox.value = '';
+                filterGames();
+            }, 300);
+        }
+
+        function resetAnimations(container) {
+            if (!container) return;
+            container.querySelectorAll('.guide-item').forEach(item => {
+                item.style.animation = 'none';
+                setTimeout(() => item.style.animation = '', 10);
+            });
+        }
+
+        function filterGames() {
+            const searchBox = document.getElementById('game-search');
+            const searchTerm = searchBox ? searchBox.value.toLowerCase() : '';
+            const activeList = document.querySelector('#game-tabs ~ .guide-list:not(.content-hidden)');
+            
+            if (!activeList) return;
+            
+            let visibleCount = 0;
+            activeList.querySelectorAll('.guide-item').forEach(item => {
+                const name = item.getAttribute('data-name') || '';
+                const text = item.textContent.toLowerCase();
+                
+                if (searchTerm === '' || name.includes(searchTerm) || text.includes(searchTerm)) {
+                    item.style.display = 'flex';
+                    visibleCount++;
+                    // Add fade-in animation for filtered items
+                    item.style.animation = 'fadeInUp 0.4s ease-out forwards';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+            
+            const existingMsg = activeList.querySelector('.no-results-msg');
+            if (existingMsg) existingMsg.remove();
+            
+            if (visibleCount === 0 && searchTerm !== '') {
+                const noResultsMsg = document.createElement('div');
+                noResultsMsg.className = 'no-results-msg';
+                noResultsMsg.style.cssText = 'text-align: center; padding: 40px 20px; color: var(--text-secondary); opacity: 0; transform: translateY(20px);';
+                noResultsMsg.innerHTML = `<p>No guides found matching "${searchTerm}"</p>`;
+                activeList.appendChild(noResultsMsg);
+                
+                // Animate the no results message
+                setTimeout(() => {
+                    noResultsMsg.style.opacity = '1';
+                    noResultsMsg.style.transform = 'translateY(0)';
+                    noResultsMsg.style.transition = 'all 0.4s ease-out';
+                }, 100);
+            }
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(href);
+                    if (target) {
+                        // Smooth scroll with offset
+                        const offsetTop = target.getBoundingClientRect().top + window.pageYOffset - 80;
+                        window.scrollTo({
+                            top: offsetTop,
+                            behavior: 'smooth'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Guide icon click handlers - FIXED VERSION
+        document.querySelectorAll('.download-icon').forEach(icon => {
+            icon.addEventListener('click', function(e) {
+                // Just show a quick feedback animation but don't prevent navigation
+                const originalContent = this.innerHTML;
+                this.style.transform = 'scale(0.9)';
+                this.innerHTML = '⏳';
+                
+                // Reset animation quickly
+                setTimeout(() => {
+                    this.innerHTML = originalContent;
+                    this.style.transform = 'scale(1)';
+                }, 300);
+                
+                // Let the link work normally - NO e.preventDefault()
+            });
+        });
+
+        // Scroll to top button
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        window.addEventListener('scroll', () => {
+            if (!scrollToTopBtn) return;
+            
+            // Smooth appearance/disappearance
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.style.opacity = '0';
+                scrollToTopBtn.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    scrollToTopBtn.classList.add('visible');
+                    scrollToTopBtn.style.opacity = '1';
+                    scrollToTopBtn.style.transform = 'translateY(0)';
+                }, 50);
+            } else {
+                scrollToTopBtn.style.opacity = '0';
+                scrollToTopBtn.style.transform = 'translateY(20px)';
+                setTimeout(() => {
+                    scrollToTopBtn.classList.remove('visible');
+                }, 300);
+            }
+        });
+
+        if (scrollToTopBtn) scrollToTopBtn.addEventListener('click', () => {
+            scrollToTopBtn.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            }, 150);
+            setTimeout(() => {
+                scrollToTopBtn.style.transform = 'scale(1)';
+            }, 500);
+        });
+
+        // Animated counters for stats
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const increment = target / (duration / 16);
+            let current = 0;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    element.textContent = target + (element.parentElement.querySelector('.stat-label').textContent.includes('Rate') ? '%' : '+');
+                    clearInterval(timer);
+                    
+                    // Add completion animation
+                    element.style.transform = 'scale(1.1)';
+                    setTimeout(() => {
+                        element.style.transform = 'scale(1)';
+                        element.style.transition = 'transform 0.3s ease';
+                    }, 200);
+                } else {
+                    element.textContent = Math.floor(current) + (element.parentElement.querySelector('.stat-label').textContent.includes('Rate') ? '%' : '+');
+                }
+            }, 16);
+        }
+
+        // Intersection Observer for stats animation
+        const statsObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Add fade-in for stats
+                    entry.target.style.opacity = '0';
+                    entry.target.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                        entry.target.style.transition = 'all 0.6s ease-out';
+                    }, 200);
+                    
+                    entry.target.querySelectorAll('.stat-number').forEach(stat => animateCounter(stat));
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        });
+
+        const statsContainer = document.querySelector('.stats-container');
+        if (statsContainer) statsObserver.observe(statsContainer);
+
+        // Toast notification function
+        function showToast(message, icon = '✓') {
+            const existingToast = document.querySelector('.toast');
+            if (existingToast) existingToast.remove();
+            
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `<span class="toast-icon">${icon}</span>${message}`;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // Particle background
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            if (!particlesContainer) return;
+            
+            const mobile = window.innerWidth < 768;
+            const count = mobile ? 8 : 15;
+            
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => {
+                    const particle = document.createElement('div');
+                    particle.className = 'particle';
+                    particle.style.left = Math.random() * 100 + '%';
+                    particle.style.animationDelay = Math.random() * 6 + 's';
+                    particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                    particlesContainer.appendChild(particle);
+                    
+                    setTimeout(() => particle.remove(), 10000);
+                }, i * 400);
+            }
+            
+            setInterval(() => {
+                for (let i = 0; i < Math.min(3, mobile ? 1 : 3); i++) {
+                    setTimeout(() => {
+                        const particle = document.createElement('div');
+                        particle.className = 'particle';
+                        particle.style.left = Math.random() * 100 + '%';
+                        particle.style.animationDelay = '0s';
+                        particle.style.animationDuration = (Math.random() * 3 + 4) + 's';
+                        particlesContainer.appendChild(particle);
+                        
+                        setTimeout(() => particle.remove(), 10000);
+                    }, i * 2000);
+                }
+            }, 8000);
+        }
+
+        // Initialize everything when DOM is loaded
+        window.addEventListener('DOMContentLoaded', () => {
+            // Initial page fade-in
+            document.body.style.opacity = '0';
+            document.body.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+                document.body.style.opacity = '1';
+                document.body.style.transform = 'translateY(0)';
+                document.body.style.transition = 'all 0.8s ease-out';
+            }, 100);
+            
+            // Set initial active tabs
+            showCategory('performance');
+            showGameCategory('fps');
+            
+            // Create particle background
+            createParticles();
+            
+            // Welcome message
+            setTimeout(() => showToast('Welcome to Mooping\'s Tech! 🎮', '👋'), 1000);
+        });
+    </script>
+</body>
+</html>

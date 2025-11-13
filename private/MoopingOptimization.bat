@@ -10,7 +10,7 @@ setlocal enabledelayedexpansion
 powershell "Set-ExecutionPolicy Unrestricted"
 
 :: Batch File Log
-echo Mooping's Optimization Batch Log >MOB_Log.txt
+echo Mooping's Performance Batch Log >MOB_Log.txt
 
 :: Enable ANSI Escape Sequences
 reg add "HKCU\CONSOLE" /v "VirtualTerminalLevel" /t REG_DWORD /d "1" /f >> MOB_Log.txt
@@ -34,7 +34,7 @@ if '%choice%'=='2' goto Continue
 :: Creating Restore Point
 echo Creating Restore Point
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore" /v "SystemRestorePointCreationFrequency" /t REG_DWORD /d "0" /f >> MOB_Log.txt
-powershell -ExecutionPolicy Bypass -Command "Checkpoint-Computer -Description 'Mooping Optimization Batch' -RestorePointType 'MODIFY_SETTINGS'" >> MOB_Log.txt
+powershell -ExecutionPolicy Bypass -Command "Checkpoint-Computer -Description 'Mooping Performance Batch' -RestorePointType 'MODIFY_SETTINGS'" >> MOB_Log.txt
 
 :Continue
 cls
@@ -96,7 +96,7 @@ echo      %w%██%y%%c%╔══%t%%w%██%y%%c%╗%t%%w%██%y%%c%╔═�
 echo      %w%██%y%%c%║  %t%%w%██%y%%c%║%t%%w%██%y%%c%║  %t%%w%██%y%%c%║%t%%w%██████%y%%c%╔╝%t%%w%██████%y%%c%╔╝%t%%w%██%y%%c%║%t%%w%██%y%%c%║  %t%%w%██%y%%c%║%t%%w%██%y%%c%║  %t%%w%██%y%%c%║%t%
 echo      %c%╚═╝  ╚═╝╚═╝  ╚═╝╚═════╝ ╚═════╝ ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝%t%
 echo.
-echo                                                   %c%Mooping's Optimization Batch%t%     
+echo                                                   %c%Mooping's Performance Batch%t%     
 echo                                                      %c%%u%Version: %Version%%q%%t%
 echo.
 echo %w%════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════%y%
@@ -1100,7 +1100,7 @@ echo      %w%██%y%%c%║╚%t%%w%██%y%%c%╗%t%%w%██%y%%c%║%t%%w%�
 echo      %w%██%y%%c%║ ╚%t%%w%████%y%%c%║%t%%w%██████%y%%c%╔╝%t%%w%██%y%%c%║  %t%%w%██%y%%c%║%t%%w%██%y%%c%║ ╚%t%%w%████%y%%c%║%t%%w%██████%y%%c%╔╝%t%
 echo      %c%╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝%t%
 echo.
-echo                                                   %c%Mooping's Optimization Batch%t%     
+echo                                                   %c%Mooping's Performance Batch%t%     
 echo                                                      %c%%u%Version: %Version%%q%%t%
 echo.
 echo %w%════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════%y%
@@ -1258,7 +1258,7 @@ echo      %w%██%y%%c%║╚%t%%w%██%y%%c%╗%t%%w%██%y%%c%║%t%%w%�
 echo      %w%██%y%%c%║ ╚%t%%w%████%y%%c%║%t%%w%██████%y%%c%╔╝%t%%w%██%y%%c%║  %t%%w%██%y%%c%║%t%%w%██%y%%c%║ ╚%t%%w%████%y%%c%║%t%%w%██████%y%%c%╔╝%t%
 echo      %c%╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝%t%
 echo.
-echo                                                   %c%Mooping's Optimization Batch%t%     
+echo                                                   %c%Mooping's Performance Batch%t%     
 echo                                                      %c%%u%Version: %Version%%q%%t%
 echo.
 echo %w%════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════%y%
@@ -1493,7 +1493,7 @@ echo      %w%██%y%%c%║╚%t%%w%██%y%%c%╗%t%%w%██%y%%c%║%t%%w%�
 echo      %w%██%y%%c%║ ╚%t%%w%████%y%%c%║%t%%w%██████%y%%c%╔╝%t%%w%██%y%%c%║  %t%%w%██%y%%c%║%t%%w%██%y%%c%║ ╚%t%%w%████%y%%c%║%t%%w%██████%y%%c%╔╝%t%
 echo      %c%╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝%t%
 echo.
-echo                                                   %c%Mooping's Optimization Batch%t%     
+echo                                                   %c%Mooping's Performance Batch%t%     
 echo                                                      %c%%u%Version: %Version%%q%%t%
 echo.
 echo %w%════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════%y%
@@ -1536,7 +1536,7 @@ if '%choice%'=='3' goto Menu
 :: Creating Restore Point
 echo Creating Restore Point
 reg add "HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\SystemRestore" /v "SystemRestorePointCreationFrequency" /t REG_DWORD /d "0" /f >> MOB_Log.txt
-powershell -ExecutionPolicy Bypass -Command "Checkpoint-Computer -Description 'Mooping Optimization Batch' -RestorePointType 'MODIFY_SETTINGS'" >> MOB_Log.txt
+powershell -ExecutionPolicy Bypass -Command "Checkpoint-Computer -Description 'Mooping Performance Batch' -RestorePointType 'MODIFY_SETTINGS'" >> MOB_Log.txt
 
 :NetworkTweaks
 cls
@@ -1948,7 +1948,7 @@ echo      %w%██%y%%c%║╚%t%%w%██%y%%c%╗%t%%w%██%y%%c%║%t%%w%�
 echo      %w%██%y%%c%║ ╚%t%%w%████%y%%c%║%t%%w%██████%y%%c%╔╝%t%%w%██%y%%c%║  %t%%w%██%y%%c%║%t%%w%██%y%%c%║ ╚%t%%w%████%y%%c%║%t%%w%██████%y%%c%╔╝%t%
 echo      %c%╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝%t%
 echo.
-echo                                                   %c%Mooping's Optimization Batch%t%     
+echo                                                   %c%Mooping's Performance Batch%t%     
 echo                                                      %c%%u%Version: %Version%%q%%t%
 echo.
 echo %w%════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════%y%
@@ -2007,86 +2007,86 @@ goto DebloatWindows
 :UnnecessaryServicesDisable
 cls
 echo Disabling Unnecessary Services
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\TapiSrv" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\FontCache3.0.0.0" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\WpcMonSvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\SEMgrSvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\PNRPsvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\LanmanWorkstation" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\WEPHOSTSVC" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\p2psvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\p2pimsvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\PhoneSvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\wuauserv" /v "Start" /t REG_DWORD /d "3" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\Wecsvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\SensorDataService" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\SensrSvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\perceptionsimulation" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\StiSvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\OneSyncSvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\WMPNetworkSvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\autotimesvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\edgeupdatem" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\MicrosoftEdgeElevationService" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\ALG" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\QWAVE" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\IpxlatCfgSvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\icssvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\DusmSvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\MapsBroker" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\edgeupdate" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\SensorService" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\shpamsvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\svsvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\SysMain" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\MSiSCSI" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\Netlogon" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\CscService" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\ssh-agent" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\AppReadiness" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\tzautoupdate" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\NfsClnt" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\wisvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\defragsvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\SharedRealitySvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\RetailDemo" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\lltdsvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\TrkWks" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\CryptSvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\DiagTrack" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\diagsvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\DPS" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\WdiServiceHost" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\WdiSystemHost" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\dmwappushsvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\TroubleshootingSvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\DsSvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\FrameServer" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\FontCache" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\InstallService" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\OSRSS" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\sedsvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\SENS" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\TabletInputService" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\Themes" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\ConsentUxUserSvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\DevicePickerUserSvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\UnistoreSvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\DevicesFlowUserSvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\MessagingService" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\CDPUserSvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\PimIndexMaintenanceSvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\BcastDVRUserService" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\UserDataSvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\DeviceAssociationBrokerSvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\cbdhsvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\CaptureService" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\lfsvc" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\lfsvc\Service\Configuration" /v "Status" /t REG_DWORD /d "0" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\diagnosticshub.standardcollector.service" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\SecurityHealthService" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Main" /v "AllowPrelaunch" /t REG_DWORD /d "0" /f >> APB_Log.txt
-reg add "HKLM\SOFTWARE\Policies\Microsoft\MicrosoftEdge\TabPreloader" /v "AllowTabPreloading" /t REG_DWORD /d "0" /f >> APB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\TapiSrv" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\FontCache3.0.0.0" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\WpcMonSvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\SEMgrSvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\PNRPsvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\LanmanWorkstation" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\WEPHOSTSVC" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\p2psvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\p2pimsvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\PhoneSvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\wuauserv" /v "Start" /t REG_DWORD /d "3" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\Wecsvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\SensorDataService" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\SensrSvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\perceptionsimulation" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\StiSvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\OneSyncSvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\WMPNetworkSvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\autotimesvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\edgeupdatem" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\MicrosoftEdgeElevationService" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\ALG" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\QWAVE" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\IpxlatCfgSvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\icssvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\DusmSvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\MapsBroker" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\edgeupdate" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\SensorService" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\shpamsvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\svsvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\SysMain" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\MSiSCSI" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\Netlogon" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\CscService" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\ssh-agent" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\AppReadiness" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\tzautoupdate" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\NfsClnt" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\wisvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\defragsvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\SharedRealitySvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\RetailDemo" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\lltdsvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\TrkWks" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\CryptSvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\DiagTrack" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\diagsvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\DPS" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\WdiServiceHost" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\WdiSystemHost" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\dmwappushsvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\TroubleshootingSvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\DsSvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\FrameServer" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\FontCache" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\InstallService" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\OSRSS" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\sedsvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\SENS" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\TabletInputService" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\Themes" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\ConsentUxUserSvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\DevicePickerUserSvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\UnistoreSvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\DevicesFlowUserSvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\MessagingService" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\CDPUserSvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\PimIndexMaintenanceSvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\BcastDVRUserService" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\UserDataSvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\DeviceAssociationBrokerSvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\cbdhsvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\CaptureService" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\lfsvc" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\lfsvc\Service\Configuration" /v "Status" /t REG_DWORD /d "0" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\diagnosticshub.standardcollector.service" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\SecurityHealthService" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SOFTWARE\Policies\Microsoft\MicrosoftEdge\Main" /v "AllowPrelaunch" /t REG_DWORD /d "0" /f >> MOB_Log.txt
+reg add "HKLM\SOFTWARE\Policies\Microsoft\MicrosoftEdge\TabPreloader" /v "AllowTabPreloading" /t REG_DWORD /d "0" /f >> MOB_Log.txt
 
 timeout /t 5 /nobreak > NUL
 
@@ -2095,14 +2095,14 @@ goto DebloatWindows
 :DisableCortana
 cls
 echo Disabling Cortana
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCortana" /t REG_DWORD /d "0" /f >> APB_Log.txt
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCloudSearch" /t REG_DWORD /d "0" /f >> APB_Log.txt
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCortanaAboveLock" /t REG_DWORD /d "0" /f >> APB_Log.txt
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowSearchToUseLocation" /t REG_DWORD /d "0" /f >> APB_Log.txt
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "ConnectedSearchUseWeb" /t REG_DWORD /d "0" /f >> APB_Log.txt
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "ConnectedSearchUseWebOverMeteredConnections" /t REG_DWORD /d "0" /f >> APB_Log.txt
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "DisableWebSearch" /t REG_DWORD /d "0" /f >> APB_Log.txt
-Powershell -Command "Get-appxpackage -allusers *Microsoft.549981C3F5F10* | Remove-AppxPackage" >> APB_Log.txt
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCortana" /t REG_DWORD /d "0" /f >> MOB_Log.txt
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCloudSearch" /t REG_DWORD /d "0" /f >> MOB_Log.txt
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowCortanaAboveLock" /t REG_DWORD /d "0" /f >> MOB_Log.txt
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "AllowSearchToUseLocation" /t REG_DWORD /d "0" /f >> MOB_Log.txt
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "ConnectedSearchUseWeb" /t REG_DWORD /d "0" /f >> MOB_Log.txt
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "ConnectedSearchUseWebOverMeteredConnections" /t REG_DWORD /d "0" /f >> MOB_Log.txt
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\Windows Search" /v "DisableWebSearch" /t REG_DWORD /d "0" /f >> MOB_Log.txt
+Powershell -Command "Get-appxpackage -allusers *Microsoft.549981C3F5F10* | Remove-AppxPackage" >> MOB_Log.txt
 timeout /t 5 /nobreak > NUL
 
 goto DebloatWindows
@@ -2111,16 +2111,16 @@ goto DebloatWindows
 cls
 echo Disabling OneDrive
 start /wait "" "%SYSTEMROOT%\SYSWOW64\ONEDRIVESETUP.EXE" /UNINSTALL
-rd C:\OneDriveTemp /q /s >> APB_Log.txt
-rd "%USERPROFILE%\OneDrive" /q /s >> APB_Log.txt
-rd "%LOCALAPPDATA%\Microsoft\OneDrive" /q /s >> APB_Log.txt
-rd "%PROGRAMDATA%\Microsoft OneDrive" /q /s >> APB_Log.txt
-reg add "HKCR\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}\ShellFolder" /f /v "Attributes" /t REG_DWORD /d "0" >> APB_Log.txt
-reg add "HKCR\Wow6432Node\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}\ShellFolder" /f /v "Attributes" /t REG_DWORD /d "0" >> APB_Log.txt
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive" /v "DisableFileSync" /t REG_DWORD /d "1" /f >> APB_Log.txt
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive" /v "DisableFileSyncNGSC" /t REG_DWORD /d "1" /f >> APB_Log.txt
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive" /v "DisableMeteredNetworkFileSync" /t REG_DWORD /d "0" /f >> APB_Log.txt
-reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive" /v "DisableLibrariesDefaultSaveToOneDrive" /t REG_DWORD /d "0" /f >> APB_Log.txt
+rd C:\OneDriveTemp /q /s >> MOB_Log.txt
+rd "%USERPROFILE%\OneDrive" /q /s >> MOB_Log.txt
+rd "%LOCALAPPDATA%\Microsoft\OneDrive" /q /s >> MOB_Log.txt
+rd "%PROGRAMDATA%\Microsoft OneDrive" /q /s >> MOB_Log.txt
+reg add "HKCR\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}\ShellFolder" /f /v "Attributes" /t REG_DWORD /d "0" >> MOB_Log.txt
+reg add "HKCR\Wow6432Node\CLSID\{018D5C66-4533-4307-9B53-224DE2ED1FE6}\ShellFolder" /f /v "Attributes" /t REG_DWORD /d "0" >> MOB_Log.txt
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive" /v "DisableFileSync" /t REG_DWORD /d "1" /f >> MOB_Log.txt
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive" /v "DisableFileSyncNGSC" /t REG_DWORD /d "1" /f >> MOB_Log.txt
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive" /v "DisableMeteredNetworkFileSync" /t REG_DWORD /d "0" /f >> MOB_Log.txt
+reg add "HKLM\SOFTWARE\Policies\Microsoft\Windows\OneDrive" /v "DisableLibrariesDefaultSaveToOneDrive" /t REG_DWORD /d "0" /f >> MOB_Log.txt
 timeout /t 5 /nobreak > NUL
 
 goto DebloatWindows
@@ -2128,31 +2128,31 @@ goto DebloatWindows
 :PCCleaner
 cls
 echo Cleaning PC...
-del /s /f /q c:\windows\temp. >> APB_Log.txt
-del /s /f /q C:\WINDOWS\Prefetch >> APB_Log.txt
-del /s /f /q %temp%. >> APB_Log.txt
-del /s /f /q %systemdrive%\*.tmp >> APB_Log.txt
-del /s /f /q %systemdrive%\*._mp >> APB_Log.txt
-del /s /f /q %systemdrive%\*.log >> APB_Log.txt
-del /s /f /q %systemdrive%\*.gid >> APB_Log.txt
-del /s /f /q %systemdrive%\*.chk >> APB_Log.txt
-del /s /f /q %systemdrive%\*.old >> APB_Log.txt
-del /s /f /q %systemdrive%\recycled\*.* >> APB_Log.txt
-del /s /f /q %systemdrive%\$Recycle.Bin\*.* >> APB_Log.txt
-del /s /f /q %windir%\*.bak >> APB_Log.txt
-del /s /f /q %windir%\prefetch\*.* >> APB_Log.txt
-del /s /f /q %LocalAppData%\Microsoft\Windows\Explorer\thumbcache_*.db >> APB_Log.txt
-del /s /f /q %LocalAppData%\Microsoft\Windows\Explorer\*.db >> APB_Log.txt
-del /f /q %SystemRoot%\Logs\CBS\CBS.log >> APB_Log.txt
-del /f /q %SystemRoot%\Logs\DISM\DISM.log >> APB_Log.txt
-deltree /y c:\windows\tempor~1 >> APB_Log.txt
-deltree /y c:\windows\temp >> APB_Log.txt
-deltree /y c:\windows\tmp >> APB_Log.txt
-deltree /y c:\windows\ff*.tmp >> APB_Log.txt
-deltree /y c:\windows\history >> APB_Log.txt
-deltree /y c:\windows\cookies >> APB_Log.txt
-deltree /y c:\windows\recent >> APB_Log.txt
-deltree /y c:\windows\spool\printers >> APB_Log.txt
+del /s /f /q c:\windows\temp. >> MOB_Log.txt
+del /s /f /q C:\WINDOWS\Prefetch >> MOB_Log.txt
+del /s /f /q %temp%. >> MOB_Log.txt
+del /s /f /q %systemdrive%\*.tmp >> MOB_Log.txt
+del /s /f /q %systemdrive%\*._mp >> MOB_Log.txt
+del /s /f /q %systemdrive%\*.log >> MOB_Log.txt
+del /s /f /q %systemdrive%\*.gid >> MOB_Log.txt
+del /s /f /q %systemdrive%\*.chk >> MOB_Log.txt
+del /s /f /q %systemdrive%\*.old >> MOB_Log.txt
+del /s /f /q %systemdrive%\recycled\*.* >> MOB_Log.txt
+del /s /f /q %systemdrive%\$Recycle.Bin\*.* >> MOB_Log.txt
+del /s /f /q %windir%\*.bak >> MOB_Log.txt
+del /s /f /q %windir%\prefetch\*.* >> MOB_Log.txt
+del /s /f /q %LocalAppData%\Microsoft\Windows\Explorer\thumbcache_*.db >> MOB_Log.txt
+del /s /f /q %LocalAppData%\Microsoft\Windows\Explorer\*.db >> MOB_Log.txt
+del /f /q %SystemRoot%\Logs\CBS\CBS.log >> MOB_Log.txt
+del /f /q %SystemRoot%\Logs\DISM\DISM.log >> MOB_Log.txt
+deltree /y c:\windows\tempor~1 >> MOB_Log.txt
+deltree /y c:\windows\temp >> MOB_Log.txt
+deltree /y c:\windows\tmp >> MOB_Log.txt
+deltree /y c:\windows\ff*.tmp >> MOB_Log.txt
+deltree /y c:\windows\history >> MOB_Log.txt
+deltree /y c:\windows\cookies >> MOB_Log.txt
+deltree /y c:\windows\recent >> MOB_Log.txt
+deltree /y c:\windows\spool\printers >> MOB_Log.txt
 cls
 timeout /t 10 /nobreak > NUL
 
@@ -2185,7 +2185,7 @@ echo      %w%██%y%%c%║╚%t%%w%██%y%%c%╗%t%%w%██%y%%c%║%t%%w%�
 echo      %w%██%y%%c%║ ╚%t%%w%████%y%%c%║%t%%w%██████%y%%c%╔╝%t%%w%██%y%%c%║  %t%%w%██%y%%c%║%t%%w%██%y%%c%║ ╚%t%%w%████%y%%c%║%t%%w%██████%y%%c%╔╝%t%
 echo      %c%╚═╝  ╚═══╝╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═══╝╚═════╝%t%
 echo.
-echo                                                   %c%Mooping's Optimization Batch%t%     
+echo                                                   %c%Mooping's Performance Batch%t%     
 echo                                                      %c%%u%Version: %Version%%q%%t%
 echo.
 echo %w%════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════%y%
@@ -2229,26 +2229,26 @@ if '%choice%'=='2' goto Other
 :DisableDriversContinue
 cls
 echo Disabling Drivers
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\acpipagr" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\AcpiPmi" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\Beep" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\CAD" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\GpuEnergyDrv" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\CLFS" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\CSC" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\luafv" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\RasAcd" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\Rasl2tp" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\RasPppoe" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\RasSstp" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip6" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\tcpipreg" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\dam" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\wanarpv6" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\PEAUTH" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\QWAVEdrv" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\cdrom" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\fileinfo" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\acpipagr" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\AcpiPmi" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\Beep" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\CAD" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\GpuEnergyDrv" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\CLFS" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\CSC" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\luafv" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\RasAcd" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\Rasl2tp" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\RasPppoe" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\RasSstp" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\Tcpip6" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\tcpipreg" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\dam" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\wanarpv6" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\PEAUTH" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\QWAVEdrv" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\cdrom" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\fileinfo" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
 timeout /t 5 /nobreak > NUL
 
 cls
@@ -2269,14 +2269,14 @@ if '%choice%'=='2' goto DisableFileCrypt
 
 :EnableFileCrypt
 cls
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\FileCrypt" /v "Start" /t REG_DWORD /d "2" /f >> APB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\FileCrypt" /v "Start" /t REG_DWORD /d "2" /f >> MOB_Log.txt
 timeout /t 5 /nobreak > NUL
 
 goto Other
 
 :DisableFileCrypt
 cls
-reg add "HKLM\SYSTEM\CurrentControlSet\Services\FileCrypt" /v "Start" /t REG_DWORD /d "4" /f >> APB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Services\FileCrypt" /v "Start" /t REG_DWORD /d "4" /f >> MOB_Log.txt
 timeout /t 5 /nobreak > NUL
 
 goto Other
@@ -2302,26 +2302,26 @@ if '%choice%'=='2' goto AncelsExperimentalPowerPlan
 cls
 echo Applying Ancels Power Plan
 :: Import Ancels Power Plan
-curl -g -k -L -# -o "C:\Ancels Power Plan.pow" "https://github.com/ancel1x/Ancels-Performance-Batch/raw/main/bin/Ancels_Power_Plan.pow" >> APB_Log.txt
-powercfg -import "C:\Ancels Power Plan.pow" 11111111-1111-1111-1111-111111111111 >> APB_Log.txt
-powercfg -setactive 11111111-1111-1111-1111-111111111111 >> APB_Log.txt
+curl -g -k -L -# -o "C:\Ancels Power Plan.pow" "https://github.com/ancel1x/Ancels-Performance-Batch/raw/main/bin/Ancels_Power_Plan.pow" >> MOB_Log.txt
+powercfg -import "C:\Ancels Power Plan.pow" 11111111-1111-1111-1111-111111111111 >> MOB_Log.txt
+powercfg -setactive 11111111-1111-1111-1111-111111111111 >> MOB_Log.txt
 timeout /t 3 /nobreak > NUL
 
 echo Deleting other Power Plans
 :: Delete Balanced Power Plan
-powercfg -delete 381b4222-f694-41f0-9685-ff5bb260df2e >> APB_Log.txt
+powercfg -delete 381b4222-f694-41f0-9685-ff5bb260df2e >> MOB_Log.txt
 
 :: Delete Power Saver Power Plan
-powercfg -delete a1841308-3541-4fab-bc81-f71556f20b4a >> APB_Log.txt
+powercfg -delete a1841308-3541-4fab-bc81-f71556f20b4a >> MOB_Log.txt
 
 :: Delete High Performance Power Plan
-powercfg -delete 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c >> APB_Log.txt
+powercfg -delete 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c >> MOB_Log.txt
 
 :: Delete Ultimate Performance Power Plan
-powercfg -delete e9a42b02-d5df-448d-aa00-03f14749eb61 >> APB_Log.txt
+powercfg -delete e9a42b02-d5df-448d-aa00-03f14749eb61 >> MOB_Log.txt
 
 :: Delete AMD Ryzen Balanced Power Plan
-powercfg -delete 9897998c-92de-4669-853f-b7cd3ecb2790 >> APB_Log.txt
+powercfg -delete 9897998c-92de-4669-853f-b7cd3ecb2790 >> MOB_Log.txt
 timeout /t 3 /nobreak > NUL
 
 goto Other
@@ -2330,26 +2330,26 @@ goto Other
 cls
 echo Applying Ancels Power Plan
 :: Import Ancels Power Plan
-curl -g -k -L -# -o "C:\Ancels Experimental Power Plan.pow" "https://github.com/ancel1x/Ancels-Performance-Batch/raw/main/bin/Ancels_Experimental_Power_Plan.pow" >> APB_Log.txt
-powercfg -import "C:\Ancels Experimental Power Plan.pow" 22222222-2222-2222-2222-222222222222 >> APB_Log.txt
-powercfg -setactive 22222222-2222-2222-2222-222222222222 >> APB_Log.txt
+curl -g -k -L -# -o "C:\Ancels Experimental Power Plan.pow" "https://github.com/ancel1x/Ancels-Performance-Batch/raw/main/bin/Ancels_Experimental_Power_Plan.pow" >> MOB_Log.txt
+powercfg -import "C:\Ancels Experimental Power Plan.pow" 22222222-2222-2222-2222-222222222222 >> MOB_Log.txt
+powercfg -setactive 22222222-2222-2222-2222-222222222222 >> MOB_Log.txt
 timeout /t 3 /nobreak > NUL
 
 echo Deleting other Power Plans
 :: Delete Balanced Power Plan
-powercfg -delete 381b4222-f694-41f0-9685-ff5bb260df2e >> APB_Log.txt
+powercfg -delete 381b4222-f694-41f0-9685-ff5bb260df2e >> MOB_Log.txt
 
 :: Delete Power Saver Power Plan
-powercfg -delete a1841308-3541-4fab-bc81-f71556f20b4a >> APB_Log.txt
+powercfg -delete a1841308-3541-4fab-bc81-f71556f20b4a >> MOB_Log.txt
 
 :: Delete High Performance Power Plan
-powercfg -delete 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c >> APB_Log.txt
+powercfg -delete 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c >> MOB_Log.txt
 
 :: Delete Ultimate Performance Power Plan
-powercfg -delete e9a42b02-d5df-448d-aa00-03f14749eb61 >> APB_Log.txt
+powercfg -delete e9a42b02-d5df-448d-aa00-03f14749eb61 >> MOB_Log.txt
 
 :: Delete AMD Ryzen Balanced Power Plan
-powercfg -delete 9897998c-92de-4669-853f-b7cd3ecb2790 >> APB_Log.txt
+powercfg -delete 9897998c-92de-4669-853f-b7cd3ecb2790 >> MOB_Log.txt
 timeout /t 3 /nobreak > NUL
 
 goto Other
@@ -2373,20 +2373,20 @@ if '%choice%'=='2' goto DisableKBoost
 
 :EnableKBoost
 cls
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000" /v "PerfLevelSrc" /t REG_DWORD /d "2222" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000" /v "PowerMizerEnable" /t REG_DWORD /d "0" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000" /v "PowerMizerLevel" /t REG_DWORD /d "0" /f >> APB_Log.txt
-reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000" /v "PowerMizerLevelAC" /t REG_DWORD /d "0" /f >> APB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000" /v "PerfLevelSrc" /t REG_DWORD /d "2222" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000" /v "PowerMizerEnable" /t REG_DWORD /d "0" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000" /v "PowerMizerLevel" /t REG_DWORD /d "0" /f >> MOB_Log.txt
+reg add "HKLM\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000" /v "PowerMizerLevelAC" /t REG_DWORD /d "0" /f >> MOB_Log.txt
 timeout /t 3 /nobreak > NUL
 
 goto Other
 
 :DisableKBoost
 cls
-reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000" /v "PerfLevelSrc" /f >> APB_Log.txt
-reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000" /v "PowerMizerEnable" /f >> APB_Log.txt
-reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000" /v "PowerMizerLevel" /f >> APB_Log.txt
-reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000" /v "PowerMizerLevelAC" /f >> APB_Log.txt
+reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000" /v "PerfLevelSrc" /f >> MOB_Log.txt
+reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000" /v "PowerMizerEnable" /f >> MOB_Log.txt
+reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000" /v "PowerMizerLevel" /f >> MOB_Log.txt
+reg delete "HKLM\SYSTEM\CurrentControlSet\Control\Class\{4d36e968-e325-11ce-bfc1-08002be10318}\0000" /v "PowerMizerLevelAC" /f >> MOB_Log.txt
 timeout /t 3 /nobreak > NUL
 
 goto Other
@@ -2413,7 +2413,7 @@ cls
 echo Disabling Devices
 
 :: Install DevManView
-curl -g -k -L -# -o "C:\Windows\System32\DevManView.exe" "https://github.com/ancel1x/Ancels-Performance-Batch/raw/main/bin/DevManView.exe" >> APB_Log.txt
+curl -g -k -L -# -o "C:\Windows\System32\DevManView.exe" "https://github.com/ancel1x/Ancels-Performance-Batch/raw/main/bin/DevManView.exe" >> MOB_Log.txt
 timeout /t 3 /nobreak > NUL
 
 :: Disable Devices through DevManView
@@ -2520,7 +2520,7 @@ cls
 echo Applying OOSU Config
 powershell Invoke-WebRequest "https://dl5.oo-software.com/files/ooshutup10/OOSU10.exe" -OutFile "%temp%\OOSU10.exe"
 curl -g -k -L -# -o "C:\ANCELOOSUIMPORT.cfg" "https://github.com/ancel1x/Ancels-Performance-Batch/raw/main/bin/ANCELOOSUIMPORT.cfg"
-start "" /wait "%temp%\OOSU10.exe" "C:\ANCELOOSUIMPORT.cfg" >> APB_Log.txt
+start "" /wait "%temp%\OOSU10.exe" "C:\ANCELOOSUIMPORT.cfg" >> MOB_Log.txt
 cls
 echo OOSU Ran Successfully
 timeout /t 5 /nobreak > NUL

@@ -4,6 +4,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta charset="UTF-8">
   <title>Free osu!supporter Generator 2025</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     * {
       margin: 0;
@@ -11,11 +12,30 @@
       box-sizing: border-box;
     }
 
+    :root {
+      --primary: #ff66aa;
+      --secondary: #66ccff;
+      --dark: #0f0f1a;
+      --darker: #0a0a12;
+      --light: #ffffff;
+      --card-bg: #1a1a2e;
+      --accent: #ffcc00;
+      --success: #4CAF50;
+      --error: #f44336;
+    }
+
     html, body {
       height: 100%;
-      background: #0e0e0e;
-      color: white;
-      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
+      color: var(--light);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      overflow-x: hidden;
+    }
+
+    body {
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255, 102, 170, 0.15) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(102, 204, 255, 0.15) 0%, transparent 20%);
     }
 
     .container {
@@ -23,43 +43,178 @@
       flex-direction: column;
       align-items: center;
       justify-content: start;
-      padding-top: 50px;
-      height: 100%;
+      padding-top: 40px;
+      min-height: 100vh;
+      position: relative;
+      z-index: 1;
     }
 
-    h1 {
-      color: #f39c12;
+    .header {
+      text-align: center;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .header h1 {
+      font-size: 2.5rem;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      margin-bottom: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      text-shadow: 0 0 20px rgba(255, 102, 170, 0.3);
+    }
+
+    .header p {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
     }
 
     .card {
-      background: #1e1e1e;
-      padding: 30px;
-      border-radius: 15px;
-      width: 350px;
+      background: var(--card-bg);
+      padding: 40px;
+      border-radius: 20px;
+      width: 450px;
+      max-width: 90vw;
       text-align: center;
-      box-shadow: 0 0 20px #f39c12aa;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
-    input, select, button {
-      margin: 10px 0;
-      padding: 10px;
-      width: 90%;
-      border-radius: 8px;
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+    }
+
+    .input-group {
+      margin: 20px 0;
+      text-align: left;
+    }
+
+    .input-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--light);
+      font-weight: 500;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--light);
+      font-size: 1rem;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 2px rgba(255, 102, 170, 0.3);
+    }
+
+    input::placeholder {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .btn {
+      background: linear-gradient(90deg, var(--primary), var(--secondary));
+      color: white;
       border: none;
+      padding: 16px 24px;
+      border-radius: 10px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      width: 100%;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+      margin-top: 10px;
     }
 
-    button {
-      background: #f39c12;
-      color: black;
-      font-weight: bold;
-      cursor: pointer;
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(255, 102, 170, 0.4);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn:hover::after {
+      left: 100%;
     }
 
     #status {
-      margin-top: 20px;
-      font-family: monospace;
+      margin-top: 25px;
+      font-family: 'Courier New', monospace;
       white-space: pre-wrap;
       text-align: left;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 20px;
+      border-radius: 10px;
+      border-left: 4px solid var(--primary);
+      min-height: 180px;
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+
+    .status-line {
+      margin-bottom: 8px;
+      display: flex;
+      align-items: center;
+    }
+
+    .status-line i {
+      margin-right: 10px;
+      width: 16px;
+    }
+
+    .success {
+      color: var(--success);
+    }
+
+    .error {
+      color: var(--error);
+    }
+
+    .warning {
+      color: var(--accent);
+    }
+
+    .info {
+      color: var(--secondary);
     }
 
     .fullscreen-center {
@@ -69,52 +224,183 @@
       left: 0;
       width: 100vw;
       height: 100vh;
-      background: #0e0e0e;
+      background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%);
       justify-content: center;
       align-items: center;
       z-index: 9999;
       flex-direction: column;
-      animation: glow-bg 2s infinite alternate;
+      animation: glow-bg 3s infinite alternate;
+    }
+
+    .fullscreen-center .content {
+      text-align: center;
+      max-width: 600px;
+      padding: 20px;
+    }
+
+    .fullscreen-center h2 {
+      font-size: 2.5rem;
+      color: var(--accent);
+      margin-bottom: 20px;
+      text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+    }
+
+    .fullscreen-center p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      color: rgba(255, 255, 255, 0.8);
     }
 
     .fullscreen-center img {
       width: 400px;
       max-width: 90vw;
-      border-radius: 10px;
-      box-shadow: 0 0 40px 10px #f39c12;
+      border-radius: 15px;
+      box-shadow: 0 0 40px 10px var(--accent);
       animation: glow 2s infinite ease-in-out;
+      margin-bottom: 30px;
+    }
+
+    .fullscreen-center .btn {
+      width: auto;
+      padding: 12px 30px;
     }
 
     @keyframes glow {
-      0% { box-shadow: 0 0 40px 10px #f39c12; }
-      50% { box-shadow: 0 0 60px 20px #f1c40f; }
-      100% { box-shadow: 0 0 40px 10px #f39c12; }
+      0% { box-shadow: 0 0 40px 10px var(--accent); }
+      50% { box-shadow: 0 0 60px 20px rgba(255, 204, 0, 0.8); }
+      100% { box-shadow: 0 0 40px 10px var(--accent); }
     }
 
     @keyframes glow-bg {
-      0% { background: #0e0e0e; }
-      100% { background: #1a1a1a; }
+      0% { background: linear-gradient(135deg, var(--dark) 0%, var(--darker) 100%); }
+      100% { background: linear-gradient(135deg, #151529 0%, var(--darker) 100%); }
+    }
+
+    .pulse {
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .footer {
+      margin-top: 40px;
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5);
+      font-size: 0.9rem;
+      padding: 20px;
+    }
+
+    .floating {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      background: radial-gradient(circle, var(--primary) 0%, transparent 70%);
+      border-radius: 50%;
+      opacity: 0.3;
+      animation: float 15s infinite linear;
+    }
+
+    .floating:nth-child(1) {
+      top: 10%;
+      left: 10%;
+      animation-delay: 0s;
+    }
+
+    .floating:nth-child(2) {
+      top: 70%;
+      left: 80%;
+      animation-delay: -5s;
+    }
+
+    .floating:nth-child(3) {
+      top: 40%;
+      left: 85%;
+      animation-delay: -10s;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      25% {
+        transform: translate(10px, 15px) rotate(90deg);
+      }
+      50% {
+        transform: translate(20px, 5px) rotate(180deg);
+      }
+      75% {
+        transform: translate(10px, -5px) rotate(270deg);
+      }
+      100% {
+        transform: translate(0, 0) rotate(360deg);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header h1 {
+        font-size: 2rem;
+      }
+      
+      .card {
+        padding: 30px 20px;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="floating"></div>
+  <div class="floating"></div>
+  <div class="floating"></div>
+
   <div class="container" id="mainContent">
-    <h1>Free osu!supporter Generator 2025</h1>
-    <div class="card">
-      <input type="text" id="username" placeholder="Enter your osu! username">
-      <select id="duration">
-        <option value="1 Month">1 Month</option>
-        <option value="3 Months">3 Months</option>
-        <option value="6 Months">6 Months</option>
-        <option value="12 Months">12 Months</option>
-      </select>
-      <button onclick="startTroll()">Generate Supporter</button>
-      <div id="status"></div>
+    <div class="header">
+      <h1><i class="fas fa-star"></i> Free osu!supporter Generator 2025</h1>
+      <p>Get osu!supporter for free! Simply enter your username and select duration.</p>
+    </div>
+    
+    <div class="card pulse">
+      <div class="input-group">
+        <label for="username"><i class="fas fa-user"></i> osu! Username</label>
+        <input type="text" id="username" placeholder="Enter your osu! username">
+      </div>
+      
+      <div class="input-group">
+        <label for="duration"><i class="fas fa-clock"></i> Supporter Duration</label>
+        <select id="duration">
+          <option value="1 Month">1 Month</option>
+          <option value="3 Months">3 Months</option>
+          <option value="6 Months">6 Months</option>
+          <option value="12 Months">12 Months</option>
+        </select>
+      </div>
+      
+      <button class="btn" onclick="startTroll()">
+        <i class="fas fa-gift"></i> Generate Free Supporter
+      </button>
+      
+      <div id="status">
+        <div class="status-line"><i class="fas fa-info-circle info"></i> Ready to generate your free osu!supporter</div>
+      </div>
+    </div>
+    
+    <div class="footer">
+      <p>This is a fan-made tool and is not affiliated with osu! or ppy Pty Ltd.</p>
     </div>
   </div>
 
   <div class="fullscreen-center" id="finalImage">
-    <img src="https://legaltemplates.net/wp-content/uploads/job-application-template-240x310.png" alt="Touch grass">
+    <div class="content">
+      <img src="https://i.imgur.com/9Vqpg2x.png" alt="Touch grass">
+      <h2>Haha, you got trolled!</h2>
+      <p>Did you really think you could get osu!supporter for free?</p>
+      <button class="btn" onclick="location.reload()">
+        <i class="fas fa-redo"></i> Try Again (Just Kidding)
+      </button>
+    </div>
   </div>
 
   <script>
@@ -135,18 +421,22 @@
         return;
       }
 
-      statusBox.innerText = "Connecting to osu! servers...";
+      // Clear status and show loading state
+      statusBox.innerHTML = '<div class="status-line"><i class="fas fa-spinner fa-spin info"></i> Initializing supporter generator...</div>';
+      
       await sleep(1000);
-      statusBox.innerText += "\nAuthenticating API tokens...";
+      statusBox.innerHTML += '\n<div class="status-line"><i class="fas fa-server info"></i> Connecting to osu! servers...</div>';
       await sleep(1200);
-      statusBox.innerText += `\nFetching user data for: ${username}...`;
+      statusBox.innerHTML += `\n<div class="status-line"><i class="fas fa-user-check success"></i> Authenticating user: ${username}</div>`;
       await sleep(1000);
-      statusBox.innerText += `\nApplying supporter (${duration})...`;
+      statusBox.innerHTML += `\n<div class="status-line"><i class="fas fa-key info"></i> Validating API tokens...</div>`;
       await sleep(1500);
-      statusBox.innerText += `\n\nERROR: osu!server rejected request.`;
+      statusBox.innerHTML += `\n<div class="status-line"><i class="fas fa-gift warning"></i> Applying supporter (${duration})...</div>`;
+      await sleep(2000);
+      statusBox.innerHTML += `\n<div class="status-line"><i class="fas fa-exclamation-triangle error"></i> ERROR: osu! server rejected request.</div>`;
       await sleep(1200);
-      statusBox.innerText += `\nReason: haha you got scammed!!!!!`;
-      await sleep(1000);
+      statusBox.innerHTML += `\n<div class="status-line"><i class="fas fa-grin-beam-sweat error"></i> Reason: This was just a prank! No free supporter for you!</div>`;
+      await sleep(1500);
 
       // Switch to fullscreen image troll
       mainContent.style.display = "none";

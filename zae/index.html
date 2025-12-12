@@ -1,686 +1,2401 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>🌸 ZaeDae | Osu!Mania Banner Portfolio & Commissions</title>
-    <meta name="description" content="Zae (ZaeDae) — portfolio & commissions for Osu!Mania banners." />
-    <meta name="keywords" content="ZaeDae, Zae, Osu!Mania banners, osu banners, osu design, banner commissions, osu artist, portfolio" />
-    <meta name="author" content="ZaeDae" />
-    <meta property="og:title" content="🌸 ZaeDae | Osu!Mania Banner Portfolio" />
-    <meta property="og:description" content="Check out my Osu!Mania banner portfolio & commission info — custom pastel designs made with care." />
-    <meta property="og:image" content="https://zaedae.carrd.co/assets/images/gallery11/85628d1d.jpg?v=fda087a1" />
-    <meta property="og:url" content="https://mpbox.xyz/zae" />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="ZaeDae | Osu!Mania Banner Portfolio" />
-    <meta name="twitter:description" content="Custom pastel banners for Osu!Mania — commissions open!" />
-    <meta name="twitter:image" content="https://zaedae.carrd.co/assets/images/gallery11/85628d1d.jpg?v=fda087a1" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
-    <style>
-      :root {
-        --bg1: #fff8ff;
-        --bg2: #f9f1ff;
-        --accent: #d6b2ff;
-        --accent-light: #e9d7ff;
-        --accent-pink: #ffc8e2;
-        --text: #2e1933;
-        --muted: #8d7994;
-        --radius: 22px;
-        --shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
-        --max-width: 1100px;
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ZaeDae 🌸 // Mint Portfolio</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+   /* Reset & Base */
+   * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+     color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+     transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+     opacity 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+     border-color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+     box-shadow 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+     filter 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+   }
+
+   html {
+    scroll-behavior: smooth;
+   }
+
+   :root {
+    --mint-light: #f0f9f5;
+    --mint-primary: #a7f0d9;
+    --mint-medium: #7ae0c1;
+    --mint-dark: #5bc4a8;
+    --mint-darker: #3da58a;
+    --text-light: #2d4a43;
+    --text-dark: #e0f7f0;
+    --bg-light: #ffffff;
+    --bg-card-light: #f7fffc;
+    --bg-dark: #0f1f1a;
+    --bg-card-dark: #1a2f28;
+    --shadow: rgba(93, 196, 168, 0.15);
+    --accent-pink: #ffb8d9;
+    --accent-yellow: #fff0b8;
+    --accent-purple: #d9b8ff;
+    --accent-blue: #b8d4ff;
+   }
+
+   [data-theme="dark"] {
+    --mint-light: #1a2f28;
+    --mint-primary: #5bc4a8;
+    --mint-medium: #7ae0c1;
+    --mint-dark: #a7f0d9;
+    --mint-darker: #c7f8e8;
+    --text-light: #e0f7f0;
+    --text-dark: #e0f7f0;
+    --bg-light: #0f1f1a;
+    --bg-card-light: #1a2f28;
+    --bg-dark: #0f1f1a;
+    --bg-card-dark: #1a2f28;
+    --shadow: rgba(23, 42, 35, 0.8);
+    --accent-pink: #ff7bb3;
+    --accent-yellow: #ffd966;
+    --accent-purple: #b28aff;
+    --accent-blue: #8ab4ff;
+   }
+
+   body {
+    font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-light);
+    color: var(--text-light);
+    line-height: 1.7;
+    overflow-x: hidden;
+    position: relative;
+    opacity: 0;
+    animation: fadeInBody 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
+    min-height: 100vh;
+   }
+
+   @keyframes fadeInBody {
+    from {
+     opacity: 0;
+    }
+
+    to {
+     opacity: 1;
+    }
+   }
+
+   body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+     radial-gradient(circle at 10% 20%, rgba(167, 240, 217, 0.08) 0%, transparent 40%),
+     radial-gradient(circle at 90% 30%, rgba(255, 184, 217, 0.05) 0%, transparent 40%),
+     radial-gradient(circle at 30% 80%, rgba(216, 255, 184, 0.05) 0%, transparent 40%),
+     radial-gradient(circle at 70% 70%, rgba(184, 212, 255, 0.05) 0%, transparent 40%);
+    z-index: -1;
+    pointer-events: none;
+   }
+
+   h1,
+   h2,
+   h3,
+   h4,
+   .title {
+    font-family: 'Quicksand', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 700;
+   }
+
+   /* Animated Background Particles */
+   .particles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    overflow: hidden;
+   }
+
+   .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--mint-primary);
+    opacity: 0.1;
+    animation: floatParticle 20s infinite linear;
+   }
+
+   @keyframes floatParticle {
+    0% {
+     transform: translateY(0) rotate(0deg);
+     opacity: 0.1;
+    }
+
+    25% {
+     transform: translateY(-100px) translateX(50px) rotate(90deg);
+     opacity: 0.15;
+    }
+
+    50% {
+     transform: translateY(50px) translateX(-50px) rotate(180deg);
+     opacity: 0.1;
+    }
+
+    75% {
+     transform: translateY(-75px) translateX(75px) rotate(270deg);
+     opacity: 0.15;
+    }
+
+    100% {
+     transform: translateY(0) rotate(360deg);
+     opacity: 0.1;
+    }
+   }
+
+   /* Theme Toggle */
+   .theme-toggle {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    width: 65px;
+    height: 32px;
+    border-radius: 32px;
+    background: var(--mint-medium);
+    border: 2px solid var(--mint-dark);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
+    z-index: 1000;
+    box-shadow: 0 5px 15px var(--shadow);
+    transform: translateY(0);
+    animation: floatToggle 4s ease-in-out infinite;
+    overflow: hidden;
+   }
+
+   .theme-toggle::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    top: 0;
+    left: -100%;
+    transition: left 0.6s ease;
+   }
+
+   .theme-toggle:hover::before {
+    left: 100%;
+   }
+
+   @keyframes floatToggle {
+
+    0%,
+    100% {
+     transform: translateY(0) rotate(0deg);
+    }
+
+    25% {
+     transform: translateY(-4px) rotate(1deg);
+    }
+
+    75% {
+     transform: translateY(2px) rotate(-1deg);
+    }
+   }
+
+   .theme-toggle:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 25px var(--shadow);
+   }
+
+   .theme-toggle .sun,
+   .theme-toggle .moon {
+    font-size: 18px;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+   }
+
+   .theme-toggle .sun {
+    transform: translateX(0);
+   }
+
+   .theme-toggle .moon {
+    transform: translateX(33px);
+   }
+
+   [data-theme="dark"] .theme-toggle .sun {
+    transform: translateX(-33px);
+   }
+
+   [data-theme="dark"] .theme-toggle .moon {
+    transform: translateX(0);
+   }
+
+   /* Scroll Indicator */
+   .scroll-indicator {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--mint-primary), var(--accent-pink), var(--accent-yellow));
+    width: 0%;
+    z-index: 999;
+    transition: width 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    border-radius: 0 2px 2px 0;
+    box-shadow: 0 0 10px rgba(167, 240, 217, 0.5);
+   }
+
+   /* Back to Top Button */
+   .back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--mint-primary), var(--mint-medium));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 1.5rem;
+    box-shadow: 0 5px 15px rgba(93, 196, 168, 0.4);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 99;
+    border: 2px solid var(--mint-dark);
+   }
+
+   .back-to-top.visible {
+    opacity: 1;
+    transform: translateY(0);
+   }
+
+   .back-to-top:hover {
+    transform: translateY(-5px) scale(1.1);
+    box-shadow: 0 10px 25px rgba(93, 196, 168, 0.6);
+   }
+
+   /* Layout */
+   .wrap {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: slideUpFade 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.5s forwards;
+   }
+
+   @keyframes slideUpFade {
+    from {
+     transform: translateY(20px);
+     opacity: 0;
+    }
+
+    to {
+     transform: translateY(0);
+     opacity: 1;
+    }
+   }
+
+   .site-header {
+    text-align: center;
+    padding: 40px 0 30px;
+    position: relative;
+   }
+
+   .title {
+    font-size: 3.2rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--mint-primary) 0%, var(--accent-pink) 30%, var(--accent-yellow) 70%, var(--mint-primary) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: inline-block;
+    padding: 0 25px;
+    letter-spacing: 1px;
+    position: relative;
+    animation: titleGlow 3s ease-in-out infinite alternate, titleFloat 6s ease-in-out infinite;
+    background-size: 200% auto;
+   }
+
+   @keyframes titleGlow {
+    from {
+     filter: drop-shadow(0 0 8px rgba(167, 240, 217, 0.3));
+    }
+
+    to {
+     filter: drop-shadow(0 0 20px rgba(167, 240, 217, 0.6));
+    }
+   }
+
+   @keyframes titleFloat {
+
+    0%,
+    100% {
+     transform: translateY(0);
+    }
+
+    50% {
+     transform: translateY(-10px);
+    }
+   }
+
+   .title::before,
+   .title::after {
+    content: '🌸';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--mint-dark);
+    font-size: 2.2rem;
+    animation: flowerFloat 5s ease-in-out infinite;
+    filter: drop-shadow(0 0 5px rgba(167, 240, 217, 0.4));
+   }
+
+   .title::before {
+    left: -15px;
+    animation-delay: 0.3s;
+   }
+
+   .title::after {
+    right: -15px;
+    animation-delay: 0.7s;
+   }
+
+   @keyframes flowerFloat {
+
+    0%,
+    100% {
+     transform: translateY(-50%) rotate(0deg);
+    }
+
+    33% {
+     transform: translateY(-60%) rotate(15deg);
+    }
+
+    66% {
+     transform: translateY(-40%) rotate(-10deg);
+    }
+   }
+
+   .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 35px;
+    margin-top: 30px;
+   }
+
+   @media (max-width: 1024px) {
+    .main-grid {
+     grid-template-columns: 1fr;
+     gap: 25px;
+    }
+   }
+
+   /* Cards */
+   .card {
+    background-color: var(--bg-card-light);
+    border-radius: 24px;
+    padding: 35px;
+    box-shadow: 0 15px 35px var(--shadow);
+    border: 1px solid rgba(167, 240, 217, 0.4);
+    position: relative;
+    overflow: hidden;
+    transform: translateY(20px);
+    opacity: 0;
+    animation: cardAppear 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.7s forwards;
+    backdrop-filter: blur(10px);
+   }
+
+   @keyframes cardAppear {
+    from {
+     transform: translateY(20px);
+     opacity: 0;
+    }
+
+    to {
+     transform: translateY(0);
+     opacity: 1;
+    }
+   }
+
+   .card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background: linear-gradient(90deg, var(--mint-primary), var(--accent-pink), var(--accent-yellow), var(--accent-purple));
+    animation: gradientFlow 4s linear infinite;
+    background-size: 300% 100%;
+   }
+
+   @keyframes gradientFlow {
+    0% {
+     background-position: 0% 50%;
+    }
+
+    100% {
+     background-position: 300% 50%;
+    }
+   }
+
+   /* Profile Section */
+   .profile {
+    text-align: center;
+    transform: translateX(-20px);
+    opacity: 0;
+    animation: slideInLeft 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.9s forwards;
+   }
+
+   @keyframes slideInLeft {
+    from {
+     transform: translateX(-20px);
+     opacity: 0;
+    }
+
+    to {
+     transform: translateX(0);
+     opacity: 1;
+    }
+   }
+
+   .avatar-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 30px;
+   }
+
+   .avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 6px solid var(--mint-primary);
+    box-shadow: 0 10px 25px rgba(93, 196, 168, 0.3);
+    position: relative;
+    animation: avatarPulse 4s ease-in-out infinite;
+    z-index: 2;
+   }
+
+   .avatar-ring {
+    position: absolute;
+    top: -10px;
+    left: -10px;
+    right: -10px;
+    bottom: -10px;
+    border-radius: 50%;
+    border: 3px dashed var(--accent-pink);
+    animation: spin 20s linear infinite;
+    z-index: 1;
+   }
+
+   @keyframes spin {
+    0% {
+     transform: rotate(0deg);
+    }
+
+    100% {
+     transform: rotate(360deg);
+    }
+   }
+
+   @keyframes avatarPulse {
+
+    0%,
+    100% {
+     box-shadow: 0 10px 25px rgba(93, 196, 168, 0.3);
+    }
+
+    50% {
+     box-shadow: 0 15px 35px rgba(93, 196, 168, 0.6);
+    }
+   }
+
+   .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   }
+
+   .avatar:hover img {
+    transform: scale(1.08);
+   }
+
+   .profile h1 {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    color: var(--mint-darker);
+    position: relative;
+    display: inline-block;
+   }
+
+   .profile h1::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--mint-primary), var(--accent-pink));
+    transition: width 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   }
+
+   .profile h1:hover::after {
+    width: 100%;
+   }
+
+   .profile p {
+    margin-bottom: 20px;
+    color: var(--text-light);
+    font-size: 1.1rem;
+    transition: transform 0.4s ease, color 0.3s ease;
+    padding: 0 10px;
+   }
+
+   .profile p:hover {
+    transform: translateX(8px);
+    color: var(--mint-darker);
+   }
+
+   /* Stats */
+   .stats {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    margin: 25px 0;
+   }
+
+   .stat-item {
+    text-align: center;
+   }
+
+   .stat-number {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--mint-primary);
+    display: block;
+    line-height: 1;
+   }
+
+   .stat-label {
+    font-size: 0.9rem;
+    color: var(--text-light);
+    opacity: 0.8;
+   }
+
+   /* Contact Buttons */
+   .contact-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 35px;
+   }
+
+   .discord-btn,
+   .twitter-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    gap: 15px;
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+   }
+
+   .discord-btn::before,
+   .twitter-btn::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.7s, height 0.7s;
+   }
+
+   .discord-btn:hover::before,
+   .twitter-btn:hover::before {
+    width: 400px;
+    height: 400px;
+   }
+
+   .discord-btn {
+    background: linear-gradient(135deg, #5865F2, #8a95ff, #7289da);
+    color: white;
+    border: 2px solid #4752c4;
+   }
+
+   .twitter-btn {
+    background: linear-gradient(135deg, #1DA1F2, #60bcf5, #1DA1F2);
+    color: white;
+    border: 2px solid #1a91da;
+   }
+
+   .discord-btn:hover,
+   .twitter-btn:hover {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25);
+    letter-spacing: 1px;
+   }
+
+   .contact-icon {
+    width: 26px;
+    height: 26px;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   }
+
+   .discord-btn:hover .contact-icon,
+   .twitter-btn:hover .contact-icon {
+    transform: rotate(15deg) scale(1.2);
+   }
+
+   /* Content Section */
+   .content {
+    transform: translateX(20px);
+    opacity: 0;
+    animation: slideInRight 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.9s forwards;
+   }
+
+   @keyframes slideInRight {
+    from {
+     transform: translateX(20px);
+     opacity: 0;
+    }
+
+    to {
+     transform: translateX(0);
+     opacity: 1;
+    }
+   }
+
+   .content h2.section {
+    font-size: 2rem;
+    margin-bottom: 25px;
+    color: var(--mint-darker);
+    position: relative;
+    padding-bottom: 12px;
+    display: inline-block;
+   }
+
+   .content h2.section::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 70px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--mint-primary), var(--accent-pink));
+    border-radius: 4px;
+    transition: width 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   }
+
+   .content h2.section:hover::after {
+    width: 100%;
+   }
+
+   .note {
+    background-color: rgba(167, 240, 217, 0.15);
+    border-left: 5px solid var(--mint-primary);
+    padding: 22px;
+    border-radius: 0 15px 15px 0;
+    margin-bottom: 35px;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+   }
+
+   .note::before {
+    content: '💭';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    font-size: 1.5rem;
+    opacity: 0.2;
+   }
+
+   .note:hover {
+    transform: translateX(8px);
+    box-shadow: 0 10px 25px rgba(167, 240, 217, 0.3);
+   }
+
+   /* TOS Section */
+   .tos-section {
+    margin: 35px 0;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid var(--mint-primary);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   }
+
+   .tos-section:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(167, 240, 217, 0.3);
+   }
+
+   .tos-toggle {
+    background: linear-gradient(135deg, var(--mint-primary), var(--mint-medium));
+    color: var(--text-light);
+    padding: 22px;
+    font-weight: 800;
+    font-size: 1.3rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    letter-spacing: 0.5px;
+    border: none;
+    width: 100%;
+   }
+
+   .tos-toggle:hover {
+    background: linear-gradient(135deg, var(--mint-medium), var(--mint-dark));
+    letter-spacing: 1px;
+    padding-left: 30px;
+    padding-right: 30px;
+   }
+
+   .tos-toggle::after {
+    content: '▼';
+    font-size: 1rem;
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   }
+
+   .tos-toggle.active::after {
+    transform: rotate(180deg);
+   }
+
+   .tos-content {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   }
+
+   .tos-content.active {
+    padding: 30px;
+    max-height: 2000px;
+   }
+
+   .tos-content h3 {
+    color: var(--mint-darker);
+    margin: 25px 0 15px;
+    font-size: 1.4rem;
+    transition: color 0.4s ease;
+    position: relative;
+    padding-left: 20px;
+   }
+
+   .tos-content h3::before {
+    content: '📌';
+    position: absolute;
+    left: 0;
+   }
+
+   .tos-content h3:hover {
+    color: var(--accent-pink);
+   }
+
+   .tos-content ul {
+    padding-left: 25px;
+    margin-bottom: 25px;
+   }
+
+   .tos-content li {
+    margin-bottom: 10px;
+    position: relative;
+    transition: transform 0.4s ease;
+    padding-left: 5px;
+   }
+
+   .tos-content li:hover {
+    transform: translateX(8px);
+   }
+
+   .tos-content li::before {
+    content: '✨';
+    color: var(--mint-primary);
+    position: absolute;
+    left: -25px;
+    top: 2px;
+    transition: transform 0.4s ease, color 0.4s ease;
+   }
+
+   .tos-content li:hover::before {
+    transform: rotate(20deg) scale(1.2);
+    color: var(--accent-pink);
+   }
+
+   /* Important Notice */
+   .important-notice {
+    background: linear-gradient(135deg, var(--accent-yellow), #ffeaa7);
+    border: 3px dashed var(--mint-darker);
+    border-radius: 18px;
+    padding: 25px;
+    margin: 35px 0;
+    text-align: center;
+    animation: noticePulse 2.5s ease-in-out infinite;
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+   }
+
+   .important-notice::before {
+    content: '⚠️';
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 1.5rem;
+    opacity: 0.3;
+   }
+
+   .important-notice::after {
+    content: '⚠️';
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    font-size: 1.5rem;
+    opacity: 0.3;
+   }
+
+   @keyframes noticePulse {
+
+    0%,
+    100% {
+     box-shadow: 0 0 0 rgba(255, 216, 102, 0.3);
+    }
+
+    50% {
+     box-shadow: 0 0 25px rgba(255, 216, 102, 0.6);
+    }
+   }
+
+   .important-notice:hover {
+    transform: scale(1.03) rotate(1deg);
+   }
+
+   .notice-title {
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: #b86b00;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+   }
+
+   .notice-text {
+    color: #8a5a00;
+    font-weight: 600;
+    font-size: 1.1rem;
+   }
+
+   /* Gallery - Original Sizes */
+   .galleries {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+    justify-items: center;
+   }
+
+   .thumb {
+    display: block;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 4px solid var(--mint-primary);
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    background-color: var(--bg-card-light);
+    max-width: 100%;
+    box-shadow: 0 10px 25px rgba(93, 196, 168, 0.25);
+    transform-origin: center;
+   }
+
+   .thumb:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 25px 50px rgba(93, 196, 168, 0.5);
+    border-color: var(--accent-pink);
+    z-index: 2;
+   }
+
+   .thumb img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   }
+
+   .thumb:hover img {
+    transform: scale(1.08);
+   }
+
+   /* Banner info overlay */
+   .banner-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(15, 31, 26, 0.95) 0%, rgba(15, 31, 26, 0.7) 50%, transparent 100%);
+    color: white;
+    padding: 20px 15px 15px;
+    transform: translateY(100%);
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
+    backdrop-filter: blur(5px);
+   }
+
+   .thumb:hover .banner-info {
+    transform: translateY(0);
+   }
+
+   .banner-info span {
+    font-size: 1rem;
+    font-weight: 600;
+    opacity: 0.9;
+    display: block;
+    margin-bottom: 5px;
+   }
+
+   .banner-info small {
+    font-size: 0.85rem;
+    opacity: 0.7;
+    display: block;
+   }
+
+   /* Hidden banners initially */
+   .hidden-banner {
+    display: none;
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+   }
+
+   .hidden-banner.show {
+    display: block;
+    animation: bannerReveal 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+   }
+
+   @keyframes bannerReveal {
+    from {
+     opacity: 0;
+     transform: translateY(30px) scale(0.95);
+    }
+
+    to {
+     opacity: 1;
+     transform: translateY(0) scale(1);
+    }
+   }
+
+   /* Lightbox modal for larger view */
+   .lightbox {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 31, 26, 0.98);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(15px);
+    animation: lightboxFade 0.3s ease;
+   }
+
+   @keyframes lightboxFade {
+    from {
+     opacity: 0;
+    }
+
+    to {
+     opacity: 1;
+    }
+   }
+
+   .lightbox.active {
+    display: flex;
+   }
+
+   .lightbox-content {
+    max-width: 95%;
+    max-height: 95%;
+    position: relative;
+    animation: lightboxZoom 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   }
+
+   @keyframes lightboxZoom {
+    from {
+     transform: scale(0.8);
+     opacity: 0;
+    }
+
+    to {
+     transform: scale(1);
+     opacity: 1;
+    }
+   }
+
+   .lightbox-content img {
+    max-width: 100%;
+    max-height: 90vh;
+    border-radius: 12px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    border: 3px solid var(--mint-primary);
+   }
+
+   .lightbox-close {
+    position: absolute;
+    top: -50px;
+    right: 0;
+    background: var(--mint-primary);
+    color: var(--text-light);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+   }
+
+   .lightbox-close:hover {
+    background: var(--accent-pink);
+    transform: rotate(90deg) scale(1.1);
+   }
+
+   /* Show more button */
+   .show-more-container {
+    text-align: center;
+    margin: 50px 0;
+   }
+
+   .show-more-btn {
+    background: linear-gradient(135deg, var(--mint-primary), var(--mint-medium));
+    color: var(--text-light);
+    border: none;
+    padding: 16px 35px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 8px 20px rgba(93, 196, 168, 0.4);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+   }
+
+   .show-more-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.7s, height 0.7s;
+   }
+
+   .show-more-btn:hover::after {
+    width: 400px;
+    height: 400px;
+   }
+
+   .show-more-btn:hover {
+    transform: translateY(-6px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(93, 196, 168, 0.6);
+    letter-spacing: 1px;
+   }
+
+   /* FAQ */
+   .faq {
+    margin-top: 50px;
+   }
+
+   .faq h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: var(--mint-darker);
+    position: relative;
+    padding-bottom: 12px;
+    display: inline-block;
+   }
+
+   .faq h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 70px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--mint-primary), var(--accent-pink));
+    border-radius: 4px;
+    transition: width 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   }
+
+   .faq h2:hover::after {
+    width: 100%;
+   }
+
+   .faq-item {
+    margin-bottom: 20px;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid rgba(167, 240, 217, 0.6);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   }
+
+   .faq-item:hover {
+    transform: translateX(8px);
+    box-shadow: 0 10px 25px rgba(167, 240, 217, 0.3);
+   }
+
+   .faq-question {
+    width: 100%;
+    text-align: left;
+    padding: 22px;
+    background-color: rgba(167, 240, 217, 0.25);
+    border: none;
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: var(--text-light);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   }
+
+   .faq-question:hover {
+    background-color: rgba(167, 240, 217, 0.35);
+    letter-spacing: 0.5px;
+    padding-left: 30px;
+   }
+
+   .faq-question::after {
+    content: '+';
+    font-size: 1.8rem;
+    color: var(--mint-dark);
+    transition: transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    font-weight: 300;
+   }
+
+   .faq-question.active::after {
+    content: '-';
+    transform: rotate(180deg);
+   }
+
+   .faq-answer {
+    padding: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    background-color: rgba(167, 240, 217, 0.15);
+   }
+
+   .faq-answer.active {
+    padding: 25px;
+    max-height: 1000px;
+   }
+
+   .highlight-bonus {
+    background: linear-gradient(135deg, rgba(255, 216, 102, 0.25), rgba(255, 184, 217, 0.25));
+    border-left: 5px solid var(--accent-yellow);
+    padding: 18px;
+    border-radius: 0 12px 12px 0;
+    margin-top: 20px;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+   }
+
+   .highlight-bonus::before {
+    content: '🌟';
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    opacity: 0.3;
+   }
+
+   .highlight-bonus:hover {
+    transform: translateX(8px);
+    box-shadow: 0 10px 25px rgba(255, 216, 102, 0.3);
+   }
+
+   /* Credits */
+   #credits {
+    text-align: center;
+    margin-top: 60px;
+    padding-top: 25px;
+    border-top: 1px solid rgba(167, 240, 217, 0.6);
+    font-size: 1rem;
+    color: var(--mint-dark);
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   }
+
+   #credits:hover {
+    transform: translateY(-8px);
+   }
+
+   #credits a {
+    color: var(--mint-dark);
+    text-decoration: none;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    display: inline-block;
+    font-weight: 600;
+   }
+
+   #credits a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--mint-primary), var(--accent-pink));
+    transition: width 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   }
+
+   #credits a:hover {
+    color: var(--accent-pink);
+   }
+
+   #credits a:hover::after {
+    width: 100%;
+   }
+
+   /* Welcome Popup */
+   .welcome-popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.8);
+    background: linear-gradient(135deg, var(--bg-card-light), #f7fffc);
+    color: var(--text-light);
+    padding: 45px;
+    border-radius: 25px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, 0.4);
+    z-index: 1001;
+    max-width: 550px;
+    width: 90%;
+    text-align: center;
+    border: 4px solid var(--mint-primary);
+    display: none;
+    opacity: 0;
+    backdrop-filter: blur(10px);
+   }
+
+   .welcome-popup.active {
+    display: block;
+    animation: popupFade 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+   }
+
+   @keyframes popupFade {
+    0% {
+     opacity: 0;
+     transform: translate(-50%, -50%) scale(0.8);
+    }
+
+    100% {
+     opacity: 1;
+     transform: translate(-50%, -50%) scale(1);
+    }
+   }
+
+   .welcome-popup .title {
+    font-size: 2.2rem;
+    margin-bottom: 25px;
+    color: var(--mint-darker);
+    animation: titleGlow 3s ease-in-out infinite alternate;
+   }
+
+   .welcome-popup .desc {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.6;
+   }
+
+   .welcome-popup .close-btn {
+    background: linear-gradient(135deg, var(--mint-primary), var(--mint-medium));
+    color: var(--text-light);
+    border: none;
+    padding: 14px 35px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    letter-spacing: 0.5px;
+   }
+
+   .welcome-popup .close-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.7s, height 0.7s;
+   }
+
+   .welcome-popup .close-btn:hover::after {
+    width: 400px;
+    height: 400px;
+   }
+
+   .welcome-popup .close-btn:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(93, 196, 168, 0.6);
+    letter-spacing: 1px;
+   }
+
+   .popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(15, 31, 26, 0.9);
+    z-index: 1000;
+    display: none;
+    opacity: 0;
+    backdrop-filter: blur(8px);
+    animation: overlayFade 0.5s ease forwards;
+   }
+
+   @keyframes overlayFade {
+    from {
+     opacity: 0;
+    }
+
+    to {
+     opacity: 1;
+    }
+   }
+
+   .popup-overlay.active {
+    display: block;
+   }
+
+   /* Footer & Responsive */
+   footer {
+    text-align: center;
+    padding: 40px 0;
+    margin-top: 70px;
+    color: var(--mint-dark);
+    font-size: 1rem;
+    border-top: 1px solid rgba(167, 240, 217, 0.4);
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) 1.2s forwards;
+   }
+
+   @keyframes fadeInUp {
+    from {
+     opacity: 0;
+     transform: translateY(20px);
+    }
+
+    to {
+     opacity: 1;
+     transform: translateY(0);
+    }
+   }
+
+   footer p {
+    transition: transform 0.4s ease;
+    font-size: 1.1rem;
+   }
+
+   footer:hover p {
+    transform: scale(1.02);
+   }
+
+   /* Responsive Design */
+   @media (max-width: 1200px) {
+    .galleries {
+     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+     gap: 25px;
+    }
+   }
+
+   @media (max-width: 1024px) {
+    .title {
+     font-size: 2.8rem;
+    }
+
+    .main-grid {
+     gap: 30px;
+    }
+
+    .card {
+     padding: 30px;
+    }
+
+    .galleries {
+     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+     gap: 20px;
+    }
+   }
+
+   @media (max-width: 768px) {
+    .title {
+     font-size: 2.3rem;
+    }
+
+    .avatar-container {
+     width: 180px;
+     height: 180px;
+    }
+
+    .galleries {
+     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+     gap: 18px;
+    }
+
+    .thumb {
+     border-width: 3px;
+     border-radius: 15px;
+    }
+
+    .stats {
+     gap: 20px;
+    }
+
+    .stat-number {
+     font-size: 1.6rem;
+    }
+
+    .theme-toggle {
+     top: 20px;
+     right: 20px;
+     width: 60px;
+     height: 30px;
+    }
+
+    .back-to-top {
+     bottom: 20px;
+     right: 20px;
+     width: 45px;
+     height: 45px;
+     font-size: 1.3rem;
+    }
+   }
+
+   @media (max-width: 576px) {
+    .title {
+     font-size: 2rem;
+     padding: 0 15px;
+    }
+
+    .title::before,
+    .title::after {
+     font-size: 1.8rem;
+    }
+
+    .title::before {
+     left: -5px;
+    }
+
+    .title::after {
+     right: -5px;
+    }
+
+    .galleries {
+     grid-template-columns: 1fr;
+     max-width: 400px;
+     margin-left: auto;
+     margin-right: auto;
+     gap: 20px;
+    }
+
+    .thumb {
+     max-width: 100%;
+    }
+
+    .contact-buttons {
+     gap: 15px;
+    }
+
+    .discord-btn,
+    .twitter-btn {
+     padding: 14px 20px;
+     font-size: 1rem;
+    }
+
+    .stats {
+     flex-direction: column;
+     gap: 15px;
+    }
+
+    .welcome-popup {
+     padding: 30px 25px;
+    }
+
+    .welcome-popup .title {
+     font-size: 1.8rem;
+    }
+
+    .welcome-popup .desc {
+     font-size: 1.1rem;
+    }
+   }
+
+   @media (max-width: 400px) {
+    .wrap {
+     padding: 15px;
+    }
+
+    .card {
+     padding: 25px 20px;
+    }
+
+    .title {
+     font-size: 1.8rem;
+    }
+
+    .avatar-container {
+     width: 160px;
+     height: 160px;
+    }
+
+    .galleries {
+     gap: 18px;
+    }
+   }
+  </style>
+ </head>
+ <body data-theme="light">
+  <!-- Animated Background Particles -->
+  <div class="particles" id="particles"></div>
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+   <span class="sun">☀️</span>
+   <span class="moon">🌙</span>
+  </button>
+  <!-- Scroll Indicator -->
+  <div class="scroll-indicator"></div>
+  <!-- Back to Top Button -->
+  <a href="#" class="back-to-top" id="backToTop" aria-label="Back to top">
+   <i class="fas fa-chevron-up"></i>
+  </a>
+  <!-- Welcome Popup -->
+  <div class="popup-overlay" id="popupOverlay"></div>
+  <div class="welcome-popup" id="welcomePopup">
+   <div class="title">🌸 Welcome to my Portfolio!</div>
+   <p class="desc">I'm Zae — I create custom Osu!Mania banners with a clean pastel vibe. Feel free to explore my works and check the FAQ for commission info 💌</p>
+   <button class="close-btn" id="closePopup">Let's Go!</button>
+  </div>
+  <div class="wrap">
+   <header class="site-header">
+    <div class="title">Zae // ZaeDae</div>
+   </header>
+   <main class="card main-grid">
+    <!-- LEFT: Profile -->
+    <aside class="profile">
+     <div class="avatar-container">
+      <div class="avatar-ring"></div>
+      <div class="avatar">
+       <img src="https://mpbox.xyz/zae/IMG_3995.jpeg" alt="Zae avatar" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI0OCIgZmlsbD0iI2YwZTNmZiIgc3Ryb2tlPSIjZDZiMmZmIiBzdHJva2Utd2lkdGg9IjIiLz48cGF0aCBkPSJNMzUgNjVoMzBsLTE1IDI1eiIgZmlsbD0iI2Q2YjJmZiIvPjx0ZXh0IHg9IjUwIiB5PSI1NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iIzZkNWI4ZiIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiPlphZTwvdGV4dD48L3N2Zz4='">
+      </div>
+     </div>
+     <h1>Zae // ZaeDae</h1>
+     <div class="stats">
+      <div class="stat-item">
+       <span class="stat-number" id="bannerCount">15+</span>
+       <span class="stat-label">Banners Made</span>
+      </div>
+      <div class="stat-item">
+       <span class="stat-number">100%</span>
+       <span class="stat-label">Satisfaction</span>
+      </div>
+      <div class="stat-item">
+       <span class="stat-number">24h</span>
+       <span class="stat-label">Avg. Response</span>
+      </div>
+     </div>
+     <p>Hey there! I was born in 2007, and honestly, I never imagined I'd get into making banners — yet here I am, diving in and loving every bit of the process 😆. People often assume I'm a girl because of my style or vibe… surprise! I'm actually a guy. But hey, I've gotten used to it — if you want to keep thinking otherwise, go ahead LOL.</p>
+     <p>You can scroll down to check out my banners and see the FAQ about commissions. Everything you need to know is there, so it's super easy to follow!"</p>
+     <p>Wanna contact me? Add my Discord or follow me on Twitter :)</p>
+     <div class="contact-buttons">
+      <a href="https://discord.com/users/1352435566607597688" target="_blank" class="discord-btn">
+       <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4a.09.09 0 0 0-.07.03c-.18.33-.39.76-.53 1.09a16.09 16.09 0 0 0-4.8 0c-.14-.34-.35-.76-.54-1.09c-.01-.02-.04-.03-.07-.03c-1.5.26-2.93.71-4.27 1.33c-.01 0-.02.01-.03.02c-2.72 4.07-3.47 8.03-3.1 11.95c0 .02.01.04.03.05c1.8 1.32 3.53 2.12 5.24 2.65c.03.01.06 0 .07-.02c.4-.55.76-1.13 1.07-1.74c.02-.04 0-.08-.04-.09c-.57-.22-1.11-.48-1.64-.78c-.04-.02-.04-.08-.01-.11c.11-.08.22-.17.33-.25c.02-.02.05-.02.07-.01c3.44 1.57 7.15 1.57 10.55 0c.02-.01.05-.01.07.01c.11.09.22.17.33.26c.04.03.04.09-.01.11c-.52.31-1.07.56-1.64.78c-.04.01-.05.06-.04.09c.32.61.68 1.19 1.07 1.74c.03.01.06.02.09.01c1.72-.53 3.45-1.33 5.25-2.65c.02-.01.03-.03.03-.05c.44-4.53-.73-8.46-3.1-11.95c-.01-.01-.02-.02-.04-.02zM8.52 14.91c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.84 2.12-1.89 2.12zm6.97 0c-1.03 0-1.89-.95-1.89-2.12s.84-2.12 1.89-2.12c1.06 0 1.9.96 1.89 2.12c0 1.17-.83 2.12-1.89 2.12z" />
+       </svg> ZaeDaeCC </a>
+      <a href="https://twitter.com/ZaeDaeCC" target="_blank" class="twitter-btn">
+       <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z" />
+       </svg> @ZaeDaeCC </a>
+     </div>
+    </aside>
+    <!-- RIGHT: Content -->
+    <section class="content">
+     <h2 class="section">About Me</h2>
+     <p class="note">Hey there! I was born in 2007 and honestly never expected to get into making banners — but here I am! 😆 Funny thing is, a lot of people assume I'm a girl… sorry to disappoint, but I'm actually a guy. If you still want to believe otherwise, go ahead — I'm used to it LOL.</p>
+     <h2 class="section">Portfolio</h2>
+     <div class="tos-section">
+      <div class="tos-toggle"> BEFORE COMMISSIONING READ TOS </div>
+      <div class="tos-content">
+       <h3>Before commissioning</h3>
+       <ul>
+        <li>Please know what characters you want to pick and what design you want.</li>
+        <li>Know that after commissioning me, it is non-refundable.</li>
+        <li>Payment first</li>
+        <li>Do not spam me with unnecessary messages. I will warn you, and if you don't listen I will have to block you.</li>
+       </ul>
+       <h3>During the making of the banner</h3>
+       <ul>
+        <li>If you make more than 6 changes (Assuming paid commission) I will be doubling the price/requested game/social currency.</li>
+        <li>If you ask me to make more than 6 changes (Assuming this is free commission) I will have full right to close your commission.</li>
+        <li>If you are being weird I have full right to close your commission.</li>
+       </ul>
+       <h3>After the banner is made</h3>
+       <ul>
+        <li>Credit must be given if you paid on any platforms that the banner is on.</li>
+        <li>I will be allowed to share the banner publicly, unless asked.</li>
+        <li>DO NOT REMOVE CREDIT UNLESS YOU HAVE TAKEN OFF THE BANNER.</li>
+        <li>If you wish to do anything with said banner, please ask me beforehand.</li>
+        <li>If you change or modify the banner in any way, you must inform me.</li>
+        <li>Credit area must be viewable first glance and around top on your osu! bio</li>
+       </ul>
+       <h3>Perks for paying:</h3>
+       <ul>
+        <li>You get to have a PSD of your banner! meaning you can make the changes yourself incase of namechange etc! so far that is the only thing lo!</li>
+        <li>If you have been a nice client to me, I can make one of your friends a free banner, though, credit is needed.</li>
+       </ul>
+      </div>
+     </div>
+     <div class="important-notice">
+      <div class="notice-title">EVERYTHING HERE IS NOT AVAILABLE TO BE COPIED</div>
+      <div class="notice-text">Click on the image to see their profiles! Click and hold to view larger.</div>
+     </div>
+     <div class="galleries" id="galleries">
+      <!-- Initial banners (visible by default) -->
+      <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="Astolfo">
+       <img src="img/astolfo.png" alt="Astolfo" title="Astolfo - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Astolfo</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb" href="https://osu.ppy.sh/users/8474029" target="_blank" rel="noopener noreferrer" aria-label="wonder5193">
+       <img src="https://pbs.twimg.com/media/G7QPmULWIAAgPHH?format=jpg&name=large" alt="wonder5193" title="wonder5193 - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>wonder5193</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="YUYUOPE">
+       <img src="img/yuyuope.png" alt="YUYUOPE" title="YUYUOPE - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>YUYUOPE</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="Ayykk">
+       <img src="img/ayykk.png" alt="Ayykk" title="Ayykk - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Ayykk</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="Zaeem">
+       <img src="img/zaeem3.png" alt="Zaeem" title="Zaeem - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Zaeem</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="Zaeem">
+       <img src="img/zaeem2.png" alt="Zaeem" title="Zaeem - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Zaeem</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="Zaeem">
+       <img src="img/zaeem1.png" alt="Zaeem" title="Zaeem - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Zaeem</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <!-- Hidden banners (will be shown when "Show More" is clicked) -->
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/4907504" target="_blank" rel="noopener noreferrer" aria-label="Hopes">
+       <img src="img/hopes.png" alt="Hopes" title="Hopes - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Hopes</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="Zaeem">
+       <img src="img/zaeemsillygoober.png" alt="Zaeem" title="Zaeem - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Zaeem</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/8581031" target="_blank" rel="noopener noreferrer" aria-label="Poca">
+       <img src="img/poca.png" alt="Poca" title="Poca - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Poca</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/33599" target="_blank" rel="noopener noreferrer" aria-label="Andrea">
+       <img src="https://zae.zya.me/img/andrea.png" alt="Andrea" title="Andrea - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Andrea</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="DrippyMeep">
+       <img src="https://mpbox.xyz/zae/img/DrippyMeep.png" alt="DrippyMeep" title="DrippyMeep - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>DrippyMeep</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/12040572/mania" target="_blank" rel="noopener noreferrer" aria-label="_Ennill">
+       <img src="https://zaedae.carrd.co/assets/images/gallery01/2975365a.jpg?v=fda087a1" alt="_Ennill" title="_Ennill - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>_Ennill</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/758406/mania" target="_blank" rel="noopener noreferrer" aria-label="Dressurf">
+       <img src="https://zaedae.carrd.co/assets/images/gallery02/93c92bdf.jpg?v=fda087a1" alt="Dressurf" title="Dressurf - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Dressurf</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/10790649/mania" target="_blank" rel="noopener noreferrer" aria-label="Kalkai">
+       <img src="https://zaedae.carrd.co/assets/images/gallery03/6cc019bd.jpg?v=fda087a1" alt="Kalkai" title="Kalkai - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Kalkai</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/10083439/mania" target="_blank" rel="noopener noreferrer" aria-label="Boji">
+       <img src="https://zaedae.carrd.co/assets/images/gallery04/5ba7ebf2.jpg?v=fda087a1" alt="Boji" title="Boji - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Boji</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/24675802/mania" target="_blank" rel="noopener noreferrer" aria-label="Logan">
+       <img src="https://zaedae.carrd.co/assets/images/gallery05/aa9ccdeb.jpg?v=fda087a1" alt="Logan" title="Logan - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Logan</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="ZaeDae">
+       <img src="https://zaedae.carrd.co/assets/images/gallery06/6eaef9e7.jpg?v=fda087a1" alt="ZaeDae" title="ZaeDae - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>ZaeDae</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="ZaeDae alt">
+       <img src="https://zaedae.carrd.co/assets/images/gallery07/439c7c1c.jpg?v=fda087a1" alt="ZaeDae" title="ZaeDae - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>ZaeDae (Alt)</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/33599" target="_blank" rel="noopener noreferrer" aria-label="Andrea">
+       <img src="https://zaedae.carrd.co/assets/images/gallery08/922d0e96.jpg?v=fda087a1" alt="Andrea" title="Andrea - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Andrea</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/1273955" target="_blank" rel="noopener noreferrer" aria-label="Marco">
+       <img src="https://zaedae.carrd.co/assets/images/gallery09/09e397a7.jpg?v=fda087a1" alt="Marco" title="Marco - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Marco</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/28686998/mania" target="_blank" rel="noopener noreferrer" aria-label="Nxllification">
+       <img src="https://zaedae.carrd.co/assets/images/gallery10/9b6b6e34.jpg?v=fda087a1" alt="Nxllification" title="Nxllification - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Nxllification</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="Zaeem">
+       <img src="https://zaedae.carrd.co/assets/images/gallery11/85628d1d.jpg?v=fda087a1" alt="Zaeem" title="Zaeem - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Zaeem</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="Zaeem">
+       <img src="https://zaedae.carrd.co/assets/images/gallery12/a381b1fa.jpg?v=fda087a1" alt="Zaeem" title="Zaeem - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Zaeem</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="Zaeem">
+       <img src="https://zaedae.carrd.co/assets/images/gallery13/18a6c2fe.jpg?v=fda087a1" alt="Zaeem" title="Zaeem - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Zaeem</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/15274666" target="_blank" rel="noopener noreferrer" aria-label="yeeeter">
+       <img src="https://zaedae.carrd.co/assets/images/gallery14/c64139bb.jpg?v=fda087a1" alt="yeeeter" title="yeeeter - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>yeeeter</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/36450912" target="_blank" rel="noopener noreferrer" aria-label="Mazii">
+       <img src="https://zaedae.carrd.co/assets/images/gallery15/d0c53408.jpg?v=fda087a1" alt="Mazii" title="Mazii - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Mazii</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/15841840/osu" target="_blank" rel="noopener noreferrer" aria-label="Superfreak">
+       <img src="https://zaedae.carrd.co/assets/images/gallery16/7353659c.jpg?v=fda087a1" alt="Superfreak" title="Superfreak - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Superfreak</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/35176642" target="_blank" rel="noopener noreferrer" aria-label="Mooping">
+       <img src="https://zaedae.carrd.co/assets/images/gallery17/22bd4528.jpg?v=fda087a1" alt="Mooping" title="Mooping - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Mooping</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="Zaeem">
+       <img src="https://zaedae.carrd.co/assets/images/gallery18/9eb0cb66.jpg?v=fda087a1" alt="Zaeem" title="Zaeem - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Zaeem</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/14947043" target="_blank" rel="noopener noreferrer" aria-label="hz404">
+       <img src="https://zaedae.carrd.co/assets/images/gallery19/1b800d7a.jpg?v=fda087a1" alt="hz404" title="hz404 - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>hz404</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/19249802" target="_blank" rel="noopener noreferrer" aria-label="Juno">
+       <img src="https://zaedae.carrd.co/assets/images/gallery20/09d324f0.jpg?v=fda087a1" alt="Juno" title="Juno - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Juno</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/26473894" target="_blank" rel="noopener noreferrer" aria-label="Imyeeyee">
+       <img src="https://zaedae.carrd.co/assets/images/gallery21/e962b256.jpg?v=fda087a1" alt="Imyeeyee" title="Imyeeyee - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Imyeeyee</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/32785738" target="_blank" rel="noopener noreferrer" aria-label="Lucy">
+       <img src="https://zaedae.carrd.co/assets/images/gallery22/2d836ced.jpg?v=fda087a1" alt="Lucy" title="Lucy - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Lucy</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/1383951" target="_blank" rel="noopener noreferrer" aria-label="IcyWorld">
+       <img src="https://zaedae.carrd.co/assets/images/gallery23/02525a3a.jpg?v=fda087a1" alt="IcyWorld" title="IcyWorld - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>IcyWorld</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="Zaeem">
+       <img src="https://zaedae.carrd.co/assets/images/gallery24/1c730fda.jpg?v=fda087a1" alt="Zaeem" title="Zaeem - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Zaeem</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/12017594" target="_blank" rel="noopener noreferrer" aria-label="Leototo">
+       <img src="https://zaedae.carrd.co/assets/images/gallery25/70fdd779.jpg?v=fda087a1" alt="Leototo" title="Leototo - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Leototo</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="Zaeem">
+       <img src="https://zaedae.carrd.co/assets/images/gallery26/66d289a2.jpg?v=fda087a1" alt="Zaeem" title="Zaeem - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Zaeem</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="Frawog">
+       <img src="https://zaedae.carrd.co/assets/images/gallery27/0d21b745.jpg?v=fda087a1" alt="Frawog" title="Frawog - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Frawog</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/32180438" target="_blank" rel="noopener noreferrer" aria-label="Cansole">
+       <img src="https://zaedae.carrd.co/assets/images/gallery28/f2d31b67.jpg?v=fda087a1" alt="Cansole" title="Cansole - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Cansole</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/4477497" target="_blank" rel="noopener noreferrer" aria-label="Cheewee10">
+       <img src="https://zaedae.carrd.co/assets/images/gallery29/16d489c2.jpg?v=fda087a1" alt="Cheewee10" title="Cheewee10 - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Cheewee10</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="Zaeem">
+       <img src="https://zaedae.carrd.co/assets/images/gallery30/bce23294.jpg?v=fda087a1" alt="Zaeem" title="Zaeem - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>Zaeem</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+      <a class="thumb hidden-banner" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="zaeem">
+       <img src="https://zaedae.carrd.co/assets/images/gallery31/cb9ffab3.jpg?v=fda087a1" alt="zaeem" title="zaeem - Click for profile, hold to preview" loading="lazy" />
+       <div class="banner-info">
+        <span>zaeem</span>
+        <small>Custom Osu!Mania Banner</small>
+       </div>
+      </a>
+     </div>
+     <!-- Lightbox Modal -->
+     <div class="lightbox" id="lightbox">
+      <div class="lightbox-content">
+       <img id="lightbox-img" src="" alt="Banner preview">
+       <button class="lightbox-close" id="lightbox-close">×</button>
+      </div>
+     </div>
+     <div class="show-more-container">
+      <button class="show-more-btn" id="showMoreBtn">
+       <i class="fas fa-chevron-down"></i> Show More Banners </button>
+     </div>
+     <section class="faq">
+      <h2>FAQ</h2>
+      <div class="faq-item">
+       <button class="faq-question">Why are some of the images blurry?</button>
+       <div class="faq-answer">
+        <p>Some of them are blurry due to the image being low resolution. A lot of my clients prefer images that look cool over quality — which explains that part.</p>
+       </div>
+      </div>
+      <div class="faq-item">
+       <button class="faq-question">Do you use any AI?</button>
+       <div class="faq-answer">
+        <p class="highlight-bonus">⚠️ <strong>Important:</strong> I also use AI to remove image backgrounds sometimes. If you'd prefer I don't use any AI at all, just let me know — I'll respect that completely! </p>
+        <p>The only AI I use is for enhancing image quality. Before applying any AI tools, I always ask for the commissioner's permission and specify exactly which image it will be used on. Most clients prefer to keep things fully hand-made, but some choose to include AI enhancement for that extra crisp, high-quality finish — and that's the only reason I use it.</p>
+       </div>
+      </div>
+      <div class="faq-item">
+       <button class="faq-question">Prices?</button>
+       <div class="faq-answer">
+        <p>Due to some complications with PayPal and the fact that I haven't been able to find a bank that supports commissions involving slight AI usage (like VGen), I currently have to accept Discord Nitro as my form of payment. So yeah — the $10/month Nitro works, or if you'd prefer, you can get me the $12 Supporter plan (image provided). Either way, commissioning me through either option will result in the same end product. :)</p>
+        <p class="highlight-bonus"> 🌟 Bonus: If you've reached three digits in any gamemode (or Epsilon for 4k, Gamma+ for 7k), you're eligible for a free commission—just make sure to give credit! </p>
+       </div>
+      </div>
+     </section>
+     <div id="credits">
+      <a href="https://osu.ppy.sh/u/MoopingXD" target="_blank">Developed by Mooping ❤️</a>
+     </div>
+    </section>
+   </main>
+   <footer>
+    <p>© 2023 ZaeDae. All banners are original works. Do not copy or redistribute without permission.</p>
+   </footer>
+  </div>
+  <script>
+   // DOM elements
+   const themeToggle = document.getElementById('themeToggle');
+   const scrollIndicator = document.querySelector('.scroll-indicator');
+   const welcomePopup = document.getElementById('welcomePopup');
+   const popupOverlay = document.getElementById('popupOverlay');
+   const closePopup = document.getElementById('closePopup');
+   const tosToggle = document.querySelector('.tos-toggle');
+   const tosContent = document.querySelector('.tos-content');
+   const faqQuestions = document.querySelectorAll('.faq-question');
+   const showMoreBtn = document.getElementById('showMoreBtn');
+   const hiddenBanners = document.querySelectorAll('.hidden-banner');
+   const lightbox = document.getElementById('lightbox');
+   const lightboxImg = document.getElementById('lightbox-img');
+   const lightboxClose = document.getElementById('lightbox-close');
+   const bannerImages = document.querySelectorAll('.thumb img');
+   const backToTop = document.getElementById('backToTop');
+   const particlesContainer = document.getElementById('particles');
+   const bannerCount = document.getElementById('bannerCount');
+   // Create animated particles
+   function createParticles() {
+    const colors = ['var(--mint-primary)', 'var(--accent-pink)', 'var(--accent-yellow)', 'var(--accent-purple)', 'var(--accent-blue)'];
+    for (let i = 0; i < 15; i++) {
+     const particle = document.createElement('div');
+     particle.className = 'particle';
+     const size = Math.random() * 40 + 10;
+     particle.style.width = `${size}px`;
+     particle.style.height = `${size}px`;
+     particle.style.top = `${Math.random() * 100}%`;
+     particle.style.left = `${Math.random() * 100}%`;
+     particle.style.background = `radial-gradient(circle, ${colors[Math.floor(Math.random() * colors.length)]} 0%, transparent 70%)`;
+     particle.style.opacity = `${Math.random() * 0.1 + 0.05}`;
+     const duration = Math.random() * 25 + 15;
+     const delay = Math.random() * 20;
+     particle.style.animationDuration = `${duration}s`;
+     particle.style.animationDelay = `${delay}s`;
+     particlesContainer.appendChild(particle);
+    }
+   }
+   // Smooth scroll to element with prevention for certain elements
+   function smoothScrollTo(target, duration = 800) {
+    // Don't scroll if we're already at the target
+    const targetPosition = target.getBoundingClientRect().top + window.pageYOffset;
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    // If we're already very close to the target, don't scroll
+    if (Math.abs(distance) < 50) return;
+    let startTime = null;
+
+    function animation(currentTime) {
+     if (startTime === null) startTime = currentTime;
+     const timeElapsed = currentTime - startTime;
+     const run = easeInOutCubic(timeElapsed, startPosition, distance, duration);
+     window.scrollTo(0, run);
+     if (timeElapsed < duration) requestAnimationFrame(animation);
+    }
+
+    function easeInOutCubic(t, b, c, d) {
+     t /= d / 2;
+     if (t < 1) return c / 2 * t * t * t + b;
+     t -= 2;
+     return c / 2 * (t * t * t + 2) + b;
+    }
+    requestAnimationFrame(animation);
+   }
+   // Theme toggle functionality - FIXED: Prevent default
+   themeToggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const currentTheme = document.body.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+    document.body.style.opacity = 0.7;
+    setTimeout(() => {
+     document.body.setAttribute('data-theme', newTheme);
+     localStorage.setItem('portfolio-theme', newTheme);
+     document.body.style.opacity = 1;
+    }, 300);
+   });
+   // Load saved theme
+   const savedTheme = localStorage.getItem('portfolio-theme');
+   if (savedTheme) {
+    document.body.setAttribute('data-theme', savedTheme);
+   }
+   // Scroll indicator and back to top
+   window.addEventListener('scroll', () => {
+    const windowHeight = window.innerHeight;
+    const documentHeight = document.documentElement.scrollHeight - windowHeight;
+    const scrolled = (window.scrollY / documentHeight) * 100;
+    scrollIndicator.style.width = `${scrolled}%`;
+    // Show/hide back to top button
+    if (window.scrollY > 500) {
+     backToTop.classList.add('visible');
+    } else {
+     backToTop.classList.remove('visible');
+    }
+    // Parallax effect for particles
+    const particles = document.querySelectorAll('.particle');
+    particles.forEach(particle => {
+     const speed = 0.3;
+     const yPos = -(window.pageYOffset * speed);
+     particle.style.transform = `translateY(${yPos}px)`;
+    });
+   });
+   // Back to top functionality - FIXED: Prevent random scrolling
+   backToTop.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+     top: 0,
+     behavior: 'smooth'
+    });
+   });
+   // Welcome popup (show on page load)
+   window.addEventListener('load', () => {
+    setTimeout(() => {
+     welcomePopup.classList.add('active');
+     popupOverlay.classList.add('active');
+    }, 800);
+    createParticles();
+    // Animate banner count
+    let count = 0;
+    const targetCount = 15;
+    const countInterval = setInterval(() => {
+     count++;
+     bannerCount.textContent = count + '+';
+     if (count >= targetCount) clearInterval(countInterval);
+    }, 80);
+   });
+   // Close welcome popup - FIXED: Prevent random scrolling
+   closePopup.addEventListener('click', (e) => {
+    e.preventDefault();
+    welcomePopup.classList.remove('active');
+    popupOverlay.classList.remove('active');
+    // Don't auto-scroll after closing popup
+   });
+   // TOS toggle - FIXED: Prevent random scrolling
+   tosToggle.addEventListener('click', (e) => {
+    e.preventDefault();
+    tosToggle.classList.toggle('active');
+    tosContent.classList.toggle('active');
+    // Don't auto-scroll when opening TOS
+    // Remove any smooth scrolling triggers
+   });
+   // FAQ accordion - FIXED: Prevent random scrolling
+   faqQuestions.forEach(question => {
+    question.addEventListener('click', (e) => {
+     e.preventDefault();
+     e.stopPropagation();
+     const answer = question.nextElementSibling;
+     question.classList.toggle('active');
+     answer.classList.toggle('active');
+     // Close other open FAQ items
+     faqQuestions.forEach(otherQuestion => {
+      if (otherQuestion !== question && otherQuestion.classList.contains('active')) {
+       otherQuestion.classList.remove('active');
+       otherQuestion.nextElementSibling.classList.remove('active');
       }
-
-      body {
-        font-family: "Poppins", "Quicksand", "Nunito", sans-serif;
-        color: var(--text);
-        background: linear-gradient(135deg, var(--bg1), var(--bg2), #fff0fa, #fef4ff);
-        background-size: 300% 300%;
-        animation: dreamyFlow 25s ease infinite;
-        min-height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        padding: 60px 20px;
-        line-height: 1.7;
-      }
-
-      @keyframes dreamyFlow {
-        0% {
-          background-position: 0% 50%;
-        }
-
-        50% {
-          background-position: 100% 50%;
-        }
-
-        100% {
-          background-position: 0% 50%;
-        }
-      }
-
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-      }
-
-      .wrap {
-        width: 100%;
-        max-width: var(--max-width);
-        animation: fadeIn 1.2s ease forwards;
-      }
-
-      header.site-header {
-        text-align: center;
-        margin-bottom: 52px;
-      }
-
-      .title {
-        display: inline-block;
-        background: #fff;
-        padding: 14px 40px;
-        border-radius: 999px;
-        font-weight: 700;
-        font-size: 1.35rem;
-        color: var(--accent);
-        box-shadow: var(--shadow);
-        border: 2px solid var(--accent-light);
-        transition: all 0.3s ease;
-      }
-
-      .title:hover {
-        transform: scale(1.07);
-        background: var(--accent-light);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      }
-
-      .card {
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(12px);
-        border-radius: var(--radius);
-        padding: 38px;
-        box-shadow: var(--shadow);
-        animation: fadeUp 0.9s ease forwards;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        border: 1.5px solid rgba(230, 200, 255, 0.6);
-      }
-
-      .card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.08);
-      }
-
-      .main-grid {
-        display: grid;
-        grid-template-columns: 320px 1fr;
-        gap: 36px;
-      }
-
-      .profile {
-        text-align: center;
-      }
-
-      .avatar {
-        width: 100%;
-        aspect-ratio: 1 / 1;
-        border-radius: 50%;
-        overflow: hidden;
-        margin-bottom: 18px;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
-        transition: all 0.35s ease;
-        border: 2.5px solid var(--accent-light);
-      }
-
-      .avatar:hover {
-        transform: scale(1.05) rotate(1deg);
-        box-shadow: 0 10px 28px rgba(0, 0, 0, 0.1);
-      }
-
-      .avatar img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .profile h1 {
-        font-size: 1.5rem;
-        margin-bottom: 6px;
-        color: var(--accent);
-      }
-
-      .profile p {
-        color: var(--muted);
-        font-size: 0.97rem;
-        margin-bottom: 18px;
-      }
-
-      .divider {
-        height: 1.5px;
-        background: var(--accent-light);
-        margin: 26px 0;
-        border-radius: 999px;
-      }
-
-      .content h2.section {
-        text-align: center;
-        font-size: 1.3rem;
-        margin-bottom: 12px;
-        font-weight: 700;
-        color: #b380ff;
-      }
-
-      .note {
-        color: var(--muted);
-        font-size: 0.95rem;
-        margin-bottom: 20px;
-      }
-
-      .galleries {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 22px;
-        margin-top: 24px;
-      }
-
-      .thumb {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        background: #fff;
-        border-radius: var(--radius);
-        overflow: hidden;
-        border: 1.5px solid #f0e5ff;
-        box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
-        transition: all 0.3s ease;
-      }
-
-      .thumb img {
-        width: 100%;
-        height: auto;
-        display: block;
-        object-fit: contain;
-        background: #fff;
-      }
-
-      .thumb:hover {
-        transform: translateY(-8px) scale(1.04);
-        filter: brightness(1.08);
-        box-shadow: 0 12px 34px rgba(0, 0, 0, 0.12);
-        border-color: var(--accent);
-      }
-
-      .faq {
-        max-width: 600px;
-        margin: 50px auto;
-        padding: 25px;
-        border-radius: 24px;
-        background-color: #faf6ff;
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
-        font-family: 'Poppins', sans-serif;
-      }
-
-      .faq h2 {
-        text-align: center;
-        color: #b380ff;
-        margin-bottom: 25px;
-        font-size: 1.8rem;
-        letter-spacing: 1px;
-      }
-
-      .faq-item {
-        border-bottom: 1px solid #e7d8ff;
-        margin-bottom: 10px;
-        border-radius: 16px;
-        overflow: hidden;
-      }
-
-      .faq-question {
-        background: none;
-        border: none;
-        width: 100%;
-        text-align: left;
-        font-size: 1rem;
-        font-weight: 600;
-        color: #a76fff;
-        padding: 15px 18px;
-        border-radius: 16px;
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        transition: all 0.3s ease;
-      }
-
-      .faq-question:hover {
-        background: #f3e9ff;
-        transform: scale(1.02);
-      }
-
-      .faq-answer {
-        max-height: 0;
-        opacity: 0;
-        overflow: hidden;
-        transition: all 0.45s cubic-bezier(0.25, 1.3, 0.5, 1);
-        color: #5e5e5e;
-        padding: 0 18px;
-      }
-
-      .faq-item.active .faq-answer {
-        max-height: 999px;
-        opacity: 1;
-        padding: 10px 18px 20px;
-        animation: faqBounce 0.4s ease;
-      }
-
-      .faq-item.active .faq-question {
-        background: #f3e9ff;
-        color: #8449ff;
-        transform: scale(1.02);
-      }
-
-      @keyframes faqBounce {
-        0% {
-          transform: translateY(-6px);
-          opacity: 0;
-        }
-
-        60% {
-          transform: translateY(4px);
-          opacity: 1;
-        }
-
-        100% {
-          transform: translateY(0);
-        }
-      }
-
-      @media (max-width: 600px) {
-        .faq {
-          padding: 20px 15px;
-        }
-
-        .faq-question {
-          font-size: 0.95rem;
-          padding: 14px;
-        }
-
-        .faq-answer {
-          font-size: 0.9rem;
-          padding: 0 14px;
-        }
-      }
-
-      .contact-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 14px;
-        margin-top: 18px;
-        flex-wrap: wrap;
-      }
-
-      .discord-btn,
-      .twitter-btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        width: 160px;
-        height: 46px;
-        background: var(--accent);
-        color: white;
-        font-weight: 600;
-        border-radius: 999px;
-        text-decoration: none;
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-        transition: all 0.25s ease;
-      }
-
-      .discord-btn {
-        background: #8c7bff;
-      }
-
-      .discord-btn:hover {
-        background: #7a6af0;
-        transform: translateY(-3px);
-      }
-
-      .twitter-btn {
-        background: #000;
-      }
-
-      .twitter-btn:hover {
-        background: #111;
-        transform: translateY(-3px);
-      }
-
-      .contact-icon {
-        width: 20px;
-        height: 20px;
-      }
-
-      #credits {
-        text-align: center;
-        margin-top: 48px;
-        font-size: 0.85rem;
-        color: var(--muted);
-      }
-
-      #credits a {
-        color: var(--accent);
-        text-decoration: none;
-        transition: color 0.2s ease;
-      }
-
-      #credits a:hover {
-        color: var(--accent-pink);
-      }
-
-      @keyframes fadeUp {
-        from {
-          opacity: 0;
-          transform: translateY(15px);
-        }
-
+     });
+     // Don't auto-scroll when opening FAQ items
+    });
+   });
+   // Lightbox functionality - FIXED: Better handling
+   bannerImages.forEach(img => {
+    img.addEventListener('click', function(e) {
+     // Only open lightbox if Ctrl or Cmd isn't pressed (for opening in new tab)
+     if (!e.ctrlKey && !e.metaKey) {
+      e.preventDefault();
+      e.stopPropagation();
+      lightboxImg.src = this.src;
+      lightboxImg.alt = this.alt;
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+     }
+    });
+    // Remove hold-to-preview functionality to prevent accidental triggers
+    // Let's keep it simple: just click for lightbox, normal click for profile
+   });
+   // Close lightbox
+   lightboxClose.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    lightbox.classList.remove('active');
+    document.body.style.overflow = 'auto';
+   });
+   // Close lightbox when clicking outside the image
+   lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) {
+     lightbox.classList.remove('active');
+     document.body.style.overflow = 'auto';
+    }
+   });
+   // Close lightbox with Escape key
+   document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && lightbox.classList.contains('active')) {
+     lightbox.classList.remove('active');
+     document.body.style.overflow = 'auto';
+    }
+   });
+   // Show more banners - FIXED: No auto-scrolling
+   let showAllBanners = false;
+   showMoreBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    if (!showAllBanners) {
+     hiddenBanners.forEach((banner, index) => {
+      setTimeout(() => {
+       banner.style.display = 'block';
+       banner.offsetHeight; // Force reflow
+       banner.classList.add('show');
+      }, index * 100);
+     });
+     showMoreBtn.innerHTML = ' < i class = "fas fa-chevron-up" > < /i> Show Less Banners';
+     showAllBanners = true;
+     // Update banner count
+     bannerCount.textContent = '25+';
+     // Don't auto-scroll when showing more banners
+    } else {
+     hiddenBanners.forEach(banner => {
+      banner.classList.remove('show');
+      setTimeout(() => {
+       banner.style.display = 'none';
+      }, 300);
+     });
+     showMoreBtn.innerHTML = ' < i class = "fas fa-chevron-down" > < /i> Show More Banners';
+     showAllBanners = false;
+    }
+   });
+   // Add ripple effect to buttons - FIXED: Prevent default
+   document.querySelectorAll('button, .discord-btn, .twitter-btn, .show-more-btn, .close-btn').forEach(button => {
+    button.addEventListener('click', function(e) {
+     // Don't add ripple to banner links
+     if (this.classList.contains('thumb')) return;
+     // Prevent any default behavior that might cause scrolling
+     e.preventDefault();
+     e.stopPropagation();
+     // Only add ripple effect for visual feedback, not functional
+     const ripple = document.createElement('span');
+     const rect = this.getBoundingClientRect();
+     const size = Math.max(rect.width, rect.height);
+     const x = e.clientX - rect.left - size / 2;
+     const y = e.clientY - rect.top - size / 2;
+     ripple.style.cssText = `
+          position: absolute;
+          border-radius: 50%;
+          background: rgba(255, 255, 255, 0.6);
+          transform: scale(0);
+          animation: ripple 0.7s linear;
+          width: ${size}px;
+          height: ${size}px;
+          top: ${y}px;
+          left: ${x}px;
+          pointer-events: none;
+          z-index: 1;
+        `;
+     this.style.position = 'relative';
+     this.style.overflow = 'hidden';
+     this.appendChild(ripple);
+     setTimeout(() => ripple.remove(), 700);
+    });
+   });
+   // Add CSS for ripple animation
+   const style = document.createElement('style');
+   style.textContent = `
+      @keyframes ripple {
         to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      @keyframes fadeIn {
-        from {
+          transform: scale(4);
           opacity: 0;
         }
-
-        to {
-          opacity: 1;
-        }
       }
+    `;
+   document.head.appendChild(style);
+   // Remove mouse move parallax effect completely to prevent any interference
+   // Commented out to prevent any unexpected behavior
+   // Preload images for better performance
+   function preloadImages() {
+    const images = document.querySelectorAll('.thumb img');
+    images.forEach(img => {
+     const src = img.getAttribute('src');
+     if (src && !src.startsWith('data:')) {
+      const image = new Image();
+      image.src = src;
+     }
+    });
+   }
+   // Call preload after page loads
+   setTimeout(preloadImages, 2000);
+   // Add typing effect to title
+   const title = document.querySelector('.title');
+   const originalText = title.textContent;
+   title.textContent = '';
+   let i = 0;
 
-      @media (max-width: 1000px) {
-        .main-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .profile {
-          order: -1;
-        }
-      }
-
-      @media (max-width: 500px) {
-        .card {
-          padding: 26px;
-        }
-
-        .title {
-          font-size: 1.15rem;
-          padding: 10px 22px;
-        }
-
-        .discord-btn,
-        .twitter-btn {
-          width: 100%;
-        }
-      }
-
-      .highlight-bonus {
-        background: linear-gradient(90deg, #fceaff, #f8e6ff);
-        border-left: 4px solid #d6b2ff;
-        padding: 10px 14px;
-        border-radius: 12px;
-        font-weight: 500;
-        color: #5d4679;
-        margin-top: 10px;
-      }
-
-      .welcome-popup {
-        position: fixed;
-        top: 20px;
-        right: -400px;
-        background-color: #fdf4ff;
-        color: #5b4a65;
-        font-family: 'Poppins', sans-serif;
-        padding: 18px 26px;
-        border-radius: 20px;
-        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-        z-index: 1000;
-        max-width: 320px;
-        opacity: 0;
-        transition: all 0.9s cubic-bezier(0.25, 1, 0.5, 1);
-      }
-
-      .welcome-popup.show {
-        right: 20px;
-        opacity: 1;
-      }
-
-      .welcome-popup .title {
-        font-weight: 700;
-        margin: 0;
-        font-size: 1.1rem;
-        color: #a060c3;
-      }
-
-      .welcome-popup .desc {
-        margin: 6px 0 0;
-        font-size: 0.9rem;
-        font-weight: 500;
-        color: #705a80;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="wrap">
-      <header class="site-header">
-        <div class="title">🌸 Zae // ZaeDae</div>
-      </header>
-      <main class="card main-grid">
-        <!-- LEFT: Profile -->
-        <aside class="profile">
-          <div class="avatar">
-            <img src="https://mpbox.xyz/zae/IMG_3995.jpeg" alt="Zae avatar">
-          </div>
-          <h1>Zae // ZaeDae</h1>
-          <p>Hey there! I was born in 2007, and honestly, I never imagined I’d get into making banners — yet here I am, diving in and loving every bit of the process 😆. People often assume I’m a girl because of my style or vibe… surprise! I’m actually a guy. But hey, I’ve gotten used to it — if you want to keep thinking otherwise, go ahead LOL.</p>
-          <p>You can scroll down to check out my banners and see the FAQ about commissions. Everything you need to know is there, so it’s super easy to follow!"</p>
-          <p>Wanna contact me? Add my Discord or follow me on Twitter :)</p>
-          <div class="contact-buttons">
-            <a href="https://discord.com/users/1352435566607597688" target="_blank" class="discord-btn">
-              <img src="https://cdn-icons-png.flaticon.com/512/5968/5968756.png" class="contact-icon" alt="Discord"> ZaeDaeCC </a>
-            <a href="https://twitter.com/ZaeDaeCC" target="_blank" class="twitter-btn">
-              <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" class="contact-icon" alt="Twitter"> @ZaeDaeCC </a>
-          </div>
-        </aside>
-        <!-- RIGHT: Content -->
-        <section class="content">
-          <h2 class="section">About Me</h2>
-          <p class="note">Hey there! I was born in 2007 and honestly never expected to get into making banners — but here I am! 😆 Funny thing is, a lot of people assume I’m a girl… sorry to disappoint, but I’m actually a guy. If you still want to believe otherwise, go ahead — I’m used to it LOL.</p>
-          <h2 class="section">Portfolio</h2>
-          <p class="note">
-            <strong>EVERYTHING HERE IS NOT AVAILABLE TO BE COPIED</strong>
-          </p>
-          <p class="note">
-            <strong>Click on the image to see their profiles!</strong>
-          </p>
-          <div class="galleries" id="galleries">
-            <a class="thumb" href="https://osu.ppy.sh/users/33599" target="_blank" rel="noopener noreferrer" aria-label="Andrea">
-              <img src="https://mpbox.xyz/zae/img/banner-andrea.png" alt="_Ennill" title="Andrea" />
-              </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/23327830" target="_blank" rel="noopener noreferrer" aria-label="DrippyMeep">
-              <img src="https://mpbox.xyz/zae/img/DrippyMeep.png" alt="DrippyMeep" title="DrippyMeep" />
-              </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/12040572/mania" target="_blank" rel="noopener noreferrer" aria-label="_Ennill">
-              <img src="https://zaedae.carrd.co/assets/images/gallery01/2975365a.jpg?v=fda087a1" alt="_Ennill" title="_Ennill" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/758406/mania" target="_blank" rel="noopener noreferrer" aria-label="Dressurf">
-              <img src="https://zaedae.carrd.co/assets/images/gallery02/93c92bdf.jpg?v=fda087a1" alt="Dressurf" title="Dressurf" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/10790649/mania" target="_blank" rel="noopener noreferrer" aria-label="Kalkai">
-              <img data-src="https://zaedae.carrd.co/assets/images/gallery03/6cc019bd.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjOWM4NTcwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Kalkai" title="Kalkai" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/10083439/mania" target="_blank" rel="noopener noreferrer" aria-label="Boji">
-              <img src="https://zaedae.carrd.co/assets/images/gallery04/5ba7ebf2.jpg?v=fda087a1" alt="Boji" title="Boji" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/24675802/mania" target="_blank" rel="noopener noreferrer" aria-label="Logan">
-              <img data-src="https://zaedae.carrd.co/assets/images/gallery05/aa9ccdeb.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjMjkzYTk5IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Logan" title="Logan" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="ZaeDae">
-              <img data-src="https://zaedae.carrd.co/assets/images/gallery06/6eaef9e7.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjMWIyZTcyIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="ZaeDae" title="ZaeDae" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer" aria-label="ZaeDae alt">
-              <img data-src="https://zaedae.carrd.co/assets/images/gallery07/439c7c1c.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjMWIxNjE5IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="ZaeDae" title="ZaeDae" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/33599" target="_blank" rel="noopener noreferrer" aria-label="Andrea">
-              <img data-src="https://zaedae.carrd.co/assets/images/gallery08/922d0e96.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjM2U3N2Q1IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Andrea" title="Andrea" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/1273955" target="_blank" rel="noopener noreferrer" aria-label="Marco">
-              <img data-src="https://zaedae.carrd.co/assets/images/gallery09/09e397a7.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjMzE2NTUxIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Marco" title="Marco" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/28686998/mania" target="_blank" rel="noopener noreferrer">
-              <img data-src="https://zaedae.carrd.co/assets/images/gallery10/9b6b6e34.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjNzI4MGE5IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Nxllification" title="Nxllification" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer">
-              <img data-src="https://zaedae.carrd.co/assets/images/gallery11/85628d1d.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjOWE2ZjVkIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Zaeem" title="Zaeem" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer">
-              <img src="https://zaedae.carrd.co/assets/images/gallery12/a381b1fa.jpg?v=fda087a1" alt="Zaeem" title="Zaeem" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer">
-              <img src="https://zaedae.carrd.co/assets/images/gallery13/18a6c2fe.jpg?v=fda087a1" alt="Zaeem" title="Zaeem" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/15274666" target="_blank" rel="noopener noreferrer">
-              <img data-src="https://zaedae.carrd.co/assets/images/gallery14/c64139bb.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjN2U1ZDUzIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="yeeeter" title="yeeeter" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/36450912" target="_blank" rel="noopener noreferrer">
-              <img src="https://zaedae.carrd.co/assets/images/gallery15/d0c53408.jpg?v=fda087a1" alt="Mazii" title="Mazii" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/15841840/osu" target="_blank" rel="noopener noreferrer">
-              <img data-src="https://zaedae.carrd.co/assets/images/gallery16/7353659c.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAyIDQ1MCIgd2lkdGg9IjE4MDIiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjOWE2ZTUwIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Superfreak" title="Superfreak" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/35176642" target="_blank" rel="noopener noreferrer">
-              <img src="https://zaedae.carrd.co/assets/images/gallery17/22bd4528.jpg?v=fda087a1" alt="Mooping" title="Mooping" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer">
-              <img data-src="https://zaedae.carrd.co/assets/images/gallery18/9eb0cb66.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjYmY4ZDMyIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Zaeem" title="Zaeem" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/14947043" target="_blank" rel="noopener noreferrer">
-              <img data-src="https://zaedae.carrd.co/assets/images/gallery19/1b800d7a.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjOGI3Y2FhIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="hz404" title="hz404" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/19249802" target="_blank" rel="noopener noreferrer">
-              <img data-src="https://zaedae.carrd.co/assets/images/gallery20/09d324f0.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjN2Q1NDU0IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Juno" title="Juno" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/26473894" target="_blank" rel="noopener noreferrer">
-              <img data-src="https://zaedae.carrd.co/assets/images/gallery21/e962b256.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjNWU1ZjY5IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Imyeeyee" title="Imyeeyee" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/32785738" target="_blank" rel="noopener noreferrer">
-              <img data-src="https://zaedae.carrd.co/assets/images/gallery22/2d836ced.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjODI5Yjc5IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Lucy" title="Lucy" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/1383951" target="_blank" rel="noopener noreferrer">
-              <img data-src="https://zaedae.carrd.co/assets/images/gallery23/02525a3a.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjMzQyNzFmIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="IcyWorld" title="IcyWorld" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer">
-              <img data-src="https://zaedae.carrd.co/assets/images/gallery24/1c730fda.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjOGI3MzQ5IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Zaeem" title="Zaeem" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/12017594" target="_blank" rel="noopener noreferrer">
-              <img src="https://zaedae.carrd.co/assets/images/gallery25/70fdd779.jpg?v=fda087a1" alt="Leototo" title="Leototo" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer">
-              <img src="https://zaedae.carrd.co/assets/images/gallery26/66d289a2.jpg?v=fda087a1" alt="Zaeem" title="Zaeem" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer">
-              <img src="https://zaedae.carrd.co/assets/images/gallery27/0d21b745.jpg?v=fda087a1" alt="Frawog" title="Frawog" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/32180438" target="_blank" rel="noopener noreferrer">
-              <img src="https://zaedae.carrd.co/assets/images/gallery28/f2d31b67.jpg?v=fda087a1" alt="Cansole" title="Cansole" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/4477497" target="_blank" rel="noopener noreferrer">
-              <img data-src="https://zaedae.carrd.co/assets/images/gallery29/16d489c2.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjNDgxYjRlIiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Cheewee10" title="Cheewee10" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer">
-              <img data-src="https://zaedae.carrd.co/assets/images/gallery30/bce23294.jpg?v=fda087a1" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHg9IjAiIHk9IjAiIHZpZXdCb3g9IjAgMCAxODAwIDQ1MCIgd2lkdGg9IjE4MDAiIGhlaWdodD0iNDUwIiBwcmVzZXJ2ZUFzcGVjdFJhdGlvPSJub25lIj48cmVjdCBmaWxsPSIjMjIxNzE0IiB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIi8%2BPC9zdmc%2B" alt="Zaeem" title="Zaeem" />
-            </a>
-            <a class="thumb" href="https://osu.ppy.sh/users/35463094" target="_blank" rel="noopener noreferrer">
-              <img src="https://zaedae.carrd.co/assets/images/gallery31/cb9ffab3.jpg?v=fda087a1" alt="zaeem" title="zaeem" />
-            </a>
-          </div>
-          <section class="faq">
-            <h2>FAQ</h2>
-            <div class="faq-item">
-              <button class="faq-question">Why are some of the images blurry?</button>
-              <div class="faq-answer">
-                <p>Some of them are blurry due to the image being low resolution. A lot of my clients prefer images that look cool over quality — which explains that part.</p>
-              </div>
-            </div>
-            <div class="faq-item">
-              <button class="faq-question">Do you use any AI?</button>
-              <div class="faq-answer">
-                <p>The only AI I use is for enhancing image quality. Before using any kind of AI, I always ask the commissioner for permission and specify exactly which image it’ll be applied to. Most of my clients prefer not to use AI, but some choose to include it to preserve that extra “cool” high-quality finish — and that’s the only purpose it serves.</p>
-              </div>
-            </div>
-            <div class="faq-item">
-              <button class="faq-question">Prices?</button>
-              <div class="faq-answer">
-                <p>Due to some complications with PayPal and the fact that I haven’t been able to find a bank that supports commissions involving slight AI usage (like VGen), I currently have to accept Discord Nitro as my form of payment. So yeah — the $10/month Nitro works, or if you’d prefer, you can get me the $12 Supporter plan (image provided). Either way, commissioning me through either option will result in the same end product. :)</p>
-                <p></p>
-                <p class="highlight-bonus"> 🌟 Bonus: If you’ve reached three digits in any gamemode, you’re eligible for a free commission—just make sure to give credit! </p>
-              </div>
-            </div>
-          </section>
-          <div id="credits">
-            <a href="https://osu.ppy.sh/u/MoopingXD" target="_blank">Developed by Mooping ❤️</a>
-          </div>
-        </section>
-      </main>
-    </div>
-    <div class="welcome-popup" id="welcomePopup">
-      <p class="title">🌸 Welcome to my Portfolio!</p>
-      <p class="desc">I’m Zae — I create custom Osu!Mania banners with a clean pastel vibe. Feel free to explore my works and check the FAQ for commission info 💌</p>
-    </div>
-    <script>
-      (function() {
-        const imgs = document.querySelectorAll('img[data-src]');
-        if ('IntersectionObserver' in window) {
-          const io = new IntersectionObserver((entries, obs) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                const img = entry.target;
-                img.src = img.dataset.src;
-                img.removeAttribute('data-src');
-                obs.unobserve(img);
-              }
-            });
-          }, {
-            rootMargin: '200px'
-          });
-          imgs.forEach(i => io.observe(i));
-        } else {
-          imgs.forEach(i => {
-            i.src = i.dataset.src;
-            i.removeAttribute('data-src');
-          });
-        }
-      })();
-    </script>
-    <script>
-      document.querySelectorAll('.faq-question').forEach(button => {
-        button.addEventListener('click', () => {
-          const faqItem = button.parentElement;
-          faqItem.classList.toggle('active');
-        });
-      });
-    </script>
-    <script>
-      window.addEventListener('load', () => {
-        const popup = document.getElementById('welcomePopup');
-        popup.classList.add('show');
-        // Auto-hide after 5 seconds
-        setTimeout(() => {
-          popup.classList.remove('show');
-        }, 7000);
-      });
-    </script>
-  </body>
+   function typeWriter() {
+    if (i < originalText.length) {
+     title.textContent += originalText.charAt(i);
+     i++;
+     setTimeout(typeWriter, 60);
+    }
+   }
+   // Start typing effect after popup
+   setTimeout(() => {
+    typeWriter();
+   }, 1500);
+   // Prevent any anchor links from causing jumps
+   document.querySelectorAll('a[href="#"]').forEach(anchor => {
+    anchor.addEventListener('click', (e) => {
+     e.preventDefault();
+    });
+   });
+   // Prevent form submission if any forms are added later
+   document.querySelectorAll('form').forEach(form => {
+    form.addEventListener('submit', (e) => {
+     e.preventDefault();
+    });
+   });
+   // Initialize tooltips
+   bannerImages.forEach(img => {
+    img.addEventListener('mouseenter', function() {
+     this.style.cursor = 'pointer';
+    });
+   });
+   // Fix for banner links - they should open profiles, not cause scrolling
+   document.querySelectorAll('.thumb').forEach(thumb => {
+    thumb.addEventListener('click', function(e) {
+     // Allow normal link behavior for opening profiles
+     // Don't prevent default here
+     // Just make sure it doesn't interfere with lightbox
+     if (!e.target.closest('img')) {
+      // If clicking on the link itself (not the image), allow normal behavior
+      return;
+     }
+    });
+   });
+   // Add a simple fix for any remaining scrolling issues
+   window.addEventListener('hashchange', function(e) {
+    // Prevent any hash-based scrolling
+    e.preventDefault();
+   }, false);
+  </script>
+ </body>
 </html>

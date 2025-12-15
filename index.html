@@ -1,1212 +1,1180 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MintHub - DNS Revoke Blocker</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
 
-        :root {
-            --mint-primary: #3EB489;
-            --mint-light: #8FD3C7;
-            --mint-dark: #2A8C6F;
-            --mint-pale: #E8F6F3;
-            --warning: #FF9800;
-            --warning-light: #FFF3E0;
-            --gray-dark: #333333;
-            --gray-light: #F8F9FA;
-            --gray-medium: #6C757D;
-            --white: #FFFFFF;
-            --shadow: rgba(62, 180, 137, 0.1);
-            --shadow-dark: rgba(62, 180, 137, 0.2);
-        }
+      :root {
+        --mint-primary: #3EB489;
+        --mint-light: #8FD3C7;
+        --mint-dark: #2A8C6F;
+        --mint-pale: #E8F6F3;
+        --warning: #FF9800;
+        --warning-light: #FFF3E0;
+        --gray-dark: #333333;
+        --gray-light: #F8F9FA;
+        --gray-medium: #6C757D;
+        --white: #FFFFFF;
+        --shadow: rgba(62, 180, 137, 0.1);
+        --shadow-dark: rgba(62, 180, 137, 0.2);
+      }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            color: var(--gray-dark);
-            background-color: var(--white);
-            overflow-x: hidden;
-        }
+      body {
+        font-family: 'Inter', sans-serif;
+        line-height: 1.6;
+        color: var(--gray-dark);
+        background-color: var(--white);
+        overflow-x: hidden;
+      }
 
-        h1, h2, h3, h4 {
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            line-height: 1.3;
-        }
+      h1,
+      h2,
+      h3,
+      h4 {
+        font-family: 'Poppins', sans-serif;
+        font-weight: 600;
+        line-height: 1.3;
+      }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
 
-        /* Header */
-        header {
-            background: linear-gradient(135deg, var(--mint-primary), var(--mint-dark));
-            color: var(--white);
-            padding: 20px 0;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-        }
+      /* Header */
+      header {
+        background: linear-gradient(135deg, var(--mint-primary), var(--mint-dark));
+        color: var(--white);
+        padding: 20px 0;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      }
 
+      .header-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .logo-icon {
+        font-size: 28px;
+        animation: pulse 2s infinite;
+      }
+
+      .logo-text {
+        font-size: 24px;
+        font-weight: 700;
+      }
+
+      nav ul {
+        display: flex;
+        list-style: none;
+        gap: 30px;
+      }
+
+      nav a {
+        color: var(--white);
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+        padding: 5px 0;
+      }
+
+      nav a:hover {
+        opacity: 0.9;
+      }
+
+      nav a::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: var(--white);
+        transition: width 0.3s ease;
+      }
+
+      nav a:hover::after {
+        width: 100%;
+      }
+
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: var(--white);
+        font-size: 24px;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+
+      .mobile-menu-btn:hover {
+        transform: scale(1.1);
+      }
+
+      /* Hero Section */
+      .hero {
+        padding: 120px 0 80px;
+        background: linear-gradient(to bottom, var(--mint-pale), var(--white));
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+      }
+
+      .hero h1 {
+        font-size: 3.2rem;
+        color: var(--mint-dark);
+        margin-bottom: 20px;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+      }
+
+      .hero-subtitle {
+        font-size: 1.5rem;
+        color: var(--mint-primary);
+        margin-bottom: 20px;
+        font-weight: 500;
+      }
+
+      .hero p {
+        font-size: 1.2rem;
+        color: var(--gray-medium);
+        margin-bottom: 40px;
+        max-width: 700px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .shield-icon {
+        font-size: 5rem;
+        color: var(--mint-primary);
+        margin-bottom: 30px;
+        animation: float 3s ease-in-out infinite;
+        filter: drop-shadow(0 5px 15px rgba(62, 180, 137, 0.3));
+      }
+
+      /* Download Section */
+      .download-section {
+        padding: 100px 0;
+        background-color: var(--white);
+      }
+
+      .download-container {
+        display: flex;
+        align-items: center;
+        gap: 60px;
+        flex-wrap: wrap;
+      }
+
+      .download-info {
+        flex: 1;
+        min-width: 300px;
+      }
+
+      .download-card {
+        flex: 1;
+        min-width: 300px;
+        background: var(--white);
+        border-radius: 20px;
+        padding: 40px;
+        box-shadow: 0 20px 40px var(--shadow);
+        border: 1px solid var(--mint-light);
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.4s ease;
+        transform: translateY(0);
+      }
+
+      .download-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 25px 50px var(--shadow-dark);
+      }
+
+      .download-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(to right, var(--mint-primary), var(--mint-light));
+        transition: height 0.3s ease;
+      }
+
+      .download-card:hover::before {
+        height: 8px;
+      }
+
+      .download-card h2 {
+        color: var(--mint-dark);
+        margin-bottom: 20px;
+        font-size: 2rem;
+      }
+
+      .download-card p {
+        color: var(--gray-medium);
+        margin-bottom: 30px;
+      }
+
+      .download-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        background: linear-gradient(to right, var(--mint-primary), var(--mint-dark));
+        color: var(--white);
+        padding: 18px 40px;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.4s ease;
+        box-shadow: 0 8px 20px rgba(62, 180, 137, 0.3);
+        border: none;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .download-btn::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+        transition: left 0.7s ease;
+      }
+
+      .download-btn:hover {
+        transform: translateY(-5px) scale(1.03);
+        box-shadow: 0 12px 25px rgba(62, 180, 137, 0.4);
+      }
+
+      .download-btn:hover::after {
+        left: 100%;
+      }
+
+      .download-btn i {
+        font-size: 1.2rem;
+      }
+
+      /* Warning Box */
+      .warning-box {
+        background-color: var(--warning-light);
+        border-left: 5px solid var(--warning);
+        padding: 20px;
+        margin: 30px 0;
+        border-radius: 0 8px 8px 0;
+        transition: all 0.3s ease;
+      }
+
+      .warning-box:hover {
+        transform: translateX(5px);
+        box-shadow: 0 5px 15px rgba(255, 152, 0, 0.1);
+      }
+
+      .warning-title {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--warning);
+        font-weight: 600;
+        margin-bottom: 10px;
+        font-size: 1.1rem;
+      }
+
+      /* Info Sections */
+      .info-section {
+        padding: 80px 0;
+        background-color: var(--mint-pale);
+      }
+
+      .section-title {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-title h2 {
+        font-size: 2.5rem;
+        color: var(--mint-dark);
+        margin-bottom: 15px;
+        position: relative;
+        display: inline-block;
+      }
+
+      .section-title h2::after {
+        content: '';
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: linear-gradient(to right, var(--mint-primary), var(--mint-light));
+        border-radius: 3px;
+      }
+
+      .section-title p {
+        color: var(--gray-medium);
+        max-width: 700px;
+        margin: 20px auto 0;
+      }
+
+      .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+      }
+
+      .info-card {
+        background: var(--white);
+        padding: 30px;
+        border-radius: 15px;
+        box-shadow: 0 10px 25px var(--shadow);
+        transition: all 0.4s ease;
+        border: 1px solid transparent;
+      }
+
+      .info-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px var(--shadow-dark);
+        border-color: var(--mint-light);
+      }
+
+      .info-icon {
+        background: var(--mint-pale);
+        color: var(--mint-primary);
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 20px;
+        font-size: 1.8rem;
+        transition: all 0.3s ease;
+      }
+
+      .info-card:hover .info-icon {
+        background: var(--mint-primary);
+        color: var(--white);
+        transform: scale(1.1) rotate(5deg);
+      }
+
+      .info-card h3 {
+        color: var(--mint-dark);
+        margin-bottom: 15px;
+      }
+
+      .info-card p {
+        color: var(--gray-medium);
+      }
+
+      /* Instructions Section */
+      .instructions {
+        padding: 100px 0;
+        background-color: var(--white);
+      }
+
+      .steps {
+        max-width: 900px;
+        margin: 0 auto;
+      }
+
+      .step {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 40px;
+        gap: 20px;
+        transition: all 0.3s ease;
+        padding: 20px;
+        border-radius: 10px;
+      }
+
+      .step:hover {
+        background-color: var(--mint-pale);
+        transform: translateX(10px);
+      }
+
+      .step-number {
+        background: linear-gradient(to right, var(--mint-primary), var(--mint-dark));
+        color: var(--white);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        font-size: 1.2rem;
+        flex-shrink: 0;
+        transition: all 0.3s ease;
+      }
+
+      .step:hover .step-number {
+        transform: scale(1.1) rotate(10deg);
+      }
+
+      .step-content h3 {
+        color: var(--mint-dark);
+        margin-bottom: 10px;
+      }
+
+      /* Blocked Domains */
+      .domains-section {
+        padding: 80px 0;
+        background-color: var(--mint-pale);
+      }
+
+      .domains-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 20px;
+        max-width: 900px;
+        margin: 40px auto;
+      }
+
+      .domain-item {
+        background: var(--white);
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 8px 20px var(--shadow);
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        transition: all 0.3s ease;
+        border-left: 4px solid var(--mint-primary);
+      }
+
+      .domain-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 25px var(--shadow-dark);
+      }
+
+      .domain-icon {
+        color: var(--mint-primary);
+        font-size: 1.5rem;
+      }
+
+      /* Footer */
+      footer {
+        background: linear-gradient(135deg, var(--mint-dark), #1a5c48);
+        color: var(--white);
+        padding: 60px 0 30px;
+      }
+
+      .footer-content {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .footer-logo-text {
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+
+      .footer-links {
+        display: flex;
+        gap: 40px;
+        flex-wrap: wrap;
+      }
+
+      .footer-column h4 {
+        margin-bottom: 20px;
+        font-size: 1.2rem;
+      }
+
+      .footer-column ul {
+        list-style: none;
+      }
+
+      .footer-column li {
+        margin-bottom: 10px;
+      }
+
+      .footer-column a {
+        color: var(--mint-light);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        display: inline-block;
+      }
+
+      .footer-column a:hover {
+        color: var(--white);
+        transform: translateX(5px);
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--mint-light);
+        font-size: 0.9rem;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
         .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo-icon {
-            font-size: 28px;
-            animation: pulse 2s infinite;
-        }
-
-        .logo-text {
-            font-size: 24px;
-            font-weight: 700;
+          flex-direction: column;
+          gap: 20px;
         }
 
         nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        nav a {
-            color: var(--white);
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            position: relative;
-            padding: 5px 0;
-        }
-
-        nav a:hover {
-            opacity: 0.9;
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background-color: var(--white);
-            transition: width 0.3s ease;
-        }
-
-        nav a:hover::after {
-            width: 100%;
+          flex-direction: column;
+          text-align: center;
+          gap: 15px;
         }
 
         .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--white);
-            font-size: 24px;
-            cursor: pointer;
-            transition: transform 0.3s ease;
+          display: block;
+          position: absolute;
+          top: 20px;
+          right: 20px;
         }
 
-        .mobile-menu-btn:hover {
-            transform: scale(1.1);
+        .mobile-menu {
+          display: none;
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 120px 0 80px;
-            background: linear-gradient(to bottom, var(--mint-pale), var(--white));
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
+        .mobile-menu.active {
+          display: block;
+          width: 100%;
+          margin-top: 20px;
         }
 
         .hero h1 {
-            font-size: 3.2rem;
-            color: var(--mint-dark);
-            margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-        }
-
-        .hero-subtitle {
-            font-size: 1.5rem;
-            color: var(--mint-primary);
-            margin-bottom: 20px;
-            font-weight: 500;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: var(--gray-medium);
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .shield-icon {
-            font-size: 5rem;
-            color: var(--mint-primary);
-            margin-bottom: 30px;
-            animation: float 3s ease-in-out infinite;
-            filter: drop-shadow(0 5px 15px rgba(62, 180, 137, 0.3));
-        }
-
-        /* Download Section */
-        .download-section {
-            padding: 100px 0;
-            background-color: var(--white);
+          font-size: 2.5rem;
         }
 
         .download-container {
-            display: flex;
-            align-items: center;
-            gap: 60px;
-            flex-wrap: wrap;
-        }
-
-        .download-info {
-            flex: 1;
-            min-width: 300px;
+          flex-direction: column;
         }
 
         .download-card {
-            flex: 1;
-            min-width: 300px;
-            background: var(--white);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 20px 40px var(--shadow);
-            border: 1px solid var(--mint-light);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            transform: translateY(0);
-        }
-
-        .download-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 25px 50px var(--shadow-dark);
-        }
-
-        .download-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background: linear-gradient(to right, var(--mint-primary), var(--mint-light));
-            transition: height 0.3s ease;
-        }
-
-        .download-card:hover::before {
-            height: 8px;
-        }
-
-        .download-card h2 {
-            color: var(--mint-dark);
-            margin-bottom: 20px;
-            font-size: 2rem;
-        }
-
-        .download-card p {
-            color: var(--gray-medium);
-            margin-bottom: 30px;
-        }
-
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            background: linear-gradient(to right, var(--mint-primary), var(--mint-dark));
-            color: var(--white);
-            padding: 18px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.4s ease;
-            box-shadow: 0 8px 20px rgba(62, 180, 137, 0.3);
-            border: none;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .download-btn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.7s ease;
-        }
-
-        .download-btn:hover {
-            transform: translateY(-5px) scale(1.03);
-            box-shadow: 0 12px 25px rgba(62, 180, 137, 0.4);
-        }
-
-        .download-btn:hover::after {
-            left: 100%;
-        }
-
-        .download-btn i {
-            font-size: 1.2rem;
-        }
-
-        /* Warning Box */
-        .warning-box {
-            background-color: var(--warning-light);
-            border-left: 5px solid var(--warning);
-            padding: 20px;
-            margin: 30px 0;
-            border-radius: 0 8px 8px 0;
-            transition: all 0.3s ease;
-        }
-
-        .warning-box:hover {
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(255, 152, 0, 0.1);
-        }
-
-        .warning-title {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: var(--warning);
-            font-weight: 600;
-            margin-bottom: 10px;
-            font-size: 1.1rem;
-        }
-
-        /* Info Sections */
-        .info-section {
-            padding: 80px 0;
-            background-color: var(--mint-pale);
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--mint-dark);
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background: linear-gradient(to right, var(--mint-primary), var(--mint-light));
-            border-radius: 3px;
-        }
-
-        .section-title p {
-            color: var(--gray-medium);
-            max-width: 700px;
-            margin: 20px auto 0;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .info-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px var(--shadow);
-            transition: all 0.4s ease;
-            border: 1px solid transparent;
-        }
-
-        .info-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px var(--shadow-dark);
-            border-color: var(--mint-light);
-        }
-
-        .info-icon {
-            background: var(--mint-pale);
-            color: var(--mint-primary);
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-            transition: all 0.3s ease;
-        }
-
-        .info-card:hover .info-icon {
-            background: var(--mint-primary);
-            color: var(--white);
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        .info-card h3 {
-            color: var(--mint-dark);
-            margin-bottom: 15px;
-        }
-
-        .info-card p {
-            color: var(--gray-medium);
-        }
-
-        /* Instructions Section */
-        .instructions {
-            padding: 100px 0;
-            background-color: var(--white);
-        }
-
-        .steps {
-            max-width: 900px;
-            margin: 0 auto;
+          width: 100%;
         }
 
         .step {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 40px;
-            gap: 20px;
-            transition: all 0.3s ease;
-            padding: 20px;
-            border-radius: 10px;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
         }
 
         .step:hover {
-            background-color: var(--mint-pale);
-            transform: translateX(10px);
+          transform: translateY(-5px);
+        }
+      }
+
+      /* Animations */
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
         }
 
-        .step-number {
-            background: linear-gradient(to right, var(--mint-primary), var(--mint-dark));
-            color: var(--white);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.2rem;
-            flex-shrink: 0;
-            transition: all 0.3s ease;
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
         }
 
-        .step:hover .step-number {
-            transform: scale(1.1) rotate(10deg);
+        50% {
+          transform: scale(1.05);
         }
 
-        .step-content h3 {
-            color: var(--mint-dark);
-            margin-bottom: 10px;
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes float {
+        0% {
+          transform: translateY(0px);
         }
 
-        /* Blocked Domains */
-        .domains-section {
-            padding: 80px 0;
-            background-color: var(--mint-pale);
+        50% {
+          transform: translateY(-15px);
         }
 
-        .domains-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            max-width: 900px;
-            margin: 40px auto;
+        100% {
+          transform: translateY(0px);
+        }
+      }
+
+      @keyframes slideInLeft {
+        from {
+          opacity: 0;
+          transform: translateX(-50px);
         }
 
-        .domain-item {
-            background: var(--white);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px var(--shadow);
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: all 0.3s ease;
-            border-left: 4px solid var(--mint-primary);
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(50px);
         }
 
-        .domain-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 25px var(--shadow-dark);
+        to {
+          opacity: 1;
+          transform: translateX(0);
         }
+      }
 
-        .domain-icon {
-            color: var(--mint-primary);
-            font-size: 1.5rem;
-        }
+      .fade-in {
+        animation: fadeIn 0.8s ease forwards;
+      }
 
-        /* Footer */
-        footer {
-            background: linear-gradient(135deg, var(--mint-dark), #1a5c48);
-            color: var(--white);
-            padding: 60px 0 30px;
-        }
+      .slide-left {
+        animation: slideInLeft 0.8s ease forwards;
+      }
 
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 40px;
-            margin-bottom: 40px;
-        }
+      .slide-right {
+        animation: slideInRight 0.8s ease forwards;
+      }
 
-        .footer-logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
+      .delay-1 {
+        animation-delay: 0.2s;
+      }
 
-        .footer-logo-text {
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
+      .delay-2 {
+        animation-delay: 0.4s;
+      }
 
-        .footer-links {
-            display: flex;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
+      .delay-3 {
+        animation-delay: 0.6s;
+      }
 
-        .footer-column h4 {
-            margin-bottom: 20px;
-            font-size: 1.2rem;
-        }
+      .delay-4 {
+        animation-delay: 0.8s;
+      }
 
-        .footer-column ul {
-            list-style: none;
-        }
+      /* Decorative elements */
+      .circle-decoration {
+        position: absolute;
+        border-radius: 50%;
+        background: var(--mint-light);
+        opacity: 0.1;
+        z-index: 1;
+      }
 
-        .footer-column li {
-            margin-bottom: 10px;
-        }
+      .circle-1 {
+        width: 300px;
+        height: 300px;
+        top: -150px;
+        right: -150px;
+        animation: float 6s ease-in-out infinite;
+      }
 
-        .footer-column a {
-            color: var(--mint-light);
-            text-decoration: none;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
+      .circle-2 {
+        width: 200px;
+        height: 200px;
+        bottom: -100px;
+        left: -100px;
+        animation: float 8s ease-in-out infinite reverse;
+      }
 
-        .footer-column a:hover {
-            color: var(--white);
-            transform: translateX(5px);
-        }
+      /* Progress indicator for installation steps */
+      .progress-line {
+        position: relative;
+        width: 100%;
+        height: 4px;
+        background-color: var(--mint-pale);
+        margin: 40px auto;
+        max-width: 800px;
+        border-radius: 2px;
+        overflow: hidden;
+      }
 
-        .copyright {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--mint-light);
-            font-size: 0.9rem;
-        }
+      .progress-line::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0;
+        background: linear-gradient(to right, var(--mint-primary), var(--mint-light));
+        border-radius: 2px;
+        transition: width 1s ease;
+      }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            nav ul {
-                flex-direction: column;
-                text-align: center;
-                gap: 15px;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-                position: absolute;
-                top: 20px;
-                right: 20px;
-            }
-
-            .mobile-menu {
-                display: none;
-            }
-
-            .mobile-menu.active {
-                display: block;
-                width: 100%;
-                margin-top: 20px;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .download-container {
-                flex-direction: column;
-            }
-
-            .download-card {
-                width: 100%;
-            }
-            
-            .step {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            
-            .step:hover {
-                transform: translateY(-5px);
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes float {
-            0% { transform: translateY(0px); }
-            50% { transform: translateY(-15px); }
-            100% { transform: translateY(0px); }
-        }
-
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateX(-50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(50px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .fade-in {
-            animation: fadeIn 0.8s ease forwards;
-        }
-
-        .slide-left {
-            animation: slideInLeft 0.8s ease forwards;
-        }
-
-        .slide-right {
-            animation: slideInRight 0.8s ease forwards;
-        }
-
-        .delay-1 { animation-delay: 0.2s; }
-        .delay-2 { animation-delay: 0.4s; }
-        .delay-3 { animation-delay: 0.6s; }
-        .delay-4 { animation-delay: 0.8s; }
-
-        /* Decorative elements */
-        .circle-decoration {
-            position: absolute;
-            border-radius: 50%;
-            background: var(--mint-light);
-            opacity: 0.1;
-            z-index: 1;
-        }
-
-        .circle-1 {
-            width: 300px;
-            height: 300px;
-            top: -150px;
-            right: -150px;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .circle-2 {
-            width: 200px;
-            height: 200px;
-            bottom: -100px;
-            left: -100px;
-            animation: float 8s ease-in-out infinite reverse;
-        }
-
-        /* Progress indicator for installation steps */
-        .progress-line {
-            position: relative;
-            width: 100%;
-            height: 4px;
-            background-color: var(--mint-pale);
-            margin: 40px auto;
-            max-width: 800px;
-            border-radius: 2px;
-            overflow: hidden;
-        }
-
-        .progress-line::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 0;
-            background: linear-gradient(to right, var(--mint-primary), var(--mint-light));
-            border-radius: 2px;
-            transition: width 1s ease;
-        }
-
-        /* Scroll progress bar */
-        .scroll-progress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 0%;
-            height: 4px;
-            background: linear-gradient(to right, var(--mint-primary), var(--mint-light));
-            z-index: 1000;
-            transition: width 0.2s ease;
-        }
+      /* Scroll progress bar */
+      .scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 4px;
+        background: linear-gradient(to right, var(--mint-primary), var(--mint-light));
+        z-index: 1000;
+        transition: width 0.2s ease;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <!-- Scroll progress bar -->
     <div class="scroll-progress" id="scrollProgress"></div>
-    
     <!-- Header -->
     <header>
-        <div class="circle-decoration circle-1"></div>
-        <div class="circle-decoration circle-2"></div>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <div class="logo-icon">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <div class="logo-text">MintHub</div>
-                </div>
-                
-                <button class="mobile-menu-btn" id="menuBtn">
-                    <i class="fas fa-bars"></i>
-                </button>
-                
-                <nav class="mobile-menu" id="mobileMenu">
-                    <ul>
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">What is this?</a></li>
-                        <li><a href="#download">Install</a></li>
-                        <li><a href="#instructions">Instructions</a></li>
-                        <li><a href="#domains">Blocked Domains</a></li>
-                    </ul>
-                </nav>
+      <div class="circle-decoration circle-1"></div>
+      <div class="circle-decoration circle-2"></div>
+      <div class="container">
+        <div class="header-content">
+          <div class="logo">
+            <div class="logo-icon">
+              <i class="fas fa-shield-alt"></i>
             </div>
+            <div class="logo-text">MintHub</div>
+          </div>
+          <button class="mobile-menu-btn" id="menuBtn">
+            <i class="fas fa-bars"></i>
+          </button>
+          <nav class="mobile-menu" id="mobileMenu">
+            <ul>
+              <li>
+                <a href="#home">Home</a>
+              </li>
+              <li>
+                <a href="#about">What is this?</a>
+              </li>
+              <li>
+                <a href="#download">Install</a>
+              </li>
+              <li>
+                <a href="#instructions">Instructions</a>
+              </li>
+              <li>
+                <a href="#domains">Blocked Domains</a>
+              </li>
+            </ul>
+          </nav>
         </div>
+      </div>
     </header>
-
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <div class="container">
-            <div class="hero-content fade-in">
-                <div class="shield-icon">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <h1>DNS Revoke Blocker</h1>
-                <div class="hero-subtitle">Prevent iOS certificate revocation</div>
-                <p>Block Apple's certificate verification servers to prevent your sideloaded apps from being revoked. A DNS-based solution that works directly on your device.</p>
-                
-                <div class="warning-box fade-in delay-1">
-                    <div class="warning-title">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <span>Important Notice</span>
-                    </div>
-                    <p>This profile blocks Apple's OCSP (Online Certificate Status Protocol) servers. While this prevents app revocation, it may affect other certificate-related functions on your device.</p>
-                </div>
+      <div class="container">
+        <div class="hero-content fade-in">
+          <div class="shield-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <h1>DNS Revoke Blocker</h1>
+          <div class="hero-subtitle">Prevent iOS certificate revocation</div>
+          <p>Block Apple's certificate verification servers to prevent your sideloaded apps from being revoked. A DNS-based solution that works directly on your device.</p>
+          <div class="warning-box fade-in delay-1">
+            <div class="warning-title">
+              <i class="fas fa-exclamation-triangle"></i>
+              <span>Important Notice</span>
             </div>
+            <p>This profile blocks Apple's OCSP (Online Certificate Status Protocol) servers. While this prevents app revocation, it may affect other certificate-related functions on your device.</p>
+          </div>
         </div>
+      </div>
     </section>
-
     <!-- About Section -->
     <section class="info-section" id="about">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>What is this?</h2>
-                <p>A DNS-based solution to prevent certificate revocation for sideloaded iOS apps</p>
-            </div>
-            
-            <div class="info-grid">
-                <div class="info-card slide-left">
-                    <div class="info-icon">
-                        <i class="fas fa-ban"></i>
-                    </div>
-                    <h3>Blocks Revocation Checks</h3>
-                    <p>This DNS profile blocks Apple's certificate revocation servers, preventing your sideloaded apps from being revoked. When installed, your device will be unable to check if certificates have been revoked by Apple.</p>
-                </div>
-                
-                <div class="info-card fade-in delay-1">
-                    <div class="info-icon">
-                        <i class="fas fa-server"></i>
-                    </div>
-                    <h3>How it Works</h3>
-                    <p>The profile configures your device's DNS settings to redirect Apple's certificate verification servers to localhost (127.0.0.1), effectively blocking revocation checks without affecting normal app functionality.</p>
-                </div>
-                
-                <div class="info-card slide-right">
-                    <div class="info-icon">
-                        <i class="fas fa-user-shield"></i>
-                    </div>
-                    <h3>Privacy First</h3>
-                    <p>We don't check, log, or monitor any DNS queries. All blocking happens directly on your device by redirecting requests to localhost. Your privacy stays completely intact - no data ever leaves your device to our servers.</p>
-                </div>
-            </div>
+      <div class="container">
+        <div class="section-title fade-in">
+          <h2>What is this?</h2>
+          <p>A DNS-based solution to prevent certificate revocation for sideloaded iOS apps</p>
         </div>
+        <div class="info-grid">
+          <div class="info-card slide-left">
+            <div class="info-icon">
+              <i class="fas fa-ban"></i>
+            </div>
+            <h3>Blocks Revocation Checks</h3>
+            <p>This DNS profile blocks Apple's certificate revocation servers, preventing your sideloaded apps from being revoked. When installed, your device will be unable to check if certificates have been revoked by Apple.</p>
+          </div>
+          <div class="info-card fade-in delay-1">
+            <div class="info-icon">
+              <i class="fas fa-server"></i>
+            </div>
+            <h3>How it Works</h3>
+            <p>The profile configures your device's DNS settings to redirect Apple's certificate verification servers to localhost (127.0.0.1), effectively blocking revocation checks without affecting normal app functionality.</p>
+          </div>
+          <div class="info-card slide-right">
+            <div class="info-icon">
+              <i class="fas fa-user-shield"></i>
+            </div>
+            <h3>Privacy First</h3>
+            <p>We don't check, log, or monitor any DNS queries. All blocking happens directly on your device by redirecting requests to localhost. Your privacy stays completely intact - no data ever leaves your device to our servers.</p>
+          </div>
+        </div>
+      </div>
     </section>
-
     <!-- Download Section -->
     <section class="download-section" id="download">
-        <div class="container">
-            <div class="download-container">
-                <div class="download-info slide-left">
-                    <h2 style="color: var(--mint-dark); margin-bottom: 20px; font-size: 2.5rem;">Why MintHub DNS Blocker?</h2>
-                    <p style="color: var(--gray-medium); margin-bottom: 20px; font-size: 1.1rem;">
-                        Our DNS profile provides a reliable solution to prevent certificate revocation for sideloaded apps without compromising your device's security.
-                    </p>
-                    <ul style="list-style: none; margin-top: 30px;">
-                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-check-circle" style="color: var(--mint-primary);"></i>
-                            <span>Blocks Apple's OCSP servers effectively</span>
-                        </li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-check-circle" style="color: var(--mint-primary);"></i>
-                            <span>No external servers involved - works locally</span>
-                        </li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-check-circle" style="color: var(--mint-primary);"></i>
-                            <span>Zero data collection - complete privacy</span>
-                        </li>
-                        <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
-                            <i class="fas fa-check-circle" style="color: var(--mint-primary);"></i>
-                            <span>Easy one-tap installation and setup</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="download-card slide-right">
-                    <h2>Install DNS Profile</h2>
-                    <p>Download our DNS configuration profile to block certificate revocation checks on your iOS device. Compatible with iOS 12.0 and later.</p>
-                    
-                    <div style="margin: 40px 0;">
-                        <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px;">
-                            <i class="fas fa-shield-alt" style="font-size: 2.5rem; color: var(--mint-primary);"></i>
-                            <i class="fas fa-lock" style="font-size: 2.5rem; color: var(--mint-primary);"></i>
-                            <i class="fas fa-bolt" style="font-size: 2.5rem; color: var(--mint-primary);"></i>
-                        </div>
-                        <p style="font-size: 0.9rem; color: var(--gray-medium);">
-                            <i class="fas fa-user-secret" style="margin-right: 5px;"></i>
-                            Zero data collection • Works locally • No tracking
-                        </p>
-                    </div>
-                    
-                    <button class="download-btn" id="downloadBtn">
-                        <i class="fas fa-download"></i>
-                        Install DNS Profile
-                    </button>
-                    
-                    <p style="font-size: 0.85rem; color: var(--gray-medium); margin-top: 20px;">
-                        File size: 1.8 KB • Version 2.3.0 • Updated November 2023
-                    </p>
-                </div>
+      <div class="container">
+        <div class="download-container">
+          <div class="download-info slide-left">
+            <h2 style="color: var(--mint-dark); margin-bottom: 20px; font-size: 2.5rem;">Why MintHub DNS Blocker?</h2>
+            <p style="color: var(--gray-medium); margin-bottom: 20px; font-size: 1.1rem;"> Our DNS profile provides a reliable solution to prevent certificate revocation for sideloaded apps without compromising your device's security. </p>
+            <ul style="list-style: none; margin-top: 30px;">
+              <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-check-circle" style="color: var(--mint-primary);"></i>
+                <span>Blocks Apple's OCSP servers effectively</span>
+              </li>
+              <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-check-circle" style="color: var(--mint-primary);"></i>
+                <span>No external servers involved - works locally</span>
+              </li>
+              <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-check-circle" style="color: var(--mint-primary);"></i>
+                <span>Zero data collection - complete privacy</span>
+              </li>
+              <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+                <i class="fas fa-check-circle" style="color: var(--mint-primary);"></i>
+                <span>Easy one-tap installation and setup</span>
+              </li>
+            </ul>
+          </div>
+          <div class="download-card slide-right">
+            <h2>Install DNS Profile</h2>
+            <p>Download our DNS configuration profile to block certificate revocation checks on your iOS device. Compatible with iOS 12.0 and later.</p>
+            <div style="margin: 40px 0;">
+              <div style="display: flex; align-items: center; justify-content: center; gap: 15px; margin-bottom: 20px;">
+                <i class="fas fa-shield-alt" style="font-size: 2.5rem; color: var(--mint-primary);"></i>
+                <i class="fas fa-lock" style="font-size: 2.5rem; color: var(--mint-primary);"></i>
+                <i class="fas fa-bolt" style="font-size: 2.5rem; color: var(--mint-primary);"></i>
+              </div>
+              <p style="font-size: 0.9rem; color: var(--gray-medium);">
+                <i class="fas fa-user-secret" style="margin-right: 5px;"></i> Zero data collection • Works locally • No tracking
+              </p>
             </div>
+            <a href="https://mpbox.xyz/archive/MintHubDNS.mobileconfig" class="download-btn">
+              <i class="fas fa-download"></i> Install DNS Profile </a>
+            <p style="font-size: 0.85rem; color: var(--gray-medium); margin-top: 20px;"> File size: 1.8 KB • Version 2.3.0 • Updated November 2023 </p>
+          </div>
         </div>
+      </div>
     </section>
-
     <!-- Instructions Section -->
     <section class="instructions" id="instructions">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>Installation Instructions</h2>
-                <p>Follow these steps to install the DNS Revoke Blocker on your iOS device</p>
-            </div>
-            
-            <div class="progress-line" id="progressLine"></div>
-            
-            <div class="steps">
-                <div class="step fade-in" data-step="1">
-                    <div class="step-number">1</div>
-                    <div class="step-content">
-                        <h3>Download the Profile</h3>
-                        <p>Tap the install button below to download the DNS configuration profile to your iOS device. The profile will be saved to your device.</p>
-                    </div>
-                </div>
-                
-                <div class="step fade-in delay-1" data-step="2">
-                    <div class="step-number">2</div>
-                    <div class="step-content">
-                        <h3>Open Settings</h3>
-                        <p>Go to Settings app, you should see <strong>"Profile Downloaded"</strong> notification at the top. Tap on it to begin installation.</p>
-                    </div>
-                </div>
-                
-                <div class="step fade-in delay-2" data-step="3">
-                    <div class="step-number">3</div>
-                    <div class="step-content">
-                        <h3>Install Profile</h3>
-                        <p>Tap on <strong>"Profile Downloaded"</strong> and follow the prompts to install. You may need to enter your device passcode for security verification.</p>
-                    </div>
-                </div>
-                
-                <div class="step fade-in delay-3" data-step="4">
-                    <div class="step-number">4</div>
-                    <div class="step-content">
-                        <h3>Trust Profile</h3>
-                        <p>After installation, go to <strong>Settings &gt; General &gt; VPN & Device Management</strong> and enable the DNS profile you just installed.</p>
-                    </div>
-                </div>
-                
-                <div class="step fade-in delay-4" data-step="5">
-                    <div class="step-number">5</div>
-                    <div class="step-content">
-                        <h3>Restart Your Device</h3>
-                        <p><span style="color: var(--warning); font-weight: 600;">⚠️ IMPORTANT:</span> You MUST restart your device after installation. The DNS profile will NOT work until you restart. Simply power off your device and turn it back on.</p>
-                    </div>
-                </div>
-            </div>
+      <div class="container">
+        <div class="section-title fade-in">
+          <h2>Installation Instructions</h2>
+          <p>Follow these steps to install the DNS Revoke Blocker on your iOS device</p>
         </div>
+        <div class="progress-line" id="progressLine"></div>
+        <div class="steps">
+          <div class="step fade-in" data-step="1">
+            <div class="step-number">1</div>
+            <div class="step-content">
+              <h3>Download the Profile</h3>
+              <p>Tap the install button below to download the DNS configuration profile to your iOS device. The profile will be saved to your device.</p>
+            </div>
+          </div>
+          <div class="step fade-in delay-1" data-step="2">
+            <div class="step-number">2</div>
+            <div class="step-content">
+              <h3>Open Settings</h3>
+              <p>Go to Settings app, you should see <strong>"Profile Downloaded"</strong> notification at the top. Tap on it to begin installation. </p>
+            </div>
+          </div>
+          <div class="step fade-in delay-2" data-step="3">
+            <div class="step-number">3</div>
+            <div class="step-content">
+              <h3>Install Profile</h3>
+              <p>Tap on <strong>"Profile Downloaded"</strong> and follow the prompts to install. You may need to enter your device passcode for security verification. </p>
+            </div>
+          </div>
+          <div class="step fade-in delay-3" data-step="4">
+            <div class="step-number">4</div>
+            <div class="step-content">
+              <h3>Trust Profile</h3>
+              <p>After installation, go to <strong>Settings &gt; General &gt; VPN & Device Management</strong> and enable the DNS profile you just installed. </p>
+            </div>
+          </div>
+          <div class="step fade-in delay-4" data-step="5">
+            <div class="step-number">5</div>
+            <div class="step-content">
+              <h3>Restart Your Device</h3>
+              <p>
+                <span style="color: var(--warning); font-weight: 600;">⚠️ IMPORTANT:</span> You MUST restart your device after installation. The DNS profile will NOT work until you restart. Simply power off your device and turn it back on.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
     </section>
-
     <!-- Blocked Domains Section -->
     <section class="domains-section" id="domains">
-        <div class="container">
-            <div class="section-title fade-in">
-                <h2>What Gets Blocked?</h2>
-                <p>These Apple servers are redirected to localhost to prevent certificate revocation checks</p>
-            </div>
-            
-            <div class="domains-list">
-                <div class="domain-item slide-left">
-                    <div class="domain-icon">
-                        <i class="fas fa-times-circle"></i>
-                    </div>
-                    <div>
-                        <h4 style="color: var(--mint-dark); margin-bottom: 5px;">ocsp.apple.com</h4>
-                        <p style="font-size: 0.9rem; color: var(--gray-medium);">Apple's primary certificate status server</p>
-                    </div>
-                </div>
-                
-                <div class="domain-item fade-in delay-1">
-                    <div class="domain-icon">
-                        <i class="fas fa-times-circle"></i>
-                    </div>
-                    <div>
-                        <h4 style="color: var(--mint-dark); margin-bottom: 5px;">ocsp2.apple.com</h4>
-                        <p style="font-size: 0.9rem; color: var(--gray-medium);">Secondary certificate verification server</p>
-                    </div>
-                </div>
-                
-                <div class="domain-item slide-right">
-                    <div class="domain-icon">
-                        <i class="fas fa-times-circle"></i>
-                    </div>
-                    <div>
-                        <h4 style="color: var(--mint-dark); margin-bottom: 5px;">valid.apple.com</h4>
-                        <p style="font-size: 0.9rem; color: var(--gray-medium);">Certificate validation server</p>
-                    </div>
-                </div>
-                
-                <div class="domain-item slide-left">
-                    <div class="domain-icon">
-                        <i class="fas fa-times-circle"></i>
-                    </div>
-                    <div>
-                        <h4 style="color: var(--mint-dark); margin-bottom: 5px;">crl.apple.com</h4>
-                        <p style="font-size: 0.9rem; color: var(--gray-medium);">Certificate revocation list server</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="warning-box fade-in" style="max-width: 900px; margin: 40px auto 0;">
-                <div class="warning-title">
-                    <i class="fas fa-info-circle"></i>
-                    <span>Note</span>
-                </div>
-                <p>Blocking these servers only prevents certificate revocation checks. Your apps will continue to function normally, and you can still access the App Store and other Apple services.</p>
-            </div>
+      <div class="container">
+        <div class="section-title fade-in">
+          <h2>What Gets Blocked?</h2>
+          <p>These Apple servers are redirected to localhost to prevent certificate revocation checks</p>
         </div>
+        <div class="domains-list">
+          <div class="domain-item slide-left">
+            <div class="domain-icon">
+              <i class="fas fa-times-circle"></i>
+            </div>
+            <div>
+              <h4 style="color: var(--mint-dark); margin-bottom: 5px;">ocsp.apple.com</h4>
+              <p style="font-size: 0.9rem; color: var(--gray-medium);">Apple's primary certificate status server</p>
+            </div>
+          </div>
+          <div class="domain-item fade-in delay-1">
+            <div class="domain-icon">
+              <i class="fas fa-times-circle"></i>
+            </div>
+            <div>
+              <h4 style="color: var(--mint-dark); margin-bottom: 5px;">ocsp2.apple.com</h4>
+              <p style="font-size: 0.9rem; color: var(--gray-medium);">Secondary certificate verification server</p>
+            </div>
+          </div>
+          <div class="domain-item slide-right">
+            <div class="domain-icon">
+              <i class="fas fa-times-circle"></i>
+            </div>
+            <div>
+              <h4 style="color: var(--mint-dark); margin-bottom: 5px;">valid.apple.com</h4>
+              <p style="font-size: 0.9rem; color: var(--gray-medium);">Certificate validation server</p>
+            </div>
+          </div>
+          <div class="domain-item slide-left">
+            <div class="domain-icon">
+              <i class="fas fa-times-circle"></i>
+            </div>
+            <div>
+              <h4 style="color: var(--mint-dark); margin-bottom: 5px;">crl.apple.com</h4>
+              <p style="font-size: 0.9rem; color: var(--gray-medium);">Certificate revocation list server</p>
+            </div>
+          </div>
+        </div>
+        <div class="warning-box fade-in" style="max-width: 900px; margin: 40px auto 0;">
+          <div class="warning-title">
+            <i class="fas fa-info-circle"></i>
+            <span>Note</span>
+          </div>
+          <p>Blocking these servers only prevents certificate revocation checks. Your apps will continue to function normally, and you can still access the App Store and other Apple services.</p>
+        </div>
+      </div>
     </section>
-
     <!-- Footer -->
     <footer>
-        <div class="container">
-            <div class="footer-content">
-                <div>
-                    <div class="footer-logo">
-                        <i class="fas fa-shield-alt"></i>
-                        <div class="footer-logo-text">MintHub</div>
-                    </div>
-                    <p style="max-width: 300px; color: var(--mint-light);">
-                        Providing privacy-focused DNS solutions for iOS users. No data collection, no tracking, no external servers.
-                    </p>
-                </div>
-                
-                <div class="footer-links">
-                    <div class="footer-column">
-                        <h4>Product</h4>
-                        <ul>
-                            <li><a href="#home">DNS Revoke Blocker</a></li>
-                            <li><a href="#about">How it Works</a></li>
-                            <li><a href="#instructions">Installation Guide</a></li>
-                            <li><a href="#domains">Blocked Domains</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-column">
-                        <h4>Support</h4>
-                        <ul>
-                            <li><a href="#">FAQ</a></li>
-                            <li><a href="#">Troubleshooting</a></li>
-                            <li><a href="#">Remove Profile</a></li>
-                            <li><a href="#">Contact</a></li>
-                        </ul>
-                    </div>
-                    
-                    <div class="footer-column">
-                        <h4>Legal</h4>
-                        <ul>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Terms of Service</a></li>
-                            <li><a href="#">Disclaimer</a></li>
-                        </ul>
-                    </div>
-                </div>
+      <div class="container">
+        <div class="footer-content">
+          <div>
+            <div class="footer-logo">
+              <i class="fas fa-shield-alt"></i>
+              <div class="footer-logo-text">MintHub</div>
             </div>
-            
-            <div class="copyright">
-                <p>&copy; 2023 MintHub. All rights reserved. This is an independent project and is not affiliated with Apple Inc.</p>
-                <p style="margin-top: 10px; font-size: 0.8rem;">This tool is for educational purposes. Use at your own discretion.</p>
+            <p style="max-width: 300px; color: var(--mint-light);"> Providing privacy-focused DNS solutions for iOS users. No data collection, no tracking, no external servers. </p>
+          </div>
+          <div class="footer-links">
+            <div class="footer-column">
+              <h4>Product</h4>
+              <ul>
+                <li>
+                  <a href="#home">DNS Revoke Blocker</a>
+                </li>
+                <li>
+                  <a href="#about">How it Works</a>
+                </li>
+                <li>
+                  <a href="#instructions">Installation Guide</a>
+                </li>
+                <li>
+                  <a href="#domains">Blocked Domains</a>
+                </li>
+              </ul>
             </div>
+            <div class="footer-column">
+              <h4>Support</h4>
+              <ul>
+                <li>
+                  <a href="#">FAQ</a>
+                </li>
+                <li>
+                  <a href="#">Troubleshooting</a>
+                </li>
+                <li>
+                  <a href="#">Remove Profile</a>
+                </li>
+                <li>
+                  <a href="#">Contact</a>
+                </li>
+              </ul>
+            </div>
+            <div class="footer-column">
+              <h4>Legal</h4>
+              <ul>
+                <li>
+                  <a href="#">Privacy Policy</a>
+                </li>
+                <li>
+                  <a href="#">Terms of Service</a>
+                </li>
+                <li>
+                  <a href="#">Disclaimer</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
+        <div class="copyright">
+          <p>&copy; 2023 MintHub. All rights reserved. This is an independent project and is not affiliated with Apple Inc.</p>
+          <p style="margin-top: 10px; font-size: 0.8rem;">This tool is for educational purposes. Use at your own discretion.</p>
+        </div>
+      </div>
     </footer>
-
     <script>
-        // Mobile menu toggle
-        const menuBtn = document.getElementById('menuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        
-        menuBtn.addEventListener('click', function() {
-            mobileMenu.classList.toggle('active');
-            this.innerHTML = mobileMenu.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
-
-        // Download button functionality
-        document.getElementById('downloadBtn').addEventListener('click', function() {
-            const originalText = this.innerHTML;
-            this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Downloading...';
-            this.style.background = 'linear-gradient(to right, #2A8C6F, #3EB489)';
-            
-            // Create a fake download link
-            const link = document.createElement('a');
-            link.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(`<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-    <key>PayloadContent</key>
-    <array>
-        <dict>
-            <key>PayloadDescription</key>
-            <string>MintHub DNS Revoke Blocker - Blocks Apple's certificate revocation servers</string>
-            <key>PayloadDisplayName</key>
-            <string>MintHub DNS Blocker</string>
-            <key>PayloadIdentifier</key>
-            <string>com.minthub.dnsblocker</string>
-            <key>PayloadType</key>
-            <string>com.apple.dnsSettings.managed</string>
-            <key>PayloadUUID</key>
-            <string>${crypto.randomUUID()}</string>
-            <key>PayloadVersion</key>
-            <integer>1</integer>
-            <key>DNSSettings</key>
-            <dict>
-                <key>DNSProtocol</key>
-                <string>HTTPS</string>
-                <key>ServerAddresses</key>
-                <array>
-                    <string>127.0.0.1</string>
-                </array>
-                <key>ServerName</key>
-                <string>MintHub DNS Blocker</string>
-            </dict>
-        </dict>
-    </array>
-    <key>PayloadDescription</key>
-    <string>Blocks Apple's certificate revocation servers to prevent sideloaded app revocations</string>
-    <key>PayloadDisplayName</key>
-    <string>MintHub DNS Revoke Blocker</string>
-    <key>PayloadIdentifier</key>
-    <string>com.minthub.dnsblocker.profile</string>
-    <key>PayloadRemovalDisallowed</key>
-    <false/>
-    <key>PayloadType</key>
-    <string>Configuration</string>
-    <key>PayloadUUID</key>
-    <string>${crypto.randomUUID()}</string>
-    <key>PayloadVersion</key>
-    <integer>1</integer>
-</dict>
-</plist>`);
-            link.download = 'MintHub-DNS-Revoke-Blocker.mobileconfig';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            // Reset button after 3 seconds
-            setTimeout(() => {
-                this.innerHTML = originalText;
-                this.style.background = 'linear-gradient(to right, var(--mint-primary), var(--mint-dark))';
-            }, 3000);
-        });
-
-        // Fade in animation on scroll with enhanced transitions
-        const fadeElements = document.querySelectorAll('.fade-in, .slide-left, .slide-right');
-        
-        const fadeInOnScroll = function() {
-            fadeElements.forEach(element => {
-                const elementTop = element.getBoundingClientRect().top;
-                const elementVisible = 150;
-                
-                if (elementTop < window.innerHeight - elementVisible) {
-                    element.style.opacity = "1";
-                    element.style.transform = "translateY(0) translateX(0)";
-                }
-            });
-            
-            // Update progress line based on scroll
-            const steps = document.querySelectorAll('.step');
-            let activeSteps = 0;
-            
-            steps.forEach(step => {
-                const stepTop = step.getBoundingClientRect().top;
-                if (stepTop < window.innerHeight - 100) {
-                    activeSteps++;
-                }
-            });
-            
-            const progressLine = document.getElementById('progressLine');
-            if (progressLine) {
-                const progressPercent = (activeSteps / steps.length) * 100;
-                progressLine.style.setProperty('--progress-width', `${progressPercent}%`);
-                progressLine.querySelector('::after')?.style.setProperty('width', `${progressPercent}%`);
-            }
-            
-            // Update scroll progress bar
-            const scrollProgress = document.getElementById('scrollProgress');
-            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (winScroll / height) * 100;
-            scrollProgress.style.width = scrolled + "%";
-        };
-
-        // Set initial state for animations
+      // Mobile menu toggle
+      const menuBtn = document.getElementById('menuBtn');
+      const mobileMenu = document.getElementById('mobileMenu');
+      menuBtn.addEventListener('click', function() {
+        mobileMenu.classList.toggle('active');
+        this.innerHTML = mobileMenu.classList.contains('active') ? ' < i class = "fas fa-times" > < /i>'  : ' < i class = "fas fa-bars" > < /i>';
+      });
+      // Download button functionality
+      document.getElementById('downloadBtn').addEventListener('click', function() {
+        const originalText = this.innerHTML;
+        this.innerHTML = ' < i class = "fas fa-spinner fa-spin" > < /i> Downloading...';
+        this.style.background = 'linear-gradient(to right, #2A8C6F, #3EB489)';
+        // Reset button after 3 seconds
+        setTimeout(() => {
+          this.innerHTML = originalText;
+          this.style.background = 'linear-gradient(to right, var(--mint-primary), var(--mint-dark))';
+        }, 3000);
+      });
+      // Fade in animation on scroll with enhanced transitions
+      const fadeElements = document.querySelectorAll('.fade-in, .slide-left, .slide-right');
+      const fadeInOnScroll = function() {
         fadeElements.forEach(element => {
-            if (element.classList.contains('fade-in')) {
-                element.style.opacity = "0";
-                element.style.transform = "translateY(30px)";
-            } else if (element.classList.contains('slide-left')) {
-                element.style.opacity = "0";
-                element.style.transform = "translateX(-50px)";
-            } else if (element.classList.contains('slide-right')) {
-                element.style.opacity = "0";
-                element.style.transform = "translateX(50px)";
-            }
-            element.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+          const elementTop = element.getBoundingClientRect().top;
+          const elementVisible = 150;
+          if (elementTop < window.innerHeight - elementVisible) {
+            element.style.opacity = "1";
+            element.style.transform = "translateY(0) translateX(0)";
+          }
         });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                if (targetId === '#') return;
-                
-                const targetElement = document.querySelector(targetId);
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (mobileMenu.classList.contains('active')) {
-                        mobileMenu.classList.remove('active');
-                        menuBtn.innerHTML = '<i class="fas fa-bars"></i>';
-                    }
-                }
-            });
+        // Update progress line based on scroll
+        const steps = document.querySelectorAll('.step');
+        let activeSteps = 0;
+        steps.forEach(step => {
+          const stepTop = step.getBoundingClientRect().top;
+          if (stepTop < window.innerHeight - 100) {
+            activeSteps++;
+          }
         });
-
-        // Check on load and scroll
-        window.addEventListener('load', fadeInOnScroll);
-        window.addEventListener('scroll', fadeInOnScroll);
-        
-        // Add hover effect to cards on page load
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.querySelectorAll('.info-card, .download-card, .domain-item').forEach(card => {
-                    card.style.transition = 'all 0.4s ease';
-                });
-            }, 1000);
-        });
-        
-        // Add progress line animation
         const progressLine = document.getElementById('progressLine');
         if (progressLine) {
-            progressLine.style.setProperty('--progress-width', '0%');
-            const pseudoAfter = document.createElement('style');
-            pseudoAfter.innerHTML = `
+          const progressPercent = (activeSteps / steps.length) * 100;
+          progressLine.style.setProperty('--progress-width', `${progressPercent}%`);
+          progressLine.querySelector('::after')?.style.setProperty('width', `${progressPercent}%`);
+        }
+        // Update scroll progress bar
+        const scrollProgress = document.getElementById('scrollProgress');
+        const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        scrollProgress.style.width = scrolled + "%";
+      };
+      // Set initial state for animations
+      fadeElements.forEach(element => {
+        if (element.classList.contains('fade-in')) {
+          element.style.opacity = "0";
+          element.style.transform = "translateY(30px)";
+        } else if (element.classList.contains('slide-left')) {
+          element.style.opacity = "0";
+          element.style.transform = "translateX(-50px)";
+        } else if (element.classList.contains('slide-right')) {
+          element.style.opacity = "0";
+          element.style.transform = "translateX(50px)";
+        }
+        element.style.transition = "opacity 0.8s ease, transform 0.8s ease";
+      });
+      // Smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href');
+          if (targetId === '#') return;
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            window.scrollTo({
+              top: targetElement.offsetTop - 80,
+              behavior: 'smooth'
+            });
+            // Close mobile menu if open
+            if (mobileMenu.classList.contains('active')) {
+              mobileMenu.classList.remove('active');
+              menuBtn.innerHTML = ' < i class = "fas fa-bars" > < /i>';
+            }
+          }
+        });
+      });
+      // Check on load and scroll
+      window.addEventListener('load', fadeInOnScroll);
+      window.addEventListener('scroll', fadeInOnScroll);
+      // Add hover effect to cards on page load
+      window.addEventListener('load', () => {
+        setTimeout(() => {
+          document.querySelectorAll('.info-card, .download-card, .domain-item').forEach(card => {
+            card.style.transition = 'all 0.4s ease';
+          });
+        }, 1000);
+      });
+      // Add progress line animation
+      const progressLine = document.getElementById('progressLine');
+      if (progressLine) {
+        progressLine.style.setProperty('--progress-width', '0%');
+        const pseudoAfter = document.createElement('style');
+        pseudoAfter.innerHTML = `
                 .progress-line::after {
                     width: var(--progress-width, 0%);
                 }
             `;
-            document.head.appendChild(pseudoAfter);
-        }
+        document.head.appendChild(pseudoAfter);
+      }
     </script>
-</body>
+  </body>
 </html>

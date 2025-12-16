@@ -1337,6 +1337,14 @@
     </button>
 
     <script>
+        // ===== FIX SOCIAL BUTTONS =====
+document.querySelectorAll('.socials a').forEach(link => {
+    link.addEventListener('click', function(e) {
+        // Don't prevent default behavior - let them open in new tab
+        e.stopPropagation(); // Prevent the smooth transition code from catching this
+        // The default behavior (target="_blank") will handle the rest
+    });
+});
         // ===== ENHANCED TRANSITION VARIABLES =====
         const TRANSITION_DURATION = 400;
         const BOUNCE_TRANSITION = 'cubic-bezier(0.68, -0.55, 0.265, 1.55)';

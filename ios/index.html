@@ -1,1708 +1,2660 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>MintHub | Sideload Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- WebClip Meta Tags -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="theme-color" content="#ADEBB3">
+    <script data-cfasync="false" src="//dl4d3y1ajyv3q.cloudfront.net/?aydld=1219466"></script>
+    <script src="adblocker.js" defer></script>
     <link rel="manifest" href="manifest.json">
     <style>
-        /* ===== BASE & MINT THEME ===== */
-        :root {
-            --mint-primary: #ADEBB3; /* Primary mint green */
-            --mint-dark: #2E6F40;    /* Forest green for contrast */
-            --mint-light: #E8F8E9;
-            --mint-accent: #98FBCB;  /* Mint blue variation */
-            --text-dark: #1A3B23;
-            --text-light: #F7FFFC;
-            --card-bg: rgba(255, 255, 255, 0.95);
-            --shadow: rgba(173, 235, 179, 0.25);
-            --success: #68ed89;
-            --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      :root {
+        --mint-primary: #ADEBB3;
+        --mint-dark: #2E6F40;
+        --mint-light: #E8F8E9;
+        --mint-accent: #98FBCB;
+        --text-dark: #1A3B23;
+        --text-light: #F7FFFC;
+        --card-bg: rgba(255, 255, 255, 0.95);
+        --shadow: rgba(173, 235, 179, 0.25);
+        --success: #68ed89;
+        --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        --transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+      }
+
+      body {
+        background: linear-gradient(135deg, #f8fffc 0%, #e1f7e7 100%);
+        color: var(--text-dark);
+        min-height: 100vh;
+        overflow-x: hidden;
+        -webkit-tap-highlight-color: transparent;
+        opacity: 0;
+        animation: pageFadeIn 0.8s ease-out forwards;
+      }
+
+      @keyframes pageFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .container {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 20px;
+        position: relative;
+        z-index: 2;
+        animation: slideUp 0.6s ease-out 0.3s both;
+      }
+
+      @keyframes slideUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
         }
 
-        body {
-            background: linear-gradient(135deg, #f8fffc 0%, #e1f7e7 100%);
-            color: var(--text-dark);
-            min-height: 100vh;
-            overflow-x: hidden;
-            -webkit-tap-highlight-color: transparent;
-            opacity: 0;
-            animation: pageFadeIn 0.8s ease-out forwards;
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .background-effects {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+        overflow: hidden;
+      }
+
+      .mint-gradient {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at 20% 80%, var(--mint-accent) 0%, transparent 40%),
+          radial-gradient(circle at 80% 20%, var(--mint-primary) 0%, transparent 40%);
+        opacity: 0.4;
+        animation: gradientShift 15s ease-in-out infinite alternate;
+      }
+
+      @keyframes gradientShift {
+        0% {
+          opacity: 0.3;
+          transform: scale(1);
         }
 
-        @keyframes pageFadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        100% {
+          opacity: 0.5;
+          transform: scale(1.05);
+        }
+      }
+
+      .floating-shapes .floating-shape {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(173, 235, 179, 0.1);
+        border: 1px solid rgba(46, 111, 64, 0.05);
+        animation: float 20s ease-in-out infinite;
+        transition: var(--transition-smooth);
+      }
+
+      .floating-shapes:hover .floating-shape {
+        animation-play-state: paused;
+      }
+
+      .floating-shapes .floating-shape:nth-child(1) {
+        width: 80px;
+        height: 80px;
+        top: 10%;
+        left: 5%;
+        animation: float 25s ease-in-out infinite,
+          rotate 40s linear infinite reverse;
+        background: radial-gradient(circle, rgba(152, 251, 203, 0.15), transparent 70%);
+      }
+
+      .floating-shapes .floating-shape:nth-child(2) {
+        width: 120px;
+        height: 120px;
+        top: 60%;
+        left: 80%;
+        animation: float 30s ease-in-out infinite reverse,
+          rotate 50s linear infinite;
+        background: radial-gradient(circle, rgba(173, 235, 179, 0.1), transparent 70%);
+      }
+
+      .floating-shapes .floating-shape:nth-child(3) {
+        width: 60px;
+        height: 60px;
+        top: 80%;
+        left: 15%;
+        animation: float 20s ease-in-out infinite,
+          pulse 4s ease-in-out infinite;
+      }
+
+      @keyframes float {
+
+        0%,
+        100% {
+          transform: translate(0, 0) rotate(0deg);
         }
 
+        33% {
+          transform: translate(-30px, -40px) rotate(120deg);
+        }
+
+        66% {
+          transform: translate(20px, 20px) rotate(240deg);
+        }
+      }
+
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes pulse {
+
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.1;
+        }
+
+        50% {
+          transform: scale(1.2);
+          opacity: 0.2;
+        }
+      }
+
+      .app-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 20px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(15px);
+        -webkit-backdrop-filter: blur(15px);
+        border-bottom: 1px solid rgba(173, 235, 179, 0.3);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border-radius: 0 0 25px 25px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+        animation: navSlideDown 0.5s ease-out 0.2s both;
+      }
+
+      @keyframes navSlideDown {
+        from {
+          transform: translateY(-100%);
+          opacity: 0;
+        }
+
+        to {
+          transform: translateY(0);
+          opacity: 1;
+        }
+      }
+
+      .nav-title {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--mint-dark);
+        transition: var(--transition-smooth);
+      }
+
+      .nav-title:hover {
+        transform: translateX(5px);
+      }
+
+      .nav-title i {
+        color: var(--mint-primary);
+        animation: leafWiggle 3s ease-in-out infinite;
+      }
+
+      @keyframes leafWiggle {
+
+        0%,
+        100% {
+          transform: rotate(0deg);
+        }
+
+        25% {
+          transform: rotate(-5deg);
+        }
+
+        75% {
+          transform: rotate(5deg);
+        }
+      }
+
+      .nav-actions {
+        display: flex;
+        gap: 12px;
+      }
+
+      .nav-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 14px;
+        border: none;
+        background: var(--mint-light);
+        color: var(--mint-dark);
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: var(--transition-bounce);
+        display: grid;
+        place-items: center;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .nav-btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(173, 235, 179, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+
+      .nav-btn:hover::before {
+        width: 100px;
+        height: 100px;
+      }
+
+      .nav-btn:hover {
+        transform: scale(1.1) rotate(5deg);
+        background: var(--mint-primary);
+        box-shadow: 0 8px 20px rgba(173, 235, 179, 0.4);
+      }
+
+      .header-content {
+        text-align: center;
+        padding: 40px 20px 50px;
+        margin-bottom: 30px;
+        position: relative;
+        animation: contentReveal 0.8s ease-out 0.4s both;
+      }
+
+      @keyframes contentReveal {
+        from {
+          opacity: 0;
+          transform: translateY(40px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .logo-container img {
+        width: 100px;
+        height: 100px;
+        filter: drop-shadow(0 8px 20px var(--shadow));
+        animation: logoFloat 6s ease-in-out infinite;
+        transition: transform 0.5s ease;
+      }
+
+      .logo-container:hover img {
+        animation-play-state: paused;
+        transform: scale(1.1) rotate(-10deg);
+      }
+
+      @keyframes logoFloat {
+
+        0%,
+        100% {
+          transform: translateY(0) rotate(0deg);
+        }
+
+        50% {
+          transform: translateY(-15px) rotate(5deg);
+        }
+      }
+
+      .header-content h1 {
+        font-size: 3rem;
+        background: linear-gradient(135deg, var(--mint-dark), #3a8c5c);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        margin: 20px 0 15px;
+        animation: titleGlow 3s ease-in-out infinite alternate;
+      }
+
+      @keyframes titleGlow {
+        from {
+          filter: drop-shadow(0 0 5px rgba(173, 235, 179, 0.3));
+        }
+
+        to {
+          filter: drop-shadow(0 0 15px rgba(173, 235, 179, 0.5));
+        }
+      }
+
+      .header-content p {
+        max-width: 600px;
+        margin: 0 auto 40px;
+        line-height: 1.7;
+        color: #4a7057;
+        font-size: 1.15rem;
+        opacity: 0.9;
+        transition: var(--transition-smooth);
+      }
+
+      .header-content:hover p {
+        opacity: 1;
+        transform: translateY(-2px);
+      }
+
+      .stats-container {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        flex-wrap: wrap;
+        margin-top: 40px;
+        animation: statsPopIn 0.6s ease-out 0.8s both;
+      }
+
+      @keyframes statsPopIn {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .stat-item {
+        background: var(--card-bg);
+        padding: 25px 30px;
+        border-radius: 20px;
+        min-width: 150px;
+        box-shadow: 0 10px 30px var(--shadow);
+        border: 1px solid rgba(173, 235, 179, 0.4);
+        backdrop-filter: blur(10px);
+        transition: var(--transition-bounce);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .stat-item::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+        transition: left 0.7s ease;
+      }
+
+      .stat-item:hover::after {
+        left: 100%;
+      }
+
+      .stat-item:hover {
+        transform: translateY(-8px) scale(1.05);
+        box-shadow: 0 20px 40px rgba(173, 235, 179, 0.3);
+        border-color: var(--mint-primary);
+      }
+
+      .stat-number {
+        font-size: 2.8rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--mint-dark), var(--mint-primary));
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+        line-height: 1;
+        transition: var(--transition-smooth);
+      }
+
+      .stat-label {
+        font-size: 0.95rem;
+        color: #6b8b76;
+        margin-top: 10px;
+        font-weight: 500;
+        transition: var(--transition-smooth);
+      }
+
+      .content-area {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(20px);
+        border-radius: 30px;
+        padding: 35px;
+        margin-bottom: 40px;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+        border: 1px solid rgba(255, 255, 255, 0.7);
+        transition: var(--transition-smooth);
+        animation: sectionSlideUp 0.6s ease-out var(--section-delay) both;
+      }
+
+      .content-area:nth-child(1) {
+        --section-delay: 0.6s;
+      }
+
+      .content-area:nth-child(2) {
+        --section-delay: 0.8s;
+      }
+
+      .content-area:nth-child(3) {
+        --section-delay: 1s;
+      }
+
+      @keyframes sectionSlideUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .content-area:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 25px 50px rgba(173, 235, 179, 0.15);
+        border-color: rgba(173, 235, 179, 0.6);
+      }
+
+      .section-title {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-size: 1.9rem;
+        color: var(--mint-dark);
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid rgba(173, 235, 179, 0.3);
+        transition: var(--transition-smooth);
+      }
+
+      .section-title i {
+        color: var(--mint-primary);
+        transition: var(--transition-smooth);
+      }
+
+      .section-title:hover {
+        border-bottom-color: var(--mint-primary);
+      }
+
+      .section-title:hover i {
+        transform: scale(1.2) rotate(10deg);
+      }
+
+      .tab-container {
+        display: flex;
+        background: var(--mint-light);
+        padding: 8px;
+        border-radius: 18px;
+        margin-bottom: 30px;
+        max-width: fit-content;
+        transition: var(--transition-smooth);
+      }
+
+      .tab-container:hover {
+        box-shadow: 0 8px 25px rgba(173, 235, 179, 0.3);
+      }
+
+      .tab-btn {
+        padding: 14px 28px;
+        border: none;
+        background: transparent;
+        border-radius: 14px;
+        color: var(--text-dark);
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition-bounce);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 1.05rem;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .tab-btn::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 0;
+        height: 3px;
+        background: var(--mint-primary);
+        transform: translateX(-50%);
+        transition: width 0.4s ease;
+      }
+
+      .tab-btn.active {
+        background: white;
+        color: var(--mint-dark);
+        box-shadow: 0 8px 25px var(--shadow);
+        transform: scale(1.05);
+      }
+
+      .tab-btn.active::before {
+        width: 80%;
+      }
+
+      .tab-btn:not(.active):hover {
+        transform: translateY(-3px);
+        color: var(--mint-primary);
+      }
+
+      .download-list {
+        display: block;
+        animation: fadeIn 0.5s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .download-list.content-hidden {
+        display: none;
+      }
+
+      .download-item {
+        background: var(--card-bg);
+        border-radius: 20px;
+        padding: 25px;
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border: 1px solid rgba(173, 235, 179, 0.4);
+        transition: var(--transition-bounce);
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .download-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 0;
+        background: var(--mint-primary);
+        transition: height 0.4s ease;
+      }
+
+      .download-item:hover::before {
+        height: 100%;
+      }
+
+      .download-item:hover {
+        transform: translateY(-6px) scale(1.02);
+        box-shadow: 0 20px 40px rgba(173, 235, 179, 0.25);
+        border-color: var(--mint-primary);
+      }
+
+      .download-info {
+        flex: 1;
+        padding-right: 20px;
+        transition: var(--transition-smooth);
+      }
+
+      .download-item:hover .download-info {
+        transform: translateX(10px);
+      }
+
+      .download-info strong {
+        display: block;
+        font-size: 1.35rem;
+        color: var(--mint-dark);
+        margin-bottom: 10px;
+        transition: var(--transition-smooth);
+      }
+
+      .download-item:hover .download-info strong {
+        color: var(--mint-primary);
+      }
+
+      .download-info small {
+        color: #5d7a66;
+        line-height: 1.6;
+        display: block;
+        transition: var(--transition-smooth);
+      }
+
+      .status-badge {
+        display: inline-block;
+        background: linear-gradient(135deg, var(--success), #4cd964);
+        color: white;
+        font-size: 0.8rem;
+        padding: 5px 12px;
+        border-radius: 20px;
+        margin-left: 12px;
+        vertical-align: middle;
+        animation: badgePulse 2s ease-in-out infinite;
+        transition: var(--transition-smooth);
+      }
+
+      @keyframes badgePulse {
+
+        0%,
+        100% {
+          transform: scale(1);
+        }
+
+        50% {
+          transform: scale(1.05);
+        }
+      }
+
+      .download-icon {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, var(--mint-primary), var(--mint-accent));
+        border-radius: 16px;
+        display: grid;
+        place-items: center;
+        color: white;
+        font-size: 1.4rem;
+        text-decoration: none;
+        flex-shrink: 0;
+        transition: var(--transition-bounce);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .download-icon::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+
+      .download-icon:hover::after {
+        width: 100px;
+        height: 100px;
+      }
+
+      .download-icon:hover {
+        transform: scale(1.15) rotate(10deg);
+        box-shadow: 0 12px 30px rgba(104, 237, 137, 0.4);
+      }
+
+      .search-container {
+        position: relative;
+        margin-bottom: 30px;
+        max-width: 450px;
+        animation: slideInRight 0.5s ease-out 0.3s both;
+      }
+
+      @keyframes slideInRight {
+        from {
+          opacity: 0;
+          transform: translateX(-30px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .search-icon {
+        position: absolute;
+        left: 22px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--mint-primary);
+        font-size: 1.2rem;
+        transition: var(--transition-smooth);
+        z-index: 2;
+      }
+
+      .search-container:focus-within .search-icon {
+        transform: translateY(-50%) scale(1.2);
+        color: var(--mint-dark);
+      }
+
+      .search-box {
+        width: 100%;
+        padding: 20px 20px 20px 60px;
+        border: 2px solid var(--mint-light);
+        border-radius: 18px;
+        font-size: 1.05rem;
+        background: rgba(255, 255, 255, 0.95);
+        transition: var(--transition-bounce);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+      }
+
+      .search-box:focus {
+        outline: none;
+        border-color: var(--mint-primary);
+        box-shadow: 0 15px 35px rgba(173, 235, 179, 0.3);
+        transform: translateY(-3px);
+      }
+
+      .cards {
+        display: grid;
+        gap: 30px;
+        margin-top: 50px;
+      }
+
+      .card {
+        background: var(--card-bg);
+        border-radius: 25px;
+        padding: 35px;
+        border: 1px solid rgba(173, 235, 179, 0.4);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+        transition: var(--transition-bounce);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: 80px;
+        height: 80px;
+        background: linear-gradient(135deg, rgba(173, 235, 179, 0.1), transparent);
+        border-radius: 0 25px 0 100px;
+        transition: var(--transition-smooth);
+      }
+
+      .card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 30px 60px rgba(173, 235, 179, 0.2);
+        border-color: var(--mint-primary);
+      }
+
+      .card:hover::before {
+        width: 120px;
+        height: 120px;
+      }
+
+      .card h3 {
+        color: var(--mint-dark);
+        margin-bottom: 20px;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        font-size: 1.6rem;
+        transition: var(--transition-smooth);
+      }
+
+      .card:hover h3 {
+        color: var(--mint-primary);
+      }
+
+      .card h3 i {
+        transition: var(--transition-bounce);
+      }
+
+      .card:hover h3 i {
+        transform: scale(1.3) rotate(15deg);
+      }
+
+      .card p {
+        color: #5d7a66;
+        line-height: 1.7;
+        margin-bottom: 25px;
+        transition: var(--transition-smooth);
+      }
+
+      .card:hover p {
+        transform: translateX(5px);
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 15px;
+        background: linear-gradient(135deg, var(--mint-primary), var(--mint-accent));
+        color: white;
+        text-decoration: none;
+        padding: 20px 35px;
+        border-radius: 18px;
+        font-weight: 600;
+        font-size: 1.15rem;
+        margin-top: 15px;
+        border: none;
+        cursor: pointer;
+        transition: var(--transition-bounce);
+        box-shadow: 0 10px 25px rgba(104, 237, 137, 0.3);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        transition: width 0.7s, height 0.7s;
+      }
+
+      .btn:hover::before {
+        width: 300px;
+        height: 300px;
+      }
+
+      .btn:hover {
+        transform: translateY(-5px) scale(1.05);
+        box-shadow: 0 20px 40px rgba(104, 237, 137, 0.4);
+      }
+
+      .socials {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin: 50px 0;
+        animation: socialsFadeIn 0.8s ease-out 1.2s both;
+        position: relative;
+        z-index: 1001;
+      }
+
+      @keyframes socialsFadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .socials a {
+        width: 65px;
+        height: 65px;
+        background: var(--card-bg);
+        border-radius: 20px;
+        display: grid;
+        place-items: center;
+        color: var(--mint-dark);
+        font-size: 1.6rem;
+        text-decoration: none;
+        border: 1px solid rgba(173, 235, 179, 0.4);
+        transition: var(--transition-bounce);
+        position: relative;
+        overflow: hidden;
+        pointer-events: auto;
+        touch-action: manipulation;
+      }
+
+      .socials a::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 0;
+        background: linear-gradient(to top, var(--mint-primary), transparent);
+        transition: height 0.4s ease;
+        z-index: -1;
+      }
+
+      .socials a:hover::before {
+        height: 100%;
+      }
+
+      .socials a:hover {
+        transform: translateY(-10px) scale(1.1);
+        color: white;
+        box-shadow: 0 20px 40px rgba(173, 235, 179, 0.3);
+        border-color: var(--mint-primary);
+      }
+
+      .socials a i {
+        pointer-events: none;
+      }
+
+      footer {
+        text-align: center;
+        padding: 40px 20px;
+        color: #6b8b76;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        border-top: 1px solid rgba(173, 235, 179, 0.3);
+        margin-top: 30px;
+        animation: footerFadeIn 0.8s ease-out 1.4s both;
+      }
+
+      @keyframes footerFadeIn {
+        from {
+          opacity: 0;
+        }
+
+        to {
+          opacity: 1;
+        }
+      }
+
+      footer p {
+        transition: var(--transition-smooth);
+      }
+
+      footer:hover p {
+        transform: translateY(-2px);
+      }
+
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        z-index: 9999;
+        pointer-events: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .loading-overlay.active {
+        opacity: 1;
+        visibility: visible;
+        animation: overlayAppear 0.5s ease-out;
+        pointer-events: auto;
+      }
+
+      @keyframes overlayAppear {
+        from {
+          opacity: 0;
+          backdrop-filter: blur(0);
+        }
+
+        to {
+          opacity: 1;
+          backdrop-filter: blur(20px);
+        }
+      }
+
+      .loading-content {
+        text-align: center;
+        max-width: 320px;
+        animation: loadingContentPop 0.6s ease-out 0.2s both;
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        will-change: transform, left, top;
+      }
+
+      @keyframes loadingContentPop {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      .loading-spinner {
+        width: 80px;
+        height: 80px;
+        border: 4px solid var(--mint-light);
+        border-top-color: var(--mint-primary);
+        border-radius: 50%;
+        margin: 0 auto 30px;
+        animation: spin 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite,
+          colorShift 3s ease-in-out infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes colorShift {
+
+        0%,
+        100% {
+          border-top-color: var(--mint-primary);
+        }
+
+        33% {
+          border-top-color: var(--mint-accent);
+        }
+
+        66% {
+          border-top-color: var(--mint-dark);
+        }
+      }
+
+      .loading-text {
+        font-size: 1.6rem;
+        color: var(--mint-dark);
+        margin-bottom: 12px;
+        animation: textPulse 2s ease-in-out infinite;
+      }
+
+      @keyframes textPulse {
+
+        0%,
+        100% {
+          opacity: 0.9;
+        }
+
+        50% {
+          opacity: 1;
+        }
+      }
+
+      .loading-subtext {
+        color: #6b8b76;
+        margin-bottom: 25px;
+        animation: subtextSlide 3s ease-in-out infinite;
+      }
+
+      @keyframes subtextSlide {
+
+        0%,
+        100% {
+          transform: translateX(0);
+        }
+
+        50% {
+          transform: translateX(10px);
+        }
+      }
+
+      .loading-progress {
+        height: 8px;
+        background: var(--mint-light);
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .loading-progress-bar {
+        height: 100%;
+        background: linear-gradient(90deg, var(--mint-primary), var(--mint-accent), var(--mint-primary));
+        background-size: 200% 100%;
+        width: 0%;
+        transition: width 0.4s ease;
+        animation: progressShimmer 2s ease-in-out infinite;
+      }
+
+      @keyframes progressShimmer {
+        0% {
+          background-position: -200% 0;
+        }
+
+        100% {
+          background-position: 200% 0;
+        }
+      }
+
+      .notification {
+        position: fixed;
+        bottom: calc(40px + env(safe-area-inset-bottom, 0px));
+        right: calc(40px + env(safe-area-inset-right, 0px));
+        background: var(--mint-dark);
+        color: white;
+        padding: 22px 28px;
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        z-index: 10000;
+        transform: translateX(150%) translateY(0);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+          opacity 0.4s ease;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(173, 235, 179, 0.3);
+      }
+
+      .notification.show {
+        transform: translateX(0) translateY(0);
+        opacity: 1;
+        animation: notificationBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        pointer-events: auto;
+      }
+
+      @keyframes notificationBounce {
+        0% {
+          transform: translateX(150%);
+        }
+
+        60% {
+          transform: translateX(-10px);
+        }
+
+        80% {
+          transform: translateX(5px);
+        }
+
+        100% {
+          transform: translateX(0);
+        }
+      }
+
+      .notification-icon {
+        font-size: 1.5rem;
+        color: var(--mint-primary);
+        animation: iconWiggle 2s ease-in-out infinite;
+      }
+
+      @keyframes iconWiggle {
+
+        0%,
+        100% {
+          transform: rotate(0deg);
+        }
+
+        25% {
+          transform: rotate(-10deg);
+        }
+
+        75% {
+          transform: rotate(10deg);
+        }
+      }
+
+      .scroll-to-top {
+        position: fixed;
+        bottom: calc(40px + env(safe-area-inset-bottom, 0px));
+        left: calc(40px + env(safe-area-inset-left, 0px));
+        width: 65px;
+        height: 65px;
+        background: linear-gradient(135deg, var(--mint-primary), var(--mint-accent));
+        color: white;
+        border: none;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        cursor: pointer;
+        box-shadow: 0 10px 30px rgba(173, 235, 179, 0.4);
+        z-index: 999;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: scale(0.5) rotate(180deg);
+        transition: var(--transition-bounce);
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+      }
+
+      .scroll-to-top::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        transform: scale(0);
+        transition: transform 0.6s ease;
+      }
+
+      .scroll-to-top:hover::before {
+        transform: scale(1.5);
+      }
+
+      .scroll-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: scale(1) rotate(0deg);
+        pointer-events: auto;
+      }
+
+      .scroll-to-top:hover {
+        transform: scale(1.15) rotate(0deg);
+        box-shadow: 0 20px 40px rgba(173, 235, 179, 0.6);
+      }
+
+      @media (max-width: 768px) {
         .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-            position: relative;
-            z-index: 2;
-            animation: slideUp 0.6s ease-out 0.3s both;
+          padding: 15px;
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ===== ANIMATED BACKGROUND ===== */
-        .background-effects {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 1;
-            overflow: hidden;
-        }
-
-        .mint-gradient {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            background: radial-gradient(circle at 20% 80%, var(--mint-accent) 0%, transparent 40%),
-                        radial-gradient(circle at 80% 20%, var(--mint-primary) 0%, transparent 40%);
-            opacity: 0.4;
-            animation: gradientShift 15s ease-in-out infinite alternate;
-        }
-
-        @keyframes gradientShift {
-            0% { opacity: 0.3; transform: scale(1); }
-            100% { opacity: 0.5; transform: scale(1.05); }
-        }
-
-        /* Enhanced floating shapes */
-        .floating-shapes .floating-shape {
-            position: absolute;
-            border-radius: 50%;
-            background: rgba(173, 235, 179, 0.1);
-            border: 1px solid rgba(46, 111, 64, 0.05);
-            animation: float 20s ease-in-out infinite;
-            transition: var(--transition-smooth);
-        }
-
-        .floating-shapes:hover .floating-shape {
-            animation-play-state: paused;
-        }
-
-        .floating-shapes .floating-shape:nth-child(1) {
-            width: 80px; height: 80px;
-            top: 10%; left: 5%;
-            animation: float 25s ease-in-out infinite,
-                       rotate 40s linear infinite reverse;
-            background: radial-gradient(circle, rgba(152, 251, 203, 0.15), transparent 70%);
-        }
-
-        .floating-shapes .floating-shape:nth-child(2) {
-            width: 120px; height: 120px;
-            top: 60%; left: 80%;
-            animation: float 30s ease-in-out infinite reverse,
-                       rotate 50s linear infinite;
-            background: radial-gradient(circle, rgba(173, 235, 179, 0.1), transparent 70%);
-        }
-
-        .floating-shapes .floating-shape:nth-child(3) {
-            width: 60px; height: 60px;
-            top: 80%; left: 15%;
-            animation: float 20s ease-in-out infinite,
-                       pulse 4s ease-in-out infinite;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translate(0, 0) rotate(0deg); }
-            33% { transform: translate(-30px, -40px) rotate(120deg); }
-            66% { transform: translate(20px, 20px) rotate(240deg); }
-        }
-
-        @keyframes rotate {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.1; }
-            50% { transform: scale(1.2); opacity: 0.2; }
-        }
-
-        /* ===== APP-LIKE HEADER ===== */
         .app-nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 20px;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            border-bottom: 1px solid rgba(173, 235, 179, 0.3);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-radius: 0 0 25px 25px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-            animation: navSlideDown 0.5s ease-out 0.2s both;
-        }
-
-        @keyframes navSlideDown {
-            from { transform: translateY(-100%); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-
-        .nav-title {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: var(--mint-dark);
-            transition: var(--transition-smooth);
-        }
-
-        .nav-title:hover {
-            transform: translateX(5px);
-        }
-
-        .nav-title i {
-            color: var(--mint-primary);
-            animation: leafWiggle 3s ease-in-out infinite;
-        }
-
-        @keyframes leafWiggle {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-5deg); }
-            75% { transform: rotate(5deg); }
-        }
-
-        .nav-actions {
-            display: flex;
-            gap: 12px;
-        }
-
-        .nav-btn {
-            width: 44px; height: 44px;
-            border-radius: 14px;
-            border: none;
-            background: var(--mint-light);
-            color: var(--mint-dark);
-            font-size: 1.1rem;
-            cursor: pointer;
-            transition: var(--transition-bounce);
-            display: grid;
-            place-items: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .nav-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%; left: 50%;
-            width: 0; height: 0;
-            border-radius: 50%;
-            background: rgba(173, 235, 179, 0.3);
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
-        }
-
-        .nav-btn:hover::before {
-            width: 100px; height: 100px;
-        }
-
-        .nav-btn:hover {
-            transform: scale(1.1) rotate(5deg);
-            background: var(--mint-primary);
-            box-shadow: 0 8px 20px rgba(173, 235, 179, 0.4);
+          padding: 15px;
+          border-radius: 0;
+          animation: none;
         }
 
         .header-content {
-            text-align: center;
-            padding: 40px 20px 50px;
-            margin-bottom: 30px;
-            position: relative;
-            animation: contentReveal 0.8s ease-out 0.4s both;
-        }
-
-        @keyframes contentReveal {
-            from { opacity: 0; transform: translateY(40px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .logo-container img {
-            width: 100px;
-            height: 100px;
-            filter: drop-shadow(0 8px 20px var(--shadow));
-            animation: logoFloat 6s ease-in-out infinite;
-            transition: transform 0.5s ease;
-        }
-
-        .logo-container:hover img {
-            animation-play-state: paused;
-            transform: scale(1.1) rotate(-10deg);
-        }
-
-        @keyframes logoFloat {
-            0%, 100% { transform: translateY(0) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(5deg); }
+          padding: 30px 15px;
         }
 
         .header-content h1 {
-            font-size: 3rem;
-            background: linear-gradient(135deg, var(--mint-dark), #3a8c5c);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            margin: 20px 0 15px;
-            animation: titleGlow 3s ease-in-out infinite alternate;
-        }
-
-        @keyframes titleGlow {
-            from { filter: drop-shadow(0 0 5px rgba(173, 235, 179, 0.3)); }
-            to { filter: drop-shadow(0 0 15px rgba(173, 235, 179, 0.5)); }
-        }
-
-        .header-content p {
-            max-width: 600px;
-            margin: 0 auto 40px;
-            line-height: 1.7;
-            color: #4a7057;
-            font-size: 1.15rem;
-            opacity: 0.9;
-            transition: var(--transition-smooth);
-        }
-
-        .header-content:hover p {
-            opacity: 1;
-            transform: translateY(-2px);
+          font-size: 2.5rem;
         }
 
         .stats-container {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-            margin-top: 40px;
-            animation: statsPopIn 0.6s ease-out 0.8s both;
-        }
-
-        @keyframes statsPopIn {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
+          gap: 20px;
         }
 
         .stat-item {
-            background: var(--card-bg);
-            padding: 25px 30px;
-            border-radius: 20px;
-            min-width: 150px;
-            box-shadow: 0 10px 30px var(--shadow);
-            border: 1px solid rgba(173, 235, 179, 0.4);
-            backdrop-filter: blur(10px);
-            transition: var(--transition-bounce);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .stat-item::after {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            transition: left 0.7s ease;
-        }
-
-        .stat-item:hover::after {
-            left: 100%;
-        }
-
-        .stat-item:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(173, 235, 179, 0.3);
-            border-color: var(--mint-primary);
+          min-width: calc(50% - 20px);
+          padding: 20px;
         }
 
         .stat-number {
-            font-size: 2.8rem;
-            font-weight: 800;
-            background: linear-gradient(135deg, var(--mint-dark), var(--mint-primary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            line-height: 1;
-            transition: var(--transition-smooth);
+          font-size: 2.2rem;
         }
 
-        .stat-label {
-            font-size: 0.95rem;
-            color: #6b8b76;
-            margin-top: 10px;
-            font-weight: 500;
-            transition: var(--transition-smooth);
-        }
-
-        /* ===== CONTENT SECTIONS ===== */
         .content-area {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 35px;
-            margin-bottom: 40px;
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.7);
-            transition: var(--transition-smooth);
-            animation: sectionSlideUp 0.6s ease-out var(--section-delay) both;
+          padding: 25px 20px;
+          border-radius: 25px;
         }
 
-        .content-area:nth-child(1) { --section-delay: 0.6s; }
-        .content-area:nth-child(2) { --section-delay: 0.8s; }
-        .content-area:nth-child(3) { --section-delay: 1s; }
-
-        @keyframes sectionSlideUp {
-            from { opacity: 0; transform: translateY(50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .content-area:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 25px 50px rgba(173, 235, 179, 0.15);
-            border-color: rgba(173, 235, 179, 0.6);
-        }
-
-        .section-title {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 1.9rem;
-            color: var(--mint-dark);
-            margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid rgba(173, 235, 179, 0.3);
-            transition: var(--transition-smooth);
-        }
-
-        .section-title i {
-            color: var(--mint-primary);
-            transition: var(--transition-smooth);
-        }
-
-        .section-title:hover {
-            border-bottom-color: var(--mint-primary);
-        }
-
-        .section-title:hover i {
-            transform: scale(1.2) rotate(10deg);
-        }
-
-        /* Tabs - Fixed Transition */
         .tab-container {
-            display: flex;
-            background: var(--mint-light);
-            padding: 8px;
-            border-radius: 18px;
-            margin-bottom: 30px;
-            max-width: fit-content;
-            transition: var(--transition-smooth);
-        }
-
-        .tab-container:hover {
-            box-shadow: 0 8px 25px rgba(173, 235, 179, 0.3);
+          width: 100%;
+          max-width: 100%;
         }
 
         .tab-btn {
-            padding: 14px 28px;
-            border: none;
-            background: transparent;
-            border-radius: 14px;
-            color: var(--text-dark);
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition-bounce);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.05rem;
-            position: relative;
-            overflow: hidden;
+          flex: 1;
+          justify-content: center;
+          padding: 12px;
         }
 
-        .tab-btn::before {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 50%;
-            width: 0; height: 3px;
-            background: var(--mint-primary);
-            transform: translateX(-50%);
-            transition: width 0.4s ease;
-        }
-
-        .tab-btn.active {
-            background: white;
-            color: var(--mint-dark);
-            box-shadow: 0 8px 25px var(--shadow);
-            transform: scale(1.05);
-        }
-
-        .tab-btn.active::before {
-            width: 80%;
-        }
-
-        .tab-btn:not(.active):hover {
-            transform: translateY(-3px);
-            color: var(--mint-primary);
-        }
-
-        /* Smooth Tab Content Transition */
-        .download-list {
-            display: block;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .download-list.content-hidden {
-            display: none;
-        }
-
-        /* Download Items - Enhanced Hover */
         .download-item {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 25px;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid rgba(173, 235, 179, 0.4);
-            transition: var(--transition-bounce);
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .download-item::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 4px; height: 0;
-            background: var(--mint-primary);
-            transition: height 0.4s ease;
-        }
-
-        .download-item:hover::before {
-            height: 100%;
-        }
-
-        .download-item:hover {
-            transform: translateY(-6px) scale(1.02);
-            box-shadow: 0 20px 40px rgba(173, 235, 179, 0.25);
-            border-color: var(--mint-primary);
-        }
-
-        .download-info {
-            flex: 1;
-            padding-right: 20px;
-            transition: var(--transition-smooth);
-        }
-
-        .download-item:hover .download-info {
-            transform: translateX(10px);
-        }
-
-        .download-info strong {
-            display: block;
-            font-size: 1.35rem;
-            color: var(--mint-dark);
-            margin-bottom: 10px;
-            transition: var(--transition-smooth);
-        }
-
-        .download-item:hover .download-info strong {
-            color: var(--mint-primary);
-        }
-
-        .download-info small {
-            color: #5d7a66;
-            line-height: 1.6;
-            display: block;
-            transition: var(--transition-smooth);
-        }
-
-        .status-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--success), #4cd964);
-            color: white;
-            font-size: 0.8rem;
-            padding: 5px 12px;
-            border-radius: 20px;
-            margin-left: 12px;
-            vertical-align: middle;
-            animation: badgePulse 2s ease-in-out infinite;
-            transition: var(--transition-smooth);
-        }
-
-        @keyframes badgePulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 20px;
         }
 
         .download-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--mint-primary), var(--mint-accent));
-            border-radius: 16px;
-            display: grid;
-            place-items: center;
-            color: white;
-            font-size: 1.4rem;
-            text-decoration: none;
-            flex-shrink: 0;
-            transition: var(--transition-bounce);
-            position: relative;
-            overflow: hidden;
+          align-self: flex-end;
         }
 
-        .download-icon::after {
-            content: '';
-            position: absolute;
-            top: 50%; left: 50%;
-            width: 0; height: 0;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.6s, height 0.6s;
+        .scroll-to-top {
+          left: 20px;
+          bottom: 20px;
+          width: 55px;
+          height: 55px;
         }
 
-        .download-icon:hover::after {
-            width: 100px; height: 100px;
-        }
-
-        .download-icon:hover {
-            transform: scale(1.15) rotate(10deg);
-            box-shadow: 0 12px 30px rgba(104, 237, 137, 0.4);
-        }
-
-        /* Search Box - Enhanced */
-        .search-container {
-            position: relative;
-            margin-bottom: 30px;
-            max-width: 450px;
-            animation: slideInRight 0.5s ease-out 0.3s both;
-        }
-
-        @keyframes slideInRight {
-            from { opacity: 0; transform: translateX(-30px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .search-icon {
-            position: absolute;
-            left: 22px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--mint-primary);
-            font-size: 1.2rem;
-            transition: var(--transition-smooth);
-            z-index: 2;
-        }
-
-        .search-container:focus-within .search-icon {
-            transform: translateY(-50%) scale(1.2);
-            color: var(--mint-dark);
-        }
-
-        .search-box {
-            width: 100%;
-            padding: 20px 20px 20px 60px;
-            border: 2px solid var(--mint-light);
-            border-radius: 18px;
-            font-size: 1.05rem;
-            background: rgba(255, 255, 255, 0.95);
-            transition: var(--transition-bounce);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
-        }
-
-        .search-box:focus {
-            outline: none;
-            border-color: var(--mint-primary);
-            box-shadow: 0 15px 35px rgba(173, 235, 179, 0.3);
-            transform: translateY(-3px);
-        }
-
-        /* Cards - Enhanced */
-        .cards {
-            display: grid;
-            gap: 30px;
-            margin-top: 50px;
-        }
-
-        .card {
-            background: var(--card-bg);
-            border-radius: 25px;
-            padding: 35px;
-            border: 1px solid rgba(173, 235, 179, 0.4);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
-            transition: var(--transition-bounce);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; right: 0;
-            width: 80px; height: 80px;
-            background: linear-gradient(135deg, rgba(173, 235, 179, 0.1), transparent);
-            border-radius: 0 25px 0 100px;
-            transition: var(--transition-smooth);
-        }
-
-        .card:hover {
-            transform: translateY(-10px) scale(1.02);
-            box-shadow: 0 30px 60px rgba(173, 235, 179, 0.2);
-            border-color: var(--mint-primary);
-        }
-
-        .card:hover::before {
-            width: 120px; height: 120px;
-        }
-
-        .card h3 {
-            color: var(--mint-dark);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            font-size: 1.6rem;
-            transition: var(--transition-smooth);
-        }
-
-        .card:hover h3 {
-            color: var(--mint-primary);
-        }
-
-        .card h3 i {
-            transition: var(--transition-bounce);
-        }
-
-        .card:hover h3 i {
-            transform: scale(1.3) rotate(15deg);
-        }
-
-        .card p {
-            color: #5d7a66;
-            line-height: 1.7;
-            margin-bottom: 25px;
-            transition: var(--transition-smooth);
-        }
-
-        .card:hover p {
-            transform: translateX(5px);
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 15px;
-            background: linear-gradient(135deg, var(--mint-primary), var(--mint-accent));
-            color: white;
-            text-decoration: none;
-            padding: 20px 35px;
-            border-radius: 18px;
-            font-weight: 600;
-            font-size: 1.15rem;
-            margin-top: 15px;
-            border: none;
-            cursor: pointer;
-            transition: var(--transition-bounce);
-            box-shadow: 0 10px 25px rgba(104, 237, 137, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 50%; left: 50%;
-            width: 0; height: 0;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            transform: translate(-50%, -50%);
-            transition: width 0.7s, height 0.7s;
-        }
-
-        .btn:hover::before {
-            width: 300px; height: 300px;
-        }
-
-        .btn:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(104, 237, 137, 0.4);
-        }
-
-        /* ===== SOCIAL & FOOTER ===== */
-        .socials {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 50px 0;
-            animation: socialsFadeIn 0.8s ease-out 1.2s both;
-        }
-
-        @keyframes socialsFadeIn {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .notification {
+          left: 20px;
+          right: 20px;
+          bottom: 90px;
+          max-width: calc(100% - 40px);
         }
 
         .socials a {
-            width: 65px;
-            height: 65px;
-            background: var(--card-bg);
-            border-radius: 20px;
-            display: grid;
-            place-items: center;
-            color: var(--mint-dark);
-            font-size: 1.6rem;
-            text-decoration: none;
-            border: 1px solid rgba(173, 235, 179, 0.4);
-            transition: var(--transition-bounce);
-            position: relative;
-            overflow: hidden;
+          width: 55px;
+          height: 55px;
+          font-size: 1.4rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .nav-title span {
+          font-size: 1.3rem;
         }
 
-        .socials a::before {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0;
-            width: 100%; height: 0;
-            background: linear-gradient(to top, var(--mint-primary), transparent);
-            transition: height 0.4s ease;
-            z-index: -1;
+        .header-content h1 {
+          font-size: 2.2rem;
         }
 
-        .socials a:hover::before {
-            height: 100%;
+        .section-title {
+          font-size: 1.6rem;
         }
 
-        .socials a:hover {
-            transform: translateY(-10px) scale(1.1);
-            color: white;
-            box-shadow: 0 20px 40px rgba(173, 235, 179, 0.3);
-            border-color: var(--mint-primary);
+        .socials {
+          gap: 20px;
         }
 
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: #6b8b76;
-            font-size: 0.95rem;
-            line-height: 1.6;
-            border-top: 1px solid rgba(173, 235, 179, 0.3);
-            margin-top: 30px;
-            animation: footerFadeIn 0.8s ease-out 1.4s both;
+        .socials a {
+          width: 50px;
+          height: 50px;
+          font-size: 1.3rem;
         }
 
-        @keyframes footerFadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .stat-item {
+          min-width: 100%;
         }
 
-        footer p {
-            transition: var(--transition-smooth);
+        .btn {
+          width: 100%;
+          justify-content: center;
+        }
+      }
+
+      @media (display-mode: standalone) {
+        .app-nav {
+          padding-top: max(15px, env(safe-area-inset-top));
         }
 
-        footer:hover p {
-            transform: translateY(-2px);
+        body {
+          padding-top: env(safe-area-inset-top);
         }
+      }
 
-        /* ===== APP UTILITIES ===== */
-        /* Enhanced Loading Overlay */
-        .loading-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            z-index: 9999;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+      .dark-theme {
+        --mint-primary: #6ABF7F;
+        --mint-dark: #1A3B23;
+        --mint-light: #2A3B2F;
+        --mint-accent: #88D4A3;
+        --text-dark: #E8F8E9;
+        --text-light: #1A3B23;
+        --card-bg: rgba(30, 40, 35, 0.95);
+        --shadow: rgba(106, 191, 127, 0.15);
+        --success: #4CD964;
+        background: linear-gradient(135deg, #1A2B21 0%, #0F1913 100%);
+      }
 
-        .loading-overlay.active {
-            opacity: 1;
-            visibility: visible;
-            animation: overlayAppear 0.5s ease-out;
-        }
+      .dark-theme .content-area {
+        background: rgba(30, 40, 35, 0.9);
+        border-color: rgba(106, 191, 127, 0.2);
+      }
 
-        @keyframes overlayAppear {
-            from { opacity: 0; backdrop-filter: blur(0); }
-            to { opacity: 1; backdrop-filter: blur(20px); }
-        }
+      .dark-theme .app-nav {
+        background: rgba(30, 40, 35, 0.95);
+        border-color: rgba(106, 191, 127, 0.2);
+      }
 
-        .loading-content {
-            text-align: center;
-            max-width: 320px;
-            animation: loadingContentPop 0.6s ease-out 0.2s both;
-        }
+      .dark-theme .download-info small,
+      .dark-theme .header-content p,
+      .dark-theme .card p {
+        color: #B8D0C0;
+      }
 
-        @keyframes loadingContentPop {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
+      .dark-theme .loading-overlay {
+        background: rgba(20, 25, 23, 0.98);
+      }
 
-        .loading-spinner {
-            width: 80px;
-            height: 80px;
-            border: 4px solid var(--mint-light);
-            border-top-color: var(--mint-primary);
-            border-radius: 50%;
-            margin: 0 auto 30px;
-            animation: spin 1.2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite,
-                       colorShift 3s ease-in-out infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        @keyframes colorShift {
-            0%, 100% { border-top-color: var(--mint-primary); }
-            33% { border-top-color: var(--mint-accent); }
-            66% { border-top-color: var(--mint-dark); }
-        }
-
-        .loading-text {
-            font-size: 1.6rem;
-            color: var(--mint-dark);
-            margin-bottom: 12px;
-            animation: textPulse 2s ease-in-out infinite;
-        }
-
-        @keyframes textPulse {
-            0%, 100% { opacity: 0.9; }
-            50% { opacity: 1; }
-        }
-
-        .loading-subtext {
-            color: #6b8b76;
-            margin-bottom: 25px;
-            animation: subtextSlide 3s ease-in-out infinite;
-        }
-
-        @keyframes subtextSlide {
-            0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(10px); }
-        }
-
-        .loading-progress {
-            height: 8px;
-            background: var(--mint-light);
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.1);
-        }
-
-        .loading-progress-bar {
-            height: 100%;
-            background: linear-gradient(90deg, var(--mint-primary), var(--mint-accent), var(--mint-primary));
-            background-size: 200% 100%;
-            width: 0%;
-            transition: width 0.4s ease;
-            animation: progressShimmer 2s ease-in-out infinite;
-        }
-
-        @keyframes progressShimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
-        /* Enhanced Notification */
-        .notification {
-            position: fixed;
-            bottom: 40px;
-            right: 40px;
-            background: var(--mint-dark);
-            color: white;
-            padding: 22px 28px;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-            z-index: 10000;
-            transform: translateX(150%) translateY(0);
-            opacity: 0;
-            transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55),
-                        opacity 0.4s ease;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(173, 235, 179, 0.3);
-        }
-
-        .notification.show {
-            transform: translateX(0) translateY(0);
-            opacity: 1;
-            animation: notificationBounce 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-        }
-
-        @keyframes notificationBounce {
-            0% { transform: translateX(150%); }
-            60% { transform: translateX(-10px); }
-            80% { transform: translateX(5px); }
-            100% { transform: translateX(0); }
-        }
-
-        .notification-icon {
-            font-size: 1.5rem;
-            color: var(--mint-primary);
-            animation: iconWiggle 2s ease-in-out infinite;
-        }
-
-        @keyframes iconWiggle {
-            0%, 100% { transform: rotate(0deg); }
-            25% { transform: rotate(-10deg); }
-            75% { transform: rotate(10deg); }
-        }
-
-        /* Scroll to Top - Enhanced */
-        .scroll-to-top {
-            position: fixed;
-            bottom: 40px;
-            left: 40px;
-            width: 65px;
-            height: 65px;
-            background: linear-gradient(135deg, var(--mint-primary), var(--mint-accent));
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 10px 30px rgba(173, 235, 179, 0.4);
-            z-index: 999;
-            opacity: 0;
-            visibility: hidden;
-            transform: scale(0.5) rotate(180deg);
-            transition: var(--transition-bounce);
-            display: grid;
-            place-items: center;
-            overflow: hidden;
-        }
-
-        .scroll-to-top::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            transform: scale(0);
-            transition: transform 0.6s ease;
-        }
-
-        .scroll-to-top:hover::before {
-            transform: scale(1.5);
-        }
-
-        .scroll-to-top.visible {
-            opacity: 1;
-            visibility: visible;
-            transform: scale(1) rotate(0deg);
-        }
-
-        .scroll-to-top:hover {
-            transform: scale(1.15) rotate(0deg);
-            box-shadow: 0 20px 40px rgba(173, 235, 179, 0.6);
-        }
-
-        /* ===== MOBILE OPTIMIZATIONS ===== */
-        @media (max-width: 768px) {
-            .container { padding: 15px; }
-            .app-nav { padding: 15px; border-radius: 0; animation: none; }
-            .header-content { padding: 30px 15px; }
-            .header-content h1 { font-size: 2.5rem; }
-            .stats-container { gap: 20px; }
-            .stat-item { min-width: calc(50% - 20px); padding: 20px; }
-            .stat-number { font-size: 2.2rem; }
-            .content-area { padding: 25px 20px; border-radius: 25px; }
-            .tab-container { width: 100%; max-width: 100%; }
-            .tab-btn { flex: 1; justify-content: center; padding: 12px; }
-            .download-item { flex-direction: column; align-items: flex-start; gap: 20px; }
-            .download-icon { align-self: flex-end; }
-            .scroll-to-top { left: 20px; bottom: 20px; width: 55px; height: 55px; }
-            .notification { left: 20px; right: 20px; bottom: 90px; max-width: calc(100% - 40px); }
-            .socials a { width: 55px; height: 55px; font-size: 1.4rem; }
-        }
-
-        @media (max-width: 480px) {
-            .nav-title span { font-size: 1.3rem; }
-            .header-content h1 { font-size: 2.2rem; }
-            .section-title { font-size: 1.6rem; }
-            .socials { gap: 20px; }
-            .socials a { width: 50px; height: 50px; font-size: 1.3rem; }
-            .stat-item { min-width: 100%; }
-            .btn { width: 100%; justify-content: center; }
-        }
-
-        /* WebClip specific adjustments */
-        @media (display-mode: standalone) {
-            .app-nav { padding-top: max(15px, env(safe-area-inset-top)); }
-            body { padding-top: env(safe-area-inset-top); }
-        }
-
-        /* Dark Theme Support */
-        .dark-theme {
-            --mint-primary: #6ABF7F;
-            --mint-dark: #1A3B23;
-            --mint-light: #2A3B2F;
-            --mint-accent: #88D4A3;
-            --text-dark: #E8F8E9;
-            --text-light: #1A3B23;
-            --card-bg: rgba(30, 40, 35, 0.95);
-            --shadow: rgba(106, 191, 127, 0.15);
-            --success: #4CD964;
-            background: linear-gradient(135deg, #1A2B21 0%, #0F1913 100%);
-        }
-
-        .dark-theme .content-area {
-            background: rgba(30, 40, 35, 0.9);
-            border-color: rgba(106, 191, 127, 0.2);
-        }
-
-        .dark-theme .app-nav {
-            background: rgba(30, 40, 35, 0.95);
-            border-color: rgba(106, 191, 127, 0.2);
-        }
-
-        .dark-theme .download-info small,
-        .dark-theme .header-content p,
-        .dark-theme .card p {
-            color: #B8D0C0;
-        }
-
-        .dark-theme .loading-overlay {
-            background: rgba(20, 25, 23, 0.98);
-        }
-
-        /* Smooth transitions between themes */
-        body, .content-area, .app-nav, .download-item, .card {
-            transition: background-color 0.6s ease, border-color 0.6s ease, color 0.6s ease;
-        }
+      body,
+      .content-area,
+      .app-nav,
+      .download-item,
+      .card {
+        transition: background-color 0.6s ease, border-color 0.6s ease, color 0.6s ease;
+      }
     </style>
-</head>
-<body>
-    <!-- Enhanced background effects -->
+  </head>
+  <body>
     <div class="background-effects">
-        <div class="mint-gradient"></div>
-        <div class="floating-shapes">
-            <div class="floating-shape"></div>
-            <div class="floating-shape"></div>
-            <div class="floating-shape"></div>
-        </div>
+      <div class="mint-gradient"></div>
+      <div class="floating-shapes">
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+        <div class="floating-shape"></div>
+      </div>
     </div>
-
-    <!-- Header with app-like navbar -->
     <header>
-        <div class="app-nav">
-            <div class="nav-title">
-                <i class="fas fa-leaf"></i>
-                <span>MintHub</span>
-            </div>
-            <div class="nav-actions">
-                <button class="nav-btn" id="themeToggle" aria-label="Toggle theme">
-                    <i class="fas fa-moon"></i>
-                </button>
-                <button class="nav-btn" id="refreshBtn" aria-label="Refresh">
-                    <i class="fas fa-sync-alt"></i>
-                </button>
-            </div>
+      <div class="app-nav">
+        <div class="nav-title">
+          <i class="fas fa-leaf"></i>
+          <span>MintHub</span>
         </div>
-
-        <div class="header-content">
-            <div class="logo-container">
-                <img src="https://cdn-icons-png.flaticon.com/512/3067/3067256.png" alt="MintHub Logo">
-            </div>
-            <h1>MintHub</h1>
-            <p>Install sideloaded apps effortlessly with a reliable, working DNS configuration. Optimized for iOS and Android with app-like performance.</p>
-            <div class="stats-container">
-                <div class="stat-item">
-                    <div class="stat-number" data-target="50">0</div>
-                    <div class="stat-label">Signers Available</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-target="99">0</div>
-                    <div class="stat-label">Success Rate</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number" data-target="24">0</div>
-                    <div class="stat-label">Hours Support</div>
-                </div>
-            </div>
+        <div class="nav-actions">
+          <button class="nav-btn" id="themeToggle" aria-label="Toggle theme">
+            <i class="fas fa-moon"></i>
+          </button>
+          <button class="nav-btn" id="refreshBtn" aria-label="Refresh">
+            <i class="fas fa-sync-alt"></i>
+          </button>
         </div>
+      </div>
+      <div class="header-content">
+        <div class="logo-container">
+          <img src="https://mpbox.xyz/private/mint.png" alt="MintHub Logo">
+        </div>
+        <h1>MintHub</h1>
+        <p>Install sideloaded apps effortlessly with a reliable, working DNS configuration. Optimized for iOS and Android with app-like performance.</p>
+        <div class="stats-container">
+          <div class="stat-item">
+            <div class="stat-number" data-target="50">0</div>
+            <div class="stat-label">Signers Available</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="99">0</div>
+            <div class="stat-label">Success Rate</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="24">0</div>
+            <div class="stat-label">Hours Support</div>
+          </div>
+        </div>
+      </div>
     </header>
-
     <main class="container">
-        <div class="content-area">
-            <h2 class="section-title"><i class="fas fa-gamepad"></i> Roblox Exploits</h2>
-            <div class="tab-container" id="platform-tabs">
-                <button class="tab-btn active" onclick="showPlatform('ios')">
-                    <i class="fab fa-apple"></i> iOS
-                </button>
-                <button class="tab-btn" onclick="showPlatform('android')">
-                    <i class="fab fa-android"></i> Android
-                </button>
-            </div>
-
-            <div id="ios-exploits" class="download-list">
-                <div class="download-item">
-                    <div class="download-info">
-                        <strong>Roblox Delta <span class="status-badge">Verified</span></strong>
-                        <small>A powerful exploit tool for Roblox, compatible with every script and updated regularly for stability and performance. Features include script hub, auto-execute, and more.</small>
-                    </div>
-                    <a href="https://loot-link.com/s?PmzCAZNg" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
-                        <i class="fas fa-download"></i>
-                    </a>
-                </div>
-                <div class="download-item">
-                    <div class="download-info">
-                        <strong>Roblox KRNL <span class="status-badge">Verified</span></strong>
-                        <small>KRNL brings power and reliability to your script execution with a clean interface and fast injection. Supports all popular scripts with frequent updates.</small>
-                    </div>
-                    <a href="https://loot-link.com/s?ftrjGYpd" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
-                        <i class="fas fa-download"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div id="android-exploits" class="download-list content-hidden">
-                <div class="download-item">
-                    <div class="download-info">
-                        <strong>Codex (Android) <span class="status-badge">Verified</span></strong>
-                        <small>Popular Android executor for Roblox with wide compatibility and strong performance. Features include built-in script executor and regular updates.</small>
-                    </div>
-                    <a href="https://workink.net/25cH/bgj1eux9" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
-                        <i class="fas fa-download"></i>
-                    </a>
-                </div>
-                <div class="download-item">
-                    <div class="download-info">
-                        <strong>Delta (Android) <span class="status-badge">Verified</span></strong>
-                        <small>Popular Android executor for Roblox with wide compatibility and strong performance. Optimized for low-end devices with minimal lag.</small>
-                    </div>
-                    <a href="https://workink.net/25cH/2l1n2naz" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
-                        <i class="fas fa-download"></i>
-                    </a>
-                </div>
-                <div class="download-item">
-                    <div class="download-info">
-                        <strong>Arceus X (Android) <span class="status-badge">Verified</span></strong>
-                        <small>Premium Android executor with advanced features like script automation, key system, and frequent updates for the latest Roblox versions.</small>
-                    </div>
-                    <a href="https://workink.net/25cH/dfymo6qc" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
-                        <i class="fas fa-download"></i>
-                    </a>
-                </div>
-            </div>
+      <div class="content-area">
+        <h2 class="section-title">
+          <i class="fas fa-gamepad"></i> Roblox Exploits
+        </h2>
+        <div class="tab-container" id="platform-tabs">
+          <button class="tab-btn active" onclick="showPlatform('ios', event)">
+            <i class="fab fa-apple"></i> iOS </button>
+          <button class="tab-btn" onclick="showPlatform('android', event)">
+            <i class="fab fa-android"></i> Android </button>
         </div>
-
-        <div class="content-area">
-            <h2 class="section-title"><i class="fas fa-certificate"></i> Signer Apps</h2>
-            <div class="tab-container" id="signer-tabs">
-                <button class="tab-btn active" onclick="showSigner('ksign')">
-                    <i class="fas fa-signature"></i> KSign
-                </button>
-                <button class="tab-btn" onclick="showSigner('esign')">
-                    <i class="fas fa-file-signature"></i> ESign
-                </button>
+        <div id="ios-exploits" class="download-list">
+          <div class="download-item">
+            <div class="download-info">
+              <strong>Roblox Delta <span class="status-badge">Verified</span>
+              </strong>
+              <small>A powerful exploit tool for Roblox, compatible with every script and updated regularly for stability and performance. Features include script hub, auto-execute, and more.</small>
             </div>
-
-            <div class="search-container">
-                <div class="search-icon"><i class="fas fa-search"></i></div>
-                <input type="text" id="signer-search" class="search-box" placeholder="Search signer versions..." onkeyup="filterSigners()">
+            <a href="https://loot-link.com/s?PmzCAZNg" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item">
+            <div class="download-info">
+              <strong>Roblox KRNL <span class="status-badge">Verified</span>
+              </strong>
+              <small>KRNL brings power and reliability to your script execution with a clean interface and fast injection. Supports all popular scripts with frequent updates.</small>
             </div>
-
-            <div id="ksign-list" class="download-list">
-                <div class="download-item" data-name="KSign V2 China National Heavy Duty Truck Group Co., Ltd">
-                    <div class="download-info">
-                        <strong>KSign V2 <span class="status-badge">Working</span></strong>
-                        <small>China National Heavy Duty Truck Group Co., Ltd - Updated version with improved stability</small>
-                    </div>
-                    <a href="https://loot-link.com/s?Z3bVmWyk" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
-                        <i class="fas fa-download"></i>
-                    </a>
-                </div>
-            </div>
-
-            <div id="esign-list" class="download-list content-hidden">
-                <div class="download-item" data-name="esign global takeoff">
-                    <div class="download-info">
-                        <strong>ESign - China Telecommunications Corporation</strong>
-                        <small>China Telecommunications Corporation - Stable version with enterprise certificate</small>
-                    </div>
-                    <a href="https://loot-link.com/s?CKy8xMFk" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
-                        <i class="fas fa-download"></i>
-                    </a>
-                </div>
-            </div>
+            <a href="https://loot-link.com/s?ftrjGYpd" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
         </div>
-
-        <div class="content-area">
-            <div class="cards">
-                <div class="card">
-                    <h3><i class="fas fa-file-certificate"></i> Download Certificate</h3>
-                    <p>To sign and install apps properly on your device, you'll need this certificate. Tap the button below to download it, then unzip the file and import it into your signer app for full functionality.</p>
-                    <a id="cert-btn" class="btn" href="https://github.com/MoopingTime/moopingtime.github.io/raw/refs/heads/main/private/MPBox%20Certificates.zip" target="_blank" rel="noopener noreferrer" onclick="handleDownload(event, true)">
-                        <i class="fas fa-file-archive"></i>
-                        <span>Download Certificate Package</span>
-                    </a>
-                </div>
-                <div class="card">
-                    <h3><i class="fas fa-question-circle"></i> Installation Guide</h3>
-                    <p>Need help installing? Follow our step-by-step guide for both iOS and Android devices. Learn how to use signer apps, install certificates, and troubleshoot common issues.</p>
-                    <button class="btn" onclick="showNotification('Guide will be available soon!')">
-                        <i class="fas fa-book"></i>
-                        <span>View Installation Guide</span>
-                    </button>
-                </div>
+        <div id="android-exploits" class="download-list content-hidden">
+          <div class="download-item">
+            <div class="download-info">
+              <strong>Codex (Android) <span class="status-badge">Verified</span>
+              </strong>
+              <small>Popular Android executor for Roblox with wide compatibility and strong performance. Features include built-in script executor and regular updates.</small>
             </div>
+            <a href="https://workink.net/25cH/bgj1eux9" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item">
+            <div class="download-info">
+              <strong>Delta (Android) <span class="status-badge">Verified</span>
+              </strong>
+              <small>Popular Android executor for Roblox with wide compatibility and strong performance. Optimized for low-end devices with minimal lag.</small>
+            </div>
+            <a href="https://workink.net/25cH/2l1n2naz" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item">
+            <div class="download-info">
+              <strong>Arceus X (Android) <span class="status-badge">Verified</span>
+              </strong>
+              <small>Premium Android executor with advanced features like script automation, key system, and frequent updates for the latest Roblox versions.</small>
+            </div>
+            <a href="https://workink.net/25cH/dfymo6qc" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
         </div>
+      </div>
+      <div class="content-area">
+        <h2 class="section-title">
+          <i class="fas fa-certificate"></i> Signer Apps
+        </h2>
+        <div class="tab-container" id="signer-tabs">
+          <button class="tab-btn active" onclick="showSigner('ksign', event)">
+            <i class="fas fa-signature"></i> KSign </button>
+          <button class="tab-btn" onclick="showSigner('esign', event)">
+            <i class="fas fa-file-signature"></i> ESign </button>
+        </div>
+        <div class="search-container">
+          <div class="search-icon">
+            <i class="fas fa-search"></i>
+          </div>
+          <input type="text" id="signer-search" class="search-box" placeholder="Search signer versions..." onkeyup="filterSigners()">
+        </div>
+        <div id="ksign-list" class="download-list">
+          <!-- KSign Apps -->
+          <div class="download-item" data-name="KSign New Cert ✅ Wasu Media & Network Co">
+            <div class="download-info">
+              <strong>KSign New Cert ✅ <span class="status-badge">Working</span>
+              </strong>
+              <small>Wasu Media & Network Co</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/PKTWlR" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign New Cert ✅ Luoyang Postal Administration">
+            <div class="download-info">
+              <strong>KSign New Cert ✅ <span class="status-badge">Working</span>
+              </strong>
+              <small>Luoyang Postal Administration</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/CGMj7s" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign Etisalat - Emirates Telecommunications Corporation">
+            <div class="download-info">
+              <strong>KSign <span class="status-badge">Working</span>
+              </strong>
+              <small>Etisalat - Emirates Telecommunications Corporation</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/5PwyVy" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign V2 China National Heavy Duty Truck Group Co., Ltd">
+            <div class="download-info">
+              <strong>KSign V2 <span class="status-badge">Working</span>
+              </strong>
+              <small>China National Heavy Duty Truck Group Co., Ltd</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/7wr6sg" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign China National Heavy Duty Truck Group Co., Ltd">
+            <div class="download-info">
+              <strong>KSign <span class="status-badge">Working</span>
+              </strong>
+              <small>China National Heavy Duty Truck Group Co., Ltd</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/D6q5cE" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign V1 SIE Consulting Co.,Ltd.">
+            <div class="download-info">
+              <strong>KSign V1 <span class="status-badge">Working</span>
+              </strong>
+              <small>SIE Consulting Co.,Ltd.</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/1IBMon" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign SIE Consulting Co.,Ltd.">
+            <div class="download-info">
+              <strong>KSign <span class="status-badge">Working</span>
+              </strong>
+              <small>SIE Consulting Co.,Ltd.</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/vOqZNm" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign Fujian Keguan Real Estate Brokerage Co">
+            <div class="download-info">
+              <strong>KSign <span class="status-badge">Working</span>
+              </strong>
+              <small>Fujian Keguan Real Estate Brokerage Co</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/uFdLFw" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign Jiajiayue Group Co.,Ltd">
+            <div class="download-info">
+              <strong>KSign <span class="status-badge">Working</span>
+              </strong>
+              <small>Jiajiayue Group Co.,Ltd</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/7FRSgi" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign V2 TechTree IT Systems Private Limited">
+            <div class="download-info">
+              <strong>KSign V2 <span class="status-badge">Working</span>
+              </strong>
+              <small>TechTree IT Systems Private Limited</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/Qih0uw" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign V1 TechTree IT Systems Private Limited">
+            <div class="download-info">
+              <strong>KSign V1 <span class="status-badge">Working</span>
+              </strong>
+              <small>TechTree IT Systems Private Limited</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/PtRcts" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign TechTree IT Systems Private Limited">
+            <div class="download-info">
+              <strong>KSign <span class="status-badge">Working</span>
+              </strong>
+              <small>TechTree IT Systems Private Limited</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/B3LYHy" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign Guangzhou Huahan Educational & Technology Co.,Ltd.">
+            <div class="download-info">
+              <strong>KSign <span class="status-badge">Working</span>
+              </strong>
+              <small>Guangzhou Huahan Educational & Technology Co.,Ltd.</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/6rkpFX" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign V3 China China Telecommunications Corporation">
+            <div class="download-info">
+              <strong>KSign V3 China <span class="status-badge">Working</span>
+              </strong>
+              <small>China Telecommunications Corporation</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/xBQ9Fm" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign V2 China China Telecommunications Corporation">
+            <div class="download-info">
+              <strong>KSign V2 China <span class="status-badge">Working</span>
+              </strong>
+              <small>China Telecommunications Corporation</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/5PdaWQ" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign V1 China China Telecommunications Corporation">
+            <div class="download-info">
+              <strong>KSign V1 China <span class="status-badge">Working</span>
+              </strong>
+              <small>China Telecommunications Corporation</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/QC273L" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign China Telecommunications Corporation">
+            <div class="download-info">
+              <strong>KSign <span class="status-badge">Working</span>
+              </strong>
+              <small>China Telecommunications Corporation</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/IV5Li2" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign GOBAL V7 GLOBAL TAKEOFF, INC">
+            <div class="download-info">
+              <strong>KSign GOBAL V7 <span class="status-badge">Working</span>
+              </strong>
+              <small>GLOBAL TAKEOFF, INC</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/TJPFQy" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign GOBAL V6 GLOBAL TAKEOFF, INC">
+            <div class="download-info">
+              <strong>KSign GOBAL V6 <span class="status-badge">Working</span>
+              </strong>
+              <small>GLOBAL TAKEOFF, INC</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/Q54jvO" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign GOBAL V5 GLOBAL TAKEOFF, INC">
+            <div class="download-info">
+              <strong>KSign GOBAL V5 <span class="status-badge">Working</span>
+              </strong>
+              <small>GLOBAL TAKEOFF, INC</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/syblHB" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign GOBAL V4 GLOBAL TAKEOFF, INC">
+            <div class="download-info">
+              <strong>KSign GOBAL V4 <span class="status-badge">Working</span>
+              </strong>
+              <small>GLOBAL TAKEOFF, INC</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/nzvN40" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign GOBAL V3 GLOBAL TAKEOFF, INC">
+            <div class="download-info">
+              <strong>KSign GOBAL V3 <span class="status-badge">Working</span>
+              </strong>
+              <small>GLOBAL TAKEOFF, INC</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/MrNRUB" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign GOBAL V2 GLOBAL TAKEOFF, INC">
+            <div class="download-info">
+              <strong>KSign GOBAL V2 <span class="status-badge">Working</span>
+              </strong>
+              <small>GLOBAL TAKEOFF, INC</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/Q9iqc5" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign GOBAL V1 GLOBAL TAKEOFF, INC">
+            <div class="download-info">
+              <strong>KSign GOBAL V1 <span class="status-badge">Working</span>
+              </strong>
+              <small>GLOBAL TAKEOFF, INC</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/hXpQPB" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign GLOBAL TAKEOFF, INC">
+            <div class="download-info">
+              <strong>KSign <span class="status-badge">Working</span>
+              </strong>
+              <small>GLOBAL TAKEOFF, INC</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/nG8BnC" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign Tianjin University of Commerce">
+            <div class="download-info">
+              <strong>KSign <span class="status-badge">Working</span>
+              </strong>
+              <small>Tianjin University of Commerce</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/lu4NBL" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign BMW Brilliance Automotive Ltd">
+            <div class="download-info">
+              <strong>KSign <span class="status-badge">Working</span>
+              </strong>
+              <small>BMW Brilliance Automotive Ltd</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/qcLoLs" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign VIETNAM JOINT STOCK COMMERCIAL BANK FOR INDUSTRY AND TRADE">
+            <div class="download-info">
+              <strong>KSign <span class="status-badge">Working</span>
+              </strong>
+              <small>VIETNAM JOINT STOCK COMMERCIAL BANK FOR INDUSTRY AND TRADE</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/TlVhNA" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign VNJ V1 VIETNAM JOINT STOCK COMMERCIAL BANK FOR INDUSTRY AND TRADE">
+            <div class="download-info">
+              <strong>KSign VNJ V1 <span class="status-badge">Working</span>
+              </strong>
+              <small>VIETNAM JOINT STOCK COMMERCIAL BANK FOR INDUSTRY AND TRADE</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/6FOa5r" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign VNJ V2 VIETNAM JOINT STOCK COMMERCIAL BANK FOR INDUSTRY AND TRADE">
+            <div class="download-info">
+              <strong>KSign VNJ V2 <span class="status-badge">Working</span>
+              </strong>
+              <small>VIETNAM JOINT STOCK COMMERCIAL BANK FOR INDUSTRY AND TRADE</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/VQbmUk" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign VNJ V3 VIETNAM JOINT STOCK COMMERCIAL BANK FOR INDUSTRY AND TRADE">
+            <div class="download-info">
+              <strong>KSign VNJ V3 <span class="status-badge">Working</span>
+              </strong>
+              <small>VIETNAM JOINT STOCK COMMERCIAL BANK FOR INDUSTRY AND TRADE</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/p351Hf" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign VNJ V4 VIETNAM JOINT STOCK COMMERCIAL BANK FOR INDUSTRY AND TRADE">
+            <div class="download-info">
+              <strong>KSign VNJ V4 <span class="status-badge">Working</span>
+              </strong>
+              <small>VIETNAM JOINT STOCK COMMERCIAL BANK FOR INDUSTRY AND TRADE</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/ds5PGC" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign VIETTEL GROUP V2 VIETTEL GROUP">
+            <div class="download-info">
+              <strong>KSign VIETTEL GROUP V2 <span class="status-badge">Working</span>
+              </strong>
+              <small>VIETTEL GROUP</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/PYWwmW" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign VIETTEL GROUP V3 VIETTEL GROUP">
+            <div class="download-info">
+              <strong>KSign VIETTEL GROUP V3 <span class="status-badge">Working</span>
+              </strong>
+              <small>VIETTEL GROUP</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/S8DdoN" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign CHIBA INSTITUTE OF TECHNOLOGY">
+            <div class="download-info">
+              <strong>KSign <span class="status-badge">Working</span>
+              </strong>
+              <small>CHIBA INSTITUTE OF TECHNOLOGY</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/anm84U" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign Chiba V1 CHIBA INSTITUTE OF TECHNOLOGY">
+            <div class="download-info">
+              <strong>KSign Chiba V1 <span class="status-badge">Working</span>
+              </strong>
+              <small>CHIBA INSTITUTE OF TECHNOLOGY</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/XzsCi7" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign Chiaba V2 CHIBA INSTITUTE OF TECHNOLOGY">
+            <div class="download-info">
+              <strong>KSign Chiaba V2 <span class="status-badge">Working</span>
+              </strong>
+              <small>CHIBA INSTITUTE OF TECHNOLOGY</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/N3XgAx" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign Chiaba V3 CHIBA INSTITUTE OF TECHNOLOGY">
+            <div class="download-info">
+              <strong>KSign Chiaba V3 <span class="status-badge">Working</span>
+              </strong>
+              <small>CHIBA INSTITUTE OF TECHNOLOGY</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/bd1gnr" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign Chiba V4 CHIBA INSTITUTE OF TECHNOLOGY">
+            <div class="download-info">
+              <strong>KSign Chiba V4 <span class="status-badge">Working</span>
+              </strong>
+              <small>CHIBA INSTITUTE OF TECHNOLOGY</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/ujwwo6" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign Chiba V5 CHIBA INSTITUTE OF TECHNOLOGY">
+            <div class="download-info">
+              <strong>KSign Chiba V5 <span class="status-badge">Working</span>
+              </strong>
+              <small>CHIBA INSTITUTE OF TECHNOLOGY</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/VNh003" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign TCL household Appliance Marketing Co">
+            <div class="download-info">
+              <strong>KSign <span class="status-badge">Working</span>
+              </strong>
+              <small>TCL household Appliance Marketing Co</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/tUjXxn" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign TCL V1 TCL household Appliance Marketing Co">
+            <div class="download-info">
+              <strong>KSign TCL V1 <span class="status-badge">Working</span>
+              </strong>
+              <small>TCL household Appliance Marketing Co</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/SdYt5x" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign TCL V2 TCL household Appliance Marketing Co">
+            <div class="download-info">
+              <strong>KSign TCL V2 <span class="status-badge">Working</span>
+              </strong>
+              <small>TCL household Appliance Marketing Co</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/ecofmF" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign TCL V3 TCL household Appliance Marketing Co">
+            <div class="download-info">
+              <strong>KSign TCL V3 <span class="status-badge">Working</span>
+              </strong>
+              <small>TCL household Appliance Marketing Co</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/tYiYjA" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign EEO Education Ltd">
+            <div class="download-info">
+              <strong>KSign <span class="status-badge">Working</span>
+              </strong>
+              <small>EEO Education Ltd</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/kiEnst" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign EEO V1 EEO Education Ltd">
+            <div class="download-info">
+              <strong>KSign EEO V1 <span class="status-badge">Working</span>
+              </strong>
+              <small>EEO Education Ltd</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/xntFhV" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign China Railway Eryuan Engineering Group">
+            <div class="download-info">
+              <strong>KSign <span class="status-badge">Working</span>
+              </strong>
+              <small>China Railway Eryuan Engineering Group</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/aSPW2W" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign China Railway V1 China Railway Eryuan Engineering Group">
+            <div class="download-info">
+              <strong>KSign China Railway V1 <span class="status-badge">Working</span>
+              </strong>
+              <small>China Railway Eryuan Engineering Group</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/TsKid8" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="KSign Beijing Esensoft Co">
+            <div class="download-info">
+              <strong>KSign <span class="status-badge">Working</span>
+              </strong>
+              <small>Beijing Esensoft Co</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/ZkeLVS" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+        </div>
+        <div id="esign-list" class="download-list content-hidden">
+          <!-- ESign Apps -->
+          <div class="download-item" data-name="ESign New Cert ✅ Wasu Media & Network Co., Ltd">
+            <div class="download-info">
+              <strong>ESign New Cert ✅ <span class="status-badge">Working</span>
+              </strong>
+              <small>Wasu Media & Network Co., Ltd</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/kc3EGM" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="ESign Etisalat - Emirates Telecommunications Corporation">
+            <div class="download-info">
+              <strong>ESign <span class="status-badge">Working</span>
+              </strong>
+              <small>Etisalat - Emirates Telecommunications Corporation</small>
+            </div>
+            <a href="https://api.khoindvn.eu.org/k1Ycos" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="ESign China National Heavy Duty Truck Group Co., Ltd.">
+            <div class="download-info">
+              <strong>ESign <span class="status-badge">Working</span>
+              </strong>
+              <small>China National Heavy Duty Truck Group Co., Ltd.</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/jA06Dp" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="ESign Guangzhou Huahan Educational & Technology Co.,Ltd">
+            <div class="download-info">
+              <strong>ESign <span class="status-badge">Working</span>
+              </strong>
+              <small>Guangzhou Huahan Educational & Technology Co.,Ltd</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/SUvkkC" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="ESign China Telecommunications Corporation">
+            <div class="download-info">
+              <strong>ESign <span class="status-badge">Working</span>
+              </strong>
+              <small>China Telecommunications Corporation</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/qylEe1" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="ESign GLOBAL TAKEOFF, INC">
+            <div class="download-info">
+              <strong>ESign <span class="status-badge">Working</span>
+              </strong>
+              <small>GLOBAL TAKEOFF, INC</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/yHH6NE" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="ESign Tianjin University of Commerce">
+            <div class="download-info">
+              <strong>ESign <span class="status-badge">Working</span>
+              </strong>
+              <small>Tianjin University of Commerce</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/7SxrmH" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="ESign VIETNAM JOINT STOCK COMMERCIAL BANK FOR INDUSTRY AND TRADE">
+            <div class="download-info">
+              <strong>ESign <span class="status-badge">Working</span>
+              </strong>
+              <small>VIETNAM JOINT STOCK COMMERCIAL BANK FOR INDUSTRY AND TRADE</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/KX3VBb" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="ESign VIETTEL GROUP">
+            <div class="download-info">
+              <strong>ESign <span class="status-badge">Working</span>
+              </strong>
+              <small>VIETTEL GROUP</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/u9v6lH" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="ESign CHIBA INSTITUTE OF TECHNOLOGY">
+            <div class="download-info">
+              <strong>ESign <span class="status-badge">Working</span>
+              </strong>
+              <small>CHIBA INSTITUTE OF TECHNOLOGY</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/rR9jps" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="ESign Beijing Esensoft Co., Ltd">
+            <div class="download-info">
+              <strong>ESign <span class="status-badge">Working</span>
+              </strong>
+              <small>Beijing Esensoft Co., Ltd</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/DoD29p" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="ESign NREH ESTATE INFORMATION TECHNOLOGY CO.,LTD">
+            <div class="download-info">
+              <strong>ESign <span class="status-badge">Working</span>
+              </strong>
+              <small>NREH ESTATE INFORMATION TECHNOLOGY CO.,LTD</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/OuUeFv" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="ESign China Railway Eryuan Engineering Group Co., Ltd.">
+            <div class="download-info">
+              <strong>ESign <span class="status-badge">Working</span>
+              </strong>
+              <small>China Railway Eryuan Engineering Group Co., Ltd.</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/kKZQf7" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="ESign EEO Education ltd">
+            <div class="download-info">
+              <strong>ESign <span class="status-badge">Working</span>
+              </strong>
+              <small>EEO Education ltd</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/khDDZF" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="ESign TCL household Appliance Marketing Co., LTD">
+            <div class="download-info">
+              <strong>ESign <span class="status-badge">Working</span>
+              </strong>
+              <small>TCL household Appliance Marketing Co., LTD</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/qhVaFI" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="ESign Wuling Power Corporation">
+            <div class="download-info">
+              <strong>ESign <span class="status-badge">Working</span>
+              </strong>
+              <small>Wuling Power Corporation</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/1ZJIPP" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+          <div class="download-item" data-name="ESign HDFC Bank Limited">
+            <div class="download-info">
+              <strong>ESign <span class="status-badge">Working</span>
+              </strong>
+              <small>HDFC Bank Limited</small>
+            </div>
+            <a href="https://api.khoindvn.io.vn/1ZJIPP" class="download-icon" aria-label="Download" onclick="handleDownload(event)">
+              <i class="fas fa-download"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="content-area">
+        <div class="cards">
+          <div class="card">
+            <h3>
+              <i class="fas fa-file-certificate"></i> Download Certificate
+            </h3>
+            <p>To sign and install apps properly on your device, you'll need this certificate. Tap the button below to download it, then unzip the file and import it into your signer app for full functionality.</p>
+            <a id="cert-btn" class="btn" href="https://github.com/MoopingTime/moopingtime.github.io/raw/refs/heads/main/private/MPBox%20Certificates.zip" target="_blank" rel="noopener noreferrer" onclick="handleDownload(event, true)">
+              <i class="fas fa-file-archive"></i>
+              <span>Download Certificate Package</span>
+            </a>
+          </div>
+          <div class="card">
+            <h3>
+              <i class="fas fa-question-circle"></i> Installation Guide
+            </h3>
+            <p>Need help installing? Follow our step-by-step guide for both iOS and Android devices. Learn how to use signer apps, install certificates, and troubleshoot common issues.</p>
+            <button class="btn" onclick="showNotification('Guide will be available soon!', event)">
+              <i class="fas fa-book"></i>
+              <span>View Installation Guide</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </main>
-
     <div class="socials">
-        <a href="https://discord.gg/JahZbrg9Kh" target="_blank" aria-label="Join Discord">
-            <i class="fab fa-discord"></i>
-        </a>
-        <a href="https://facebook.com/mizukii.114" target="_blank" aria-label="Visit Facebook">
-            <i class="fab fa-facebook-f"></i>
-        </a>
-        <a href="https://twitter.com" target="_blank" aria-label="Follow on Twitter">
-            <i class="fab fa-twitter"></i>
-        </a>
-        <a href="https://t.me" target="_blank" aria-label="Join Telegram">
-            <i class="fab fa-telegram"></i>
-        </a>
+      <a href="https://discord.gg/JahZbrg9Kh" target="_blank" aria-label="Join Discord">
+        <i class="fab fa-discord"></i>
+      </a>
+      <a href="https://facebook.com/mizukii.114" target="_blank" aria-label="Visit Facebook">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="https://twitter.com" target="_blank" aria-label="Follow on Twitter">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="https://t.me" target="_blank" aria-label="Join Telegram">
+        <i class="fab fa-telegram"></i>
+      </a>
     </div>
-
     <footer>
-        <p>Developed by MintHub | Trusted in the Sideloading Community | Optimized for WebClip with app-like experience</p>
-        <p style="margin-top: 1rem; font-size: 0.9rem;">Add to Home Screen for full app experience</p>
-        <p style="margin-top: 0.5rem; font-size: 0.85rem; color: #8AA696;">Mint Theme v2.1 • Enhanced Animations & Transitions</p>
+      <p>Developed by MintHub | Trusted in the Sideloading Community | Optimized for WebClip</p>
+      <p style="margin-top: 1rem; font-size: 0.9rem;">Add to Home Screen for full app experience</p>
     </footer>
-
-    <!-- App-like loading overlay -->
     <div class="loading-overlay" id="loadingOverlay">
-        <div class="loading-content">
-            <div class="loading-spinner"></div>
-            <div class="loading-text">Preparing Download...</div>
-            <div class="loading-subtext">Please wait a moment</div>
-            <div class="loading-progress">
-                <div class="loading-progress-bar" id="loadingProgress"></div>
-            </div>
+      <div class="loading-content">
+        <div class="loading-spinner"></div>
+        <div class="loading-text">Preparing Download...</div>
+        <div class="loading-subtext">Please wait a moment</div>
+        <div class="loading-progress">
+          <div class="loading-progress-bar" id="loadingProgress"></div>
         </div>
+      </div>
     </div>
-
-    <!-- Floating notification -->
     <div class="notification" id="notification">
-        <div class="notification-icon">
-            <i class="fas fa-info-circle"></i>
-        </div>
-        <div class="notification-text" id="notificationText">Added to download queue</div>
+      <div class="notification-icon">
+        <i class="fas fa-info-circle"></i>
+      </div>
+      <div class="notification-text" id="notificationText">Added to download queue</div>
     </div>
-
-    <!-- Scroll to top button -->
     <button class="scroll-to-top" id="scrollToTop" aria-label="Scroll to top">
-        <i class="fas fa-chevron-up"></i>
+      <i class="fas fa-chevron-up"></i>
     </button>
-
     <script>
-        // ===== FIX SOCIAL BUTTONS =====
-document.querySelectorAll('.socials a').forEach(link => {
-    link.addEventListener('click', function(e) {
-        // Don't prevent default behavior - let them open in new tab
-        e.stopPropagation(); // Prevent the smooth transition code from catching this
-        // The default behavior (target="_blank") will handle the rest
-    });
-});
-        // ===== ENHANCED TRANSITION VARIABLES =====
-        const TRANSITION_DURATION = 400;
-        const BOUNCE_TRANSITION = 'cubic-bezier(0.68, -0.55, 0.265, 1.55)';
+      const TRANSITION_DURATION = 400;
+      const BOUNCE_TRANSITION = 'cubic-bezier(0.68, -0.55, 0.265, 1.55)';
 
-        // ===== ENHANCED CORE FUNCTIONS =====
-        function showPlatform(platform) {
-            const tabs = document.querySelectorAll('#platform-tabs .tab-btn');
-            const targetBtn = event.target.closest('.tab-btn');
-            
-            // Enhanced tab switching with animation
-            tabs.forEach(btn => {
-                btn.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    btn.classList.remove('active');
-                    btn.style.transform = '';
-                }, 150);
-            });
-            
-            targetBtn.classList.add('active');
-            targetBtn.style.transform = 'scale(1.05)';
-            
-            // Smooth content transition
-            const iosList = document.getElementById('ios-exploits');
-            const androidList = document.getElementById('android-exploits');
-            
-            if (platform === 'ios') {
-                androidList.classList.add('content-hidden');
-                setTimeout(() => {
-                    iosList.classList.remove('content-hidden');
-                    iosList.style.animation = 'fadeIn 0.5s ease-out';
-                }, 200);
+      function getEventCoords(e) {
+        if (!e) return {
+          x: window.innerWidth / 2,
+          y: window.innerHeight / 2
+        };
+        // Touch support
+        if (e.touches && e.touches[0]) return {
+          x: e.touches[0].clientX,
+          y: e.touches[0].clientY
+        };
+        if (e.changedTouches && e.changedTouches[0]) return {
+          x: e.changedTouches[0].clientX,
+          y: e.changedTouches[0].clientY
+        };
+        return {
+          x: e.clientX || (window.innerWidth / 2),
+          y: e.clientY || (window.innerHeight / 2)
+        };
+      }
+
+      function positionElementAtViewport(el, x, y, opts = {}) {
+        if (!el) return;
+        const margin = opts.margin || 16;
+        const vw = window.innerWidth;
+        const vh = window.innerHeight;
+        let left = Math.min(Math.max(x, margin), vw - margin);
+        let top = Math.min(Math.max(y, margin), vh - margin);
+        el.style.left = left + 'px';
+        el.style.top = top + 'px';
+        el.style.right = 'auto';
+        el.style.bottom = 'auto';
+        if (opts.preferAbove) {
+          el.style.transform = 'translate(-50%, -120%)';
+        } else if (opts.preferBelow) {
+          el.style.transform = 'translate(-50%, 10%)';
+        } else {
+          el.style.transform = 'translate(-50%, -50%)';
+        }
+      }
+
+      function showPlatform(platform, event) {
+        const tabs = document.querySelectorAll('#platform-tabs .tab-btn');
+        const targetBtn = event.target.closest('.tab-btn');
+        tabs.forEach(btn => {
+          btn.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            btn.classList.remove('active');
+            btn.style.transform = '';
+          }, 150);
+        });
+        targetBtn.classList.add('active');
+        targetBtn.style.transform = 'scale(1.05)';
+        const iosList = document.getElementById('ios-exploits');
+        const androidList = document.getElementById('android-exploits');
+        if (platform === 'ios') {
+          androidList.classList.add('content-hidden');
+          setTimeout(() => {
+            iosList.classList.remove('content-hidden');
+            iosList.style.animation = 'fadeIn 0.5s ease-out';
+          }, 200);
+        } else {
+          iosList.classList.add('content-hidden');
+          setTimeout(() => {
+            androidList.classList.remove('content-hidden');
+            androidList.style.animation = 'fadeIn 0.5s ease-out';
+          }, 200);
+        }
+        showNotification(`Showing ${platform === 'ios' ? 'iOS' : 'Android'} exploits`);
+      }
+
+      function showSigner(signer, event) {
+        const tabs = document.querySelectorAll('#signer-tabs .tab-btn');
+        const targetBtn = event.target.closest('.tab-btn');
+        tabs.forEach(btn => {
+          btn.style.transform = 'scale(0.95)';
+          setTimeout(() => {
+            btn.classList.remove('active');
+            btn.style.transform = '';
+          }, 150);
+        });
+        targetBtn.classList.add('active');
+        targetBtn.style.transform = 'scale(1.05)';
+        const ksignList = document.getElementById('ksign-list');
+        const esignList = document.getElementById('esign-list');
+        if (signer === 'ksign') {
+          esignList.classList.add('content-hidden');
+          setTimeout(() => {
+            ksignList.classList.remove('content-hidden');
+            ksignList.style.animation = 'fadeIn 0.5s ease-out';
+            filterSigners();
+          }, 200);
+        } else {
+          ksignList.classList.add('content-hidden');
+          setTimeout(() => {
+            esignList.classList.remove('content-hidden');
+            esignList.style.animation = 'fadeIn 0.5s ease-out';
+            filterSigners();
+          }, 200);
+        }
+        showNotification(`Showing ${signer === 'ksign' ? 'KSign' : 'ESign'} versions`);
+      }
+
+      function filterSigners() {
+        const searchTerm = document.getElementById('signer-search').value.toLowerCase();
+        const activeList = document.querySelector('#ksign-list:not(.content-hidden), #esign-list:not(.content-hidden)');
+        if (!activeList) return;
+        let visibleItems = 0;
+        activeList.querySelectorAll('.download-item').forEach(item => {
+          const itemName = item.getAttribute('data-name').toLowerCase();
+          const shouldShow = itemName.includes(searchTerm);
+          if (shouldShow) {
+            item.style.display = 'flex';
+            item.style.animation = 'fadeIn 0.4s ease-out';
+            visibleItems++;
+          } else {
+            item.style.display = 'none';
+          }
+        });
+        if (visibleItems === 0 && searchTerm.length > 0) {
+          showNotification('No matching signers found');
+        }
+      }
+
+      function animateStats() {
+        document.querySelectorAll('.stat-number').forEach((stat, index) => {
+          const target = parseInt(stat.getAttribute('data-target'));
+          const duration = 1800 + (index * 300);
+          const startTime = Date.now();
+          const startValue = 0;
+          const easeOutQuart = t => 1 - Math.pow(1 - t, 4);
+          const updateCounter = () => {
+            const elapsed = Date.now() - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const easedProgress = easeOutQuart(progress);
+            const current = Math.floor(easedProgress * target);
+            stat.textContent = current;
+            if (progress < 1) {
+              stat.style.transform = `scale(${1 + (easedProgress * 0.1)})`;
+              requestAnimationFrame(updateCounter);
             } else {
-                iosList.classList.add('content-hidden');
-                setTimeout(() => {
-                    androidList.classList.remove('content-hidden');
-                    androidList.style.animation = 'fadeIn 0.5s ease-out';
-                }, 200);
+              stat.style.transform = 'scale(1)';
+              stat.textContent = target;
             }
-            
-            showNotification(`Showing ${platform === 'ios' ? 'iOS' : 'Android'} exploits`);
-        }
-
-        function showSigner(signer) {
-            const tabs = document.querySelectorAll('#signer-tabs .tab-btn');
-            const targetBtn = event.target.closest('.tab-btn');
-            
-            tabs.forEach(btn => {
-                btn.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    btn.classList.remove('active');
-                    btn.style.transform = '';
-                }, 150);
-            });
-            
-            targetBtn.classList.add('active');
-            targetBtn.style.transform = 'scale(1.05)';
-            
-            // Enhanced content switching
-            const ksignList = document.getElementById('ksign-list');
-            const esignList = document.getElementById('esign-list');
-            
-            if (signer === 'ksign') {
-                esignList.classList.add('content-hidden');
-                setTimeout(() => {
-                    ksignList.classList.remove('content-hidden');
-                    ksignList.style.animation = 'fadeIn 0.5s ease-out';
-                    filterSigners(); // Reapply search on current list
-                }, 200);
-            } else {
-                ksignList.classList.add('content-hidden');
-                setTimeout(() => {
-                    esignList.classList.remove('content-hidden');
-                    esignList.style.animation = 'fadeIn 0.5s ease-out';
-                    filterSigners(); // Reapply search on current list
-                }, 200);
-            }
-            
-            showNotification(`Showing ${signer === 'ksign' ? 'KSign' : 'ESign'} versions`);
-        }
-
-        function filterSigners() {
-            const searchTerm = document.getElementById('signer-search').value.toLowerCase();
-            const activeList = document.querySelector('#ksign-list:not(.content-hidden), #esign-list:not(.content-hidden)');
-            
-            if (!activeList) return;
-            
-            let visibleItems = 0;
-            activeList.querySelectorAll('.download-item').forEach(item => {
-                const itemName = item.getAttribute('data-name').toLowerCase();
-                const shouldShow = itemName.includes(searchTerm);
-                
-                if (shouldShow) {
-                    item.style.display = 'flex';
-                    item.style.animation = 'fadeIn 0.4s ease-out';
-                    visibleItems++;
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-            
-            // Show notification if no results
-            if (visibleItems === 0 && searchTerm.length > 0) {
-                showNotification('No matching signers found');
-            }
-        }
-
-        // ===== ENHANCED ANIMATED STATS =====
-        function animateStats() {
-            document.querySelectorAll('.stat-number').forEach((stat, index) => {
-                const target = parseInt(stat.getAttribute('data-target'));
-                const duration = 1800 + (index * 300);
-                const startTime = Date.now();
-                const startValue = 0;
-                
-                const easeOutQuart = t => 1 - Math.pow(1 - t, 4);
-                
-                const updateCounter = () => {
-                    const elapsed = Date.now() - startTime;
-                    const progress = Math.min(elapsed / duration, 1);
-                    const easedProgress = easeOutQuart(progress);
-                    const current = Math.floor(easedProgress * target);
-                    
-                    stat.textContent = current;
-                    
-                    // Add visual feedback during animation
-                    if (progress < 1) {
-                        stat.style.transform = `scale(${1 + (easedProgress * 0.1)})`;
-                        requestAnimationFrame(updateCounter);
-                    } else {
-                        stat.style.transform = 'scale(1)';
-                        stat.textContent = target;
-                    }
-                };
-                
-                // Start with a slight delay for staggered effect
-                setTimeout(updateCounter, index * 200);
-            });
-        }
-
-        // ===== ENHANCED DOWNLOAD HANDLER =====
-        function handleDownload(e, isCert = false) {
-            e.preventDefault();
-            const link = e.currentTarget.href;
-            if (!link || link === '#') {
-                showNotification('Download link not available yet');
-                return;
-            }
-            
-            // Add click feedback
-            const btn = e.currentTarget;
-            btn.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                btn.style.transform = '';
-            }, 200);
-            
-            // Show loading overlay
-            const overlay = document.getElementById('loadingOverlay');
-            const progressBar = document.getElementById('loadingProgress');
-            overlay.classList.add('active');
-            progressBar.style.width = '0%';
-            
-            // Enhanced progress simulation
-            const progressSteps = [
-                { width: 15, delay: 200 },
-                { width: 40, delay: 500 },
-                { width: 65, delay: 900 },
-                { width: 85, delay: 1300 },
-                { width: 100, delay: 1800 }
-            ];
-            
-            progressSteps.forEach(step => {
-                setTimeout(() => {
-                    progressBar.style.width = step.width + '%';
-                }, step.delay);
-            });
-            
-            // Complete and redirect
-            setTimeout(() => {
-                overlay.classList.remove('active');
-                showNotification(isCert ? '📦 Certificate download started' : '✅ Download started successfully');
-                
-                // Add slight delay before redirect for better UX
-                setTimeout(() => {
-                    window.open(link, '_blank');
-                }, 300);
-            }, 2000);
-        }
-
-        // ===== ENHANCED NOTIFICATION SYSTEM =====
-        let notificationTimeout;
-        function showNotification(message) {
-            const notification = document.getElementById('notification');
-            const text = document.getElementById('notificationText');
-            
-            // Clear any existing timeout
-            if (notificationTimeout) clearTimeout(notificationTimeout);
-            
-            // Update content
-            text.textContent = message;
-            
-            // Show notification with animation
-            notification.classList.remove('show');
-            void notification.offsetWidth; // Trigger reflow
-            notification.classList.add('show');
-            
-            // Auto-hide after delay
-            notificationTimeout = setTimeout(() => {
-                notification.classList.remove('show');
-            }, 3000);
-        }
-
-        // ===== ENHANCED THEME TOGGLE =====
-        const themeToggle = document.getElementById('themeToggle');
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('dark-theme');
-            const icon = themeToggle.querySelector('i');
-            
-            // Smooth icon transition
-            icon.style.transform = 'rotate(360deg) scale(0)';
-            setTimeout(() => {
-                if (document.body.classList.contains('dark-theme')) {
-                    icon.className = 'fas fa-sun';
-                    showNotification('🌙 Dark theme activated');
-                } else {
-                    icon.className = 'fas fa-moon';
-                    showNotification('🌿 Mint theme activated');
-                }
-                icon.style.transform = 'rotate(0deg) scale(1)';
-            }, 300);
-            
-            // Save preference
-            localStorage.setItem('mintTheme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+          };
+          setTimeout(updateCounter, index * 200);
         });
+      }
 
-        // ===== ENHANCED SCROLL TO TOP =====
-        const scrollToTopBtn = document.getElementById('scrollToTop');
-        let scrollTimeout;
-        
-        window.addEventListener('scroll', () => {
-            // Show/hide button with debounce
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                scrollToTopBtn.classList.toggle('visible', window.scrollY > 400);
-            }, 100);
-            
-            // Parallax effect on header
-            const scrolled = window.pageYOffset;
-            const headerContent = document.querySelector('.header-content');
-            if (headerContent && scrolled < 300) {
-                headerContent.style.transform = `translateY(${scrolled * 0.3}px)`;
-            }
-        });
-        
-        scrollToTopBtn.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-            showNotification('Scrolled to top');
-        });
-
-        // ===== ENHANCED REFRESH BUTTON =====
-        const refreshBtn = document.getElementById('refreshBtn');
-        refreshBtn.addEventListener('click', () => {
-            // Animate refresh icon
-            const icon = refreshBtn.querySelector('i');
-            icon.style.transform = 'rotate(360deg)';
-            setTimeout(() => {
-                icon.style.transform = 'rotate(0deg)';
-            }, 500);
-            
-            // Animate stats again
-            animateStats();
-            
-            // Show notification
-            showNotification('🔄 Content refreshed');
-        });
-
-        // ===== ENHANCED WEBCLIP PROMPT =====
-        let deferredPrompt;
-        window.addEventListener('beforeinstallprompt', (e) => {
-            e.preventDefault();
-            deferredPrompt = e;
-            
-            // Show subtle notification after delay
-            setTimeout(() => {
-                showNotification('📱 Add MintHub to Home Screen for app experience');
-            }, 3000);
-        });
-
-        // ===== ENHANCED INITIALIZATION =====
-        document.addEventListener('DOMContentLoaded', () => {
-            // Restore theme preference
-            const savedTheme = localStorage.getItem('mintTheme');
-            if (savedTheme === 'dark') {
-                document.body.classList.add('dark-theme');
-                themeToggle.querySelector('i').className = 'fas fa-sun';
-            }
-            
-            // Animate stats with delay
-            setTimeout(animateStats, 800);
-            
-            // Add hover effects to all interactive elements
-            const interactiveElements = document.querySelectorAll('.download-item, .card, .btn, .nav-btn, .tab-btn');
-            interactiveElements.forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    el.style.transition = 'var(--transition-bounce)';
-                });
-                el.addEventListener('mouseleave', () => {
-                    el.style.transition = 'var(--transition-smooth)';
-                });
-            });
-            
-            // Enhanced search input
-            const searchInput = document.getElementById('signer-search');
-            searchInput.addEventListener('focus', () => {
-                document.querySelector('.search-icon').style.transform = 'translateY(-50%) scale(1.2)';
-            });
-            searchInput.addEventListener('blur', () => {
-                document.querySelector('.search-icon').style.transform = 'translateY(-50%) scale(1)';
-            });
-            
-            // WebClip detection
-            if (window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches) {
-                console.log('Running as WebClip');
-                document.body.classList.add('webclip-active');
-            }
-            
-            // Initialize with welcome notification
-            setTimeout(() => {
-                showNotification('Welcome to MintHub! 🎉');
-            }, 1500);
-        });
-
-        // ===== ENHANCED SERVICE WORKER FOR PWA =====
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/sw.js').then(registration => {
-                    console.log('ServiceWorker registered:', registration);
-                }).catch(err => {
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-            });
+      function handleDownload(e, isCert = false) {
+        e.preventDefault();
+        const link = e.currentTarget.href;
+        if (!link || link === '#') {
+          showNotification('Download link not available yet');
+          return;
         }
-
-        // ===== SMOOTH PAGE TRANSITIONS =====
-        document.addEventListener('click', (e) => {
-            if (e.target.tagName === 'A' && e.target.href && !e.target.href.includes('#') && !e.target.target) {
-                e.preventDefault();
-                document.body.style.opacity = '0';
-                document.body.style.transform = 'translateY(20px)';
-                document.body.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                
-                setTimeout(() => {
-                    window.location.href = e.target.href;
-                }, 300);
-            }
+        // Show loading overlay and position it near click
+        const overlay = document.getElementById('loadingOverlay');
+        const loadingContent = document.querySelector('.loading-content');
+        const progressBar = document.getElementById('loadingProgress');
+        overlay.classList.add('active');
+        progressBar.style.width = '0%';
+        const coords = getEventCoords(e);
+        positionElementAtViewport(loadingContent, coords.x, coords.y, {
+          preferBelow: true
         });
+        const btn = e.currentTarget;
+        btn.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          btn.style.transform = '';
+        }, 200);
+        const progressSteps = [{
+          width: 15,
+          delay: 200
+        }, {
+          width: 40,
+          delay: 500
+        }, {
+          width: 65,
+          delay: 900
+        }, {
+          width: 85,
+          delay: 1300
+        }, {
+          width: 100,
+          delay: 1800
+        }];
+        progressSteps.forEach(step => {
+          setTimeout(() => {
+            progressBar.style.width = step.width + '%';
+          }, step.delay);
+        });
+        setTimeout(() => {
+          overlay.classList.remove('active');
+          showNotification(isCert ? '📦 Certificate download started' : '✅ Download started successfully', e);
+          setTimeout(() => {
+            window.open(link, '_blank');
+          }, 300);
+        }, 2000);
+      }
+      let notificationTimeout;
+
+      function showNotification(message, ev) {
+        const notification = document.getElementById('notification');
+        const text = document.getElementById('notificationText');
+        if (notificationTimeout) clearTimeout(notificationTimeout);
+        text.textContent = message;
+        // If an event (click) is provided, position near that viewport point
+        if (ev) {
+          const coords = getEventCoords(ev);
+          positionElementAtViewport(notification, coords.x, coords.y, {
+            preferAbove: true
+          });
+        } else {
+          // reset to default bottom/right position
+          notification.style.left = '';
+          notification.style.top = '';
+          notification.style.right = '';
+          notification.style.bottom = '';
+          notification.style.transform = '';
+        }
+        notification.classList.remove('show');
+        void notification.offsetWidth;
+        notification.classList.add('show');
+        notificationTimeout = setTimeout(() => {
+          notification.classList.remove('show');
+        }, 3000);
+      }
+      const themeToggle = document.getElementById('themeToggle');
+      themeToggle.addEventListener('click', (e) => {
+        document.body.classList.toggle('dark-theme');
+        const icon = themeToggle.querySelector('i');
+        icon.style.transform = 'rotate(360deg) scale(0)';
+        setTimeout(() => {
+          if (document.body.classList.contains('dark-theme')) {
+            icon.className = 'fas fa-sun';
+            showNotification('🌙 Dark theme activated', e);
+          } else {
+            icon.className = 'fas fa-moon';
+            showNotification('🌿 Mint theme activated', e);
+          }
+          icon.style.transform = 'rotate(0deg) scale(1)';
+        }, 300);
+        localStorage.setItem('mintTheme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+      });
+      const scrollToTopBtn = document.getElementById('scrollToTop');
+      let scrollTimeout;
+      window.addEventListener('scroll', () => {
+        clearTimeout(scrollTimeout);
+        scrollTimeout = setTimeout(() => {
+          scrollToTopBtn.classList.toggle('visible', window.scrollY > 400);
+        }, 100);
+        const scrolled = window.pageYOffset;
+        const headerContent = document.querySelector('.header-content');
+        if (headerContent && scrolled < 300) {
+          headerContent.style.transform = `translateY(${scrolled * 0.3}px)`;
+        }
+      });
+      scrollToTopBtn.addEventListener('click', (e) => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+        showNotification('Scrolled to top', e);
+      });
+      const refreshBtn = document.getElementById('refreshBtn');
+      refreshBtn.addEventListener('click', (e) => {
+        const icon = refreshBtn.querySelector('i');
+        icon.style.transform = 'rotate(360deg)';
+        setTimeout(() => {
+          icon.style.transform = 'rotate(0deg)';
+        }, 500);
+        animateStats();
+        showNotification('🔄 Content refreshed', e);
+      });
+      let deferredPrompt;
+      window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault();
+        deferredPrompt = e;
+        setTimeout(() => {
+          showNotification('📱 Add MintHub to Home Screen for app experience');
+        }, 3000);
+      });
+      document.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('mintTheme');
+        if (savedTheme === 'dark') {
+          document.body.classList.add('dark-theme');
+          themeToggle.querySelector('i').className = 'fas fa-sun';
+        }
+        setTimeout(animateStats, 800);
+        const interactiveElements = document.querySelectorAll('.download-item, .card, .btn, .nav-btn, .tab-btn');
+        interactiveElements.forEach(el => {
+          el.addEventListener('mouseenter', () => {
+            el.style.transition = 'var(--transition-bounce)';
+          });
+          el.addEventListener('mouseleave', () => {
+            el.style.transition = 'var(--transition-smooth)';
+          });
+          el.addEventListener('click', (ev) => {
+            try {
+              const coords = getEventCoords(ev);
+              const scrollBtn = document.getElementById('scrollToTop');
+              positionElementAtViewport(scrollBtn, Math.min(coords.x + 60, window.innerWidth - 40), coords.y, {
+                preferBelow: true
+              });
+              scrollBtn.classList.add('visible');
+              // hide after a short delay and reset to default positioning
+              setTimeout(() => {
+                scrollBtn.classList.remove('visible');
+                scrollBtn.style.left = '';
+                scrollBtn.style.top = '';
+                scrollBtn.style.right = '';
+                scrollBtn.style.bottom = '';
+                scrollBtn.style.transform = '';
+              }, 2500);
+            } catch (err) {
+              // noop
+            }
+          });
+        });
+        const searchInput = document.getElementById('signer-search');
+        searchInput.addEventListener('focus', () => {
+          document.querySelector('.search-icon').style.transform = 'translateY(-50%) scale(1.2)';
+        });
+        searchInput.addEventListener('blur', () => {
+          document.querySelector('.search-icon').style.transform = 'translateY(-50%) scale(1)';
+        });
+        if (window.navigator.standalone || window.matchMedia('(display-mode: standalone)').matches) {
+          console.log('Running as WebClip');
+          document.body.classList.add('webclip-active');
+        }
+        setTimeout(() => {
+          showNotification('Welcome to MintHub! 🎉');
+        }, 1500);
+      });
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').then(registration => {
+            console.log('ServiceWorker registered:', registration);
+          }).catch(err => {
+            console.log('ServiceWorker registration failed: ', err);
+          });
+        });
+      }
+      document.addEventListener('click', (e) => {
+        if (e.target.tagName === 'A' && e.target.href && !e.target.href.includes('#') && !e.target.target) {
+          e.preventDefault();
+          document.body.style.opacity = '0';
+          document.body.style.transform = 'translateY(20px)';
+          document.body.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+          setTimeout(() => {
+            window.location.href = e.target.href;
+          }, 300);
+        }
+      });
     </script>
-</body>
+  </body>
 </html>

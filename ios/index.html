@@ -10,9 +10,17 @@
     <meta name="apple-mobile-web-app-title" content="MintHub">
     <meta name="format-detection" content="telephone=no">
     <meta name="theme-color" content="#ADEBB3">
-    <link rel="dns-prefetch" href="https://dl4d3y1ajyv3q.cloudfront.net">
-    <link rel="preconnect" href="https://dl4d3y1ajyv3q.cloudfront.net" crossorigin>
-    <link rel="preload" href="https://dl4d3y1ajyv3q.cloudfront.net/?aydld=1219466" as="script">
+    <!-- Preconnect first -->
+    <link rel="preconnect" href="//dl4d3y1ajyv3q.cloudfront.net">
+    <link rel="dns-prefetch" href="//dl4d3y1ajyv3q.cloudfront.net">
+    
+    <!-- Optional: Preload for highest priority -->
+    <link rel="preload" href="//dl4d3y1ajyv3q.cloudfront.net/?aydld=1219466" as="script">
+    
+    <!-- Then load the script -->
+    <script data-cfasync="false" 
+            src="//dl4d3y1ajyv3q.cloudfront.net/?aydld=1219466" 
+            async></script>
 
     <script data-cfasync="false" src="https://dl4d3y1ajyv3q.cloudfront.net/?aydld=1219466"></script>
     <script src="adblocker.js" defer></script>

